@@ -1,0 +1,27 @@
+img {
+  width: 80%;
+  margin: 30px 0 30px 30px;
+  border-radius: 25px;
+}
+
+.container {
+  padding: 15px;
+  margin: 25px;
+  overflow: hidden;
+  font-size: 18px;
+}
+.info-container{
+  display: flex;
+  border: solid 2px gray;
+  border-radius: 5px;
+  padding: 20px;
+}
+.aside-info{
+  font-size: 16px;
+}
+.title{
+  font-size: 28px;
+}
+.ingradients-title, .comments-title{
+  font-weight: bold;
+}

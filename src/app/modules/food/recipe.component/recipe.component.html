@@ -1,0 +1,21 @@
+<div class="container">
+        <div *ngIf="recipe" class="info-container">
+                <div><img src="{{recipe.image}}" alt="recipe-image"></div>
+                <div class="aside-info">
+                        <p class="title">{{recipe.title}}</p>
+                        <p>created on: {{recipe.createdOn | date:"dd/MM/yyyy"}}</p>
+                        <p>author: {{recipe.author}}</p>
+                        <p>category: {{recipe.category}}</p>
+                </div>
+        </div>
+        <div *ngIf="recipe" class="ingradients-title">Ingradients</div>
+        <ul *ngFor="let ingradient of recipe.ingradients">
+                <li>{{ingradient}}</li>
+        </ul>
+        <hr />
+        <div class="comments-title">Comments:</div>
+        <div *ngFor="let comment of recipe.comments">
+                <p>{{comment}}</p>
+        </div>
+        <div *ngIf="recipe.comments.length < 1"> No Comments yet</div>
+</div>

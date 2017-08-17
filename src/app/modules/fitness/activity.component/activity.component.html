@@ -1,0 +1,19 @@
+<div *ngIf='activity' class="container">
+  <div class="info-container">
+    <div><img src="{{activity.image}}" alt="image-activity"></div>
+    <div>
+      <p class="title">{{activity.title}}</p>
+      <p>added on: {{activity.createdOn | date:"dd/MM/yyyy"}}</p>
+      <p>author: {{activity.author}}</p>
+    </div>
+  </div>
+  <p class="activity-text">
+    {{activity.text}}
+  </p>
+  <hr />
+  <div class="comments-title">Comments:</div>
+  <div *ngFor="let comment of activity.comments">
+    <p>{{comment}}</p>
+  </div>
+  <div *ngIf="activity.comments.length < 1"> No Comments yet</div>
+</div>

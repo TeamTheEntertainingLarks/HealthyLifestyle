@@ -1,0 +1,11 @@
+<div class='sort-control'>
+    <button (click)=orderByDateAsc()>Sort by date Ascending</button>
+    <button (click)=orderByDateDesc()>Sort by date Descending</button>
+    <button (click)=orderByTitleAsc()>Sort by title Ascending</button>
+    <button (click)=orderByTitleDesc()>Sort by title Descending</button>
+</div>
+<div *ngFor="let recipe of recipes" class="recipe-container">
+     <div><a routerLink='/recipes/{{recipe.id}}'><img src="{{recipe.image}}" alt="recipe-image"></a></div>
+    <div class='title'><a routerLink='/recipes/{{recipe.id}}'>{{recipe.title}}</a></div>
+    <div class='createdOn'>{{recipe.createdOn | date:"dd/MM/yyyy"}}</div>   
+</div>

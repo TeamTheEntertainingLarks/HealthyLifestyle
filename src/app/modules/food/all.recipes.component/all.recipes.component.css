@@ -1,0 +1,37 @@
+img {
+      width: 30%;
+      float: left;
+      margin: 30px;
+      border-radius: 25px;
+ }
+.recipe-container {
+      padding: 15px;
+      margin: 25px;
+      border: solid 2px #636363;
+      border-radius: 5px;
+      overflow: hidden;
+      font-size: 18px;
+    }
+button{
+      font-size: 16px;
+      padding: 5px;
+      margin: 0 20px;
+      background-color: #fff;
+      border-radius: 5px;
+}
+a{
+      text-decoration: none;
+      cursor: pointer;
+      color: #636363;
+}
+a:hover{
+      text-decoration: underline;
+}
+.title{
+      font-size: 25px;
+      font-weight: bold;
+      padding: 50px 0 0;
+}
+.sort-control{
+      text-align: right;
+}
