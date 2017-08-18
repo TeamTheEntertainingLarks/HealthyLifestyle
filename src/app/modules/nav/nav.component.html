@@ -11,4 +11,9 @@
     <li>
         <a routerLink="activities/all">Fitness</a>
     </li>
+    <li>
+        <button routerLink="sign-in" *ngIf="!isAuthenticated()">Sign In</button>
+        <button routerLink="sign-up" *ngIf="!isAuthenticated()">Sign Up</button>
+        <button (click)="signOut()" *ngIf="isAuthenticated()">Logout</button>
+    </li>
 </ul>

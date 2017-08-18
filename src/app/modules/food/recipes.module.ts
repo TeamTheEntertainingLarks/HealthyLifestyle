@@ -8,9 +8,10 @@ import { RecipesAllComponent } from './all.recipes.component/all.recipes.compone
 
 @NgModule({
     imports: [CommonModule, AppRoutesModule],
-    declarations: [RecipeComponent, RecipesAllComponent],
+    declarations: [RecipeComponent, RecipesAllComponent,
+],
     providers: [],
     exports: [RecipeComponent, RecipesAllComponent]
 })
 
-export class RecipesModule {}
+export class RecipesModule { }
