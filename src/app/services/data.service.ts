@@ -14,6 +14,8 @@ const DATA = {
       author: 'Alice Ford',
       image: '/assets/images/cornbread.jpg',
       createdOn: Date.now() + 1,
+      // tslint:disable-next-line:max-line-length
+      description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda ipsum aspernatur sed deserunt veniam possimus modi accusantium quos consectetur ab beatae, soluta facilis ipsam eius fugit corrupti voluptatum quidem facere.',
       ingradients: [
         '2 tablespoons unsalted butter, plus more for pan',
         '1 1/2 cups cornmeal',
@@ -32,9 +34,7 @@ const DATA = {
         step1: 'Preheat oven to 375ºF. Butter an 11-by-7-inch glass baking dish.',
         // tslint:disable-next-line:max-line-length
         step2: `Whisk cornmeal, flour, baking powder, baking soda, 1¼ teaspoons salt, ¼ teaspoon pepper, and cayenne, if desired, in a large bowl. In a separate bowl, whisk eggs, buttermilk, and honey until combined. Pour buttermilk mixture into cornmeal mixture and stir until nearly combined. Fold in ¾ cup cheese. Spread batter in baking dish.`,
-        step3: `Melt 2 tablespoons butter in a large skillet over medium heat. Add tomato slices, sprinkle with remaining ¼ teaspoon each salt and pepper, and cook, undisturbed, until tomatoes begin to soften, 1 to 2 minutes. Carefully turn tomatoes with tongs and cook 1 minute more. Transfer to baking dish, arranging on top of batter. Pour any juices from skillet over tomatoes. Sprinkle with 2 tablespoons cheese, if desired.`,
-        // tslint:disable-next-line:max-line-length
-        step4: `Bake until cornbread is golden and a toothpick inserted in center comes out clean, about 30 minutes. Let cool in baking dish on a wire rack for at least 10 minutes before serving.`
+        step3: `Melt 2 tablespoons butter in a large skillet over medium heat. Add tomato slices, sprinkle with remaining ¼ teaspoon each salt and pepper, and cook, undisturbed, until tomatoes begin to soften, 1 to 2 minutes. Carefully turn tomatoes with tongs and cook 1 minute more. Transfer to baking dish, arranging on top of batter. Pour any juices from skillet over tomatoes. Sprinkle with 2 tablespoons cheese, if desired. Bake until cornbread is golden and a toothpick inserted in center comes out clean, about 30 minutes. Let cool in baking dish on a wire rack for at least 10 minutes before serving.`
       },
       comments: []
     },
@@ -45,6 +45,8 @@ const DATA = {
       author: 'Alice Ford',
       image: '/assets/images/smoothie.jpg',
       createdOn: Date.now() + 2,
+      // tslint:disable-next-line:max-line-length
+      description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda ipsum aspernatur sed deserunt veniam possimus modi accusantium quos consectetur ab beatae, soluta facilis ipsam eius fugit corrupti voluptatum quidem facere.',
       ingradients: [
         '1 cup frozen raspberries (about 4 oz.)',
         '1/2 cup frozen peach slices (about 2 1/2 oz.)',
@@ -69,6 +71,8 @@ const DATA = {
       author: 'Jane Adams',
       image: '/assets/images/salsa.jpg',
       createdOn: Date.now() + 3,
+      // tslint:disable-next-line:max-line-length
+      description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda ipsum aspernatur sed deserunt veniam possimus modi accusantium quos consectetur ab beatae, soluta facilis ipsam eius fugit corrupti voluptatum quidem facere.',
       ingradients: [
         '1 tablespoon avocado oil',
         '1 1/2 cups fresh corn kernels (from 1 large ear)',
@@ -91,9 +95,11 @@ const DATA = {
       id: 3,
       title: 'Broccoli Steaks With Parmesan Bread Crumbs',
       category: 'vegetables',
-      author: 'jane Adam',
+      author: 'Jane Adam',
       image: ' ../../assets/images/broccoli.jpg',
       createdOn: Date.now() + 4,
+      // tslint:disable-next-line:max-line-length
+      description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda ipsum aspernatur sed deserunt veniam possimus modi accusantium quos consectetur ab beatae, soluta facilis ipsam eius fugit corrupti voluptatum quidem facere.',
       ingradients: [
         '2 ounces French bread, torn',
         '1 12-oz. head fresh broccoli',
@@ -106,12 +112,10 @@ const DATA = {
       ],
       steps: {
         // tslint:disable-next-line:max-line-length
-        step1: `Preheat oven to 400°F. Pulse bread in a food processor until coarse crumbs form, 6 to 8 times.`,
-        step2: `Cut broccoli lengthwise into 4 wedges, making sure florets stay attached to the stem. Warm 2 tablespoons of the butter in a small skillet over very low heat until melted, 1 to 2 minutes. Remove from heat; transfer to a small bowl, add Worcestershire sauce, and stir to combine. Brush broccoli evenly with Worcestershire mixture.`,
+        step1: `Preheat oven to 400°F. Pulse bread in a food processor until coarse crumbs form, 6 to 8 times.C ut broccoli lengthwise into 4 wedges, making sure florets stay attached to the stem. Warm 2 tablespoons of the butter in a small skillet over very low heat until melted, 1 to 2 minutes. Remove from heat; transfer to a small bowl, add Worcestershire sauce, and stir to combine. Brush broccoli evenly with Worcestershire mixture.`,
         // tslint:disable-next-line:max-line-length
-        step3: `Heat oil in a large cast-iron skillet over medium-high heat. Place broccoli quarters in skillet, cut side down. Cook, brushing occasionally with Worcestershire mixture, until caramelized, 4 to 5 minutes per side. Transfer skillet to oven; roast until broccoli is tender, 8 to 10 minutes.`,
-        step4: `Melt remaining 2 tablespoons butter in same small skillet over medium heat. Add bread crumbs and thyme. Cook, stirring often, until bread crumbs are toasted, 4 to 5 minutes. Remove from heat. Stir in cheese and pepper.`,
-      step5: `Place 1 broccoli wedge on each of 4 plates; top evenly with bread crumb mixture.`
+        step2: `Heat oil in a large cast-iron skillet over medium-high heat. Place broccoli quarters in skillet, cut side down. Cook, brushing occasionally with Worcestershire mixture, until caramelized, 4 to 5 minutes per side. Transfer skillet to oven; roast until broccoli is tender, 8 to 10 minutes.`,
+        step3: `Melt remaining 2 tablespoons butter in same small skillet over medium heat. Add bread crumbs and thyme. Cook, stirring often, until bread crumbs are toasted, 4 to 5 minutes. Remove from heat. Stir in cheese and pepper. Place 1 broccoli wedge on each of 4 plates; top evenly with bread crumb mixture.`
       },
       comments: []
     }
@@ -124,6 +128,8 @@ const DATA = {
       createdOn: Date.now() + 1,
       image: '/assets/images/hiking.jpg',
       // tslint:disable-next-line:max-line-length
+      description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda ipsum aspernatur sed deserunt veniam possimus modi accusantium quos consectetur ab beatae, soluta facilis ipsam eius fugit corrupti voluptatum quidem facere.',
+      // tslint:disable-next-line:max-line-length
       text: `Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda ipsum aspernatur sed deserunt veniam possimus modi accusantium quos consectetur ab beatae, soluta facilis ipsam eius fugit corrupti voluptatum quidem facere. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda ipsum aspernatur sed deserunt veniam possimus modi accusantium quos consectetur ab beatae, soluta facilis ipsam eius fugit corrupti voluptatum quidem facere. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda ipsum aspernatur sed deserunt veniam possimus modi accusantium quos consectetur ab beatae, soluta facilis ipsam eius fugit corrupti voluptatum quidem facere.`,
       comments: []
     },
@@ -133,6 +139,8 @@ const DATA = {
       author: 'Jane Adam',
       createdOn: Date.now() + 3,
       image: '../../assets/images/run.jpg',
+      // tslint:disable-next-line:max-line-length
+      description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda ipsum aspernatur sed deserunt veniam possimus modi accusantium quos consectetur ab beatae, soluta facilis ipsam eius fugit corrupti voluptatum quidem facere.',
        // tslint:disable-next-line:max-line-length
        text: `Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda ipsum aspernatur sed deserunt veniam possimus modi accusantium quos consectetur ab beatae, soluta facilis ipsam eius fugit corrupti voluptatum quidem facere. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda ipsum aspernatur sed deserunt veniam possimus modi accusantium quos consectetur ab beatae, soluta facilis ipsam eius fugit corrupti voluptatum quidem facere. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda ipsum aspernatur sed deserunt veniam possimus modi accusantium quos consectetur ab beatae, soluta facilis ipsam eius fugit corrupti voluptatum quidem facere.`,
       comments: []
