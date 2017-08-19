@@ -1,21 +1,18 @@
-img {
-      width: 30%;
-      float: left;
-      margin: 30px;
-      border-radius: 25px;
- }
 .recipe-container {
-      padding: 15px;
-      margin: 25px;
+      margin: 50px;
       border: solid 2px #636363;
       border-radius: 5px;
       overflow: hidden;
       font-size: 18px;
+      width: 60%;
     }
 button{
       font-size: 14px;
       margin: 0 10px;
       border-radius: 5px; 
+}
+md-icon{
+      color: #636363;
 }
 a{
       text-decoration: none;
@@ -24,11 +21,6 @@ a{
 }
 a:hover{
       text-decoration: underline;
-}
-.title{
-      font-size: 25px;
-      font-weight: bold;
-      padding: 50px 0 0;
 }
 .sort-control{
       text-align: right;

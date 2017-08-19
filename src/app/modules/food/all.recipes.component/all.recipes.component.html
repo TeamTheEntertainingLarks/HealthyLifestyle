@@ -4,8 +4,25 @@
     <button (click)=orderByTitleAsc() md-raised-button>Sort by title Ascending</button>
     <button (click)=orderByTitleDesc() md-raised-button>Sort by title Descending</button>
 </div>
-<div *ngFor="let recipe of recipes" class="recipe-container">
-     <div><a routerLink='/recipes/{{recipe.id}}'><img src="{{recipe.image}}" alt="recipe-image"></a></div>
-    <div class='title'><a routerLink='/recipes/{{recipe.id}}'>{{recipe.title}}</a></div>
-    <div class='createdOn'>{{recipe.createdOn | date}}</div>   
-</div>
+<md-card *ngFor="let recipe of recipes" class="recipe-container">
+    <img md-card-image src="{{recipe.image}}" alt="recipe-image">
+    <md-card-content>
+        <h3><a routerLink="/recipes/{{recipe.id}}">{{recipe.title}}</a></h3>
+        <p class="createdOn">
+            <span>{{recipe.createdOn | date}}</span>
+        </p>
+        <p>
+            <span>{{recipe.description}}</span>
+        </p>
+    </md-card-content>
+    <md-card-actions>
+        <button md-button>
+        <md-icon>thumb_up</md-icon>
+        Like
+    </button>
+        <button md-button>
+         <md-icon>favorite</md-icon>
+        Add to Favorites
+    </button>
+    </md-card-actions>
+</md-card>

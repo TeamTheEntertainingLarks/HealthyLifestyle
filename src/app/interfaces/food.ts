@@ -5,7 +5,8 @@ export interface Food {
     author: string;
     image: string;
     createdOn: Date;
+    description: string;
     ingradients: Array<string>;
-    steps: {};
+    steps;
     comments: Array<string>;
 }
