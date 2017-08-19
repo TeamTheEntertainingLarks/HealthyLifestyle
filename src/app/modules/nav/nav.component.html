@@ -3,17 +3,25 @@
 </div>
 <ul>
     <li>
-        <a routerLink="/">Home</a>
+        <a md-button routerLink="/">Home</a>
     </li>
     <li>
-        <a routerLink="recipes/all">Food</a>
+        <button md-button [mdMenuTriggerFor]="food">Food</button>
+        <md-menu #food="mdMenu">
+            <a md-menu-item routerLink="recipes/all">Recipes</a>
+            <a md-menu-item routerLink=".">Nutrition</a>
+        </md-menu>
     </li>
     <li>
-        <a routerLink="activities/all">Fitness</a>
+        <button md-button [mdMenuTriggerFor]="fitness">Fitness</button>
+        <md-menu #fitness="mdMenu">
+            <a md-menu-item routerLink=".">Workouts</a>
+            <a md-menu-item routerLink="activities/all">Activities</a>
+        </md-menu>
     </li>
     <li>
-        <button routerLink="sign-in" *ngIf="!isAuthenticated()">Sign In</button>
-        <button routerLink="sign-up" *ngIf="!isAuthenticated()">Sign Up</button>
-        <button (click)="signOut()" *ngIf="isAuthenticated()">Logout</button>
+        <button routerLink="sign-in" *ngIf="!isAuthenticated()" md-button>Sign In</button>
+        <button routerLink="sign-up" *ngIf="!isAuthenticated()" md-button>Sign Up</button>
+        <button (click)="signOut()" *ngIf="isAuthenticated()" md-button>Logout</button>
     </li>
 </ul>

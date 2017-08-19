@@ -2,6 +2,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MdButtonModule, MdCheckboxModule, MdMenuModule } from '@angular/material';
+import 'hammerjs';
 
 import { AppRoutesModule } from './routes.module';
 
@@ -41,7 +44,11 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
     AngularFireAuthModule,
     AppRoutesModule,
     RecipesModule,
-    ActivitiesModule
+    ActivitiesModule,
+    BrowserAnimationsModule,
+    MdButtonModule,
+    MdCheckboxModule,
+    MdMenuModule
   ],
   providers: [
     DataService,

@@ -1,9 +1,9 @@
 <div class="sort-control">
-    <button (click)="orderByNameAcs()">Sort by name Ascending</button>
-    <button (click)="orderByNameDesc()">Sort by name Descending</button>
+    <button (click)="orderByNameAcs()" md-raised-button>Sort by title Ascending</button>
+    <button (click)="orderByNameDesc()" md-raised-button>Sort by title Descending</button>
 </div>
 <div *ngFor="let activity of activities" class="activities-container">
     <a routerLink='/activities/{{activity.id}}'><img src="{{activity.image}}" alt="activity-image"></a>
     <div class="title"><a routerLink='/activities/{{activity.id}}'>{{activity.title}}</a></div>
-    <div>{{activity.createdOn | date:"dd/MM/yyyy"}}</div>
+    <div>{{activity.createdOn | date}}</div>
 </div>
