@@ -1,33 +1,28 @@
-img {
-  width: 80%;
-  margin: 30px 0 30px 30px;
-  border-radius: 25px;
-}
-
 .container {
-  padding: 15px;
-  margin: 25px;
-  overflow: hidden;
+  width: 70%;
   font-size: 18px;
 }
 
-.info-container{
-  display: flex;
+.info-container {
   border: solid 2px gray;
   border-radius: 5px;
-  padding: 20px;
 }
 
 .title{
-  font-size: 28px;
+   color: #636363;
+   font-size: 25px;
 }
 
-.activity-text{
+md-icon{
+      color: #636363;
+}
+
+.activity-text, .sub-title {
   font-size: 22px;
   text-align: justify;
-  padding: 20px 0;
+  padding: 20px;
 }
 
-.comments-title{
-  font-weight: bold;
+.comments-title {
+  margin: 30px 0;
 }

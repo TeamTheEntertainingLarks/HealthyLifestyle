@@ -1,4 +1,4 @@
-<div *ngIf='activity' class="container">
+<!-- <div *ngIf='activity' class="container">
   <div class="info-container">
     <div><img src="{{activity.image}}" alt="image-activity"></div>
     <div>
@@ -15,5 +15,33 @@
   <div *ngFor="let comment of activity.comments">
     <p>{{comment}}</p>
   </div>
-  <div *ngIf="activity.comments.length < 1"> No Comments yet</div>
+  <div *ngIf="activity.comments.length < 1"> No Comments yet</div> -->
+<div class="container">
+  <md-card *ngIf="activity" class="info-container">
+    <img md-card-image src="{{activity.image}}" alt="image-activity">
+    <md-card-content>
+      <p class="title">{{activity.title}}</p>
+      <p>by {{activity.author}} <strong>|</strong> on {{activity.createdOn | date}}</p>
+    </md-card-content>
+    <md-card-actions>
+      <button md-button>
+                        <md-icon>thumb_up</md-icon>
+                        Like
+                </button>
+      <button md-button>
+                        <md-icon>favorite</md-icon>
+                        Add to Favorites
+                </button>
+    </md-card-actions>
+  </md-card>
+  <p class="sub-title"><em>{{activity?.description}}</em></p>
+  <p class="activity-text">
+    {{activity?.text}}
+  </p>
+  <hr />
+  <h3 class="comments-title">Comments</h3>
+  <div *ngFor="let comment of activity?.comments">
+    <p>{{comment}}</p>
+  </div>
+  <div *ngIf="activity?.comments.length < 1"> No Comments yet</div>
 </div>
