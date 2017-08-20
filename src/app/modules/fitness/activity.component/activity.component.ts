@@ -1,8 +1,8 @@
 import { ActivatedRoute } from '@angular/router';
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { DataService } from '../../../services/data.service';
-import { Workout } from '../../../interfaces/workout-routine';
+import { ActivityInterface } from '../../../interfaces/activity';
 
 @Component({
     selector: 'app-activity',
@@ -11,11 +11,11 @@ import { Workout } from '../../../interfaces/workout-routine';
 })
 
 export class ActivityComponent implements OnInit {
-    activity: Workout;
+    activity: ActivityInterface;
     paramId: any;
 
     constructor(private dataService: DataService, private route: ActivatedRoute) {
-        this.paramId =  this.route.snapshot.paramMap.get('id');
+        this.paramId = this.route.snapshot.paramMap.get('id');
     }
 
     ngOnInit() {

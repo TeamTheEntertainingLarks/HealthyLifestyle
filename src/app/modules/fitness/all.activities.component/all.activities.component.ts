@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../../../services/data.service';
 
-import { Workout } from '../../../interfaces/workout-routine';
+import { WorkoutInterface } from '../../../interfaces/workout';
 
 @Component({
     selector: 'app-activities',
@@ -10,9 +10,9 @@ import { Workout } from '../../../interfaces/workout-routine';
 })
 
 export class ActivitiesAllComponent implements OnInit {
-    activities: Array<Workout>;
+    activities: Array<WorkoutInterface>;
 
-    constructor(private dataService: DataService) {}
+    constructor(private dataService: DataService) { }
 
     ngOnInit() {
         this.dataService.getActivitiesAll().then((data) => {

@@ -1,9 +1,10 @@
+import { ModelFactory } from './../../../services/factories/model.factory';
+import { ModelFactoryInterface } from './../../../services/factories/interfaces/model.factory';
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../../../services/data.service';
 
 import { RecipeInterface } from '../../../interfaces/recipe';
 import { RecipeData } from '../../../services/recipe-data.service';
-import { RecipeFactory } from './../../../factories/recipeFactory';
 import { AppComponent } from '../../../app.component';
 import { AuthService } from '../../../services/auth.service';
 
@@ -14,14 +15,24 @@ import { AuthService } from '../../../services/auth.service';
 })
 
 export class RecipesAllComponent extends AppComponent implements OnInit {
-    recipe: RecipeInterface;
-    recipes: Array<RecipeInterface>;
+    public recipe: RecipeInterface;
+    public recipes: Array<RecipeInterface>;
 
-    constructor(private dataService: DataService,
-        private recipeDataService: RecipeData,
-        private recipeFactory: RecipeFactory,
+    private factory: ModelFactory;
+    private dataService: DataService;
+    private recipeDataService: RecipeData;
+    auth: AuthService;
+
+    constructor(
+        dataService: DataService,
+        recipeDataService: RecipeData,
+        factory: ModelFactory,
         auth: AuthService) {
         super(auth);
+        this.factory = factory;
+        this.dataService = dataService;
+        this.recipeDataService = recipeDataService;
+        this.auth = auth;
     }
 
     ngOnInit() {
@@ -50,7 +61,7 @@ export class RecipesAllComponent extends AppComponent implements OnInit {
         title = 'testTitle';
         author = this.auth.currentUserId;
 
-        this.recipe = this.recipeFactory.create(title, author);
+        this.recipe = this.factory.createRecipe(title, author);
         this.recipeDataService.add(this.recipe);
     }
 

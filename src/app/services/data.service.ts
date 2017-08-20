@@ -4,7 +4,7 @@ import 'rxjs/add/operator/map';
 import { reject } from 'q';
 
 import { RecipeInterface } from '../interfaces/recipe';
-import { Workout } from '../interfaces/workout-routine';
+import { WorkoutInterface } from '../interfaces/workout';
 
 const DATA = {
   recipes: [
@@ -176,13 +176,13 @@ export class DataService {
     });
   }
 
-  getActivitiesAll(): Promise<Array<Workout>> {
+  getActivitiesAll(): Promise<Array<WorkoutInterface>> {
     return new Promise((resolve, reject) => {
       resolve(this.data.activities);
     });
   }
 
-  getActivityById(id): Promise<Workout> {
+  getActivityById(id): Promise<WorkoutInterface> {
     let activity;
     this.data.activities.map((o) => {
       if (o.id === Number(id)) {

@@ -1,3 +1,5 @@
+import { ModelFactoryInterface } from './services/factories/interfaces/model.factory';
+import { ModelFactory } from './services/factories/model.factory';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -23,7 +25,6 @@ import { AuthGuard } from './guards/auth.guard';
 
 import { DataService } from './services/data.service';
 import { RecipeData } from './services/recipe-data.service';
-import { RecipeFactory } from './factories/recipeFactory';
 
 import { firebaseConfig } from '../environments/firebaseConfig';
 import { AngularFireModule } from 'angularfire2';
@@ -60,7 +61,7 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
     AuthService,
     AuthGuard,
     RecipeData,
-    RecipeFactory
+    ModelFactory,
   ],
   bootstrap: [AppComponent]
 })
