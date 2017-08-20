@@ -18,11 +18,14 @@ import { HomeComponent } from './modules/home/home.component';
 import { SignUpFormComponent } from './modules/user/signUp-form/signUp-form.component';
 import { SignInFormComponent } from './modules/user/signIn-form/signIn-form.component';
 
-import { DataService } from './services/data.service';
 import { AuthService } from './services/auth.service';
 import { AuthGuard } from './guards/auth.guard';
 
-import { firebaseConfig } from '../environments/environment';
+import { DataService } from './services/data.service';
+import { RecipeData } from './services/recipe-data.service';
+import { RecipeFactory } from './factories/recipeFactory';
+
+import { firebaseConfig } from '../environments/firebaseConfig';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
@@ -55,7 +58,9 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
   providers: [
     DataService,
     AuthService,
-    AuthGuard
+    AuthGuard,
+    RecipeData,
+    RecipeFactory
   ],
   bootstrap: [AppComponent]
 })
