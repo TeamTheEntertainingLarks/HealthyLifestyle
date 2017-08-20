@@ -1,7 +1,8 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "project": {
-    "name": "modules"
+    "name": "modules",
+    "ejected": true
   },
   "apps": [
     {
@@ -21,7 +22,7 @@
       "styles": [
         "styles.css"
       ],
-      "scripts": [ 
+      "scripts": [
         "../node_modules/hammerjs/hammer.min.js"
       ],
       "environmentSource": "environments/environment.ts",
@@ -57,6 +58,7 @@
   },
   "defaults": {
     "styleExt": "css",
-    "component": {}
+    "component": {
+    }
   }
 }
