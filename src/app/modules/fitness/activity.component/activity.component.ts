@@ -2,7 +2,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit} from '@angular/core';
 
 import { DataService } from '../../../services/data.service';
-import { Fitness } from '../../../interfaces/fitness';
+import { Workout } from '../../../interfaces/workout-routine';
 
 @Component({
     selector: 'app-activity',
@@ -11,7 +11,7 @@ import { Fitness } from '../../../interfaces/fitness';
 })
 
 export class ActivityComponent implements OnInit {
-    activity: Fitness;
+    activity: Workout;
     paramId: any;
 
     constructor(private dataService: DataService, private route: ActivatedRoute) {

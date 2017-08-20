@@ -9,7 +9,6 @@ import { Component } from '@angular/core';
 
 export class AppComponent {
   constructor(protected auth: AuthService) {
-    console.log(auth.currentUser);
   }
 
   isAuthenticated() {

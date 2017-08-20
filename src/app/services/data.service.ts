@@ -1,9 +1,10 @@
+import { AngularFireAuth } from 'angularfire2/auth';
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
 import { reject } from 'q';
 
-import { Food } from '../interfaces/food';
-import { Fitness } from '../interfaces/fitness';
+import { RecipeInterface } from '../interfaces/recipe';
+import { Workout } from '../interfaces/workout-routine';
 
 const DATA = {
   recipes: [
@@ -141,8 +142,8 @@ const DATA = {
       image: '../../assets/images/run.jpg',
       // tslint:disable-next-line:max-line-length
       description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda ipsum aspernatur sed deserunt veniam possimus modi accusantium quos consectetur ab beatae, soluta facilis ipsam eius fugit corrupti voluptatum quidem facere.',
-       // tslint:disable-next-line:max-line-length
-       text: `Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda ipsum aspernatur sed deserunt veniam possimus modi accusantium quos consectetur ab beatae, soluta facilis ipsam eius fugit corrupti voluptatum quidem facere. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda ipsum aspernatur sed deserunt veniam possimus modi accusantium quos consectetur ab beatae, soluta facilis ipsam eius fugit corrupti voluptatum quidem facere. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda ipsum aspernatur sed deserunt veniam possimus modi accusantium quos consectetur ab beatae, soluta facilis ipsam eius fugit corrupti voluptatum quidem facere.`,
+      // tslint:disable-next-line:max-line-length
+      text: `Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda ipsum aspernatur sed deserunt veniam possimus modi accusantium quos consectetur ab beatae, soluta facilis ipsam eius fugit corrupti voluptatum quidem facere. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda ipsum aspernatur sed deserunt veniam possimus modi accusantium quos consectetur ab beatae, soluta facilis ipsam eius fugit corrupti voluptatum quidem facere. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda ipsum aspernatur sed deserunt veniam possimus modi accusantium quos consectetur ab beatae, soluta facilis ipsam eius fugit corrupti voluptatum quidem facere.`,
       comments: []
     }
   ]
@@ -156,13 +157,13 @@ export class DataService {
     this.data = DATA;
   }
 
-  getRecipesAll(): Promise<Array<Food>> {
+  getRecipesAll(): Promise<Array<RecipeInterface>> {
     return new Promise((resolve, reject) => {
       resolve(this.data.recipes);
     });
   }
 
-  getRecipeById(id): Promise<Food> {
+  getRecipeById(id): Promise<RecipeInterface> {
     let recipe;
     this.data.recipes.map((c) => {
       if (c.id === Number(id)) {
@@ -175,13 +176,13 @@ export class DataService {
     });
   }
 
-  getActivitiesAll(): Promise<Array<Fitness>> {
+  getActivitiesAll(): Promise<Array<Workout>> {
     return new Promise((resolve, reject) => {
       resolve(this.data.activities);
     });
   }
 
-  getActivityById(id): Promise<Fitness> {
+  getActivityById(id): Promise<Workout> {
     let activity;
     this.data.activities.map((o) => {
       if (o.id === Number(id)) {
