@@ -3,15 +3,15 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class Recipe implements RecipeInterface {
-    title: string;
-    author: string;
-    category?: string;
-    createdOn?: Date;
-    description?: string;
-    ingradients?: string[];
-    steps?: any;
-    image?: string;
-    comments?: string[];
+    public title: string;
+    public author: string;
+    public category?: string;
+    public createdOn?: Date;
+    public description?: string;
+    public ingradients?: string[];
+    public steps?: any;
+    public image?: string;
+    public comments?: string[];
 
     constructor(
         title: string,
