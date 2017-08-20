@@ -4,6 +4,7 @@ export interface Fitness {
     author: string;
     createdOn: Date;
     image: string;
+    description: string;
     text: string;
     comments: Array<string>;
 }

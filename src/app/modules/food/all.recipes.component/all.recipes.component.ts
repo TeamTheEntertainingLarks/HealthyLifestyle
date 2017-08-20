@@ -16,9 +16,8 @@ export class RecipesAllComponent implements OnInit {
 
     ngOnInit() {
 
-        this.dataService.getRecipesAll().then((data) => {
-            this.recipes = data;
-        }).catch((err) => console.log(err));
+        this.dataService.getRecipesAll();
+        console.log(this.dataService.getRecipesAll());
     }
 
     orderByDateAsc() {

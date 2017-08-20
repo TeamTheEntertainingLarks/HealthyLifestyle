@@ -3,12 +3,46 @@
 </div>
 <ul>
     <li>
-        <a routerLink="/">Home</a>
+        <a md-button routerLink="/">
+            <md-icon>home</md-icon>
+            Home
+        </a>
     </li>
     <li>
-        <a routerLink="recipes/all">Food</a>
+        <button md-icon-button [mdMenuTriggerFor]="food">
+            <md-icon>menu</md-icon>
+            Food
+        </button>
+        <md-menu #food="mdMenu">
+            <a md-menu-item routerLink="recipes/all">
+                <md-icon>subject</md-icon>
+                Recipes
+            </a>
+            <a md-menu-item routerLink=".">
+                <md-icon>subject</md-icon>
+                Nutrition
+            </a>
+        </md-menu>
     </li>
     <li>
-        <a routerLink="activities/all">Fitness</a>
+        <button md-button [mdMenuTriggerFor]="fitness">
+            <md-icon>menu</md-icon>
+            Fitness
+        </button>
+        <md-menu #fitness="mdMenu">
+            <a md-menu-item routerLink=".">
+                <md-icon>subject</md-icon>
+                Workouts
+            </a>
+            <a md-menu-item routerLink="activities/all">
+                <md-icon>subject</md-icon>
+                Activities
+            </a>
+        </md-menu>
+    </li>
+    <li>
+        <button routerLink="sign-in" *ngIf="!isAuthenticated()" md-raised-button>Sign In</button>
+        <button routerLink="sign-up" *ngIf="!isAuthenticated()" md-raised-button>Sign Up</button>
+        <button (click)="signOut()" *ngIf="isAuthenticated()" md-raised-button>Logout</button>
     </li>
 </ul>

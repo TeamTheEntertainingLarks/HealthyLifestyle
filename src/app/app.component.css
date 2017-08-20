@@ -3,5 +3,9 @@ footer{
     margin: 20px 100px;
 }
 #content{
-    padding: 0 100px;
+    padding: 20px 100px;
+}
+#wrapper
+{
+    background-color: #fdfcfd;
 }

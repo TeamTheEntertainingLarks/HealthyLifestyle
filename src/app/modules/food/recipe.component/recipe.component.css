@@ -1,27 +1,26 @@
-img {
-  width: 80%;
-  margin: 30px 0 30px 30px;
-  border-radius: 25px;
+.container {
+  font-size: 18px;
+  width: 70%;
 }
 
-.container {
-  padding: 15px;
-  margin: 25px;
-  overflow: hidden;
-  font-size: 18px;
-}
 .info-container{
-  display: flex;
-  border: solid 2px gray;
   border-radius: 5px;
-  padding: 20px;
+  border: solid 2px gray;
 }
+
 .aside-info{
   font-size: 16px;
 }
+
 .title{
-  font-size: 28px;
+   color: #636363;
+   font-size: 25px;
 }
+
+md-icon{
+      color: #636363;
+}
+
 .ingradients-title, .comments-title{
-  font-weight: bold;
+  margin: 30px 0;
 }
