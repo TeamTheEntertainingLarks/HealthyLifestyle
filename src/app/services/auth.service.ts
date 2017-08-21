@@ -1,3 +1,5 @@
+import { UserInterface } from './../interfaces/user';
+import { UserData } from './user-data.service';
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
@@ -13,7 +15,8 @@ export class AuthService {
     constructor(
         private afAuth: AngularFireAuth,
         private db: AngularFireDatabase,
-        private router: Router) {
+        private router: Router,
+        private userData: UserData) {
 
         this.afAuth.authState.subscribe((auth) => {
             this.authState = auth;
@@ -60,11 +63,12 @@ export class AuthService {
         }
     }
 
-    emailSignUp(email: string, password: string) {
+    emailSignUp(email: string, password: string, user: UserInterface) {
         return this.afAuth.auth.createUserWithEmailAndPassword(email, password)
-            .then((user) => {
-                this.authState = user;
-                this.updateUserData();
+            .then((res) => {
+                this.authState = res;
+                this.userData.add(this.currentUserId, user);
+                this.router.navigateByUrl('/');
             })
             .catch(error => console.log(error));
     }
@@ -73,7 +77,7 @@ export class AuthService {
         return this.afAuth.auth.signInWithEmailAndPassword(email, password)
             .then((user) => {
                 this.authState = user;
-                this.updateUserData();
+                // this.updateUserData();
             })
             .catch(error => console.log(error));
     }
@@ -90,19 +94,5 @@ export class AuthService {
     signOut(): void {
         this.afAuth.auth.signOut();
         this.router.navigate(['/']);
-    }
-
-    private updateUserData(): void {
-        // Writes user name and email to realtime db
-        // useful if your app displays information about users or for admin features
-
-        const path = `users/${this.currentUserId}`; // Endpoint on firebase
-        const data = {
-            email: this.authState.email,
-            name: this.authState.displayName
-        };
-
-        this.db.object(path).update(data)
-            .catch(error => console.log(error));
     }
 }
