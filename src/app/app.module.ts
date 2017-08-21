@@ -1,12 +1,17 @@
 import { ModelFactoryInterface } from './services/factories/interfaces/model.factory';
 import { ModelFactory } from './services/factories/model.factory';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MdButtonModule, MdCheckboxModule, MdMenuModule } from '@angular/material';
-import {MdIconModule} from '@angular/material';
+import {
+  MdIconModule, MaterialModule,
+  MD_ERROR_GLOBAL_OPTIONS,
+  showOnDirtyErrorStateMatcher,
+  MD_PLACEHOLDER_GLOBAL_OPTIONS
+} from '@angular/material';
 import 'hammerjs';
 
 import { AppRoutesModule } from './routes.module';
@@ -30,6 +35,7 @@ import { firebaseConfig } from '../environments/firebaseConfig';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
+import { UserData } from './services/user-data.service';
 
 @NgModule({
   declarations: [
@@ -54,15 +60,20 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
     MdButtonModule,
     MdCheckboxModule,
     MdMenuModule,
-    MdIconModule
+    MdIconModule,
+    MaterialModule
   ],
   providers: [
     DataService,
     AuthService,
     AuthGuard,
     RecipeData,
+    UserData,
     ModelFactory,
+    { provide: MD_ERROR_GLOBAL_OPTIONS, useValue: { errorStateMatcher: showOnDirtyErrorStateMatcher } },
+    { provide: MD_PLACEHOLDER_GLOBAL_OPTIONS, useValue: { float: 'always' } }
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule { }
