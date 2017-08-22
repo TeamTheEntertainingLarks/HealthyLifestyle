@@ -4,7 +4,7 @@ export interface RecipeInterface {
     category?: string;
     createdOn?: Date;
     description?: string;
-    ingradients?: string[];
+    ingredients?: string[];
     steps?: any;
     image?: string;
     comments?: string[];
