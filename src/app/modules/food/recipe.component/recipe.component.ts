@@ -1,7 +1,7 @@
 import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
-import { DataService } from '../../../services/data.service';
+import { RecipeData } from '../../../services/recipe-data.service';
 import { RecipeInterface } from '../../../interfaces/recipe';
 import { AppComponent } from '../../../app.component';
 import { AuthService } from '../../../services/auth.service';
@@ -13,21 +13,30 @@ import { AuthService } from '../../../services/auth.service';
 })
 
 export class RecipeComponent extends AppComponent implements OnInit {
-    recipe: RecipeInterface;
-    paramId: any;
+    public recipe: RecipeInterface;
+    public recipes: Array<RecipeInterface>;
+
+    private recipeDataService: RecipeData;
+    auth: AuthService;
+
+    recipeKey: string;
 
     constructor(private route: ActivatedRoute,
-        private dataService: DataService,
+        recipeDataService: RecipeData,
         auth: AuthService) {
         super(auth);
-        this.paramId = this.route.snapshot.paramMap.get('id');
+        this.recipeDataService = recipeDataService;
     }
 
     ngOnInit() {
-        this.dataService
-            .getRecipeById(this.paramId)
-            .then((data) => {
-                this.recipe = data;
-            }).catch((err) => console.log(err));
+        this.route.params
+        .subscribe(params => {
+        this.recipeDataService.getRecipeById(params.id)
+          .subscribe(recipe => {
+            this.recipe = recipe;
+            this.recipeKey = recipe.$key;
+            console.log(recipe);
+          });
+      });
     }
 }

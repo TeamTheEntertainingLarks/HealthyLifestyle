@@ -14,12 +14,12 @@ export class RecipeData {
         this.firebaseCollection = this.db.list('/recipes');
     }
 
-    getAll() {
-        this.firebaseCollection.subscribe(items => {
-            this.items = items;
-        });
+    getAllRecipes() {
+        return this.db.list('/recipes');
+    }
 
-        return this.items;
+    getRecipeById(recipeKey: string) {
+        return this.db.object(`/recipes/${recipeKey}`);
     }
 
     // need to add some notifications, not console outputs

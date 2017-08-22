@@ -14,13 +14,14 @@
 
 .title{
    color: #636363;
-   font-size: 25px;
+   font-size: 16px;
+   font-weight: bold;
 }
 
 md-icon{
       color: #636363;
 }
 
-.ingradients-title, .comments-title{
+.ingredients-title, .comments-title{
   margin: 30px 0;
 }
