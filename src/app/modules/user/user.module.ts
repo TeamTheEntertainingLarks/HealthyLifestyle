@@ -4,8 +4,9 @@ import { CommonModule } from '@angular/common';
 import { SignInFormComponent } from './signIn-form/signIn-form.component';
 import { SignUpFormComponent } from './signUp-form/signUp-form.component';
 
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { UserRoutesModule } from './user.routes.module';
 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
   MdIconModule, MaterialModule,
   MD_ERROR_GLOBAL_OPTIONS,
@@ -17,6 +18,7 @@ import {
 @NgModule({
   imports: [
     CommonModule,
+    UserRoutesModule,
     MdIconModule,
     MaterialModule,
     FormsModule,

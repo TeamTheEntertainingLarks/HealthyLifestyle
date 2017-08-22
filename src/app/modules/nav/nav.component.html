@@ -54,8 +54,8 @@
         </div>
     </li>
     <li>
-        <button routerLink="sign-in" *ngIf="!isAuthenticated()" md-raised-button>Sign In</button>
-        <button routerLink="sign-up" *ngIf="!isAuthenticated()" md-raised-button>Sign Up</button>
+        <button routerLink="user/sign-in" *ngIf="!isAuthenticated()" md-raised-button>Sign In</button>
+        <button routerLink="user/sign-up" *ngIf="!isAuthenticated()" md-raised-button>Sign Up</button>
         <button (click)="signOut()" *ngIf="isAuthenticated()" md-raised-button>Logout</button>
         <button (click)="getCurrentUserProfileImage()" md-raised-button>test</button>
     </li>

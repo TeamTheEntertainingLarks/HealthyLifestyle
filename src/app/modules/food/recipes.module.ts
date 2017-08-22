@@ -4,7 +4,7 @@ import { MdButtonModule, MdCheckboxModule, MdCardModule, MdIconModule, MdGridLis
 import { MdInputModule , MD_PLACEHOLDER_GLOBAL_OPTIONS } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { AppRoutesModule } from '../../routes.module';
+import { RecipesRoutesModule } from './recipes.routes.module';
 
 import { RecipeComponent } from './recipe.component/recipe.component';
 import { RecipesAllComponent } from './all.recipes.component/all.recipes.component';
@@ -13,7 +13,7 @@ import { CreateFormComponent } from './create.recipe.form/create.resipe.form.com
 @NgModule({
     imports: [
         CommonModule,
-        AppRoutesModule,
+        RecipesRoutesModule,
         MdButtonModule,
         MdCheckboxModule,
         MdCardModule,
