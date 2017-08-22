@@ -12,7 +12,7 @@ import { AuthService } from '../../../services/auth.service';
     styleUrls: ['./recipe.component.css']
 })
 
-export class RecipeComponent extends AppComponent implements OnInit {
+export class RecipeComponent implements OnInit {
     public recipe: RecipeInterface;
     public recipes: Array<RecipeInterface>;
 
@@ -24,7 +24,6 @@ export class RecipeComponent extends AppComponent implements OnInit {
     constructor(private route: ActivatedRoute,
         recipeDataService: RecipeData,
         auth: AuthService) {
-        super(auth);
         this.recipeDataService = recipeDataService;
     }
 

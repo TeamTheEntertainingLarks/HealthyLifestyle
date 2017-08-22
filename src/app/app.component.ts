@@ -1,5 +1,5 @@
 import { AuthService } from './services/auth.service';
-import { Component } from '@angular/core';
+import { Component, OnInit, AfterContentInit, AfterContentChecked, OnDestroy, AfterViewChecked } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -8,10 +8,11 @@ import { Component } from '@angular/core';
 })
 
 export class AppComponent {
-  constructor(protected auth: AuthService) {
+
+  constructor() {
   }
 
-  isAuthenticated() {
-    return this.auth.isAuthenticated;
-  }
+  // isAuthenticated() {
+  //   return this.auth.isAuthenticated;
+  // }
 }

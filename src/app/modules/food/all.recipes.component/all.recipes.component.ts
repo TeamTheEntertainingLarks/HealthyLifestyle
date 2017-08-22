@@ -13,7 +13,7 @@ import { AuthService } from '../../../services/auth.service';
     styleUrls: ['./all.recipes.component.css']
 })
 
-export class RecipesAllComponent extends AppComponent implements OnInit {
+export class RecipesAllComponent implements OnInit {
     public recipe: RecipeInterface;
     public recipes: Array<RecipeInterface>;
 
@@ -25,7 +25,6 @@ export class RecipesAllComponent extends AppComponent implements OnInit {
         recipeDataService: RecipeData,
         factory: ModelFactory,
         auth: AuthService) {
-        super(auth);
         this.factory = factory;
         this.recipeDataService = recipeDataService;
         this.auth = auth;

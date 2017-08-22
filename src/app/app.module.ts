@@ -27,15 +27,16 @@ import { SignInFormComponent } from './modules/user/signIn-form/signIn-form.comp
 
 import { AuthService } from './services/auth.service';
 import { AuthGuard } from './guards/auth.guard';
-
 import { DataService } from './services/data.service';
 import { RecipeData } from './services/recipe-data.service';
+import { UploadService } from './services/uploads/shared/upload.service';
 
 import { firebaseConfig } from '../environments/firebaseConfig';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { UserData } from './services/user-data.service';
+
 
 @NgModule({
   declarations: [
@@ -70,10 +71,12 @@ import { UserData } from './services/user-data.service';
     RecipeData,
     UserData,
     ModelFactory,
+    UploadService,
     { provide: MD_ERROR_GLOBAL_OPTIONS, useValue: { errorStateMatcher: showOnDirtyErrorStateMatcher } },
     { provide: MD_PLACEHOLDER_GLOBAL_OPTIONS, useValue: { float: 'always' } }
   ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
+
 export class AppModule { }

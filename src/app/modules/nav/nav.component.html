@@ -41,19 +41,22 @@
         </md-menu>
     </li>
     <li *ngIf="isAuthenticated()">
-       <a md-button routerLink=".">
+        <a md-button routerLink=".">
             <md-icon>person</md-icon>
             Profile
         </a>
     </li>
     <li>
         <div id="current-user">
-            {{getCurrentUser()}}
+            <img *ngIf="!userProfileImageUrl" src="../../../assets/images/default-profile.png" width="50px" height="50px" alt="">
+            <!-- <img [src]=getCurrentUserProfileImage() width="50px" height="50px" alt=""> -->
+            {{getCurrentUserDisplayName()}} 
         </div>
     </li>
     <li>
         <button routerLink="sign-in" *ngIf="!isAuthenticated()" md-raised-button>Sign In</button>
         <button routerLink="sign-up" *ngIf="!isAuthenticated()" md-raised-button>Sign Up</button>
         <button (click)="signOut()" *ngIf="isAuthenticated()" md-raised-button>Logout</button>
+        <button (click)="getCurrentUserProfileImage()" md-raised-button>test</button>
     </li>
 </ul>
