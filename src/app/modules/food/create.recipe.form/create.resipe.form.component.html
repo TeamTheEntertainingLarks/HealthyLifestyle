@@ -1,0 +1,50 @@
+<h2>Create New Recipe</h2>
+<form class="recipe-form" #carAddForm='ngForm' (ngSubmit)='onSubmit()'>
+  <md-input-container class="form-control">
+    <input type="text" mdInput placeholder="Title" name="title" [(ngModel)]="recipe.title" required>
+    <md-icon mdSuffix>mode_edit</md-icon>
+  </md-input-container>
+  <md-input-container class="form-control">
+    <input type="text" mdInput placeholder="Author" name="author" [(ngModel)]="recipe.author" required>
+    <md-icon mdSuffix>mode_edit</md-icon>
+  </md-input-container>
+  <md-input-container class="form-control">
+    <input type="text" mdInput placeholder="Image URL" name="image" [(ngModel)]="recipe.image" required>
+    <md-icon mdSuffix>mode_edit</md-icon>
+  </md-input-container>
+  <img [src]="recipe.image">
+  <md-select placeholder="Choose Category" class="form-control" name="category" [(ngModel)]="recipe.category" required>
+    <md-option *ngFor="let category of categories" [value]="category">
+      {{category}}
+  </md-option>
+  </md-select>
+  <md-input-container class="form-control">
+    <textarea mdInput placeholder="Short Description" name="description" #description maxlength="256" [(ngModel)]="recipe.description" required></textarea>
+    <md-hint align="end">{{description.value.length}} / 256</md-hint>
+  </md-input-container>
+  <md-input-container class="form-control">
+      <input type="text" mdInput placeholder="Ingredients" name="ingradients" [(ngModel)]="recipe.ingradients" required>
+      <md-icon mdSuffix>mode_edit</md-icon>
+  </md-input-container>
+  <div>Steps how to make the recipe</div>
+  <md-input-container class="form-control">
+    <input type="text" mdInput name="step1" [(ngModel)]="recipe.steps.step1" placeholder="First Step" required>
+    <md-icon mdSuffix>mode_edit</md-icon>
+  </md-input-container>
+    <md-input-container class="form-control">
+    <input type="text" mdInput name="step2" [(ngModel)]="recipe.steps.step2" placeholder="Second Step Step" required>
+    <md-icon mdSuffix>mode_edit</md-icon>
+  </md-input-container>
+    <md-input-container class="form-control">
+    <input type="text" mdInput name="step3" [(ngModel)]="recipe.steps.step3" placeholder="Third Step" required>
+    <md-icon mdSuffix>mode_edit</md-icon>
+  </md-input-container>
+  <button type="submit" md-raised-button>Create Recipe</button>
+</form>
+     
+      
+
+
+
+
+ 
