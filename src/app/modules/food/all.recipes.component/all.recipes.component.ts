@@ -54,14 +54,6 @@ export class RecipesAllComponent implements OnInit {
         this.recipes.sort((a, b) => b.title.localeCompare(a.title));
     }
 
-    createRecipe(title: string, author: string) {
-        title = 'testTitle';
-        author = this.auth.currentUserId;
-
-        this.recipe = this.factory.createRecipe(title, author);
-        this.recipeDataService.add(this.recipe);
-    }
-
     // getAllRecipes() {
     //     this.recipeDataService.getAllRecipes();
     //     console.log(this.recipeDataService.getAllRecipes());

@@ -1,5 +1,5 @@
 .recipe-container {
-      margin: 50px;
+      margin: 50px 0;
       border: solid 2px #636363;
       border-radius: 5px;
       overflow: hidden;
@@ -24,4 +24,7 @@ a:hover{
 }
 .sort-control{
       text-align: right;
+}
+.container{
+      padding: 20px 100px;
 }
