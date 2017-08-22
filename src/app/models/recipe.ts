@@ -5,19 +5,19 @@ import { Injectable } from '@angular/core';
 export class Recipe implements RecipeInterface {
     public title: string;
     public author: string;
-    public category?: string;
-    public createdOn?: Date;
-    public description?: string;
-    public ingradients?: string[];
-    public steps?: any;
-    public image?: string;
-    public comments?: string[];
+    public category: string;
+    public createdOn: Date;
+    public description: string;
+    public ingradients: string[];
+    public steps: any;
+    public image: string;
+    public comments: string[];
 
     constructor(
-        title: string,
-        author: string,
-        category: string = '',
-        createdOn: Date = null,
+        title: string = '',
+        author: string = '',
+        category: string = null,
+        createdOn: Date = new Date(Date.now()),
         description: string = '',
         ingradients: string[] = null,
         steps: any = '',

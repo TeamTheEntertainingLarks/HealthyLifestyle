@@ -1,13 +1,14 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { MdButtonModule, MdCheckboxModule, MdCardModule, MdIconModule, MdGridListModule } from '@angular/material';
-import { MdInputModule } from '@angular/material';
+import { MdButtonModule, MdCheckboxModule, MdCardModule, MdIconModule, MdGridListModule, MdSelectModule } from '@angular/material';
+import { MdInputModule , MD_PLACEHOLDER_GLOBAL_OPTIONS } from '@angular/material';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutesModule } from '../../routes.module';
 
 import { RecipeComponent } from './recipe.component/recipe.component';
 import { RecipesAllComponent } from './all.recipes.component/all.recipes.component';
-// import { CreateFormComponent } from './create.recipe.form/create.resipe.form.component';
+import { CreateFormComponent } from './create.recipe.form/create.resipe.form.component';
 
 @NgModule({
     imports: [
@@ -18,10 +19,13 @@ import { RecipesAllComponent } from './all.recipes.component/all.recipes.compone
         MdCardModule,
         MdIconModule,
         MdGridListModule,
-        MdInputModule
+        MdInputModule,
+        FormsModule,
+        ReactiveFormsModule,
+        MdSelectModule
     ],
-    declarations: [RecipeComponent, RecipesAllComponent], // CreateFormComponent
-    providers: [],
+    declarations: [RecipeComponent, RecipesAllComponent, CreateFormComponent],
+    providers: [{ provide: MD_PLACEHOLDER_GLOBAL_OPTIONS, useValue: { float: 'always' } }],
     exports: [
         RecipeComponent,
         RecipesAllComponent,
@@ -30,7 +34,10 @@ import { RecipesAllComponent } from './all.recipes.component/all.recipes.compone
         MdCardModule,
         MdIconModule,
         MdGridListModule,
-        MdInputModule
+        MdInputModule,
+        FormsModule,
+        ReactiveFormsModule,
+        MdSelectModule
     ]
 })
 

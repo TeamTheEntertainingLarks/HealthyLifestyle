@@ -9,7 +9,7 @@ import { RecipeComponent } from './modules/food/recipe.component/recipe.componen
 import { ActivityComponent } from './modules/fitness/activity.component/activity.component';
 import { SignUpFormComponent } from './modules/user/signUp-form/signUp-form.component';
 import { SignInFormComponent } from './modules/user/signIn-form/signIn-form.component';
-// import { CreateFormComponent } from './modules/food/create.recipe.form/create.resipe.form.component';
+import { CreateFormComponent } from './modules/food/create.recipe.form/create.resipe.form.component';
 
 import { AuthGuard } from './guards/auth.guard';
 
@@ -20,7 +20,7 @@ const routes: Routes = [
     { path: 'sign-in', component: SignInFormComponent },
     { path: 'recipes/all', component: RecipesAllComponent },
     { path: 'activities/all', component: ActivitiesAllComponent },
-    // { path: 'recipes/create', component: CreateFormComponent },
+    { path: 'recipes/create', component: CreateFormComponent },
     { path: 'recipes/:id', component: RecipeComponent },
     { path: 'activities/:id', component: ActivityComponent }
 ];
