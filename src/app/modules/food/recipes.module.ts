@@ -4,7 +4,7 @@ import { MdButtonModule, MdCheckboxModule, MdCardModule, MdIconModule, MdGridLis
 
 import { AppRoutesModule } from '../../routes.module';
 
-// import { RecipeComponent } from './recipe.component/recipe.component';
+import { RecipeComponent } from './recipe.component/recipe.component';
 import { RecipesAllComponent } from './all.recipes.component/all.recipes.component';
 
 @NgModule({
@@ -17,10 +17,11 @@ import { RecipesAllComponent } from './all.recipes.component/all.recipes.compone
         MdIconModule,
         MdGridListModule
     ],
-    declarations: [RecipesAllComponent,
+    declarations: [RecipeComponent, RecipesAllComponent,
 ],
     providers: [],
     exports: [
+        RecipeComponent,
         RecipesAllComponent,
         MdButtonModule,
         MdCheckboxModule,

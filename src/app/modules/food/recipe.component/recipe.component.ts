@@ -2,7 +2,12 @@ import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
 import { DataService } from '../../../services/data.service';
-import { Food } from '../../../interfaces/food';
+import { AppComponent } from '../../../app.component';
+import { AuthService } from '../../../services/auth.service';
+import { ModelFactory } from './../../../services/factories/model.factory';
+import { ModelFactoryInterface } from './../../../services/factories/interfaces/model.factory';
+import { RecipeInterface } from '../../../interfaces/recipe';
+import { RecipeData } from '../../../services/recipe-data.service';
 
 @Component({
     selector: 'app-recipe',
@@ -10,17 +15,37 @@ import { Food } from '../../../interfaces/food';
     styleUrls: ['./recipe.component.css']
 })
 
-export class RecipeComponent implements OnInit {
-    recipe: Food;
-    paramId: any;
+export class RecipeComponent extends AppComponent implements OnInit {
+    public recipe: RecipeInterface;
+    public recipes: Array<RecipeInterface>;
 
-    constructor(private route: ActivatedRoute, private dataService: DataService) {
-        this.paramId = this.route.snapshot.paramMap.get('id');
+    private factory: ModelFactory;
+    private dataService: DataService;
+    private recipeDataService: RecipeData;
+    auth: AuthService;
+
+    recipeKey: string;
+
+    constructor(private route: ActivatedRoute,
+        dataService: DataService,
+        recipeDataService: RecipeData,
+        factory: ModelFactory,
+        auth: AuthService) {
+        super(auth);
+        this.factory = factory;
+        this.dataService = dataService;
+        this.recipeDataService = recipeDataService;
     }
 
     ngOnInit() {
-        this.dataService.getRecipeById(this.paramId).then((data) => {
-            this.recipe = data;
-        }).catch((err) => console.log(err));
+        this.route.params
+        .subscribe(params => {
+        this.recipeDataService.getRecipeById(params.id)
+          .subscribe(recipe => {
+            this.recipe = recipe;
+            this.recipeKey = recipe.$key;
+            console.log(recipe);
+          });
+      });
     }
 }

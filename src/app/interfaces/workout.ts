@@ -1,10 +1,9 @@
-export interface Fitness {
-    id: number;
+export interface WorkoutInterface {
     title: string;
     author: string;
     createdOn: Date;
     image: string;
     description: string;
-    text: string;
+    content: string;
     comments: Array<string>;
 }

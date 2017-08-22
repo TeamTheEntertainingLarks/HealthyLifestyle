@@ -1,28 +1,6 @@
-<!-- <div class="container">
-        <div *ngIf="recipe" class="info-container">
-                <div><img src="{{recipe?.image}}" alt="recipe-image"></div>
-                <div class="aside-info">
-                        <p class="title">{{recipe.title}}</p>
-                        <p>created on: {{recipe.createdOn | date}}</p>
-                        <p>author: {{recipe.author}}</p>
-                        <p>category: {{recipe.category}}</p>
-                </div>
-        </div>
-        <div class="ingradients-title">Ingradients</div>
-         <ul *ngFor="let ingradient of recipe?.ingradients">
-                <li>{{ingradient}}</li>
-        </ul> 
-        <hr />
-        <div class="comments-title">Comments:</div> 
-          <div *ngFor="let comment of recipe?.comments">
-                <p>{{comment}}</p>
-        </div>
-        <div *ngIf="recipe?.comments.length < 1"> No Comments yet</div>
- </div> -->
-
 <div class="container">
         <md-card *ngIf="recipe" class="info-container">
-                <img md-card-image src="{{recipe.image}}" alt="recipe-image">
+                <img md-card-image src="/assets/images/broccoli.jpg" alt="recipe-image">
                 <md-card-content>
                         <p class="title">{{recipe.title}}</p>
                         <p>by {{recipe.author}} <strong>|</strong> on {{recipe.createdOn | date}}</p>
@@ -40,21 +18,21 @@
                 </md-card-actions>
         </md-card>
         <h3 class="ingradients-title">Ingradients</h3>
-         <ul *ngFor="let ingradient of recipe?.ingradients">
+        <!-- <ul *ngFor="let ingradient of recipe?.ingradients">
                 <li>{{ingradient}}</li>
-        </ul> 
+        </ul> -->
         <hr />
         <h3 class="steps-title">How to Make it</h3>
-                <p><strong>Step 1</strong></p>
-                <p>{{recipe?.steps.step1}}</p>
-                <p *ngIf="recipe?.steps.step2"><strong>Step 2</strong></p>
-                <p>{{recipe?.steps.step2}}</p>
-                <p *ngIf="recipe?.steps.step3"><strong>Step 3</strong></p>
-                <p>{{recipe?.steps.step3}}</p>
+        <!-- <p *ngIf="recipe?.steps.step1"><strong>Step 1</strong></p>
+        <p>{{recipe?.steps.step1}}</p>
+        <p *ngIf="recipe?.steps.step2"><strong>Step 2</strong></p>
+        <p>{{recipe?.steps.step2}}</p>
+        <p *ngIf="recipe?.steps.step3"><strong>Step 3</strong></p>
+        <p>{{recipe?.steps.step3}}</p> -->
         <hr />
-        <h3 class="comments-title">Comments</h3> 
-          <div *ngFor="let comment of recipe?.comments">
+        <!-- <h3 class="comments-title">Comments</h3>
+        <div *ngFor="let comment of recipe?.comments">
                 <p>{{comment}}</p>
         </div>
-        <div *ngIf="recipe?.comments.length < 1"> No Comments yet</div> 
+        <div *ngIf="recipe?.comments.length < 1"> No Comments yet</div> -->
 </div>
