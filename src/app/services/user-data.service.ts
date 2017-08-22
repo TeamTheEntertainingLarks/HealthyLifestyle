@@ -2,12 +2,15 @@ import { Recipe } from './../models/recipe';
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import { UserInterface } from '../interfaces/user';
+import * as firebase from 'firebase';
 
 @Injectable()
 export class UserData {
     private db: AngularFireDatabase;
     private firebaseCollection: FirebaseListObservable<any[]>;
     public items;
+    public user;
+    public userProfileImage;
 
     constructor(db: AngularFireDatabase) {
         this.db = db;
@@ -40,6 +43,21 @@ export class UserData {
             .catch(error => console.log(error));
     }
 
-    getUserByUid(id: number) {
+    getUserByUid(userId: string) {
+        const path = `users/${userId}`;
+        return this.db.object(path);
+    }
+
+    getUserProfileImageUrl(userId: string) {
+        const subscription = this.getUserByUid(userId)
+            .subscribe(user => this.user = user);
+
+        const imageName = this.user.profileImage.name;
+        const userStorageRef = firebase.storage().ref().child(`images/users/` + userId + '/' + imageName);
+        return userStorageRef.getDownloadURL()
+            .then(url => {
+                console.log(this.user);
+                return url;
+            });
     }
 }
