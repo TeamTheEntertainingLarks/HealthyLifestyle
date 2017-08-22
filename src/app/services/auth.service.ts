@@ -9,7 +9,6 @@ import * as firebase from 'firebase/app';
 
 @Injectable()
 export class AuthService {
-
     authState: any = null;
 
     constructor(
@@ -23,51 +22,42 @@ export class AuthService {
         });
     }
 
-    // Returns true if user is logged in
     get isAuthenticated(): boolean {
         return this.authState !== null;
     }
 
-    // Returns current user data
     get currentUser(): any {
         return this.isAuthenticated ? this.authState : null;
     }
 
-    // Returns
     get currentUserObservable(): any {
         return this.afAuth.authState;
     }
 
-    // Returns current user UID
     get currentUserId(): string {
         return this.isAuthenticated ? this.authState.uid : '';
     }
 
-    // Anonymous User
     get currentUserAnonymous(): boolean {
         return this.isAuthenticated ? this.authState.isAnonymous : false;
     }
 
-    // Returns current user display name or Guest
     get currentUserDisplayName(): string {
         if (!this.authState) {
             return 'Guest';
-        }
-        // tslint:disable-next-line:one-line
-        else if (this.currentUserAnonymous) {
+        } else if (this.currentUserAnonymous) {
             return 'Anonymous';
-        }
-        // tslint:disable-next-line:one-line
-        else {
+        } else {
             return this.authState['displayName'] || 'User without a Name';
         }
     }
 
-    emailSignUp(email: string, password: string, user: UserInterface) {
+    emailSignUp(email: string, password: string, model: UserInterface) {
         return this.afAuth.auth.createUserWithEmailAndPassword(email, password)
-            .then((res) => {
-                this.authState = res;
-                this.userData.add(this.currentUserId, user);
+            .then((user) => {
+                user.updateProfile({ displayName: `${model.firstName} ${model.lastName}` });
+                this.authState = user;
+                this.userData.add(this.currentUserId, model);
                 this.router.navigateByUrl('/');
             })
             .catch(error => console.log(error));
@@ -77,12 +67,10 @@ export class AuthService {
         return this.afAuth.auth.signInWithEmailAndPassword(email, password)
             .then((user) => {
                 this.authState = user;
-                // this.updateUserData();
             })
             .catch(error => console.log(error));
     }
 
-    // Sends email allowing user to reset password
     resetPassword(email: string) {
         const fbAuth = firebase.auth();
 
