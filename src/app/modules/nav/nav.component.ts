@@ -17,6 +17,10 @@ export class NavComponent extends AppComponent implements OnInit {
 
   }
 
+  getCurrentUser() {
+    return this.auth.currentUserDisplayName;
+  }
+
   signOut() {
     this.auth.signOut();
   }

@@ -47,6 +47,11 @@
         </a>
     </li>
     <li>
+        <div id="current-user">
+            {{getCurrentUser()}}
+        </div>
+    </li>
+    <li>
         <button routerLink="sign-in" *ngIf="!isAuthenticated()" md-raised-button>Sign In</button>
         <button routerLink="sign-up" *ngIf="!isAuthenticated()" md-raised-button>Sign Up</button>
         <button (click)="signOut()" *ngIf="isAuthenticated()" md-raised-button>Logout</button>
