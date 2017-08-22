@@ -1,3 +1,4 @@
+import { UploadService } from './../../../services/uploads/shared/upload.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators, FormGroup, FormBuilder, AbstractControl } from '@angular/forms';
 
@@ -8,6 +9,7 @@ import { ModelFactoryInterface } from './../../../services/factories/interfaces/
 
 import { User } from '../../../models/user';
 import { UserInterface } from '../../../interfaces/user';
+import { Upload } from '../../../services/uploads/shared/upload';
 
 const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
@@ -25,6 +27,8 @@ export class SignUpFormComponent implements OnInit {
   public email;
   public isTrainer = false;
   public sport;
+  public currentUpload: Upload;
+  public selectedFiles: FileList;
 
   private user: UserInterface;
 
@@ -40,7 +44,8 @@ export class SignUpFormComponent implements OnInit {
   constructor(
     private auth: AuthService,
     private formBuilder: FormBuilder,
-    private modelFactory: ModelFactory) {
+    private modelFactory: ModelFactory,
+    private uploadService: UploadService) {
   }
 
   ngOnInit(): void {
@@ -80,9 +85,27 @@ export class SignUpFormComponent implements OnInit {
     });
   }
 
+  detectFiles(event) {
+    this.selectedFiles = event.target.files;
+  }
+
+  uploadSingle() {
+    const userId = this.auth.currentUserId;
+    const path = `users/${userId}/profileImage`;
+    const file = this.selectedFiles.item(0);
+
+    this.currentUpload = new Upload(file);
+    this.uploadService.uploadUserProfileImage(userId, path, this.currentUpload);
+  }
+
   signUp(): void {
     const user = this.modelFactory
       .createUser(this.username, this.firstName, this.lastName, this.email, this.isTrainer);
-    this.auth.emailSignUp(this.email, this.password, user);
+    this.auth.emailSignUp(this.email, this.password, user)
+      .then(() => {
+        this.uploadSingle();
+      });
+    console.log(this.auth.currentUserId);
+
   }
 }
