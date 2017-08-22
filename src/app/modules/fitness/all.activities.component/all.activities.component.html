@@ -2,11 +2,6 @@
     <button (click)="orderByNameAcs()" md-raised-button>Sort by title Ascending</button>
     <button (click)="orderByNameDesc()" md-raised-button>Sort by title Descending</button>
 </div>
-<!-- <div *ngFor="let activity of activities" class="activities-container">
-    <a routerLink='/activities/{{activity.id}}'><img src="{{activity.image}}" alt="activity-image"></a>
-    <div class="title"><a routerLink='/activities/{{activity.id}}'>{{activity.title}}</a></div>
-    <div>{{activity.createdOn | date}}</div>
-</div> -->
 <md-card *ngFor="let activity of activities" class="activities-container">
     <img md-card-image src="{{activity.image}}" alt="activity-image">
     <md-card-content>

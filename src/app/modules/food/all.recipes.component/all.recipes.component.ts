@@ -1,7 +1,6 @@
 import { ModelFactory } from './../../../services/factories/model.factory';
 import { ModelFactoryInterface } from './../../../services/factories/interfaces/model.factory';
 import { Component, OnInit } from '@angular/core';
-import { DataService } from '../../../services/data.service';
 
 import { RecipeInterface } from '../../../interfaces/recipe';
 import { RecipeData } from '../../../services/recipe-data.service';
@@ -19,26 +18,25 @@ export class RecipesAllComponent extends AppComponent implements OnInit {
     public recipes: Array<RecipeInterface>;
 
     private factory: ModelFactory;
-    private dataService: DataService;
     private recipeDataService: RecipeData;
     auth: AuthService;
 
     constructor(
-        dataService: DataService,
         recipeDataService: RecipeData,
         factory: ModelFactory,
         auth: AuthService) {
         super(auth);
         this.factory = factory;
-        this.dataService = dataService;
         this.recipeDataService = recipeDataService;
         this.auth = auth;
     }
 
     ngOnInit() {
-        this.dataService.getRecipesAll().then((data) => {
-            this.recipes = data;
-        }).catch((err) => console.log(err));
+        this.recipeDataService.getAllRecipes().subscribe(items => {
+            this.recipes = items;
+        });
+
+        return this.recipes;
     }
 
     orderByDateAsc() {
@@ -65,10 +63,10 @@ export class RecipesAllComponent extends AppComponent implements OnInit {
         this.recipeDataService.add(this.recipe);
     }
 
-    getAllRecipes() {
-        this.recipeDataService.getAll();
-        console.log(this.recipeDataService.getAll());
-    }
+    // getAllRecipes() {
+    //     this.recipeDataService.getAllRecipes();
+    //     console.log(this.recipeDataService.getAllRecipes());
+    // }
 
     getOne() {
         console.log(this.recipeDataService.getRecipeByTitle('testTitle'));
