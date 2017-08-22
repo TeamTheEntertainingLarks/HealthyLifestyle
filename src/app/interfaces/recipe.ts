@@ -2,10 +2,12 @@ export interface RecipeInterface {
     title: string;
     author: string;
     category: string;
-    createdOn: Date;
+    createdOn: number;
     description: string;
-    ingradients: string[];
-    steps: any;
+    ingradients: any;
+    step1: string;
+    step2: string;
+    step3: string;
     image: string;
-    comments?: string[];
+    comments?: Array<string>;
 }

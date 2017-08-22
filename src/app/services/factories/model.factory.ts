@@ -8,9 +8,20 @@ import { Workout } from './../../models/workout';
 
 @Injectable()
 export class ModelFactory implements ModelFactoryInterface {
-    createRecipe(title: string, author: string) {
-        return new Recipe(title, author);
-    }
+    createRecipe(
+        title: string,
+        author: string,
+        category: string,
+        createdOn: number,
+        description: string,
+        ingradients: any,
+        step1: string,
+        step2: string,
+        step3: string,
+        image: string,
+        comments?: Array<string>) {
+        return new Recipe(title, author, category, createdOn, description, ingradients, step1, step2, step3, image, comments);
+        }
 
     createActivity() {
         // TODO: Implement activity class
