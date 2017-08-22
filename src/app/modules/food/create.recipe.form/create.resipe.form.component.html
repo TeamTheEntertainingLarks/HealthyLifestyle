@@ -29,7 +29,7 @@
       Image is <strong>required</strong>
     </md-error>
   </md-input-container>
-  <img [src]="recipe.image">
+  <img [src]="recipe.image" class=preview>
   <md-select placeholder="Choose Category" class="form-control" name="category" [(ngModel)]="recipe.category" [formControl]="categoryFormControl" required>
     <md-option *ngFor="let category of categories" [value]="category">
       {{category}}
@@ -63,7 +63,7 @@
   </md-input-container>
   <div>Steps how to make the recipe</div>
   <md-input-container class="form-control">
-    <input type="text" mdInput name="step1" [(ngModel)]="recipe.steps.step1" placeholder="First Step" [formControl]="stepFirstFormControl" required>
+    <input type="text" mdInput name="step1" [(ngModel)]="recipe.step1" placeholder="First Step" [formControl]="stepFirstFormControl" required>
     <md-icon mdSuffix>mode_edit</md-icon>
     <md-error *ngIf="stepFirstFormControl.hasError('pattern')">
       Please enter a valid step.
@@ -73,14 +73,14 @@
     </md-error>
   </md-input-container>
   <md-input-container class="form-control">
-    <input type="text" mdInput name="step2" [(ngModel)]="recipe.steps.step2" placeholder="Second Step" [formControl]="stepSecondFormControl">
+    <input type="text" mdInput name="step2" [(ngModel)]="recipe.step2" placeholder="Second Step" [formControl]="stepSecondFormControl">
     <md-icon mdSuffix>mode_edit</md-icon>
     <md-error *ngIf="stepSecondFormControl.hasError('pattern')">
       Please enter a valid step.
     </md-error>
   </md-input-container>
     <md-input-container class="form-control">
-    <input type="text" mdInput name="step3" [(ngModel)]="recipe.steps.step3" placeholder="Third Step" [formControl]="stepThirdFormControl">
+    <input type="text" mdInput name="step3" [(ngModel)]="recipe.step3" placeholder="Third Step" [formControl]="stepThirdFormControl">
     <md-icon mdSuffix>mode_edit</md-icon>
     <md-error *ngIf="categoryFormControl.hasError('pattern')">
       Please enter a valid step.

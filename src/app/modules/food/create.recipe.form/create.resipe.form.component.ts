@@ -3,6 +3,10 @@ import { FormControl, Validators, FormGroup, FormBuilder, AbstractControl } from
 
 import { Recipe } from '../../../models/recipe';
 import { RecipeData } from '../../../services/recipe-data.service';
+import { RecipeInterface } from '../../../interfaces/recipe';
+import { ModelFactory } from './../../../services/factories/model.factory';
+import { ModelFactoryInterface } from './../../../services/factories/interfaces/model.factory';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-create.resipe.form',
@@ -11,19 +15,26 @@ import { RecipeData } from '../../../services/recipe-data.service';
 })
 
 export class CreateFormComponent implements OnInit {
+  public recipe: RecipeInterface;
+  public recipes: Array<RecipeInterface>;
+
+  private factory: ModelFactory;
+  private recipeDataService: RecipeData;
+  auth: AuthService;
 
   public title: string;
   public author: string;
   public category: string;
-  public createdOn: any;
+  public createdOn: number;
   public description: string;
   public ingradients: any;
-  public steps: any;
+  public step1: string;
+  public step2: string;
+  public step3: string;
   public image: string;
   public comments: any;
   public userId: any;
 
-  recipe: Recipe;
   categories = ['breakfast', 'soups', 'salads', 'desserts', 'breads', 'main dishes', 'side dishes'];
 
   public recipeForm: FormGroup;
@@ -38,11 +49,17 @@ export class CreateFormComponent implements OnInit {
   public stepThirdFormControl: AbstractControl;
   public imageFormControl: AbstractControl;
 
-  constructor(private recipedata: RecipeData, private formBuilder: FormBuilder) {
-     this.recipe = new Recipe();
-    //  const userId = firebase.auth().currentUser.uid;
-   }
-
+   constructor(
+    recipeDataService: RecipeData,
+    factory: ModelFactory,
+    auth: AuthService,
+    private formBuilder: FormBuilder) {
+    this.factory = factory;
+    this.recipeDataService = recipeDataService;
+    this.auth = auth;
+    this.recipe = new Recipe();
+    // this.clearRecipe();
+}
 
   ngOnInit(): void {
     this.titleFormControl = new FormControl('', [
@@ -83,7 +100,41 @@ export class CreateFormComponent implements OnInit {
     });
   }
 
-  onSubmit() {
+  onSubmit(title: string,
+    author: string,
+    category: string,
+    createdOn: number,
+    description: string,
+    ingradients: any,
+    step1: string,
+    step2: string,
+    step3: string,
+    image: string,
+    comments?: Array<string>) {
+          title = this.recipe.title;
+          author = this.recipe.author;
+          category = this.recipe.category;
+          createdOn = Date.now();
+          description = this.recipe.description;
+          ingradients = this.recipe.ingradients;
+          step1 = this.recipe.step1;
+          step2 = this.recipe.step2;
+          step3 = this.recipe.step3;
+          image = this.recipe.image;
+          comments = this.recipe.comments;
+          this.userId = this.auth.currentUser.uid;
+           //  const userId = firebase.auth().currentUser.uid;
+
+          console.log(this.recipe.ingradients);
+          const arrayIngredients = this.recipe.ingradients.trim().split(/[,]+/);
+
+      this.recipe = this.factory
+      .createRecipe(title, author, category, createdOn, description, arrayIngredients, step1, step2, step3, image, comments);
+      this.recipeDataService.add(this.recipe);
+  }
+
+  clearRecipe() {
+    this.recipe = new Recipe('', '', '', null, '', null, '', '', '', '', null);
   }
 
 }
