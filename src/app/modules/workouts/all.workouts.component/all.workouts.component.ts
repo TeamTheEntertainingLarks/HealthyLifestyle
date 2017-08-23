@@ -39,4 +39,7 @@ export class WorkoutsAllComponent implements OnInit {
 
         return this.workouts;
     }
+    isAuthenticated() {
+      return this.auth.isAuthenticated;
+    }
 }

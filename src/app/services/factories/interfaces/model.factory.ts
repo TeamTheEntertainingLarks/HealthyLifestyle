@@ -23,7 +23,7 @@ export interface ModelFactoryInterface {
     createWorkout(
         title: string,
         author: string,
-        createdOn: Date,
+        createdOn: number,
         image: string,
         description: string,
         content: string,
