@@ -3,8 +3,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { HomeComponent } from './modules/home/home.component';
-import { SignUpFormComponent } from './modules/user/signUp-form/signUp-form.component';
-import { SignInFormComponent } from './modules/user/signIn-form/signIn-form.component';
 
 import { AuthGuard } from './guards/auth.guard';
 
@@ -14,7 +12,8 @@ const routes: Routes = [
     { path: 'home', component: HomeComponent },
     { path: 'activities', loadChildren: './modules/fitness/activities.module#ActivitiesModule' },
     { path: 'recipes', loadChildren: './modules/food/recipes.module#RecipesModule' },
-    { path: 'user', loadChildren: './modules//user/user.module#UserModule' },
+    { path: 'user', loadChildren: './modules/user/user.module#UserModule' },
+    { path: 'workouts', loadChildren: './modules/workouts/workouts.module#WorkoutsModule' },
 ];
 
 @NgModule({
