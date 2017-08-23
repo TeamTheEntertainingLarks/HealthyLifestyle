@@ -6,10 +6,14 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { Observable } from 'rxjs/Observable';
 import { Router } from '@angular/router';
 import * as firebase from 'firebase/app';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { EventEmitter } from 'events';
+import { Subject } from 'rxjs/Subject';
 
 @Injectable()
 export class AuthService {
     authState: any = null;
+    public authUpdated: Subject<boolean> = new Subject<boolean>();
 
     constructor(
         private afAuth: AngularFireAuth,
@@ -19,6 +23,7 @@ export class AuthService {
 
         this.afAuth.authState.subscribe((auth) => {
             this.authState = auth;
+            this.authUpdated.next(this.authState);
         });
     }
 
