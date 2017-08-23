@@ -1,11 +1,11 @@
 <div class="container">
-        <md-card *ngIf="recipe" class="info-container">
-                <img md-card-image src="{{recipe.image}}" alt="recipe-image">
+        <md-card class="info-container">
+                <img md-card-image src="{{recipe?.image}}" alt="recipe-image">
                 <md-card-content>
-                        <p class="title">{{recipe.title}}</p>
-                        <p>by {{recipe.author}} <strong>|</strong> on {{recipe.createdOn | date}}</p>
-                        <p>category {{recipe.category}}</p>
-                        <p><em>{{recipe.description}}</em></p>
+                        <p class="title">{{recipe?.title}}</p>
+                        <p>by {{recipe?.author}} <strong>|</strong> on {{recipe?.createdOn | date}}</p>
+                        <p>category {{recipe?.category}}</p>
+                        <p><em>{{recipe?.description}}</em></p>
                 </md-card-content>
                 <md-card-actions>
                         <button md-button>

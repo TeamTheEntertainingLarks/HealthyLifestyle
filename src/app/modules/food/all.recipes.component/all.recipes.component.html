@@ -4,7 +4,7 @@
         <button (click)="orderByDateDesc()" md-raised-button>Sort by date Descending</button>
         <button (click)="orderByTitleAsc()" md-raised-button>Sort by title Ascending</button>
         <button (click)="orderByTitleDesc()" md-raised-button>Sort by title Descending</button>
-        <button routerLink="/recipes/create" md-raised-button *ngIf="isAuthenticated()">
+        <button *ngIf="isAuthenticated()" routerLink="/recipes/create" md-raised-button>
                 Create Recipe
                 </button>
         <!-- <button (click)="getAllRecipes()" md-raised-button>GetAll</button>  -->

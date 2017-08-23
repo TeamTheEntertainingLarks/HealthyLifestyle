@@ -62,4 +62,8 @@ export class RecipesAllComponent implements OnInit {
     getOne() {
         console.log(this.recipeDataService.getRecipeByTitle('testTitle'));
     }
+
+    isAuthenticated() {
+         return this.auth.isAuthenticated;
+           }
 }
