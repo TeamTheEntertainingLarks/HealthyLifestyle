@@ -1,15 +1,4 @@
 <div class="container">
-    <div class="sort-control">
-        <button (click)="orderByDateAsc()" md-raised-button>Sort by date Ascending</button>
-        <button (click)="orderByDateDesc()" md-raised-button>Sort by date Descending</button>
-        <button (click)="orderByTitleAsc()" md-raised-button>Sort by title Ascending</button>
-        <button (click)="orderByTitleDesc()" md-raised-button>Sort by title Descending</button>
-        <button *ngIf="isAuthenticated()" routerLink="/recipes/create" md-raised-button>
-                Create Recipe
-                </button>
-        <!-- <button (click)="getAllRecipes()" md-raised-button>GetAll</button>  -->
-        <button (click)="getOne()" md-raised-button>GetOne</button>
-    </div>
     <md-card *ngFor="let recipe of recipes" class="recipe-container">
         <img md-card-image src="{{recipe.image}}" alt="recipe-image">
         <md-card-content>

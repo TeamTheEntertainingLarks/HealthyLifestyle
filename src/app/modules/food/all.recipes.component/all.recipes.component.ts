@@ -40,30 +40,17 @@ export class RecipesAllComponent implements OnInit {
 
     orderByDateAsc() {
         this.recipes.sort((a, b) => +a.createdOn - +b.createdOn);
-    }
+      }
 
-    orderByDateDesc() {
+      orderByDateDesc() {
         this.recipes.sort((a, b) => +b.createdOn - +a.createdOn);
-    }
+      }
 
-    orderByTitleAsc() {
+      orderByTitleAsc() {
         this.recipes.sort((a, b) => a.title.localeCompare(b.title));
-    }
+      }
 
-    orderByTitleDesc() {
+      orderByTitleDesc() {
         this.recipes.sort((a, b) => b.title.localeCompare(a.title));
-    }
-
-    // getAllRecipes() {
-    //     this.recipeDataService.getAllRecipes();
-    //     console.log(this.recipeDataService.getAllRecipes());
-    // }
-
-    getOne() {
-        console.log(this.recipeDataService.getRecipeByTitle('testTitle'));
-    }
-
-    isAuthenticated() {
-         return this.auth.isAuthenticated;
-           }
+      }
 }
