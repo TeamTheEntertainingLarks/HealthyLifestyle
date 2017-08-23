@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators, FormGroup, FormBuilder, AbstractControl } from '@angular/forms';
+import { Router } from '@angular/router';
 
 import { Recipe } from '../../../models/recipe';
 import { RecipeData } from '../../../services/recipe-data.service';
@@ -50,6 +51,7 @@ export class CreateFormComponent implements OnInit {
   public imageFormControl: AbstractControl;
 
    constructor(
+    private router: Router,
     recipeDataService: RecipeData,
     factory: ModelFactory,
     auth: AuthService,
@@ -58,7 +60,6 @@ export class CreateFormComponent implements OnInit {
     this.recipeDataService = recipeDataService;
     this.auth = auth;
     this.recipe = new Recipe();
-    // this.clearRecipe();
 }
 
   ngOnInit(): void {
@@ -131,10 +132,7 @@ export class CreateFormComponent implements OnInit {
       this.recipe = this.factory
       .createRecipe(title, author, category, createdOn, description, arrayIngredients, step1, step2, step3, image, comments);
       this.recipeDataService.add(this.recipe);
-  }
 
-  clearRecipe() {
-    this.recipe = new Recipe('', '', '', null, '', null, '', '', '', '', null);
+      this.router.navigate(['recipes']);
   }
-
 }
