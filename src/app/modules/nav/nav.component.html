@@ -1,63 +1,63 @@
 <div class="logo">
-    <a routerLink="/"><img src="/assets/images/logo.jpg" alt="logo"></a>
-</div>
-<ul>
-    <li>
-        <a md-button routerLink="/">
-            <md-icon>home</md-icon>
-            Home
-        </a>
-    </li>
-    <li>
-        <button md-icon-button [mdMenuTriggerFor]="food">
-            <md-icon>menu</md-icon>
-            Food
-        </button>
-        <md-menu #food="mdMenu">
-            <a md-menu-item routerLink="recipes/all">
-                <md-icon>subject</md-icon>
-                Recipes
+        <a routerLink="/"><img src="/assets/images/logo.jpg" alt="logo"></a>
+    </div>
+    <ul>
+        <li>
+            <a md-button routerLink="/">
+                <md-icon>home</md-icon>
+                Home
             </a>
-            <a md-menu-item routerLink=".">
-                <md-icon>subject</md-icon>
-                Nutrition
+        </li>
+        <li>
+            <button md-button [mdMenuTriggerFor]="food">
+                <md-icon>menu</md-icon>
+                Food
+            </button>
+            <md-menu #food="mdMenu">
+                <a md-menu-item routerLink="recipes/all">
+                    <md-icon>subject</md-icon>
+                    Recipes
+                </a>
+                <a md-menu-item routerLink=".">
+                    <md-icon>subject</md-icon>
+                    Nutrition
+                </a>
+            </md-menu>
+        </li>
+        <li>
+            <button md-button [mdMenuTriggerFor]="fitness">
+                <md-icon>menu</md-icon>
+                Fitness
+            </button>
+            <md-menu #fitness="mdMenu">
+                <a md-menu-item routerLink="workouts">
+                    <md-icon>subject</md-icon>
+                    Workouts
+                </a>
+                <a md-menu-item routerLink="activities/all">
+                    <md-icon>subject</md-icon>
+                    Activities
+                </a>
+            </md-menu>
+        </li>
+        <li>
+            <a *ngIf="isAuthenticated" md-button routerLink="user/profile">
+                <img *ngIf="isAuthenticated" [src]=[userProfileImageUrl] width="50px" height="50px" alt="">
+                {{getCurrentUserDisplayName()}}
             </a>
-        </md-menu>
-    </li>
-    <li>
-        <button md-button [mdMenuTriggerFor]="fitness">
-            <md-icon>menu</md-icon>
-            Fitness
-        </button>
-        <md-menu #fitness="mdMenu">
-            <a md-menu-item routerLink="workouts">
-                <md-icon>subject</md-icon>
-                Workouts
+            <a *ngIf="!isAuthenticated" md-button routerLink="user/sign-in">
+                <img *ngIf="!isAuthenticated" src="../../../assets/images/default-profile.png" width="30px" height="30px" alt=""> {{getCurrentUserDisplayName()}}
             </a>
-            <a md-menu-item routerLink="activities/all">
-                <md-icon>subject</md-icon>
-                Activities
-            </a>
-        </md-menu>
-    </li>
-    <li>
-        <a *ngIf="isAuthenticated" md-button routerLink="user/profile">
-            <img *ngIf="isAuthenticated" [src]=[userProfileImageUrl] width="50px" height="50px" alt="">
-            {{getCurrentUserDisplayName()}}
-        </a>
-        <a *ngIf="!isAuthenticated" md-button routerLink="user/sign-in">
-            <img *ngIf="!isAuthenticated" src="../../../assets/images/default-profile.png" width="30px" height="30px" alt=""> {{getCurrentUserDisplayName()}}
-        </a>
-    </li>
-    <li>
-        <div id="current-user">
-
-        </div>
-    </li>
-    <li>
-        <button routerLink="user/sign-in" *ngIf="!isAuthenticated" md-raised-button>Sign In</button>
-        <button routerLink="user/sign-up" *ngIf="!isAuthenticated" md-raised-button>Sign Up</button>
-        <button (click)="signOut()" *ngIf="isAuthenticated" md-raised-button>Logout</button>
-        <!-- <button (click)="getCurrentUserProfileImage()" md-raised-button>test</button> -->
-    </li>
-</ul>
+        </li>
+        <li>
+            <div id="current-user">
+    
+            </div>
+        </li>
+        <li>
+            <button routerLink="user/sign-in" *ngIf="!isAuthenticated" md-raised-button>Sign In</button>
+            <button routerLink="user/sign-up" *ngIf="!isAuthenticated" md-raised-button>Sign Up</button>
+            <button (click)="signOut()" *ngIf="isAuthenticated" md-raised-button>Logout</button>
+            <!-- <button (click)="getCurrentUserProfileImage()" md-raised-button>test</button> -->
+        </li>
+    </ul>

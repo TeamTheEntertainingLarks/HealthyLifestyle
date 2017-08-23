@@ -22,9 +22,7 @@ a{
 a:hover{
       text-decoration: underline;
 }
-.sort-control{
-      text-align: right;
-}
+
 .container{
-      padding: 20px 100px;
+      padding: 0 100px;
 }
