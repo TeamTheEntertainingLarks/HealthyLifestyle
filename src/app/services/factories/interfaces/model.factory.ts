@@ -1,6 +1,8 @@
+import { Routine } from './../../../models/routine';
 import { UserInterface } from './../../../interfaces/user';
 import { RecipeInterface } from './../../../interfaces/recipe';
 import { WorkoutInterface } from '../../../interfaces/workout';
+import { Category } from '../../../enums/workoutCategories';
 
 export interface ModelFactoryInterface {
     createRecipe(
@@ -24,9 +26,9 @@ export interface ModelFactoryInterface {
         title: string,
         author: string,
         createdOn: number,
-        image: string,
+        category: Category,
+        routines: Array<Routine>,
         description: string,
-        content: string,
         comments: Array<string>): WorkoutInterface;
 
     createUser(

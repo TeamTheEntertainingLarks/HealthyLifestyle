@@ -1,3 +1,4 @@
+import { Routine } from './../../../models/routine';
 import { Workout } from './../../../models/workout';
 import { WorkoutInterface } from './../../../interfaces/workout';
 import { ModelFactory } from './../../../services/factories/model.factory';
@@ -8,6 +9,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { FormControl, Validators, FormGroup, FormBuilder, AbstractControl } from '@angular/forms';
+import { Category } from '../../../enums/workoutCategories';
 
 @Component({
   selector: 'app-create.workout.form',
@@ -28,9 +30,9 @@ export class CreateWorkoutFormComponent implements OnInit {
   public title: string;
   public author: string;
   public createdOn: number;
-  public image: string;
+  public category: Category;
+  public routines: Array<Routine>;
   public description: string;
-  public content: string;
   public comments: string[];
 
   public userId: any;
@@ -78,24 +80,24 @@ export class CreateWorkoutFormComponent implements OnInit {
   // omg hi
   onSubmit(title: string,
     author: string,
-    category: string,
     createdOn: number,
+    category: Category,
+    routines: Array<Routine>,
     description: string,
-    content: string,
     image: string,
     comments?: Array<string>) {
           title = this.workout.title;
           author = this.workout.author;
-          content = this.workout.content;
+          routines = this.routines;
+          category = this.category;
           createdOn = Date.now();
           description = this.workout.description;
-          image = this.workout.image;
           comments = this.workout.comments;
           this.userId = this.auth.currentUser.uid;
            //  const userId = firebase.auth().currentUser.uid;
 
       this.workout = this.factory
-      .createWorkout(title, author, createdOn, description, image, content, comments);
+      .createWorkout(title, author, createdOn, category, routines, description, comments);
       this.workoutDataService.add(this.workout);
 
       this.router.navigate(['workouts']);
