@@ -10,7 +10,6 @@ import { AuthService } from '../../services/auth.service';
 })
 
 export class NavComponent implements OnInit {
-  public user;
   public userProfileImageUrl;
   public isAuthenticated: boolean;
 
@@ -21,7 +20,11 @@ export class NavComponent implements OnInit {
     this.auth.authUpdated
       .subscribe((res) => {
         this.isAuthenticated = res;
-        this.userProfileImageUrl = this.getCurrentUserProfileImage();
+        if (this.isAuthenticated) {
+          this.userService.getUserByUid(this.auth.currentUserId).
+            subscribe((user) => this.userProfileImageUrl = user.profileImage.url);
+        }
+        // this.userProfileImageUrl = this.getCurrentUserProfileImage();
       });
   }
 
