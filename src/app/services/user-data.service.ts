@@ -49,15 +49,18 @@ export class UserData {
     }
 
     getUserProfileImageUrl(userId: string) {
-        const subscription = this.getUserByUid(userId)
-            .subscribe(user => this.user = user);
+        return new Promise((resolve, reject) => {
+            this.getUserByUid(userId)
+                .subscribe((user) => {
+                    const userStorageRef = firebase.storage()
+                        .ref()
+                        .child(`images/users/` + userId + '/' + user.profileImage.name);
 
-        const imageName = this.user.profileImage.name;
-        const userStorageRef = firebase.storage().ref().child(`images/users/` + userId + '/' + imageName);
-        return userStorageRef.getDownloadURL()
-            .then(url => {
-                console.log(this.user);
-                return url;
-            });
+                    resolve(userStorageRef.getDownloadURL()
+                        .then(url => {
+                            return url;
+                        }));
+                });
+        });
     }
 }

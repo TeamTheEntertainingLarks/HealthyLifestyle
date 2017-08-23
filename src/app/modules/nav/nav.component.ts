@@ -1,6 +1,6 @@
 import { UserData } from './../../services/user-data.service';
 import { AppComponent } from './../../app.component';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
@@ -12,12 +12,17 @@ import { AuthService } from '../../services/auth.service';
 export class NavComponent implements OnInit {
   public user;
   public userProfileImageUrl;
+  public isAuthenticated: boolean;
 
   constructor(private auth: AuthService, private userService: UserData) {
   }
 
   ngOnInit() {
-
+    this.auth.authUpdated
+      .subscribe((res) => {
+        this.isAuthenticated = res;
+        this.userProfileImageUrl = this.getCurrentUserProfileImage();
+      });
   }
 
   getCurrentUserDisplayName() {
@@ -25,15 +30,12 @@ export class NavComponent implements OnInit {
   }
 
   getCurrentUserProfileImage() {
-    this.userService.getUserProfileImageUrl(this.auth.currentUserId)
-      .then((url) => {
-        console.log(this.userProfileImageUrl);
-        return this.userProfileImageUrl = url;
-      });
-  }
-
-  isAuthenticated() {
-    return this.auth.isAuthenticated;
+    if (this.auth.isAuthenticated) {
+      return this.userService.getUserProfileImageUrl(this.auth.currentUserId)
+        .then((url) => {
+          this.userProfileImageUrl = url;
+        });
+    }
   }
 
   signOut() {
