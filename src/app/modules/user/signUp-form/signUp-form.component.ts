@@ -31,6 +31,7 @@ export class SignUpFormComponent implements OnInit {
   public selectedFiles: FileList;
 
   private user: UserInterface;
+  private userId;
 
   public userForm: FormGroup;
   public usernameFormControl: AbstractControl;
@@ -100,12 +101,11 @@ export class SignUpFormComponent implements OnInit {
 
   signUp(): void {
     const user = this.modelFactory
-      .createUser(this.username, this.firstName, this.lastName, this.email, this.isTrainer);
+      .createUser(this.username, this.firstName, this.lastName, this.email, this.isTrainer, '');
     this.auth.emailSignUp(this.email, this.password, user)
       .then(() => {
         this.uploadSingle();
       });
     console.log(this.auth.currentUserId);
-
   }
 }

@@ -34,5 +34,6 @@ export interface ModelFactoryInterface {
         firstName: string,
         lastName: string,
         email: string,
-        isTrainer: boolean): UserInterface;
+        isTrainer: boolean,
+        profileImage: any): UserInterface;
 }

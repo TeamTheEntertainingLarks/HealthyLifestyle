@@ -21,7 +21,7 @@ export class ModelFactory implements ModelFactoryInterface {
         image: string,
         comments?: Array<string>) {
         return new Recipe(title, author, category, createdOn, description, ingradients, step1, step2, step3, image, comments);
-        }
+    }
 
     createActivity() {
         // TODO: Implement activity class
@@ -42,11 +42,13 @@ export class ModelFactory implements ModelFactoryInterface {
         return new Workout(title, author, createdOn, image, description, content, comments);
     }
 
-    createUser(username: string,
+    createUser(
+        username: string,
         firstName: string,
         lastName: string,
         email: string,
-        isTrainer: boolean) {
-        return new User(username, firstName, lastName, email, isTrainer);
+        isTrainer: boolean,
+        profileImage: any) {
+        return new User(username, firstName, lastName, email, isTrainer, profileImage);
     }
 }
