@@ -7,13 +7,14 @@ import { SignUpFormComponent } from './signUp-form/signUp-form.component';
 import { UserRoutesModule } from './user.routes.module';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { UserProfileComponent } from './user-profile/user-profile.component';
+
 import {
   MdIconModule, MaterialModule,
   MD_ERROR_GLOBAL_OPTIONS,
   showOnDirtyErrorStateMatcher,
   MD_PLACEHOLDER_GLOBAL_OPTIONS
 } from '@angular/material';
-
 
 @NgModule({
   imports: [
@@ -24,14 +25,18 @@ import {
     FormsModule,
     ReactiveFormsModule,
   ],
-  declarations: [SignInFormComponent, SignUpFormComponent],
+  declarations: [
+    SignInFormComponent,
+    SignUpFormComponent,
+    UserProfileComponent,
+  ],
   providers: [
     { provide: MD_ERROR_GLOBAL_OPTIONS, useValue: { errorStateMatcher: showOnDirtyErrorStateMatcher } },
     { provide: MD_PLACEHOLDER_GLOBAL_OPTIONS, useValue: { float: 'always' } }
-    ],
+  ],
   exports: [
-      SignInFormComponent,
-      SignUpFormComponent
+    SignInFormComponent,
+    SignUpFormComponent
   ]
 })
 export class UserModule { }

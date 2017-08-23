@@ -72,6 +72,7 @@ export class AuthService {
         return this.afAuth.auth.signInWithEmailAndPassword(email, password)
             .then((user) => {
                 this.authState = user;
+                this.router.navigateByUrl('/user/profile');
             })
             .catch(error => console.log(error));
     }
