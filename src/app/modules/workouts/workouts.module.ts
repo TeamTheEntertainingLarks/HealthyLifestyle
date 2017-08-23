@@ -5,21 +5,48 @@ import { WorkoutsRoutesModule } from './workouts.routes.module';
 
 import { WorkoutsComponent } from './workouts.component/workouts.component';
 import { WorkoutsAllComponent } from './all.workouts.component/all.workouts.component';
+import { CreateWorkoutFormComponent } from './create.workout.form/create.workout.form.component';
 
-import { MdChipsModule } from '@angular/material';
+import { MdChipsModule, MdButtonModule, MdCheckboxModule, MdCardModule, MdInputModule,
+  MdIconModule, MdGridListModule, MdSelectModule } from '@angular/material';
+import { MD_PLACEHOLDER_GLOBAL_OPTIONS } from '@angular/material';
+
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
     CommonModule,
     WorkoutsRoutesModule,
-    MdChipsModule
+    MdChipsModule,
+    MdButtonModule,
+    MdCheckboxModule,
+    MdCardModule,
+    MdInputModule,
+    MdIconModule,
+    MdGridListModule,
+    MdSelectModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   declarations: [
     WorkoutsComponent,
     WorkoutsAllComponent,
+    CreateWorkoutFormComponent
+  ],
+  providers: [
+    { provide: MD_PLACEHOLDER_GLOBAL_OPTIONS, useValue: { float: 'always' } },
   ],
   exports: [
     MdChipsModule,
+    MdButtonModule,
+    MdCheckboxModule,
+    MdCardModule,
+    MdIconModule,
+    MdGridListModule,
+    MdInputModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MdSelectModule,
     WorkoutsRoutesModule,
   ]
 })

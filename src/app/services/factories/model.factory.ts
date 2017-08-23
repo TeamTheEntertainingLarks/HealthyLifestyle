@@ -1,3 +1,4 @@
+import { Routine } from './../../models/routine';
 import { Injectable } from '@angular/core';
 
 import { ModelFactoryInterface } from './interfaces/model.factory';
@@ -5,6 +6,7 @@ import { ModelFactoryInterface } from './interfaces/model.factory';
 import { Recipe } from '../../models/recipe';
 import { User } from '../../models/user';
 import { Workout } from './../../models/workout';
+import { Category } from '../../enums/workoutCategories';
 
 @Injectable()
 export class ModelFactory implements ModelFactoryInterface {
@@ -34,12 +36,12 @@ export class ModelFactory implements ModelFactoryInterface {
     createWorkout(
         title: string,
         author: string,
-        createdOn: Date,
-        image: string,
+        createdOn: number,
+        category: Category,
+        routines: Array<Routine>,
         description: string,
-        content: string,
         comments: Array<string>) {
-        return new Workout(title, author, createdOn, image, description, content, comments);
+        return new Workout(title, author, createdOn, category, routines, description, comments);
     }
 
     createUser(
