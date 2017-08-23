@@ -23,6 +23,7 @@ import { AuthService } from './services/auth.service';
 import { AuthGuard } from './guards/auth.guard';
 import { DataService } from './services/data.service';
 import { RecipeData } from './services/recipe-data.service';
+import { WorkoutData } from './services/workouts-data.service';
 import { UploadService } from './services/uploads/shared/upload.service';
 
 import { firebaseConfig } from '../environments/firebaseConfig';
