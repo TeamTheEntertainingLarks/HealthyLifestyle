@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { HomeComponent } from './modules/home/home.component';
+import { PageNotFoundComponent } from './modules/home/page.not.found/page.not.found.component';
 
 import { AuthGuard } from './guards/auth.guard';
 
@@ -14,6 +15,7 @@ const routes: Routes = [
     { path: 'recipes', loadChildren: './modules/food/recipes.module#RecipesModule' },
     { path: 'user', loadChildren: './modules/user/user.module#UserModule' },
     { path: 'workouts', loadChildren: './modules/workouts/workouts.module#WorkoutsModule' },
+    { path: '**', component: PageNotFoundComponent },
 ];
 
 @NgModule({

@@ -17,6 +17,7 @@ import { UserModule } from './modules/user/user.module';
 import { AppComponent } from './app.component';
 import { NavComponent } from './modules/nav/nav.component';
 import { HomeComponent } from './modules/home/home.component';
+import { PageNotFoundComponent } from './modules/home/page.not.found/page.not.found.component';
 
 import { AuthService } from './services/auth.service';
 import { AuthGuard } from './guards/auth.guard';
@@ -34,7 +35,8 @@ import { UserData } from './services/user-data.service';
   declarations: [
     AppComponent,
     NavComponent,
-    HomeComponent
+    HomeComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
