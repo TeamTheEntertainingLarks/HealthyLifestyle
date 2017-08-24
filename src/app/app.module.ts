@@ -16,7 +16,6 @@ import { UserModule } from './modules/user/user.module';
 
 import { AppComponent } from './app.component';
 import { NavComponent } from './modules/nav/nav.component';
-import { SubNavComponent } from './modules/nav/sub.nav/sub.nav.component';
 import { HomeComponent } from './modules/home/home.component';
 import { PageNotFoundComponent } from './modules/home/page.not.found/page.not.found.component';
 
@@ -37,7 +36,6 @@ import { UserData } from './services/user-data.service';
   declarations: [
     AppComponent,
     NavComponent,
-    SubNavComponent,
     HomeComponent,
     PageNotFoundComponent
   ],
