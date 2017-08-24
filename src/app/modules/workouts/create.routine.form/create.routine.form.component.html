@@ -1,0 +1,33 @@
+<h2>Create New Routine</h2>
+<form class="routine-form" #carAddForm="ngForm" (ngSubmit)="onSubmit()">
+  <md-select placeholder="Choose Exercise" class="form-control" name="exercise" [(ngModel)]="routine.exercise" [formControl]="exerciseFormControl" required>
+    <md-option *ngFor="let routine of getAvailableRoutines()" [value]="routine">
+      {{routine}}
+    </md-option>
+  </md-select>
+  <md-input-container class="form-control">
+    <input type="number" mdInput placeholder="Series" name="series" [(ngModel)]="routine.seriesCount" 
+      [formControl]="seriesFormControl" required>
+    <md-icon mdSuffix>mode_edit</md-icon>
+    <md-error *ngIf="seriesFormControl.hasError('required')">
+      Series are <strong>required</strong>
+    </md-error>
+  </md-input-container>
+  <md-input-container class="form-control">
+    <input type="number" mdInput placeholder="Repeats" name="repeats" [(ngModel)]="routine.repeatTimes" 
+      [formControl]="repeatsFormControl" required>
+    <md-icon mdSuffix>mode_edit</md-icon>
+    <md-error *ngIf="repeatsFormControl.hasError('required')">
+      Repeats are <strong>required</strong>
+    </md-error>
+  </md-input-container>
+  <md-input-container class="form-control">
+    <input type="number" mdInput placeholder="Resting" name="resting" [(ngModel)]="routine.restingTime" 
+      [formControl]="restingFormControl" required>
+    <md-icon mdSuffix>mode_edit</md-icon>
+    <md-error *ngIf="restingFormControl.hasError('required')">
+      Resting is <strong>required</strong>
+    </md-error>
+  </md-input-container>
+  <button type="submit" md-raised-button>Create routine</button>
+</form>

@@ -4,4 +4,5 @@ export interface UserInterface {
     lastName: string;
     email: string;
     isTrainer: boolean;
+    profileImage: any;
 }

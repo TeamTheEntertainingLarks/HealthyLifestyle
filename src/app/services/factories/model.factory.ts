@@ -1,3 +1,5 @@
+import { Exercise } from './../../models/exercise';
+import { Routine } from './../../models/routine';
 import { Injectable } from '@angular/core';
 
 import { ModelFactoryInterface } from './interfaces/model.factory';
@@ -5,6 +7,7 @@ import { ModelFactoryInterface } from './interfaces/model.factory';
 import { Recipe } from '../../models/recipe';
 import { User } from '../../models/user';
 import { Workout } from './../../models/workout';
+import { Category } from '../../enums/workoutCategories';
 
 @Injectable()
 export class ModelFactory implements ModelFactoryInterface {
@@ -21,7 +24,7 @@ export class ModelFactory implements ModelFactoryInterface {
         image: string,
         comments?: Array<string>) {
         return new Recipe(title, author, category, createdOn, description, ingradients, step1, step2, step3, image, comments);
-        }
+    }
 
     createActivity() {
         // TODO: Implement activity class
@@ -34,19 +37,29 @@ export class ModelFactory implements ModelFactoryInterface {
     createWorkout(
         title: string,
         author: string,
-        createdOn: Date,
-        image: string,
+        createdOn: number,
+        category: Category,
+        routines: Array<Routine>,
         description: string,
-        content: string,
         comments: Array<string>) {
-        return new Workout(title, author, createdOn, image, description, content, comments);
+        return new Workout(title, author, createdOn, category, routines, description, comments);
     }
 
-    createUser(username: string,
+    createRoutine(
+        exercise: Exercise,
+        repeatTimes: number,
+        series: number,
+        restingTime: number) {
+        return new Routine(exercise, repeatTimes, series, restingTime);
+    }
+
+    createUser(
+        username: string,
         firstName: string,
         lastName: string,
         email: string,
-        isTrainer: boolean) {
-        return new User(username, firstName, lastName, email, isTrainer);
+        isTrainer: boolean,
+        profileImage: any) {
+        return new User(username, firstName, lastName, email, isTrainer, profileImage);
     }
 }

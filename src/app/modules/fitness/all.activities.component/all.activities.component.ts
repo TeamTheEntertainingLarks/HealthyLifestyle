@@ -19,12 +19,4 @@ export class ActivitiesAllComponent implements OnInit {
             this.activities = data;
         }).catch((err) => console.log(err));
     }
-
-    orderByNameAcs() {
-        this.activities.sort((a, b) => a.title.localeCompare(b.title));
-    }
-
-    orderByNameDesc() {
-        this.activities.sort((a, b) => b.title.localeCompare(a.title));
-    }
 }

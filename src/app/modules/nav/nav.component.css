@@ -5,7 +5,7 @@ ul{
 }
 li {
     display: inline-block;
-    padding: 15px;
+    padding: 5px;
 }
 li a{
     text-decoration: none;
@@ -16,5 +16,5 @@ li a{
     padding-left: 100px;
 }
 .logo img{
-    width: 60%;
+    width: 50%;
 }

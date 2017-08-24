@@ -8,18 +8,21 @@ export class User implements UserInterface {
     public lastName: string;
     public email: string;
     public isTrainer: boolean;
+    profileImage: any;
 
     constructor(
         username: string,
         firstName: string,
         lastName: string,
         email: string,
-        isTrainer: boolean
+        isTrainer: boolean,
+        profileImage: any
     ) {
         this.username = username;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.isTrainer = isTrainer;
+        this.profileImage = profileImage;
     }
 }

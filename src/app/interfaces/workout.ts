@@ -1,9 +1,12 @@
+import { Routine } from './../models/routine';
+import { Category } from '../enums/workoutCategories';
+
 export interface WorkoutInterface {
     title: string;
     author: string;
-    createdOn: Date;
-    image: string;
+    createdOn: number;
+    category: Category;
+    routines: Array<Routine>;
     description: string;
-    content: string;
     comments: Array<string>;
 }
