@@ -1,6 +1,17 @@
+import { UploadService } from './../../../services/uploads/shared/upload.service';
 import { Component, OnInit } from '@angular/core';
+import { FormControl, Validators, FormGroup, FormBuilder, AbstractControl } from '@angular/forms';
+
 import { AuthService } from '../../../services/auth.service';
-import { ReactiveFormsModule, FormGroup, FormBuilder, Validators } from '@angular/forms';
+
+import { ModelFactory } from './../../../services/factories/model.factory';
+import { ModelFactoryInterface } from './../../../services/factories/interfaces/model.factory';
+
+import { User } from '../../../models/user';
+import { UserInterface } from '../../../interfaces/user';
+import { Upload } from '../../../services/uploads/shared/upload';
+
+const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
 @Component({
   selector: 'app-signup-form',
@@ -9,71 +20,92 @@ import { ReactiveFormsModule, FormGroup, FormBuilder, Validators } from '@angula
 })
 
 export class SignUpFormComponent implements OnInit {
+  public username;
+  public firstName;
+  public lastName;
+  public password;
+  public email;
+  public isTrainer = false;
+  public sport;
+  public currentUpload: Upload;
+  public selectedFiles: FileList;
 
-  userForm: FormGroup;
+  private user: UserInterface;
 
-  formErrors = {
-    'email': '',
-    'password': ''
-  };
+  public userForm: FormGroup;
+  public usernameFormControl: AbstractControl;
+  public firstNameFormControl: AbstractControl;
+  public lastNameFormControl: AbstractControl;
+  public emailFormControl: AbstractControl;
+  public passwordFormControl: AbstractControl;
+  public isTrainerFormControl: AbstractControl;
+  public sportFormControl: AbstractControl;
 
-  validationMessages = {
-    'email': {
-      'required': 'Email is required.',
-      'email': 'Email must be a valid email'
-    },
-    'password': {
-      'required': 'Password is required.',
-      'pattern': 'Password must be include at one letter and one number.',
-      'minlength': 'Password must be at least 4 characters long.',
-      'maxlength': 'Password cannot be more than 40 characters long.',
-    }
-  };
-
-  constructor(private fb: FormBuilder, private auth: AuthService) { }
-
-  ngOnInit(): void {
-    this.buildForm();
+  constructor(
+    private auth: AuthService,
+    private formBuilder: FormBuilder,
+    private modelFactory: ModelFactory,
+    private uploadService: UploadService) {
   }
 
-  buildForm(): void {
-    this.userForm = this.fb.group({
-      'email': ['', [
-        Validators.required,
-        Validators.email
-      ]
-      ],
-      'password': ['', [
-        Validators.pattern('^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$'),
-        Validators.minLength(6),
-        Validators.maxLength(25)
-      ]
-      ],
-    });
+  ngOnInit(): void {
+    this.createForm();
+  }
 
-    this.userForm.valueChanges.subscribe(data => this.onValueChanged(data));
-    this.onValueChanged(); // reset validation messages
+  // More validation need to be added
+  createForm() {
+    this.usernameFormControl = new FormControl('', [
+      Validators.required]);
+
+    this.firstNameFormControl = new FormControl('', [
+      Validators.required]);
+
+    this.lastNameFormControl = new FormControl('', [
+      Validators.required]);
+
+    this.passwordFormControl = new FormControl('', [
+      Validators.required]);
+
+    this.emailFormControl = new FormControl('', [
+      Validators.required,
+      Validators.pattern(EMAIL_REGEX)]);
+
+    this.isTrainerFormControl = new FormControl();
+
+    this.sportFormControl = new FormControl();
+
+    this.userForm = this.formBuilder.group({
+      usernameFormControl: this.usernameFormControl,
+      firstNameFormControl: this.firstNameFormControl,
+      lastNameFormControl: this.lastNameFormControl,
+      passwordFormControl: this.passwordFormControl,
+      emailFormControl: this.emailFormControl,
+      isTrainerFormControl: this.isTrainerFormControl,
+      sportFormControl: this.sportFormControl
+    });
+  }
+
+  detectFiles(event) {
+    this.selectedFiles = event.target.files;
+  }
+
+  uploadSingle() {
+    const userId = this.auth.currentUserId;
+    const path = `users/${userId}/profileImage`;
+    const file = this.selectedFiles.item(0);
+
+    this.currentUpload = new Upload(file);
+    this.uploadService.uploadUserProfileImage(userId, path, this.currentUpload);
   }
 
   signUp(): void {
-    this.auth.emailSignUp(this.userForm.value['email'], this.userForm.value['password']);
-  }
+    const user = this.modelFactory
+      .createUser(this.username, this.firstName, this.lastName, this.email, this.isTrainer);
+    this.auth.emailSignUp(this.email, this.password, user)
+      .then(() => {
+        this.uploadSingle();
+      });
+    console.log(this.auth.currentUserId);
 
-  onValueChanged(data?: any) {
-    if (!this.userForm) { return; }
-    const form = this.userForm;
-    // tslint:disable-next-line:forin
-    for (const field in this.formErrors) {
-      // clear previous error message (if any)
-      this.formErrors[field] = '';
-      const control = form.get(field);
-      if (control && control.dirty && !control.valid) {
-        const messages = this.validationMessages[field];
-        // tslint:disable-next-line:forin
-        for (const key in control.errors) {
-          this.formErrors[field] += messages[key] + ' ';
-        }
-      }
-    }
   }
 }

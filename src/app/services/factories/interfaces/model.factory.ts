@@ -3,7 +3,18 @@ import { RecipeInterface } from './../../../interfaces/recipe';
 import { WorkoutInterface } from '../../../interfaces/workout';
 
 export interface ModelFactoryInterface {
-    createRecipe(title: string, author: string): RecipeInterface;
+    createRecipe(
+        title: string,
+        author: string,
+        category: string,
+        createdOn: number,
+        description: string,
+        ingradients: any,
+        step1: string,
+        step2: string,
+        step3: string,
+        image: string,
+        comments?: Array<string>): RecipeInterface;
 
     createActivity();
 

@@ -1,8 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { MdButtonModule, MdCheckboxModule, MdCardModule, MdIconModule, MdGridListModule } from '@angular/material';
 
-import { AppRoutesModule } from './../../routes.module';
+import { MdButtonModule, MdCheckboxModule, MdCardModule, MdIconModule, MdGridListModule, MdChipsModule } from '@angular/material';
+
+import { ActivitiesRoutesModule } from './activities.routes.module';
 
 import { ActivityComponent } from './activity.component/activity.component';
 import { ActivitiesAllComponent } from './all.activities.component/all.activities.component';
@@ -10,12 +11,13 @@ import { ActivitiesAllComponent } from './all.activities.component/all.activitie
 @NgModule({
     imports: [
         CommonModule,
-        AppRoutesModule,
+        ActivitiesRoutesModule,
         MdButtonModule,
         MdCheckboxModule,
         MdCardModule,
         MdIconModule,
-        MdGridListModule
+        MdGridListModule,
+        MdChipsModule
     ],
     declarations: [ActivityComponent, ActivitiesAllComponent],
     providers: [],
@@ -26,7 +28,8 @@ import { ActivitiesAllComponent } from './all.activities.component/all.activitie
         MdCheckboxModule,
         MdCardModule,
         MdIconModule,
-        MdGridListModule
+        MdGridListModule,
+        MdChipsModule
     ]
 })
 
