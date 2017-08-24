@@ -1,5 +1,52 @@
 <div class="container">
-    <md-card *ngFor="let recipe of recipes" class="recipe-container">
+    <div class="subnav">
+        <button md-button [mdMenuTriggerFor]="byTitle">
+            <md-icon>sort</md-icon>
+            Order by Title
+        </button>
+        <md-menu #byTitle="mdMenu">
+            <button md-menu-item (click)="orderBy('title', -1)">
+                    <md-icon>arrow_upward</md-icon>
+                      <span>Order Ascending</span>
+                    </button>
+            <button md-menu-item (click)="orderBy('title', 1)">
+                    <md-icon>arrow_downward</md-icon>
+                    <span>Order Descending</span>
+            </button>
+        </md-menu>
+        <button md-button [mdMenuTriggerFor]="byDate">
+            <md-icon>sort</md-icon>
+            Order by Date
+        </button>
+        <md-menu #byDate="mdMenu">
+            <button md-menu-item (click)="orderBy('createdOn', -1)">
+                      <md-icon>arrow_upward</md-icon>
+                      <span>Sort Ascending</span>
+                    </button>
+            <button md-menu-item (click)="orderBy('createdOn', 1)">
+                      <md-icon>arrow_downward</md-icon>
+                      <span>Sort Descending</span>
+                    </button>
+        </md-menu>
+        <button md-button [mdMenuTriggerFor]="create">
+                <md-icon>add</md-icon>
+                Create
+        </button>
+        <md-menu #create="mdMenu">
+            <button md-menu-item *ngIf="isAuthenticated()" routerLink="/recipes/create">
+                <md-icon>add_circle_outline</md-icon>
+                <span>Create Recipe</span>
+            </button>
+            <button md-menu-item *ngIf="isAuthenticated()" routerLink=".">
+                <md-icon>add_circle_outline</md-icon>
+                <span>Create Activity</span>
+            </button>
+        </md-menu>
+        <input type="text" name="search-title" placeholder="Search for Title">
+        <input type="text" name="search-author" placeholder="Search for Author">        
+        <button md-raised-button class="button-search">Search</button>
+    </div>
+    <md-card *ngFor="let recipe of (recipes | sort:order:path)" class="recipe-container">
         <img md-card-image src="{{recipe.image}}" alt="recipe-image">
         <md-card-content>
             <h3><a routerLink="/recipes/{{recipe.$key}}">{{recipe.title}}</a></h3>

@@ -21,6 +21,9 @@ export class RecipesAllComponent implements OnInit {
     private recipeDataService: RecipeData;
     auth: AuthService;
 
+    path: string;
+    order: number; // 1 asc, -1 desc;
+
     constructor(
         recipeDataService: RecipeData,
         factory: ModelFactory,
@@ -38,19 +41,13 @@ export class RecipesAllComponent implements OnInit {
         return this.recipes;
     }
 
-    orderByDateAsc() {
-        this.recipes.sort((a, b) => +a.createdOn - +b.createdOn);
-      }
+    orderBy(prop: string, num: number) {
+        this.path = prop;
+        this.order = num;
+        return false; // do not reload
+    }
 
-      orderByDateDesc() {
-        this.recipes.sort((a, b) => +b.createdOn - +a.createdOn);
-      }
-
-      orderByTitleAsc() {
-        this.recipes.sort((a, b) => a.title.localeCompare(b.title));
-      }
-
-      orderByTitleDesc() {
-        this.recipes.sort((a, b) => b.title.localeCompare(a.title));
-      }
+    isAuthenticated() {
+        return this.auth.isAuthenticated;
+    }
 }

@@ -8,7 +8,6 @@
     }
 button{
       font-size: 14px;
-      margin: 0 10px;
       border-radius: 5px; 
 }
 md-icon{
@@ -25,4 +24,15 @@ a:hover{
 
 .container{
       padding: 0 100px;
+}
+
+input[type=text]{
+      padding: 10px;
+      font-size: 14px;
+      border-radius: 5px;
+}
+
+.subnav{
+      text-align: right;
+      clear: both;	
 }
