@@ -11,6 +11,7 @@ import { RecipesAllComponent } from './all.recipes.component/all.recipes.compone
 import { CreateFormComponent } from './create.recipe.form/create.resipe.form.component';
 
 import { SortPipe } from '../../pipes/sort.pipe';
+import { SearchPipe } from '../../pipes/search.pipe';
 
 @NgModule({
     imports: [
@@ -27,7 +28,7 @@ import { SortPipe } from '../../pipes/sort.pipe';
         MdSelectModule,
         MdMenuModule
     ],
-    declarations: [RecipeComponent, RecipesAllComponent, CreateFormComponent, SortPipe],
+    declarations: [RecipeComponent, RecipesAllComponent, CreateFormComponent, SortPipe, SearchPipe],
     providers: [{ provide: MD_PLACEHOLDER_GLOBAL_OPTIONS, useValue: { float: 'always' } }],
     exports: [
         RecipeComponent,

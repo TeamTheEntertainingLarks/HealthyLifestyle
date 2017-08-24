@@ -24,6 +24,8 @@ export class RecipesAllComponent implements OnInit {
     path: string;
     order: number; // 1 asc, -1 desc;
 
+    searchWord: string;
+
     constructor(
         recipeDataService: RecipeData,
         factory: ModelFactory,
@@ -31,6 +33,7 @@ export class RecipesAllComponent implements OnInit {
         this.factory = factory;
         this.recipeDataService = recipeDataService;
         this.auth = auth;
+        this.searchWord = '';
     }
 
     ngOnInit() {

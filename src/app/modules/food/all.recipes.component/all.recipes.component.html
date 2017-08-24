@@ -21,11 +21,11 @@
         <md-menu #byDate="mdMenu">
             <button md-menu-item (click)="orderBy('createdOn', -1)">
                       <md-icon>arrow_upward</md-icon>
-                      <span>Sort Ascending</span>
+                      <span>Order Ascending</span>
                     </button>
             <button md-menu-item (click)="orderBy('createdOn', 1)">
                       <md-icon>arrow_downward</md-icon>
-                      <span>Sort Descending</span>
+                      <span>Order Descending</span>
                     </button>
         </md-menu>
         <button md-button [mdMenuTriggerFor]="create">
@@ -42,11 +42,9 @@
                 <span>Create Activity</span>
             </button>
         </md-menu>
-        <input type="text" name="search-title" placeholder="Search for Title">
-        <input type="text" name="search-author" placeholder="Search for Author">        
-        <button md-raised-button class="button-search">Search</button>
+        <input type="text" [(ngModel)]="searchWord" class="form-control" placeholder="Search for ...">    
     </div>
-    <md-card *ngFor="let recipe of (recipes | sort:order:path)" class="recipe-container">
+    <md-card *ngFor="let recipe of (recipes | sort:order:path | search:searchWord)" class="recipe-container">
         <img md-card-image src="{{recipe.image}}" alt="recipe-image">
         <md-card-content>
             <h3><a routerLink="/recipes/{{recipe.$key}}">{{recipe.title}}</a></h3>
