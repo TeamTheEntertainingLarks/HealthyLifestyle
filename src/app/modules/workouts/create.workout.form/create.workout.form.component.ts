@@ -1,3 +1,4 @@
+import { Exercise } from './../../../models/exercise';
 import { Routine } from './../../../models/routine';
 import { Workout } from './../../../models/workout';
 import { WorkoutInterface } from './../../../interfaces/workout';
@@ -43,7 +44,7 @@ export class CreateWorkoutFormComponent implements OnInit {
   public titleFormControl: AbstractControl;
   public authorFormControl: AbstractControl;
   public descriptionFormControl: AbstractControl;
-  public imageFormControl: AbstractControl;
+  public routinesFormControl: AbstractControl;
 
    constructor(
     private router: Router,
@@ -56,6 +57,12 @@ export class CreateWorkoutFormComponent implements OnInit {
     this.auth = auth;
     this.workout = new Workout();
 }
+
+  private getAvailableRoutines() {
+    //return this.workoutDataService.getAvailableRoutines(this.category);
+    return [
+      'gosho', 'penka', 'hoho'];
+  }
   ngOnInit(): void {
       this.titleFormControl = new FormControl('', [
       Validators.required]);
@@ -66,18 +73,17 @@ export class CreateWorkoutFormComponent implements OnInit {
     this.descriptionFormControl = new FormControl('', [
       Validators.required]);
 
-    this.imageFormControl = new FormControl('', [
+    this.routinesFormControl = new FormControl('', [
       Validators.required]);
 
     this.workoutForm = this.formBuilder.group({
       titleFormControl: this.titleFormControl,
       authorFormControl: this.authorFormControl,
       descriptionFormControl: this.descriptionFormControl,
-      imageFormControl: this.imageFormControl
+      routinesFormControl: this.routinesFormControl
     });
   }
 
-  // omg hi
   onSubmit(title: string,
     author: string,
     createdOn: number,
