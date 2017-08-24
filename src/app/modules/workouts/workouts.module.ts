@@ -12,6 +12,7 @@ import { MdChipsModule, MdButtonModule, MdCheckboxModule, MdCardModule, MdInputM
 import { MD_PLACEHOLDER_GLOBAL_OPTIONS } from '@angular/material';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CreateRoutineFormComponent } from './create.routine.form/create.routine.form.component';
 
 @NgModule({
   imports: [
@@ -31,8 +32,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   declarations: [
     WorkoutsComponent,
     WorkoutsAllComponent,
-    CreateWorkoutFormComponent
-  ],
+    CreateWorkoutFormComponent,
+    CreateRoutineFormComponent,
+],
   providers: [
     { provide: MD_PLACEHOLDER_GLOBAL_OPTIONS, useValue: { float: 'always' } },
   ],

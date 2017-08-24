@@ -23,8 +23,6 @@ import { Category } from '../../../enums/workoutCategories';
 export class CreateWorkoutFormComponent implements OnInit {
 
   public workout: WorkoutInterface;
-  public workouts: Array<WorkoutInterface>;
-
   private factory: ModelFactory;
   private workoutDataService: WorkoutData;
   auth: AuthService;
@@ -104,7 +102,7 @@ export class CreateWorkoutFormComponent implements OnInit {
 
       this.workout = this.factory
       .createWorkout(title, author, createdOn, category, routines, description, comments);
-      this.workoutDataService.add(this.workout);
+      this.workoutDataService.addWorkout(this.workout);
 
       this.router.navigate(['workouts']);
   }
