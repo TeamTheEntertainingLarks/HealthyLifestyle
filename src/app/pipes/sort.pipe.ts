@@ -1,13 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
-function orderByAsc(a, b) {
-  return a.localeCompare(b);
-}
-
-function orderByDesc(a, b) {
-  return b.localeCompare(a);
-}
-
 @Pipe({
   name: 'sort'
 })
