@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA, APP_INITIALIZER, OnInit } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MdButtonModule, MdCheckboxModule, MdMenuModule, MdIconModule, MaterialModule } from '@angular/material';
+import { MdButtonModule, MdCheckboxModule, MdMenuModule, MdIconModule, MaterialModule, MdDialogModule } from '@angular/material';
 
 import 'hammerjs';
 
@@ -31,13 +31,15 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { UserData } from './services/user-data.service';
+import { DialogComponent } from './modules/common/dialog/dialog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavComponent,
     HomeComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    DialogComponent
   ],
   imports: [
     BrowserModule,
@@ -53,8 +55,12 @@ import { UserData } from './services/user-data.service';
     MdButtonModule,
     MdCheckboxModule,
     MdMenuModule,
+    MdDialogModule,
     MdIconModule,
     MaterialModule
+  ],
+  entryComponents: [
+    DialogComponent
   ],
   providers: [
     DataService,
