@@ -24,21 +24,11 @@ export class NavComponent implements OnInit {
           this.userService.getUserByUid(this.auth.currentUserId).
             subscribe((user) => this.userProfileImageUrl = user.profileImage.url);
         }
-        // this.userProfileImageUrl = this.getCurrentUserProfileImage();
       });
   }
 
   getCurrentUserDisplayName() {
     return this.auth.currentUserDisplayName;
-  }
-
-  getCurrentUserProfileImage() {
-    if (this.auth.isAuthenticated) {
-      return this.userService.getUserProfileImageUrl(this.auth.currentUserId)
-        .then((url) => {
-          this.userProfileImageUrl = url;
-        });
-    }
   }
 
   signOut() {
