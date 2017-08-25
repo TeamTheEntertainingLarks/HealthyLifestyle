@@ -2,8 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { MdDialog, MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
 import { FormControl, Validators, FormGroup, FormBuilder, AbstractControl } from '@angular/forms';
 import { DialogType } from '../../../enums/dialogTypes';
-
-const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+import { EMAIL_REGEX } from '../../../common/constants';
 
 @Component({
   selector: 'app-dialog',
@@ -18,7 +17,7 @@ export class DialogComponent {
   public oldEmail: string;
   public newEmail: string;
   public password: string;
-  
+
   public changeEmailForm: FormGroup;
   public oldEmailFormControl: AbstractControl;
   public passwordFormControl: AbstractControl;

@@ -10,9 +10,7 @@ import { ModelFactoryInterface } from './../../../services/factories/interfaces/
 import { User } from '../../../models/user';
 import { UserInterface } from '../../../interfaces/user';
 import { Upload } from '../../../services/uploads/shared/upload';
-
-const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-const PASSWORD_REGEX = /^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$/;
+import { PASSWORD_REGEX, EMAIL_REGEX } from "../../../common/constants";
 
 @Component({
   selector: 'app-signup-form',

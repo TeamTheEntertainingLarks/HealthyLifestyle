@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../services/auth.service';
 import { FormControl, Validators, FormGroup, FormBuilder, AbstractControl } from '@angular/forms';
-
-const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-const PASSWORD_REGEX = /^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$/;
+import { EMAIL_REGEX, PASSWORD_REGEX } from '../../../common/constants';
 
 @Component({
   selector: 'app-signin-form',
