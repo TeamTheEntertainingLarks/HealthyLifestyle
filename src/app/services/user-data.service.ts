@@ -35,7 +35,7 @@ export class UserData {
             .catch(error => console.log(error));
     }
 
-    private update(userId: number, data: object): void {
+    update(userId: string, data: object): void {
         const path = `users/${userId}`;
 
         this.db.object(path)

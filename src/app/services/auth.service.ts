@@ -62,6 +62,8 @@ export class AuthService {
             .then((user) => {
                 user.updateProfile({ displayName: `${model.firstName} ${model.lastName}` });
                 this.authState = user;
+            })
+            .then(() => {
                 this.userData.add(this.currentUserId, model);
                 this.router.navigateByUrl('/');
             })
@@ -81,8 +83,20 @@ export class AuthService {
         const fbAuth = firebase.auth();
 
         return fbAuth.sendPasswordResetEmail(email)
-            .then(() => console.log('email sent'))
+            .then(() => {
+                console.log('email sent');
+                this.signOut();
+            })
             .catch((error) => console.log(error));
+    }
+
+    changeEmail(oldEmail: string, newEmail: string, password: string) {
+        this.afAuth.auth.signInWithEmailAndPassword(oldEmail, password)
+            .then((user) => {
+                user.updateEmail(newEmail);
+                this.userData.update(this.currentUserId, { email: newEmail });
+            });
+
     }
 
     signOut(): void {

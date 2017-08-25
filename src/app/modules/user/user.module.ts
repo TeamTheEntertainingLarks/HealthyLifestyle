@@ -13,7 +13,8 @@ import {
   MdIconModule, MaterialModule,
   MD_ERROR_GLOBAL_OPTIONS,
   showOnDirtyErrorStateMatcher,
-  MD_PLACEHOLDER_GLOBAL_OPTIONS
+  MD_PLACEHOLDER_GLOBAL_OPTIONS,
+  MdDialogModule
 } from '@angular/material';
 
 @NgModule({
@@ -24,6 +25,7 @@ import {
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
+    MdDialogModule,
   ],
   declarations: [
     SignInFormComponent,
