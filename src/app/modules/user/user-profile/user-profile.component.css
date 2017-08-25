@@ -1,0 +1,13 @@
+.header-image{
+    background-size: cover;
+}
+
+.card{
+    height: 40%;
+    margin: auto;
+    width: 40%;
+}
+
+#user-fullname {
+    font-size: 1.2em;
+}

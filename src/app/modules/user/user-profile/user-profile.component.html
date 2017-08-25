@@ -1,9 +1,21 @@
-<div *ngIf=user>
-  <p>
-    username: {{user.username}}
-  </p>
-  <p>
-    email: {{user.email}}
-  </p>
-  <img src={{user.profileImage.url}}>
-</div>
+<md-grid-list cols="1" rowHeight="1:1">
+  <md-card class="card" *ngIf=user>
+    <md-card-header>
+      <div md-card-avatar class="header-image"></div>
+      <md-card-title id="user-fullname"><strong>Name:</strong> {{user.firstName + ' ' + user.lastName}}</md-card-title>
+      <md-card-subtitle id="username"><strong>Username:</strong> {{user.username}}</md-card-subtitle>
+      <md-card-subtitle id="user-email"><strong>Email:</strong> {{user.email}}</md-card-subtitle>
+    </md-card-header>
+    <img md-card-image src={{user.profileImage.url}}>
+    <md-card-content>
+      <p>
+
+      </p>
+    </md-card-content>
+    <md-card-actions>
+      <button md-button (click)="openDialog($event)">Reset password</button>
+      <button md-button (click)="openDialog($event)">Change Email</button>
+      <button md-button>Your collection</button>
+    </md-card-actions>
+  </md-card>
+</md-grid-list>
