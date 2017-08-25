@@ -12,6 +12,7 @@ import { UserInterface } from '../../../interfaces/user';
 import { Upload } from '../../../services/uploads/shared/upload';
 
 const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+const PASSWORD_REGEX = /^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$/;
 
 @Component({
   selector: 'app-signup-form',
@@ -65,7 +66,10 @@ export class SignUpFormComponent implements OnInit {
       Validators.required]);
 
     this.passwordFormControl = new FormControl('', [
-      Validators.required]);
+      Validators.required,
+      Validators.pattern(PASSWORD_REGEX),
+      Validators.minLength(6),
+      Validators.maxLength(25)]);
 
     this.emailFormControl = new FormControl('', [
       Validators.required,
