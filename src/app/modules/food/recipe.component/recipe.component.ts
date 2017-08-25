@@ -25,6 +25,7 @@ export class RecipeComponent implements OnInit {
         recipeDataService: RecipeData,
         auth: AuthService) {
         this.recipeDataService = recipeDataService;
+        this.auth = auth;
     }
 
     ngOnInit() {
@@ -37,5 +38,9 @@ export class RecipeComponent implements OnInit {
             console.log(recipe);
           });
       });
+    }
+
+    isAuthenticated() {
+        return this.auth.isAuthenticated;
     }
 }

@@ -1,12 +1,13 @@
 .container {
   font-size: 18px;
-  width: 60%;
   padding: 20px 100px;
 }
 
 .info-container{
   border-radius: 5px;
   border: solid 2px gray;
+  width: 60%;
+  margin: 50px 0;
 }
 
 .aside-info{
@@ -25,4 +26,13 @@ md-icon{
 
 .ingredients-title, .comments-title{
   margin: 30px 0;
+}
+
+.subnav{
+  text-align: right;
+  clear: both;	
+}
+.create{
+  width: 15%;
+  text-align: center;
 }

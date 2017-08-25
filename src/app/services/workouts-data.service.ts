@@ -1,7 +1,9 @@
+import { Routine } from './../models/routine';
 import { Workout } from './../models/workout';
 import { WorkoutInterface } from './../interfaces/workout';
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
+import { Category } from "../enums/workoutCategories";
 
 @Injectable()
 export class WorkoutData {
@@ -23,12 +25,34 @@ export class WorkoutData {
     }
 
     // need to add some notifications, not console outputs
-    add(workout: WorkoutInterface): void {
+    addWorkout(workout: WorkoutInterface): void {
         this.firebaseCollection.push(workout)
             .then(_ => console.log('workout added'))
             .catch(err => console.log(err, 'err when adding workout'));
     }
 
+    addRoutine(routine: Routine): void {
+        this.db.list('/workouts/routines').push(routine)
+            .then(_ => console.log('routine added'))
+            .catch(err => console.log(err, 'err when adding routine'));
+    }
+    getAvailableRoutines(category: Category) {
+        const routines = this.db.list('routines', {
+            preserveSnapshot: true,
+        });
+
+        const avaialableRoutines: Array<Routine> = new Array<Routine>();
+
+        routines.subscribe( snapshot => {
+            snapshot.forEach(routine => {
+                if (routine.val().category === category) {
+                    avaialableRoutines.push(routine.val());
+                }
+            });
+        });
+
+        return avaialableRoutines;
+    }
     getWorkoutByTitle(title: string) {
         const items = this.db.list('workouts', {
             preserveSnapshot: true,

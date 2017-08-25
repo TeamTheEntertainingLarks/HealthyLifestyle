@@ -1,5 +1,5 @@
 <h2>Create New Recipe</h2>
-<form class="recipe-form" #carAddForm="ngForm" (ngSubmit)="onSubmit()">
+<form class="recipe-form" #recipeAddForm="ngForm" (ngSubmit)="onSubmit()">
   <md-input-container class="form-control">
     <input type="text" mdInput placeholder="Title" name="title" [(ngModel)]="recipe.title" [formControl]="titleFormControl" required>
     <md-icon mdSuffix>mode_edit</md-icon>
@@ -54,6 +54,7 @@
   <md-input-container class="form-control">
       <input type="text" mdInput placeholder="Ingredients" name="ingradients" [(ngModel)]="recipe.ingradients" [formControl]="ingredientsFormControl" required>
       <md-icon mdSuffix>mode_edit</md-icon>
+      <md-hint align="end">Enter ingredients separeted with comma</md-hint>
       <md-error *ngIf="ingredientsFormControl.hasError('pattern')">
         Please enter a valid ingredients.
       </md-error>
@@ -61,7 +62,7 @@
         Ingredients field is <strong>required</strong>
       </md-error>
   </md-input-container>
-  <div>Steps how to make the recipe</div>
+  <div>Steps How to Make the Recipe</div>
   <md-input-container class="form-control">
     <input type="text" mdInput name="step1" [(ngModel)]="recipe.step1" placeholder="First Step" [formControl]="stepFirstFormControl" required>
     <md-icon mdSuffix>mode_edit</md-icon>

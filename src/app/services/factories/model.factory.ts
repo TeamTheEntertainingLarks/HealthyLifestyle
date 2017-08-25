@@ -1,3 +1,4 @@
+import { Exercise } from './../../models/exercise';
 import { Routine } from './../../models/routine';
 import { Injectable } from '@angular/core';
 
@@ -42,6 +43,14 @@ export class ModelFactory implements ModelFactoryInterface {
         description: string,
         comments: Array<string>) {
         return new Workout(title, author, createdOn, category, routines, description, comments);
+    }
+
+    createRoutine(
+        exercise: Exercise,
+        repeatTimes: number,
+        series: number,
+        restingTime: number) {
+        return new Routine(exercise, repeatTimes, series, restingTime);
     }
 
     createUser(
