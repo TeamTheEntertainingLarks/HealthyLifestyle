@@ -42,11 +42,12 @@
     </li>
     <li>
         <a *ngIf="isAuthenticated" md-button routerLink="user/profile">
-            <img *ngIf="isAuthenticated" [src]=[userProfileImageUrl] width="50px" height="50px" alt="">
+            <img class="nav-image" *ngIf="userProfileImageUrl" [src]=[userProfileImageUrl]>
+            <img class="nav-image" *ngIf="!userProfileImageUrl" src="../../../assets/images/default-profile.png">
             {{getCurrentUserDisplayName()}}
         </a>
         <a *ngIf="!isAuthenticated" md-button routerLink="user/sign-in">
-            <img *ngIf="!isAuthenticated" src="../../../assets/images/default-profile.png" width="30px" height="30px" alt=""> {{getCurrentUserDisplayName()}}
+            <img class="nav-image" *ngIf="!isAuthenticated" src="../../../assets/images/default-profile.png"> {{getCurrentUserDisplayName()}}
         </a>
     </li>
     <li>
