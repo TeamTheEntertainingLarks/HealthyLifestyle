@@ -9,10 +9,10 @@
         </a>
     </li>
     <li>
-        <button md-icon-button [mdMenuTriggerFor]="food">
-            <md-icon>menu</md-icon>
-            Food
-        </button>
+        <button md-button [mdMenuTriggerFor]="food">
+                <md-icon>menu</md-icon>
+                Food
+            </button>
         <md-menu #food="mdMenu">
             <a md-menu-item routerLink="recipes/all">
                 <md-icon>subject</md-icon>
@@ -26,9 +26,9 @@
     </li>
     <li>
         <button md-button [mdMenuTriggerFor]="fitness">
-            <md-icon>menu</md-icon>
-            Fitness
-        </button>
+                <md-icon>menu</md-icon>
+                Fitness
+            </button>
         <md-menu #fitness="mdMenu">
             <a md-menu-item routerLink="workouts">
                 <md-icon>subject</md-icon>
@@ -39,6 +39,19 @@
                 Activities
             </a>
         </md-menu>
+    </li>
+    <li>
+        <a *ngIf="isAuthenticated" md-button routerLink="user/profile">
+                <img *ngIf="isAuthenticated" [src]=[userProfileImageUrl] width="50px" height="50px" alt="">
+                {{getCurrentUserDisplayName()}}
+            </a>
+        <a *ngIf="!isAuthenticated" md-button routerLink="user/sign-in">
+                <img *ngIf="!isAuthenticated" src="../../../assets/images/default-profile.png" width="30px" height="30px" alt=""> {{getCurrentUserDisplayName()}}
+            </a>
+        <a md-menu-item routerLink="activities/all">
+            <md-icon>subject</md-icon>
+            Activities
+        </a>
     </li>
     <li>
         <a *ngIf="isAuthenticated" md-button routerLink="user/profile">
