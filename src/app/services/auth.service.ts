@@ -3,12 +3,9 @@ import { UserData } from './user-data.service';
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
-import { Observable } from 'rxjs/Observable';
 import { Router } from '@angular/router';
-import * as firebase from 'firebase/app';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { EventEmitter } from 'events';
 import { Subject } from 'rxjs/Subject';
+import { LOCALSTORAGE_AUTH_KEY_NAME, LOCALSTORAGE_EMAIL_KEY_NAME } from '../common/constants';
 
 @Injectable()
 export class AuthService {
@@ -74,6 +71,8 @@ export class AuthService {
         return this.afAuth.auth.signInWithEmailAndPassword(email, password)
             .then((user) => {
                 this.authState = user;
+                localStorage.setItem(LOCALSTORAGE_AUTH_KEY_NAME, user.uid);
+                localStorage.setItem(LOCALSTORAGE_EMAIL_KEY_NAME, user.email);
                 this.router.navigateByUrl('/user/profile');
             })
             .catch(error => console.log(error));
@@ -100,7 +99,11 @@ export class AuthService {
     }
 
     signOut(): void {
-        this.afAuth.auth.signOut();
-        this.router.navigate(['/']);
+        this.afAuth.auth.signOut()
+            .then(() => {
+                localStorage.removeItem(LOCALSTORAGE_AUTH_KEY_NAME);
+                localStorage.removeItem(LOCALSTORAGE_EMAIL_KEY_NAME);
+                this.router.navigate(['/']);
+            });
     }
 }
