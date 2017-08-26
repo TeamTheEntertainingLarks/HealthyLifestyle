@@ -1,7 +1,6 @@
-import { UserData } from './../../services/user-data.service';
-import { AppComponent } from './../../app.component';
 import { Component, OnInit, AfterViewInit } from '@angular/core';
-import { AuthService } from '../../services/auth.service';
+import { AuthService } from '../../../services/auth.service';
+import { UserData } from '../../../services/user-data.service';
 
 @Component({
   selector: 'app-nav',
