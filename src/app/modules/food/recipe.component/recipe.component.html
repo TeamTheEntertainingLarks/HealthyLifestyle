@@ -23,7 +23,7 @@
                         <p>category {{recipe?.category}}</p>
                         <p><em>{{recipe?.description}}</em></p>
                 </md-card-content>
-                <md-card-actions>
+                <md-card-actions *ngIf="isAuthenticated()">
                         <button md-button>
                                 <md-icon>star_rate</md-icon>
                                 Like
@@ -32,7 +32,7 @@
                                 <md-icon>favorite</md-icon>
                                 Add to Favorites
                         </button>
-                        <button md-button>
+                        <button md-button routerLink="/recipes/{{recipe?.$key}}/edit">
                                 <md-icon>mode_edit</md-icon>
                                 Edit
                         </button>

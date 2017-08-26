@@ -29,6 +29,10 @@ export class RecipeData {
             .catch(err => console.log(err, 'err when adding recipe'));
     }
 
+    editRecipe(recipeKey: string, recipe: object) {
+        this.db.object(`/recipes/${recipeKey}`).update(recipe).then((data) => console.log(data)).catch((err) => console.log(err));
+    }
+
     getRecipeByTitle(title: string) {
         const items = this.db.list('recipes', {
             preserveSnapshot: true,

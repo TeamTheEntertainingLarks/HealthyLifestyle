@@ -37,3 +37,10 @@ input[type=text]{
       text-align: right;
       clear: both;	
 }
+md-card-content{
+      margin-top: 25px; 
+}
+
+md-card-content p{
+      margin-top: 25px;
+}
