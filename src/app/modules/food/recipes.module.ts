@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { MdButtonModule, MdCheckboxModule, MdCardModule, MdIconModule, MdGridListModule, MdSelectModule } from '@angular/material';
-import { MdInputModule, MdMenuModule , MD_PLACEHOLDER_GLOBAL_OPTIONS } from '@angular/material';
+import { MdInputModule, MdMenuModule, MD_PLACEHOLDER_GLOBAL_OPTIONS } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { RecipesRoutesModule } from './recipes.routes.module';
@@ -28,22 +28,13 @@ import { SearchPipe } from '../../pipes/search.pipe';
         MdSelectModule,
         MdMenuModule
     ],
-    declarations: [RecipeComponent, RecipesAllComponent, CreateFormComponent, SortPipe, SearchPipe],
-    providers: [{ provide: MD_PLACEHOLDER_GLOBAL_OPTIONS, useValue: { float: 'always' } }],
-    exports: [
+    declarations: [
         RecipeComponent,
         RecipesAllComponent,
-        MdButtonModule,
-        MdCheckboxModule,
-        MdCardModule,
-        MdIconModule,
-        MdGridListModule,
-        MdInputModule,
-        FormsModule,
-        ReactiveFormsModule,
-        MdSelectModule,
-        MdMenuModule
-    ]
+        CreateFormComponent,
+        SortPipe,
+        SearchPipe],
+    providers: [{ provide: MD_PLACEHOLDER_GLOBAL_OPTIONS, useValue: { float: 'always' } }],
 })
 
 export class RecipesModule { }

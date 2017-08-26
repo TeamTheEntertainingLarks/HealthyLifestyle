@@ -26,11 +26,11 @@ export class SignInFormComponent implements OnInit {
       Validators.required,
       Validators.pattern(EMAIL_REGEX)]);
 
-      this.passwordFormControl = new FormControl('', [
-        Validators.required,
-        Validators.pattern(PASSWORD_REGEX),
-        Validators.minLength(6),
-        Validators.maxLength(25)]);
+    this.passwordFormControl = new FormControl('', [
+      Validators.required,
+      Validators.pattern(PASSWORD_REGEX),
+      Validators.minLength(6),
+      Validators.maxLength(25)]);
 
     this.userForm = this.formBuilder.group({
       emailFormControl: this.emailFormControl,

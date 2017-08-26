@@ -52,7 +52,7 @@ export class SignUpFormComponent implements OnInit {
     this.createForm();
   }
 
-  // More validation need to be added
+  // TODO: More validation need to be added
   createForm() {
     this.usernameFormControl = new FormControl('', [
       Validators.required]);
@@ -108,6 +108,5 @@ export class SignUpFormComponent implements OnInit {
       .then(() => {
         this.uploadSingle();
       });
-    console.log(this.auth.currentUserId);
   }
 }

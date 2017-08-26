@@ -1,3 +1,4 @@
+import { UserDialogComponent } from './user-profile-dialog/user-profile-dialog.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -31,14 +32,16 @@ import {
     SignInFormComponent,
     SignUpFormComponent,
     UserProfileComponent,
+    UserDialogComponent
+  ],
+  entryComponents: [
+    UserDialogComponent,
   ],
   providers: [
     { provide: MD_ERROR_GLOBAL_OPTIONS, useValue: { errorStateMatcher: showOnDirtyErrorStateMatcher } },
     { provide: MD_PLACEHOLDER_GLOBAL_OPTIONS, useValue: { float: 'always' } }
   ],
   exports: [
-    SignInFormComponent,
-    SignUpFormComponent
   ]
 })
 export class UserModule { }

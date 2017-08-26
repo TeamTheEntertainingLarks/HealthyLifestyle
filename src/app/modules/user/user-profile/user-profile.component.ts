@@ -3,9 +3,9 @@ import { UserInterface } from './../../../interfaces/user';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../services/auth.service';
 import { UserData } from '../../../services/user-data.service';
-import { DialogComponent } from '../../common/dialog/dialog.component';
 import { MdDialog } from '@angular/material';
 import { DialogType } from '../../../enums/dialogTypes';
+import { UserDialogComponent } from '../user-profile-dialog/user-profile-dialog.component';
 
 @Component({
   selector: 'app-user-profile',
@@ -34,11 +34,9 @@ export class UserProfileComponent implements OnInit {
 
   openDialog(event) {
     const header = event.target.innerText;
-    let inputIncluded = false;
     let dialogType;
 
     if (header.includes('email')) {
-      inputIncluded = true;
       dialogType = DialogType.ChangeEmail;
     } else if (header.includes('password')) {
       dialogType = DialogType.ResetPassword;
@@ -46,11 +44,10 @@ export class UserProfileComponent implements OnInit {
       dialogType = DialogType.ChangePicture;
     }
 
-    const dialogRef = this.dialog.open(DialogComponent, {
+    const dialogRef = this.dialog.open(UserDialogComponent, {
       data: {
         header: header,
         type: dialogType,
-        inputIncluded: inputIncluded
       }
     });
 
