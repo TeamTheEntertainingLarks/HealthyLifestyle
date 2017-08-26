@@ -33,15 +33,19 @@ export class UserProfileComponent implements OnInit {
   }
 
   openDialog(event) {
-    const header = event.target.innerText;
+    const buttonText = event.target.innerHTML;
     let dialogType;
+    let header: string;
 
-    if (header.includes('email')) {
+    if (buttonText.includes('email')) {
       dialogType = DialogType.ChangeEmail;
-    } else if (header.includes('password')) {
+      header = 'Reset email';
+    } else if (buttonText.includes('password')) {
       dialogType = DialogType.ResetPassword;
-    } else if (header.includes('picture')) {
+      header = 'Reset password';
+    } else {
       dialogType = DialogType.ChangePicture;
+      header = 'Change picture';
     }
 
     const dialogRef = this.dialog.open(UserDialogComponent, {
