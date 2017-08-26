@@ -5,7 +5,7 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA, APP_INITIALIZER, OnInit } from '@angu
 import { HttpModule } from '@angular/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MdButtonModule, MdCheckboxModule, MdMenuModule, MdIconModule, MaterialModule, MdDialogModule } from '@angular/material';
-
+import { ToasterModule, ToasterService, ToasterConfig } from 'angular2-toaster';
 import 'hammerjs';
 
 import { AppRoutesModule } from './routes.module';
@@ -32,6 +32,7 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { UserData } from './services/user-data.service';
 import { DialogComponent } from './modules/common/dialog/dialog.component';
+import { NotificationService } from './services/notification.service';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { DialogComponent } from './modules/common/dialog/dialog.component';
     MdMenuModule,
     MdDialogModule,
     MdIconModule,
-    MaterialModule
+    MaterialModule,
+    ToasterModule
   ],
   entryComponents: [
     DialogComponent
@@ -70,10 +72,12 @@ import { DialogComponent } from './modules/common/dialog/dialog.component';
     RecipeData,
     ModelFactory,
     UploadService,
+    NotificationService,
   ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 
 export class AppModule {
+
 }

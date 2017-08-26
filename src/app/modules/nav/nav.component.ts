@@ -27,6 +27,10 @@ export class NavComponent implements OnInit {
       });
   }
 
+  test() {
+
+  }
+
   getCurrentUserDisplayName() {
     return this.auth.currentUserDisplayName;
   }
