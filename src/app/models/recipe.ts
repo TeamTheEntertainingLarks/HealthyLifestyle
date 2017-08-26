@@ -5,6 +5,7 @@ import { Injectable } from '@angular/core';
 export class Recipe implements RecipeInterface {
     public title: string;
     public author: string;
+    public userId: string;
     public category: string;
     public createdOn: number;
     public description: string;
@@ -18,6 +19,7 @@ export class Recipe implements RecipeInterface {
     constructor(
         title: string = '',
         author: string = '',
+        userId: string = '',
         category: string = '',
         createdOn: number = null,
         description: string = '',
@@ -30,6 +32,7 @@ export class Recipe implements RecipeInterface {
     ) {
         this.title = title;
         this.author = author;
+        this.userId = userId;
         this.category = category;
         this.createdOn = createdOn;
         this.description = description;

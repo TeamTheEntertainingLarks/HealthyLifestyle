@@ -11,15 +11,6 @@
     </md-error>
   </md-input-container>
   <md-input-container class="form-control">
-    <input type="text" mdInput placeholder="Author" name="author" [(ngModel)]="recipe.author" [formControl]="authorFormControl" required>
-    <md-icon mdSuffix>mode_edit</md-icon><md-error *ngIf="authorFormControl.hasError('pattern')">
-      Please enter a valid author.
-    </md-error>
-    <md-error *ngIf="authorFormControl.hasError('required')">
-      Author is <strong>required</strong>
-    </md-error>
-  </md-input-container>
-  <md-input-container class="form-control">
     <input type="text" mdInput placeholder="Image URL" name="image" [(ngModel)]="recipe.image" [formControl]="imageFormControl" required>
     <md-icon mdSuffix>mode_edit</md-icon>
     <md-error *ngIf="imageFormControl.hasError('pattern')">

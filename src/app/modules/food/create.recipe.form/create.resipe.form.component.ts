@@ -25,6 +25,7 @@ export class CreateFormComponent implements OnInit {
 
   public title: string;
   public author: string;
+  public userId: string;
   public category: string;
   public createdOn: number;
   public description: string;
@@ -34,7 +35,6 @@ export class CreateFormComponent implements OnInit {
   public step3: string;
   public image: string;
   public comments: any;
-  public userId: any;
 
   categories = ['breakfast', 'soups', 'salads', 'desserts', 'breads', 'main dishes', 'side dishes'];
 
@@ -103,6 +103,7 @@ export class CreateFormComponent implements OnInit {
 
   onSubmit(title: string,
     author: string,
+    userId: string,
     category: string,
     createdOn: number,
     description: string,
@@ -113,7 +114,8 @@ export class CreateFormComponent implements OnInit {
     image: string,
     comments?: Array<string>) {
           title = this.recipe.title;
-          author = this.recipe.author;
+          author = this.auth.currentUser.displayName;
+          userId = this.auth.currentUser.uid;
           category = this.recipe.category;
           createdOn = Date.now();
           description = this.recipe.description;
@@ -123,15 +125,15 @@ export class CreateFormComponent implements OnInit {
           step3 = this.recipe.step3;
           image = this.recipe.image;
           comments = this.recipe.comments;
-          this.userId = this.auth.currentUser.uid;
-           //  const userId = firebase.auth().currentUser.uid;
 
-          console.log(this.recipe.ingradients);
           const arrayIngredients = this.recipe.ingradients.trim().split(/[,]+/);
 
       this.recipe = this.factory
-      .createRecipe(title, author, category, createdOn, description, arrayIngredients, step1, step2, step3, image, comments);
+      .createRecipe(title, author, userId, category, createdOn, description, arrayIngredients, step1, step2, step3, image, comments);
       this.recipeDataService.add(this.recipe);
+
+      console.log(this.recipe);
+      console.log(this.auth.currentUser);
 
       this.router.navigate(['recipes']);
   }

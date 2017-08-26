@@ -8,6 +8,7 @@ export interface ModelFactoryInterface {
     createRecipe(
         title: string,
         author: string,
+        userId: string,
         category: string,
         createdOn: number,
         description: string,
