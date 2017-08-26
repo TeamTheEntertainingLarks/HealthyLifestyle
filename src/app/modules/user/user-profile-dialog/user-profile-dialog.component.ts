@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { MdDialog, MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
 import { FormControl, Validators, FormGroup, FormBuilder, AbstractControl } from '@angular/forms';
 import { DialogType } from '../../../enums/dialogTypes';
@@ -7,12 +7,11 @@ import { Upload } from '../../../services/uploads/shared/upload';
 
 @Component({
   selector: 'app-dialog',
-  templateUrl: './dialog.component.html',
-  styleUrls: ['./dialog.component.css']
+  templateUrl: './user-profile-dialog.component.html',
+  styleUrls: ['./user-profile-dialog.component.css']
 })
-export class DialogComponent {
+export class UserDialogComponent implements OnInit {
   public header: string;
-  public inputIncluded: boolean;
   public type: string;
 
   public oldEmail: string;
@@ -30,24 +29,24 @@ export class DialogComponent {
   public pictureFormControl: AbstractControl;
 
   constructor(
-    private dialogRef: MdDialogRef<DialogComponent>,
+    private dialogRef: MdDialogRef<UserDialogComponent>,
     private formBuilder: FormBuilder,
     @Inject(MD_DIALOG_DATA) public data: any) {
-    this.header = this.data.header;
-    this.inputIncluded = this.data.inputIncluded;
-    this.type = this.data.type;
-
-    this.isChangeEmailDialog(this.type);
-    this.isChangePictureDialog(this.type);
   }
 
-  isChangeEmailDialog(type) {
+  ngOnInit(): void {
+    this.header = this.data.header;
+    this.type = this.data.type;
+
+    this.setupDialog(this.type);
+  }
+
+  setupDialog(type) {
     if (type === DialogType.ChangeEmail) {
       this.createChangeEmailForm();
-      return true;
+    } else if (type === DialogType.ChangePicture) {
+      this.createChangePictureForm();
     }
-
-    return false;
   }
 
   createChangeEmailForm() {
@@ -69,20 +68,6 @@ export class DialogComponent {
     });
   }
 
-  isChangePictureDialog(type) {
-    if (type === DialogType.ChangePicture) {
-      this.createChangePictureForm();
-      return true;
-    }
-
-    return false;
-  }
-
-  uploadFile(files) {
-    const file = files.item(0);
-    this.upload = new Upload(file);
-  }
-
   createChangePictureForm() {
     this.pictureFormControl = new FormControl('', [
       Validators.required]);
@@ -90,5 +75,10 @@ export class DialogComponent {
     this.changePictureForm = this.formBuilder.group({
       pictureFormControl: this.pictureFormControl,
     });
+  }
+
+  uploadFile(files) {
+    const file = files.item(0);
+    this.upload = new Upload(file);
   }
 }
