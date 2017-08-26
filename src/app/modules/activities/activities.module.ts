@@ -21,16 +21,6 @@ import { ActivitiesAllComponent } from './all.activities.component/all.activitie
     ],
     declarations: [ActivityComponent, ActivitiesAllComponent],
     providers: [],
-    exports: [
-        ActivityComponent,
-        ActivitiesAllComponent,
-        MdButtonModule,
-        MdCheckboxModule,
-        MdCardModule,
-        MdIconModule,
-        MdGridListModule,
-        MdChipsModule
-    ]
 })
 
 export class ActivitiesModule {}
