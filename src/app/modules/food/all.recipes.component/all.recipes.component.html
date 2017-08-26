@@ -42,10 +42,15 @@
                 <span>Create Activity</span>
             </button>
         </md-menu>
-        <input type="text" [(ngModel)]="searchWord" class="form-control" placeholder="Search for ...">    
+        <input mdInput type="text" placeholder="Search for..." [mdAutocomplete]="auto" [formControl]="categoryCtrl" [(ngModel)]="searchWord" class="form-control">
+        <md-autocomplete #auto="mdAutocomplete">
+            <md-option *ngFor="let category of filteredCategories | async" [value]="category">
+              {{ category }}
+            </md-option>
+          </md-autocomplete>
     </div>
     <md-card *ngFor="let recipe of (recipes | sort:order:path | search:searchWord)" class="recipe-container">
-        <img md-card-image src="{{recipe.image}}" alt="recipe-image">
+        <img appZoomImage md-card-image src="{{recipe.image}}" alt="recipe-image">
         <md-card-content>
             <h3><a routerLink="/recipes/{{recipe.$key}}">{{recipe.title}}</a></h3>
             <p class="createdOn">
@@ -55,7 +60,7 @@
                 <span>{{recipe.description}}</span>
             </p>
         </md-card-content>
-        <md-card-actions>
+        <md-card-actions *ngIf="isAuthenticated()">
             <button md-button>
                     <md-icon>star_rate</md-icon>
                     Like

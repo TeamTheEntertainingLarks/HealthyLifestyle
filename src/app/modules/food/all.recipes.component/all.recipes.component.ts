@@ -1,6 +1,9 @@
 import { ModelFactory } from './../../../services/factories/model.factory';
 import { ModelFactoryInterface } from './../../../services/factories/interfaces/model.factory';
 import { Component, OnInit } from '@angular/core';
+import {FormControl} from '@angular/forms';
+import 'rxjs/add/operator/startWith';
+import 'rxjs/add/operator/map';
 
 import { RecipeInterface } from '../../../interfaces/recipe';
 import { RecipeData } from '../../../services/recipe-data.service';
@@ -26,6 +29,11 @@ export class RecipesAllComponent implements OnInit {
 
     searchWord: string;
 
+    categoryCtrl: FormControl;
+    filteredCategories: any;
+
+    categories = ['breakfast', 'soups', 'salads', 'desserts', 'breads', 'main dishes', 'side dishes'];
+
     constructor(
         recipeDataService: RecipeData,
         factory: ModelFactory,
@@ -34,6 +42,11 @@ export class RecipesAllComponent implements OnInit {
         this.recipeDataService = recipeDataService;
         this.auth = auth;
         this.searchWord = '';
+
+        this.categoryCtrl = new FormControl();
+        this.filteredCategories = this.categoryCtrl.valueChanges
+            .startWith(null)
+            .map(name => this.filterStates(name));
     }
 
     ngOnInit() {
@@ -53,4 +66,9 @@ export class RecipesAllComponent implements OnInit {
     isAuthenticated() {
         return this.auth.isAuthenticated;
     }
+
+    filterStates(val: string) {
+        return val ? this.categories.filter(s => s.toLowerCase().indexOf(val.toLowerCase()) === 0)
+                   : this.categories;
+      }
 }
