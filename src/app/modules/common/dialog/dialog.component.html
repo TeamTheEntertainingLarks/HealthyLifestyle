@@ -1,8 +1,7 @@
 <h2 md-dialog-title>{{header}}</h2>
 <md-dialog-content>Are you sure?</md-dialog-content>
-<md-dialog-actions *ngIf=!inputIncluded>
+<md-dialog-actions *ngIf="!changeEmailForm && !changePictureForm">
   <button md-button [md-dialog-close]="false">No</button>
-  <!-- Can optionally provide a result for the closing dialog. -->
   <button md-button [md-dialog-close]="true">Yes</button>
 </md-dialog-actions>
 
@@ -39,7 +38,22 @@
     </md-input-container>
 
     <button md-button [md-dialog-close]="false">No</button>
-    <!-- Can optionally provide a result for the closing dialog. -->
     <button md-button [md-dialog-close]="true">Yes</button>
+  </form>
+</md-dialog-actions>
+
+<md-dialog-actions *ngIf=changePictureForm>
+  <form [formGroup]="changePictureForm">
+    <div *ngIf="upload">
+      <div class="progress">
+        <div class="progress-bar progress-bar-animated" [ngStyle]="{ 'width': currentUpload?.progress + '%' }"></div>
+      </div>
+      Progress: {{upload?.name}} | {{upload?.progress}}% Complete
+    </div>
+    <label>
+      <input type="file" [formControl]="pictureFormControl" #file (change)="uploadFile(file.files)">
+   </label>
+    <button md-button [md-dialog-close]="false">Discard</button>
+    <button md-button [md-dialog-close]="true" #upload (click)="file">Change</button>
   </form>
 </md-dialog-actions>

@@ -98,7 +98,7 @@ export class SignUpFormComponent implements OnInit {
     const file = this.selectedFiles.item(0);
 
     this.currentUpload = new Upload(file);
-    this.uploadService.uploadUserProfileImage(userId, path, this.currentUpload);
+    this.uploadService.uploadUserProfileImage(userId, 'images/users', path, this.currentUpload);
   }
 
   signUp(): void {

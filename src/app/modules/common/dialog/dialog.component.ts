@@ -3,6 +3,7 @@ import { MdDialog, MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
 import { FormControl, Validators, FormGroup, FormBuilder, AbstractControl } from '@angular/forms';
 import { DialogType } from '../../../enums/dialogTypes';
 import { EMAIL_REGEX } from '../../../common/constants';
+import { Upload } from '../../../services/uploads/shared/upload';
 
 @Component({
   selector: 'app-dialog',
@@ -17,11 +18,16 @@ export class DialogComponent {
   public oldEmail: string;
   public newEmail: string;
   public password: string;
+  public upload: Upload;
+  public selectedFiles: FileList;
 
   public changeEmailForm: FormGroup;
   public oldEmailFormControl: AbstractControl;
   public passwordFormControl: AbstractControl;
   public newEmailFormControl: AbstractControl;
+
+  public changePictureForm: FormGroup;
+  public pictureFormControl: AbstractControl;
 
   constructor(
     private dialogRef: MdDialogRef<DialogComponent>,
@@ -32,6 +38,7 @@ export class DialogComponent {
     this.type = this.data.type;
 
     this.isChangeEmailDialog(this.type);
+    this.isChangePictureDialog(this.type);
   }
 
   isChangeEmailDialog(type) {
@@ -59,6 +66,29 @@ export class DialogComponent {
       oldEmailFormControl: this.oldEmailFormControl,
       passwordFormControl: this.passwordFormControl,
       newEmailFormControl: this.newEmailFormControl,
+    });
+  }
+
+  isChangePictureDialog(type) {
+    if (type === DialogType.ChangePicture) {
+      this.createChangePictureForm();
+      return true;
+    }
+
+    return false;
+  }
+
+  uploadFile(files) {
+    const file = files.item(0);
+    this.upload = new Upload(file);
+  }
+
+  createChangePictureForm() {
+    this.pictureFormControl = new FormControl('', [
+      Validators.required]);
+
+    this.changePictureForm = this.formBuilder.group({
+      pictureFormControl: this.pictureFormControl,
     });
   }
 }

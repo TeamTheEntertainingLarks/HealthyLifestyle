@@ -1,4 +1,5 @@
 export enum DialogType {
     ResetPassword,
-    ChangeEmail
+    ChangeEmail,
+    ChangePicture
 }

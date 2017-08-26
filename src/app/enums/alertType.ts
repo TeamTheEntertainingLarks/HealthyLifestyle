@@ -1,6 +1,6 @@
-export enum AlertType {
-    Success = 'success',
-    Error = 'error',
-    Info = 'info',
-    Warning = 'warning'
-}
+// export enum AlertType {
+//     Success = 'success',
+//     Error = 'error',
+//     Info = 'info',
+//     Warning = 'warning'
+// }

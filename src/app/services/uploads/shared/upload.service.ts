@@ -2,20 +2,23 @@ import { Injectable } from '@angular/core';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import { Upload } from './upload';
 import * as firebase from 'firebase';
+import { NotificationService } from '../../notification.service';
 
 @Injectable()
 export class UploadService {
-  constructor(private db: AngularFireDatabase) { }
+  constructor(
+    private db: AngularFireDatabase,
+    private notificationService: NotificationService) { }
 
   uploads: FirebaseListObservable<Upload[]>;
-  private usersPath = '/images/users';
-  private recipesPath = 'images/recipes';
-  private activitiesPath = '';
-  private workoutsPath = '';
+  private usersStoragePath = 'images/users';
+  private recipesStoragePath = 'images/recipes';
+  private activitiesStoragePath = '';
+  private workoutsStoragePath = '';
 
-  uploadUserProfileImage(userId: string, path: string, upload: Upload) {
+  uploadUserProfileImage(userId: string, storagePath: string, path: string, upload: Upload) {
     const storageRef = firebase.storage().ref();
-    const uploadTask = storageRef.child(`${this.usersPath}/${userId}/${upload.file.name}`)
+    const uploadTask = storageRef.child(`${storagePath}/${userId}/${upload.file.name}`)
       .put(upload.file);
 
     uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED,
@@ -23,7 +26,7 @@ export class UploadService {
         upload.progress = (uploadTask.snapshot.bytesTransferred / uploadTask.snapshot.totalBytes) * 100;
       },
       (error) => {
-        console.log(error);
+        this.notificationService.popToast('error', 'Ooops!', error.message);
       },
       () => {
         upload.url = uploadTask.snapshot.downloadURL;
@@ -32,16 +35,20 @@ export class UploadService {
       });
   }
 
-  // getProfileImageUrl(userId: string) {
-  //   const userStorageRef = firebase.storage().ref().child('images/users/' + userId + '_image.jpg');
-  //   userStorageRef.getDownloadURL().then(url => {
-
-  //   });
-  // }
-
   private saveFileData(path: string, upload: Upload) {
     this.db.object(`${path}/`).set(upload);
   }
+
+  deleteFileStorage(storagePath: string, name: string) {
+    const storageRef = firebase.storage().ref();
+    storageRef.child(`${storagePath}/${name}`).delete();
+  }
+
+  // getProfileImageUrl(userId: string) {
+  //   const userStorageRef = firebase.storage().ref().child('images/users/' + userId + '_image.jpg');
+  //   userStorageRef.getDownloadURL().then(url => {
+  //   });
+  // }
 
   // deleteUpload(path: string, upload: Upload) {
   //   this.deleteFileData(path, upload.$key)
@@ -53,10 +60,5 @@ export class UploadService {
 
   // private deleteFileData(path: string, key: string) {
   //   return this.db.list(`${this.basePath}/`).remove(key);
-  // }
-
-  // private deleteFileStorage(name: string) {
-  //   const storageRef = firebase.storage().ref();
-  //   storageRef.child(`${this.basePath}/${name}`).delete();
   // }
 }
