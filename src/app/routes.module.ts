@@ -1,11 +1,11 @@
-import { AuthService } from './services/auth.service';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { HomeComponent } from './modules/home/home.component';
+import { PageNotFoundComponent } from './modules/shared/page.not.found/page.not.found.component';
 
 import { AuthGuard } from './guards/auth.guard';
-import { PageNotFoundComponent } from './modules/shared/page.not.found/page.not.found.component';
+import { AuthService } from './services/auth.service';
 
 const routes: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full' },
