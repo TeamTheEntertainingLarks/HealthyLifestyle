@@ -11,8 +11,8 @@ button{
       border-radius: 5px; 
       margin-right: 10px;
 }
-md-icon{
-      color: #636363;
+md-card md-icon{
+      color: #96c421;
 }
 a{
       text-decoration: none;

@@ -5,7 +5,7 @@
 
 .info-container{
   border-radius: 5px;
-  border: solid 2px gray;
+  border: solid 1px gray;
   width: 60%;
   margin: 50px 0;
 }
@@ -21,7 +21,7 @@
 }
 
 md-icon{
-      color: #636363;
+      color: #96c421;
 }
 
 .ingredients-title, .comments-title{
@@ -43,4 +43,11 @@ md-card-content{
 
 md-card-content p{
   margin-top: 25px;
+}
+
+h3{
+  color: #96c421;
+}
+p, li{
+  color:#636363;
 }
