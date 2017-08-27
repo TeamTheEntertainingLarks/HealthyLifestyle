@@ -32,8 +32,7 @@ export class UserProfileComponent implements OnInit {
       });
   }
 
-  openDialog(event) {
-    const buttonText = event.target.innerHTML;
+  openDialog(buttonText) {
     let dialogType;
     let header: string;
 
@@ -54,15 +53,15 @@ export class UserProfileComponent implements OnInit {
         type: dialogType,
       }
     });
-// todo fix
+
     dialogRef.afterClosed().subscribe(confirmation => {
       if (confirmation) {
         if (dialogType === DialogType.ChangePicture) {
-          const oldProfileImageName = this.user.profileImage.name;
-          const storagePath = `images/users/${this.userId}/${dialogRef.componentInstance.upload.file.name}`;
+          const oldImage = this.user.profileImage.name;
+          const storagePath = `images/users/${this.userId}`;
           const dbPath = `users/${this.userId}/profileImage`;
 
-          this.uploadService.deleteFileStorage(storagePath, oldProfileImageName);
+          this.uploadService.deleteFileStorage(storagePath, oldImage);
           this.uploadService.uploadUserProfileImage(storagePath, dbPath, dialogRef.componentInstance.upload);
         } else if (dialogType === DialogType.ResetPassword) {
           this.auth.resetPassword(this.user.email);

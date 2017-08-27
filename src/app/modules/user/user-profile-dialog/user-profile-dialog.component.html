@@ -48,7 +48,6 @@
       <div class="progress">
         <div class="progress-bar progress-bar-animated" [ngStyle]="{ 'width': currentUpload?.progress + '%' }"></div>
       </div>
-      Progress: {{upload?.name}} | {{upload?.progress}}% Complete
     </div>
     <label>
       <input type="file" [formControl]="pictureFormControl" #file (change)="uploadFile(file.files)">
