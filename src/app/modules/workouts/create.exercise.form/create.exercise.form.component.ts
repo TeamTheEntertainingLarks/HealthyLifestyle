@@ -19,7 +19,7 @@ export class CreateExerciseFform implements OnInit {
   public currentUpload: Upload;
   private workoutDataService: WorkoutData;
   private auth: AuthService;
-
+  private uploadService: UploadService;
   public selectedFiles: FileList;
   public workoutForm: FormGroup;
   public nameFormControl: AbstractControl;
@@ -29,9 +29,11 @@ export class CreateExerciseFform implements OnInit {
     workoutDataService: WorkoutData,
     factory: ModelFactory,
     auth: AuthService,
-    private formBuilder: FormBuilder,
-    private uploadService: UploadService) {
+    uploadService: UploadService,
+    private formBuilder: FormBuilder) {
     this.factory = factory;
+    this.uploadService = uploadService;
+
     this.workoutDataService = workoutDataService;
     this.auth = auth;
     this.exercise = new Exercise();
@@ -49,12 +51,25 @@ export class CreateExerciseFform implements OnInit {
       imageFormControl: this.imageFormControl,
     });
   }
-  //TODO - IMAGE
   onSubmit(name: string) {
       name = this.exercise.name;
 
       this.exercise = this.factory.createExercise(name);
       this.workoutDataService.addExercise(this.exercise);
+      this.uploadSingle(name);
 
+  }
+  detectFiles(event) {
+    this.selectedFiles = event.target.files;
+  }
+
+  uploadSingle(name: string) {
+    const exerciseKey = this.workoutDataService.getExerciseSnapshot(name).key;
+    const file = this.selectedFiles.item(0);
+    const dbPath = `workouts/exercises/${exerciseKey}/image`;
+    const storagePath = `images/exercises/${exerciseKey}/${file.name}`;
+
+    this.currentUpload = new Upload(file);
+    this.uploadService.uploadUserProfileImage(storagePath, dbPath, this.currentUpload);
   }
 }

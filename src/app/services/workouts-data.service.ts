@@ -43,6 +43,23 @@ export class WorkoutData {
             .then(_ => console.log('exercise added'))
             .catch(err => console.log(err, 'err when adding exercise'));
     }
+
+    getExerciseSnapshot(name: string) {
+        const exercises = this.db.list('/workouts/exercises', {
+            preserveSnapshot: true,
+        });
+
+        let item: any;
+        exercises.subscribe(snapshots => {
+            snapshots.forEach(snapshot => {
+                if (snapshot.val().name === name) {
+                    item = snapshot;
+                }
+            });
+        });
+
+        return item;
+    }
     getAvailableRoutines() {
         return this.db.list('/workouts/routines');
     }

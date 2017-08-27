@@ -1,8 +1,11 @@
 <h2>Create New Routine</h2>
 <form class="routine-form" #carAddForm="ngForm" (ngSubmit)="onSubmit()">
-  <md-select placeholder="Choose Exercise" class="form-control" name="exerciseName" [(ngModel)]="routine.exercise.name" [formControl]="exerciseFormControl" required>
+  <md-select (change)="addExercise($event, add)" placeholder="Choose Exercise" class="form-control" name="exerciseName" [(ngModel)]="routine.exercise.name" [formControl]="exerciseFormControl" required>
     <md-option *ngFor="let exercise of exercises" [value]="exercise.name">
       {{exercise.name}}
+    </md-option>
+    <md-option #add value='showForm'>
+      Add a new exercise
     </md-option>
   </md-select>
   <md-input-container class="form-control">
@@ -31,4 +34,4 @@
   </md-input-container>
   <button type="submit" md-raised-button>Create routine</button>
 </form>
-<app-create-exercise></app-create-exercise>
+<app-create-exercise *ngIf='getExerciseForm == true'></app-create-exercise>

@@ -1,3 +1,5 @@
+import { UploadService } from './../../../services/uploads/shared/upload.service';
+import { Upload } from './../../../services/uploads/shared/upload';
 import { Exercise } from './../../../models/exercise';
 import { AbstractControl, FormGroup, Validators, FormControl, FormBuilder } from '@angular/forms';
 import { AuthService } from './../../../services/auth.service';
@@ -20,6 +22,7 @@ export class CreateRoutineFormComponent implements OnInit {
   private auth: AuthService;
   public routineForm: FormGroup;
   public exercises: Array<Exercise>;
+  public getExerciseForm: boolean;
 
   public exerciseFormControl: AbstractControl;
   public seriesFormControl: AbstractControl;
@@ -37,6 +40,7 @@ export class CreateRoutineFormComponent implements OnInit {
     this.routine = new Routine();
     this.routine.exercise = new Exercise();
     this.exercises = new Array<Exercise>();
+    this.getExerciseForm = false;
 }
 
 
@@ -68,6 +72,13 @@ export class CreateRoutineFormComponent implements OnInit {
     });
   }
 
+  addExercise(option) {
+    const addExerciseString = 'showForm';
+    if (option.value === addExerciseString) {
+      this.getExerciseForm = true;
+    }
+  }
+
   onSubmit(exercise: Exercise,
     series: number,
     repeats: number,
@@ -80,7 +91,6 @@ export class CreateRoutineFormComponent implements OnInit {
       this.routine = this.factory
       .createRoutine(exercise, repeats, series, resting);
       this.workoutDataService.addRoutine(this.routine);
-
   }
 
 }
