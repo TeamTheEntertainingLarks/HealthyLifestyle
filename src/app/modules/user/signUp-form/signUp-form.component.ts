@@ -10,7 +10,7 @@ import { ModelFactoryInterface } from './../../../services/factories/interfaces/
 import { User } from '../../../models/user';
 import { UserInterface } from '../../../interfaces/user';
 import { Upload } from '../../../services/uploads/shared/upload';
-import { PASSWORD_REGEX, EMAIL_REGEX } from "../../../common/constants";
+import { PASSWORD_REGEX, EMAIL_REGEX } from '../../../common/constants';
 
 @Component({
   selector: 'app-signup-form',
@@ -94,11 +94,12 @@ export class SignUpFormComponent implements OnInit {
 
   uploadSingle() {
     const userId = this.auth.currentUserId;
-    const path = `users/${userId}/profileImage`;
     const file = this.selectedFiles.item(0);
+    const dbPath = `users/${userId}/profileImage`;
+    const storagePath = `images/users/${userId}/${file.name}`;
 
     this.currentUpload = new Upload(file);
-    this.uploadService.uploadUserProfileImage(userId, 'images/users', path, this.currentUpload);
+    this.uploadService.uploadUserProfileImage(storagePath, dbPath, this.currentUpload);
   }
 
   signUp(): void {

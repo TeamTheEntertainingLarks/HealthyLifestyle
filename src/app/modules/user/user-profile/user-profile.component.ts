@@ -54,17 +54,16 @@ export class UserProfileComponent implements OnInit {
         type: dialogType,
       }
     });
-
+// todo fix
     dialogRef.afterClosed().subscribe(confirmation => {
       if (confirmation) {
         if (dialogType === DialogType.ChangePicture) {
           const oldProfileImageName = this.user.profileImage.name;
-          this.uploadService.deleteFileStorage(`images/users/${this.userId}`, oldProfileImageName);
-          this.uploadService.uploadUserProfileImage(
-            this.userId,
-            'images/users',
-            `users/${this.userId}/profileImage`,
-            dialogRef.componentInstance.upload);
+          const storagePath = `images/users/${this.userId}/${dialogRef.componentInstance.upload.file.name}`;
+          const dbPath = `users/${this.userId}/profileImage`;
+
+          this.uploadService.deleteFileStorage(storagePath, oldProfileImageName);
+          this.uploadService.uploadUserProfileImage(storagePath, dbPath, dialogRef.componentInstance.upload);
         } else if (dialogType === DialogType.ResetPassword) {
           this.auth.resetPassword(this.user.email);
         } else {

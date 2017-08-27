@@ -8,17 +8,17 @@ import { NotificationService } from '../../notification.service';
 export class UploadService {
   constructor(
     private db: AngularFireDatabase,
-    private notificationService: NotificationService) { }
+    private notificationService: NotificationService ) { }
 
   uploads: FirebaseListObservable<Upload[]>;
-  private usersStoragePath = 'images/users';
-  private recipesStoragePath = 'images/recipes';
-  private activitiesStoragePath = '';
-  private workoutsStoragePath = '';
+  // private usersStoragePath = 'images/users';
+  // private recipesStoragePath = 'images/recipes';
+  // private activitiesStoragePath = '';
+  // private workoutsStoragePath = '';
 
-  uploadUserProfileImage(userId: string, storagePath: string, path: string, upload: Upload) {
+  uploadUserProfileImage(storagePath: string, path: string, upload: Upload) {
     const storageRef = firebase.storage().ref();
-    const uploadTask = storageRef.child(`${storagePath}/${userId}/${upload.file.name}`)
+    const uploadTask = storageRef.child(`${storagePath}`)
       .put(upload.file);
 
     uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED,
