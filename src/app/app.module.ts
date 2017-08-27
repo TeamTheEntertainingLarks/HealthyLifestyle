@@ -1,3 +1,4 @@
+import { CoreModule } from './modules/core/core.module';
 import { SharedModule } from './modules/shared/shared.module';
 import { ModelFactoryInterface } from './services/factories/interfaces/model.factory';
 import { ModelFactory } from './services/factories/model.factory';
@@ -17,13 +18,6 @@ import { UserDialogComponent } from './modules/user/user-profile-dialog/user-pro
 import { ActivitiesModule } from './modules/activities/activities.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './modules/home/home.component';
-
-import { AuthService } from './services/auth.service';
-import { AuthGuard } from './guards/auth.guard';
-import { DataService } from './services/data.service';
-import { RecipeData } from './services/recipe-data.service';
-import { WorkoutData } from './services/workouts-data.service';
-import { UploadService } from './services/uploads/shared/upload.service';
 
 import { firebaseConfig } from '../environments/firebaseConfig';
 import { AngularFireModule } from 'angularfire2';
@@ -45,6 +39,7 @@ import { NotificationService } from './services/notification.service';
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     AppRoutesModule,
+    CoreModule,
     SharedModule,
     RecipesModule,
     ActivitiesModule,
@@ -53,14 +48,7 @@ import { NotificationService } from './services/notification.service';
     ToasterModule
   ],
   providers: [
-    DataService,
-    UserData,
-    AuthService,
-    AuthGuard,
-    RecipeData,
-    ModelFactory,
-    UploadService,
-    NotificationService,
+
   ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
