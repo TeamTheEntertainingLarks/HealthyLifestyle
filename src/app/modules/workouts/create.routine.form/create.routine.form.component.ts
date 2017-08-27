@@ -22,7 +22,7 @@ export class CreateRoutineFormComponent implements OnInit {
   private auth: AuthService;
   public routineForm: FormGroup;
   public exercises: Array<Exercise>;
-  public getExerciseForm: boolean;
+  public showExerciseForm: boolean;
 
   public exerciseFormControl: AbstractControl;
   public seriesFormControl: AbstractControl;
@@ -40,7 +40,7 @@ export class CreateRoutineFormComponent implements OnInit {
     this.routine = new Routine();
     this.routine.exercise = new Exercise();
     this.exercises = new Array<Exercise>();
-    this.getExerciseForm = false;
+    this.showExerciseForm = false;
 }
 
 
@@ -75,13 +75,13 @@ export class CreateRoutineFormComponent implements OnInit {
   addExercise(option) {
     const addExerciseString = 'showForm';
     if (option.value === addExerciseString) {
-      this.getExerciseForm = true;
+      this.showExerciseForm = true;
+    } else {
+      this.showExerciseForm = false;
     }
   }
-
   hideExerciseForm() {
-    console.log('parent');
-    this.getExerciseForm = false;
+    this.showExerciseForm = false;
   }
   onSubmit(exercise: Exercise,
     series: number,
@@ -96,5 +96,4 @@ export class CreateRoutineFormComponent implements OnInit {
       .createRoutine(exercise, repeats, series, resting);
       this.workoutDataService.addRoutine(this.routine);
   }
-
 }
