@@ -43,6 +43,7 @@ export class CreateWorkoutFormComponent implements OnInit {
   public authorFormControl: AbstractControl;
   public descriptionFormControl: AbstractControl;
   public routinesFormControl: AbstractControl;
+  public availableRoutines: Array<Routine>;
 
    constructor(
     private router: Router,
@@ -54,13 +55,10 @@ export class CreateWorkoutFormComponent implements OnInit {
     this.workoutDataService = workoutDataService;
     this.auth = auth;
     this.workout = new Workout();
+    this.routines = new Array<Routine>();
 }
 
-  private getAvailableRoutines() {
-    //return this.workoutDataService.getAvailableRoutines(this.category);
-    return [
-      'gosho', 'penka', 'hoho'];
-  }
+
   ngOnInit(): void {
       this.titleFormControl = new FormControl('', [
       Validators.required]);
@@ -79,6 +77,13 @@ export class CreateWorkoutFormComponent implements OnInit {
       authorFormControl: this.authorFormControl,
       descriptionFormControl: this.descriptionFormControl,
       routinesFormControl: this.routinesFormControl
+    });
+
+    this.workoutDataService.getAvailableRoutines().subscribe(items => {
+        items.forEach(item => {
+          const newRoutine = new Routine(item.exercise, item.repeatTimes, item.seriesCount, item.restingTime);
+          this.routines.push(newRoutine);
+        });
     });
   }
 
