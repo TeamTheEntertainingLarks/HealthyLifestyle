@@ -5,7 +5,7 @@ import { ModelFactory } from './../../../services/factories/model.factory';
 import { AuthService } from './../../../services/auth.service';
 import { Exercise } from './../../../models/exercise';
 import { FormGroup, AbstractControl, FormControl, Validators, FormBuilder } from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
+import { Component, Output, OnInit, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-create-exercise',
@@ -14,6 +14,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CreateExerciseFform implements OnInit {
 
+  @Output()
+  public hideExerciseForm: EventEmitter<boolean>;
   public exercise: Exercise;
   private factory: ModelFactory;
   public currentUpload: Upload;
@@ -37,6 +39,7 @@ export class CreateExerciseFform implements OnInit {
     this.workoutDataService = workoutDataService;
     this.auth = auth;
     this.exercise = new Exercise();
+    this.hideExerciseForm = new EventEmitter<boolean>();
 }
 
   ngOnInit() {
@@ -53,12 +56,12 @@ export class CreateExerciseFform implements OnInit {
   }
   onSubmit(name: string) {
       name = this.exercise.name;
-
       this.exercise = this.factory.createExercise(name);
       this.workoutDataService.addExercise(this.exercise);
       this.uploadSingle(name);
-
+      this.hideExerciseForm.emit(true);
   }
+
   detectFiles(event) {
     this.selectedFiles = event.target.files;
   }

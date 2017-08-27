@@ -79,6 +79,10 @@ export class CreateRoutineFormComponent implements OnInit {
     }
   }
 
+  hideExerciseForm() {
+    console.log('parent');
+    this.getExerciseForm = false;
+  }
   onSubmit(exercise: Exercise,
     series: number,
     repeats: number,

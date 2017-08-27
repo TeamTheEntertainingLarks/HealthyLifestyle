@@ -34,4 +34,4 @@
   </md-input-container>
   <button type="submit" md-raised-button>Create routine</button>
 </form>
-<app-create-exercise *ngIf='getExerciseForm == true'></app-create-exercise>
+<app-create-exercise *ngIf='getExerciseForm == true' (hideExerciseForm)="hideExerciseForm()"></app-create-exercise>
