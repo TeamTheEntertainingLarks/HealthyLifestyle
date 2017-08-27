@@ -99,7 +99,8 @@ export class CreateWorkoutFormComponent implements OnInit {
     image: string,
     comments?: Array<string>) {
           title = this.workout.title;
-          author = this.workout.author;
+          author = this.auth.currentUserDisplayName;
+          console.log(this.auth.currentUserDisplayName);
           routines = this.routines;
           category = this.category;
           createdOn = Date.now();
