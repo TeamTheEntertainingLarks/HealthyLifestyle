@@ -10,13 +10,9 @@ import { WorkoutInterface } from '../../../interfaces/workout';
 })
 
 export class ActivitiesAllComponent implements OnInit {
-    activities: Array<WorkoutInterface>;
-
-    constructor(private dataService: DataService) { }
+    constructor() { }
 
     ngOnInit() {
-        this.dataService.getActivitiesAll().then((data) => {
-            this.activities = data;
-        }).catch((err) => console.log(err));
+
     }
 }

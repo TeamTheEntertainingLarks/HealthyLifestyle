@@ -12,15 +12,12 @@ import { ActivityInterface } from '../../../interfaces/activity';
 
 export class ActivityComponent implements OnInit {
     activity: ActivityInterface;
-    paramId: any;
 
-    constructor(private dataService: DataService, private route: ActivatedRoute) {
-        this.paramId = this.route.snapshot.paramMap.get('id');
+    constructor(private route: ActivatedRoute) {
+
     }
 
     ngOnInit() {
-        this.dataService.getActivityById(this.paramId).then((data) => {
-            this.activity = data;
-        }).catch((err) => console.log(err));
+
     }
 }
