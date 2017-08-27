@@ -36,3 +36,11 @@ md-icon{
   width: 15%;
   text-align: center;
 }
+
+md-card-content{
+  margin-top: 25px; 
+}
+
+md-card-content p{
+  margin-top: 25px;
+}

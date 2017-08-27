@@ -57,18 +57,22 @@
                 <span>{{recipe.createdOn | date}}</span>
             </p>
             <p>
-                <span>{{recipe.description}}</span>
+                <span><em>{{recipe.description}}</em></span>
             </p>
         </md-card-content>
         <md-card-actions *ngIf="isAuthenticated()">
             <button md-button>
-                    <md-icon>star_rate</md-icon>
-                    Like
-                </button>
+                <md-icon [ngStyle]="{'color': '#f19914'}">star_rate</md-icon>
+                Like
+            </button>
             <button md-button>
-                     <md-icon>favorite</md-icon>
-                    Add to Favorites
-                </button>
+                <md-icon [ngStyle]="{'color': 'pink'}">favorite</md-icon>
+                Add to Favorites
+            </button>
+            <button md-button>
+                <md-icon [ngStyle]="{'color': '#96c520'}">share</md-icon>
+                Share
+            </button>
         </md-card-actions>
     </md-card>
 </div>

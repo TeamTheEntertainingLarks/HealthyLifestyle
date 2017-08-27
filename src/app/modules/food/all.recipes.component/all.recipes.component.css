@@ -18,9 +18,10 @@ a{
       text-decoration: none;
       cursor: pointer;
       color: #636363;
+      font-weight: bold;
 }
 a:hover{
-      text-decoration: underline;
+       text-decoration: underline; 
 }
 
 .container{
@@ -44,3 +45,5 @@ md-card-content{
 md-card-content p{
       margin-top: 25px;
 }
+
+     

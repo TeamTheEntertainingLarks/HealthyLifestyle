@@ -25,16 +25,24 @@
                 </md-card-content>
                 <md-card-actions *ngIf="isAuthenticated()">
                         <button md-button>
-                                <md-icon>star_rate</md-icon>
+                                <md-icon [ngStyle]="{'color': 'orange'}">star_rate</md-icon>
                                 Like
                         </button>
                         <button md-button>
-                                <md-icon>favorite</md-icon>
+                                <md-icon [ngStyle]="{'color': 'pink'}">favorite</md-icon>
                                 Add to Favorites
                         </button>
+                        <button md-button>
+                                <md-icon [ngStyle]="{'color': 'lightblue'}">share</md-icon>
+                                Share
+                        </button>
                         <button md-button routerLink="/recipes/{{recipe?.$key}}/edit">
-                                <md-icon>mode_edit</md-icon>
+                                <md-icon [ngStyle]="{'color': 'green'}">mode_edit</md-icon>
                                 Edit
+                        </button>
+                        <button md-button>
+                                <md-icon [ngStyle]="{'color': 'red'}">delete</md-icon>
+                                Delete
                         </button>
                 </md-card-actions>
         </md-card>
