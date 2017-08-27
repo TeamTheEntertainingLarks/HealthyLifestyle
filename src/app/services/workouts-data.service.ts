@@ -39,7 +39,7 @@ export class WorkoutData {
     }
 
     addExercise(exercise: Exercise): void {
-        this.db.list('/workouts/exercise').push(exercise)
+        this.db.list('/workouts/exercises').push(exercise)
             .then(_ => console.log('exercise added'))
             .catch(err => console.log(err, 'err when adding exercise'));
     }

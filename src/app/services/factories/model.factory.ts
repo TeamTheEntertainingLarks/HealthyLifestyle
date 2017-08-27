@@ -54,6 +54,10 @@ export class ModelFactory implements ModelFactoryInterface {
         return new Routine(exercise, repeatTimes, series, restingTime);
     }
 
+    createExercise(name: string) {
+        return new Exercise(name);
+    }
+
     createUser(
         username: string,
         firstName: string,

@@ -17,8 +17,9 @@ export class CreateRoutineFormComponent implements OnInit {
   public routine: Routine;
   private factory: ModelFactory;
   private workoutDataService: WorkoutData;
-  auth: AuthService;
+  private auth: AuthService;
   public routineForm: FormGroup;
+  public exercises: Array<Exercise>;
 
   public exerciseFormControl: AbstractControl;
   public seriesFormControl: AbstractControl;
@@ -34,13 +35,11 @@ export class CreateRoutineFormComponent implements OnInit {
     this.workoutDataService = workoutDataService;
     this.auth = auth;
     this.routine = new Routine();
+    this.routine.exercise = new Exercise();
+    this.exercises = new Array<Exercise>();
 }
 
-  private getAvailableRoutines() {
-    //return this.workoutDataService.getAvailableRoutines(this.category);
-    return [
-      'gosho', 'penka', 'hoho'];
-  }
+
   ngOnInit(): void {
       this.exerciseFormControl = new FormControl('', [
       Validators.required]);
@@ -60,13 +59,20 @@ export class CreateRoutineFormComponent implements OnInit {
       repeatsFormControl: this.repeatsFormControl,
       restingFormControl: this.restingFormControl
     });
+
+    this.workoutDataService.getAvailableExercises().subscribe(items => {
+        items.forEach(item => {
+          const newExercise = new Exercise(item.name);
+          this.exercises.push(newExercise);
+        });
+    });
   }
 
   onSubmit(exercise: Exercise,
     series: number,
     repeats: number,
     resting: number) {
-          exercise = this.routine.exercise;
+          exercise = new Exercise(this.routine.exercise.name);
           series = this.routine.seriesCount;
           repeats = this.routine.repeatTimes;
           resting = this.routine.restingTime;

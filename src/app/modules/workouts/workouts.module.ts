@@ -15,6 +15,7 @@ import { MD_PLACEHOLDER_GLOBAL_OPTIONS } from '@angular/material';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CreateRoutineFormComponent } from './create.routine.form/create.routine.form.component';
+import { CreateExerciseFform } from './create.exercise.form/create.exercise.form.component';
 
 @NgModule({
   imports: [
@@ -36,7 +37,8 @@ import { CreateRoutineFormComponent } from './create.routine.form/create.routine
     WorkoutsAllComponent,
     CreateWorkoutFormComponent,
     CreateRoutineFormComponent,
-  ],
+    CreateExerciseFform
+],
   providers: [
     { provide: MD_PLACEHOLDER_GLOBAL_OPTIONS, useValue: { float: 'always' } },
   ],

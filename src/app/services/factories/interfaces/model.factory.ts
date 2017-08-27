@@ -1,3 +1,4 @@
+import { ExerciseInterface } from './../../../interfaces/exercise';
 import { Routine } from './../../../models/routine';
 import { UserInterface } from './../../../interfaces/user';
 import { RecipeInterface } from './../../../interfaces/recipe';
@@ -39,4 +40,6 @@ export interface ModelFactoryInterface {
         email: string,
         isTrainer: boolean,
         profileImage: any): UserInterface;
+
+    createExercise(name: string): ExerciseInterface;
 }
