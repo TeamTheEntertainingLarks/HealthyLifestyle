@@ -13,7 +13,7 @@
   </md-input-container>
   <md-select placeholder="Choose Routine" class="form-control" multiple name="routine" [(ngModel)]="workout.routines" [formControl]="routinesFormControl" required>
     <md-option *ngFor="let routine of routines" [value]="routine">
-      {{routine.exercise}}
+      {{routine.exercise.name + ' ' + routine.repeatTimes + 'x' + routine.seriesCount}}
     </md-option>
   </md-select>
   <md-input-container class="form-control">
