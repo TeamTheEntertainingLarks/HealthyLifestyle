@@ -8,5 +8,14 @@
       Name is <strong>required</strong>
     </md-error>
   </md-input-container>
+    <div *ngIf="currentUpload">
+      <div class="progress">
+        <div class="progress-bar progress-bar-animated" [ngStyle]="{ 'width': currentUpload?.progress + '%' }"></div>
+      </div>
+      Progress: {{currentUpload?.name}} | {{currentUpload?.progress}}% Complete
+    </div>
+    <label>
+        <input type="file" (change)="detectFiles($event)">
+      </label>
   <button type="submit" md-raised-button>Create exercise</button>
 </form>

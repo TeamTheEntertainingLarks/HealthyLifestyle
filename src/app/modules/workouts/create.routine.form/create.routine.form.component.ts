@@ -1,3 +1,5 @@
+import { UploadService } from './../../../services/uploads/shared/upload.service';
+import { Upload } from './../../../services/uploads/shared/upload';
 import { Exercise } from './../../../models/exercise';
 import { AbstractControl, FormGroup, Validators, FormControl, FormBuilder } from '@angular/forms';
 import { AuthService } from './../../../services/auth.service';
@@ -68,6 +70,9 @@ export class CreateRoutineFormComponent implements OnInit {
     });
   }
 
+  clearSelect(val) {
+    console.log(val);
+  }
   onSubmit(exercise: Exercise,
     series: number,
     repeats: number,
@@ -80,7 +85,6 @@ export class CreateRoutineFormComponent implements OnInit {
       this.routine = this.factory
       .createRoutine(exercise, repeats, series, resting);
       this.workoutDataService.addRoutine(this.routine);
-
   }
 
 }

@@ -5,7 +5,7 @@ import { WorkoutInterface } from './../../../interfaces/workout';
 import { ModelFactory } from './../../../services/factories/model.factory';
 import { WorkoutData } from './../../../services/workouts-data.service';
 import { AuthService } from './../../../services/auth.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 import { Router } from '@angular/router';
 
@@ -30,6 +30,7 @@ export class CreateWorkoutFormComponent implements OnInit {
   public author: string;
   public createdOn: number;
   public category: Category;
+
   public routines: Array<Routine>;
   public description: string;
   public comments: string[];
@@ -79,7 +80,9 @@ export class CreateWorkoutFormComponent implements OnInit {
       routinesFormControl: this.routinesFormControl
     });
 
+    this.routines = new Array<Routine>();
     this.workoutDataService.getAvailableRoutines().subscribe(items => {
+        this.routines = new Array<Routine>();
         items.forEach(item => {
           const newRoutine = new Routine(item.exercise, item.repeatTimes, item.seriesCount, item.restingTime);
           this.routines.push(newRoutine);

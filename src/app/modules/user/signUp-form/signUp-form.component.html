@@ -76,16 +76,16 @@
         </md-grid-tile>
 
         <md-grid-tile>
-              <div *ngIf="currentUpload">
-                <div class="progress">
-                  <div class="progress-bar progress-bar-animated" [ngStyle]="{ 'width': currentUpload?.progress + '%' }"></div>
-                </div>
-                Progress: {{currentUpload?.name}} | {{currentUpload?.progress}}% Complete
-              </div>
-              <label>
-                  <input type="file" (change)="detectFiles($event)">
-               </label>
-            </md-grid-tile>
+          <div *ngIf="currentUpload">
+            <div class="progress">
+              <div class="progress-bar progress-bar-animated" [ngStyle]="{ 'width': currentUpload?.progress + '%' }"></div>
+            </div>
+            Progress: {{currentUpload?.name}} | {{currentUpload?.progress}}% Complete
+          </div>
+          <label>
+              <input type="file" (change)="detectFiles($event)">
+            </label>
+        </md-grid-tile>
 
             <md-grid-tile colspan=2>
                 <button md-button type="submit" class="button" [disabled]="!userForm.valid" (click)='signUp()'>Sign In</button>
