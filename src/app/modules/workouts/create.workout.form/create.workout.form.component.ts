@@ -29,6 +29,7 @@ export class CreateWorkoutFormComponent implements OnInit {
   public title: string;
   public author: string;
   public createdOn: number;
+  public showRoutineForm: boolean;
   public category: Category;
 
   public routines: Array<Routine>;
@@ -36,8 +37,6 @@ export class CreateWorkoutFormComponent implements OnInit {
   public comments: string[];
 
   public userId: any;
-
-  // omg hi
   public workoutForm: FormGroup;
 
   public titleFormControl: AbstractControl;
@@ -57,6 +56,7 @@ export class CreateWorkoutFormComponent implements OnInit {
     this.auth = auth;
     this.workout = new Workout();
     this.routines = new Array<Routine>();
+    this.showRoutineForm = false;
 }
 
 
@@ -88,6 +88,10 @@ export class CreateWorkoutFormComponent implements OnInit {
           this.routines.push(newRoutine);
         });
     });
+  }
+
+  showCreateRoutineForm(permission) {
+    this.showRoutineForm = permission;
   }
 
   onSubmit(title: string,

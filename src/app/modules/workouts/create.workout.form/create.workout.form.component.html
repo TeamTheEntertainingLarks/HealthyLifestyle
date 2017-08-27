@@ -16,6 +16,8 @@
       {{routine.exercise.name + ' ' + routine.repeatTimes + 'x' + routine.seriesCount}}
     </md-option>
   </md-select>
+  <button type="button" md-raised-button (click)='showCreateRoutineForm(true)'>Create a new routine</button>
+  <app-create-routine *ngIf="showRoutineForm == true" (hideRoutineForm)="showCreateRoutineForm(false)"></app-create-routine>
   <md-input-container class="form-control">
     <textarea mdInput placeholder="Short Description" name="description" #description maxlength="256" [(ngModel)]="workout.description" [formControl]="descriptionFormControl" required></textarea>
     <md-hint align="end">{{description.value.length}} / 256</md-hint>
@@ -28,4 +30,3 @@
   </md-input-container>
   <button type="submit" md-raised-button>Create Workout</button>
 </form>
-<app-create-routine></app-create-routine>

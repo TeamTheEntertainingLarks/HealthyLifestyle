@@ -1,0 +1,21 @@
+h2 {
+    padding:0 100px;
+    color: #3D3838;
+  }
+
+  .form-control, md-select md-option{
+    font-size: 1.2em;
+    width: 20%;
+  }
+
+  button{
+    color: #000;
+  }
+
+  div{
+    padding-bottom: 20px;
+  }
+
+  md-input-container, md-select{
+    margin-bottom: 20px;
+  }

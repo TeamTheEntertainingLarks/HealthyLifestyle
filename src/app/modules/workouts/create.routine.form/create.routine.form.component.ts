@@ -6,7 +6,7 @@ import { AuthService } from './../../../services/auth.service';
 import { WorkoutData } from './../../../services/workouts-data.service';
 import { ModelFactory } from './../../../services/factories/model.factory';
 import { Routine } from './../../../models/routine';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Category } from '../../../enums/workoutCategories';
 
 @Component({
@@ -16,6 +16,8 @@ import { Category } from '../../../enums/workoutCategories';
 })
 export class CreateRoutineFormComponent implements OnInit {
 
+  @Output()
+  public hideRoutineForm: EventEmitter<boolean>;
   public routine: Routine;
   private factory: ModelFactory;
   private workoutDataService: WorkoutData;
@@ -41,6 +43,7 @@ export class CreateRoutineFormComponent implements OnInit {
     this.routine.exercise = new Exercise();
     this.exercises = new Array<Exercise>();
     this.showExerciseForm = false;
+    this.hideRoutineForm = new EventEmitter<boolean>();
 }
 
 
@@ -95,5 +98,11 @@ export class CreateRoutineFormComponent implements OnInit {
       this.routine = this.factory
       .createRoutine(exercise, repeats, series, resting);
       this.workoutDataService.addRoutine(this.routine);
+      this.hideRoutineForm.emit();
+  }
+
+  onCancel() {
+    // clear form
+    this.hideRoutineForm.emit();
   }
 }
