@@ -51,9 +51,10 @@
         </md-autocomplete> -->
     </div>
     <md-card *ngFor="let activity of activities | async" class="activity-container">
+
         <img class="activity-image" md-card-image src="{{activity.image.url}}" alt="activity-image">
         <md-card-content>
-            <h3><a routerLink="/activities/{{activity.$key}}">{{activity.title}}</a></h3>
+            <h3><a #navigate routerLink="/activities/{{activity.$key}}">{{activity.title}}</a></h3>
             <p class="createdOn">
                 <span>{{activity.createdOn | date}}</span>
             </p>
@@ -88,6 +89,13 @@
                 <md-icon>share</md-icon>
                 Share
             </button>
+            <button md-button [mdMenuTriggerFor]="settings" class="settings-btn" *ngIf=isAuthor(activity.userId)>
+                    <md-icon>settings</md-icon>
+                </button>
+            <md-menu class="settings-menu" #settings="mdMenu">
+                <button md-menu-item (click)="navigate.click()"><md-icon>edit</md-icon> Edit</button>
+                <button md-menu-item (click)="delete()"><md-icon>delete</md-icon> Delete</button>
+            </md-menu>
         </md-card-actions>
     </md-card>
 </div>

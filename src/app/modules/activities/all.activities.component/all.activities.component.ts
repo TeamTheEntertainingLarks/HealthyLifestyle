@@ -34,4 +34,12 @@ export class ActivitiesAllComponent implements OnInit {
     isAuthenticated() {
         return this.auth.isAuthenticated;
     }
+
+    isAuthor(authorId: string) {
+        if (this.auth.currentUserId === authorId) {
+            return true;
+        }
+
+        return false;
+    }
 }

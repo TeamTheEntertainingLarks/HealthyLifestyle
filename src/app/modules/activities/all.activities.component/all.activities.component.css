@@ -12,6 +12,16 @@
     height: 50%;
 }
 
+.settings-btn {
+    position: absolute;
+    right: 0;
+}
+
+.settings-btn md-icon {
+    font-size:40px;
+    height:40px;
+    width: 40px;
+}
 
 .activity-container button {
     font-size: 0.8em;
