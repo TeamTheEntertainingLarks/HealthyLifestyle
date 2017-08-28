@@ -4,10 +4,9 @@ export interface ActivityInterface {
     author: string;
     category: string;
     description: string;
-    location: string;
+    location: object;
     eventDate: string;
-    createdOn: Date;
-    image: string;
+    createdOn: number;
     participants: Array<any>;
     comments?: Array<string>;
 }

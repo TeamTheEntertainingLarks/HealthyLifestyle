@@ -1,3 +1,4 @@
+import { ActivityInterface } from './../../../interfaces/activity';
 import { ExerciseInterface } from './../../../interfaces/exercise';
 import { Routine } from './../../../models/routine';
 import { UserInterface } from './../../../interfaces/user';
@@ -20,7 +21,17 @@ export interface ModelFactoryInterface {
         image: string,
         comments?: Array<string>): RecipeInterface;
 
-    createActivity();
+    createActivity(
+        userdId: string,
+        title: string,
+        author: string,
+        category: string,
+        description: string,
+        location: object,
+        eventDate: string,
+        createdOn: number,
+        participants?: Array<any>,
+        comments?: Array<string>): ActivityInterface;
 
     createArticle();
 

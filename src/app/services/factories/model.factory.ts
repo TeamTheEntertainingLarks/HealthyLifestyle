@@ -1,3 +1,4 @@
+import { Activity } from './../../models/activity';
 import { Exercise } from './../../models/exercise';
 import { Routine } from './../../models/routine';
 import { Injectable } from '@angular/core';
@@ -27,8 +28,18 @@ export class ModelFactory implements ModelFactoryInterface {
         return new Recipe(title, author, userId, category, createdOn, description, ingradients, step1, step2, step3, image, comments);
     }
 
-    createActivity() {
-        // TODO: Implement activity class
+    createActivity(
+        userdId: string,
+        title: string,
+        author: string,
+        category: string,
+        description: string,
+        location: object,
+        eventDate: string,
+        createdOn: number,
+        participants?: Array<any>,
+        comments?: Array<string>) {
+        return new Activity(userdId, title, author, category, description, location, eventDate, createdOn, participants, comments);
     }
 
     createArticle() {
