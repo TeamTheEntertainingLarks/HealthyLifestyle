@@ -11,7 +11,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     providers: []
 })
 
-export class GooglePlaceModule {
+export class GooglePlaceModule {}
 
-}
 

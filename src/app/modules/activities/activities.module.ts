@@ -1,3 +1,4 @@
+import { AgmCoreOverrideModule } from './../../directives/agmCoreOverride.module';
 import { NotificationService } from './../../services/notification.service';
 import { ActivityData } from './../../services/activity-data.service';
 import { GooglePlaceModule } from './../../directives/googleplace.module';
@@ -29,6 +30,7 @@ import { ActivitiesAllComponent } from './all.activities.component/all.activitie
 import { SortPipe } from '../../pipes/sort.pipe';
 import { SearchPipe } from '../../pipes/search.pipe';
 import { ZoomImageDirective } from '../../directives/zoom-image.directive';
+import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
     imports: [
@@ -46,7 +48,10 @@ import { ZoomImageDirective } from '../../directives/zoom-image.directive';
         MdMenuModule,
         MdAutocompleteModule,
         DateTimePickerModule,
-        GooglePlaceModule
+        GooglePlaceModule,
+        AgmCoreOverrideModule.forRoot({
+            apiKey: '<key>'
+        })
     ],
     declarations: [
         ActivityComponent,

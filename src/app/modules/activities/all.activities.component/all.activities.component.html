@@ -51,7 +51,7 @@
         </md-autocomplete> -->
     </div>
     <md-card *ngFor="let activity of activities | async" class="activity-container">
-        <img appZoomImage md-card-image src="{{activity.image.url}}" alt="recipe-image">
+        <img class="activity-image" md-card-image src="{{activity.image.url}}" alt="activity-image">
         <md-card-content>
             <h3><a routerLink="/activities/{{activity.$key}}">{{activity.title}}</a></h3>
             <p class="createdOn">
@@ -62,6 +62,11 @@
             </p>
             <p>
                 <span><md-icon>place</md-icon>{{activity.location.place}}</span>
+            </p>
+            <p>
+                <agm-map [latitude]="activity.location.lat" [longitude]="activity.location.lng">
+                    <agm-marker [latitude]="activity.location.lat" [longitude]="activity.location.lng"></agm-marker>
+                </agm-map>
             </p>
             <p>
                 <span><em>{{activity.category}}</em></span>
