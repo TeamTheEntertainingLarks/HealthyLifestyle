@@ -73,6 +73,6 @@ export class CreateExerciseFform implements OnInit {
     const storagePath = `images/exercises/${exerciseKey}/${file.name}`;
 
     this.currentUpload = new Upload(file);
-    this.uploadService.uploadUserProfileImage(storagePath, dbPath, this.currentUpload);
+    this.uploadService.uploadFile(storagePath, dbPath, this.currentUpload);
   }
 }
