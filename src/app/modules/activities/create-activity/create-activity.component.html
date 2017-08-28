@@ -1,0 +1,52 @@
+<h2>Create New Activity</h2>
+<form class="activity-form" #activityAddForm="ngForm" (ngSubmit)="onSubmit()">
+  <md-input-container class="form-control">
+    <input type="text" mdInput placeholder="Title" name="title" [(ngModel)]="title" [formControl]="titleFormControl" required>
+    <md-error *ngIf="titleFormControl.hasError('pattern')">
+      Please enter a valid title.
+    </md-error>
+    <md-error *ngIf="titleFormControl.hasError('required')">
+      Title is <strong>required</strong>
+    </md-error>
+  </md-input-container>
+  <md-select placeholder="Choose Category" class="form-control" name="category" [(ngModel)]="category" [formControl]="categoryFormControl"
+    required>
+    <md-error *ngIf="categoryFormControl.hasError('pattern')">
+      Please enter a valid category.
+    </md-error>
+    <md-error *ngIf="categoryFormControl.hasError('required')">
+      Category is <strong>required</strong>
+    </md-error>
+    <md-option *ngFor="let category of categories" [value]="category">
+      {{category}}
+    </md-option>
+  </md-select>
+  <md-input-container class="form-control">
+    <textarea mdInput placeholder="Short Description" name="description" #inputdescription maxlength="256" [(ngModel)]="description"
+      [formControl]="descriptionFormControl" required></textarea>
+    <md-hint align="end">{{inputdescription.value.length}} / 256</md-hint>
+    <md-error *ngIf="descriptionFormControl.hasError('pattern')">
+      Please enter a valid description.
+    </md-error>
+    <md-error *ngIf="descriptionFormControl.hasError('required')">
+      Description is <strong>required</strong>
+    </md-error>
+  </md-input-container>
+  <md-input-container class="form-control">
+    <input mdInput placeholder="Date and time" name="dateAndTime" [formControl]="eventDateFormControl" [value]="momentValue | date: 'short'"
+      [(ngModel)]="momentValue" dateTimePicker (onChange)="setMoment($event)" />
+    <md-error *ngIf="eventDateFormControl.hasError('required')">
+      Date is <strong>required</strong>
+    </md-error>
+  </md-input-container>
+  <md-input-container class="form-control">
+    <input mdInput type="text" placeholder="Location" name="location" [formControl]="locationFormControl" [(ngModel)]="location" (setAddress)="getLocation($event)"
+      googleplace />
+    <md-error *ngIf="locationFormControl.hasError('required')">
+      Location is <strong>required</strong>
+    </md-error>
+  </md-input-container>
+  <div>
+    <button type="submit" md-raised-button>Create Activity</button>
+  </div>
+</form>
