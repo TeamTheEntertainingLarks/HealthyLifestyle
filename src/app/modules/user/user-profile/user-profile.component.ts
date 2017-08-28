@@ -62,7 +62,7 @@ export class UserProfileComponent implements OnInit {
           const dbPath = `users/${this.userId}/profileImage`;
 
           this.uploadService.deleteFileStorage(storagePath, oldImage);
-          this.uploadService.uploadUserProfileImage(storagePath, dbPath, dialogRef.componentInstance.upload);
+          this.uploadService.uploadFile(storagePath, dbPath, dialogRef.componentInstance.upload);
         } else if (dialogType === DialogType.ResetPassword) {
           this.auth.resetPassword(this.user.email);
         } else {

@@ -92,22 +92,23 @@ export class SignUpFormComponent implements OnInit {
     this.selectedFiles = event.target.files;
   }
 
-  uploadSingle() {
+  uploadFile() {
     const userId = this.auth.currentUserId;
     const file = this.selectedFiles.item(0);
     const dbPath = `users/${userId}/profileImage`;
-    const storagePath = `images/users/${userId}/${file.name}`;
+    const storagePath = `images/users/${userId}`;
 
     this.currentUpload = new Upload(file);
-    this.uploadService.uploadUserProfileImage(storagePath, dbPath, this.currentUpload);
+    this.uploadService.uploadFile(storagePath, dbPath, this.currentUpload);
   }
 
   signUp(): void {
     const user = this.modelFactory
       .createUser(this.username, this.firstName, this.lastName, this.email, this.isTrainer, '');
+
     this.auth.emailSignUp(this.email, this.password, user)
       .then(() => {
-        this.uploadSingle();
+        this.uploadFile();
       });
   }
 }

@@ -8,18 +8,13 @@ import { NotificationService } from '../../notification.service';
 export class UploadService {
   constructor(
     private db: AngularFireDatabase,
-    private notificationService: NotificationService ) { }
+    private notificationService: NotificationService) { }
 
   uploads: FirebaseListObservable<Upload[]>;
-  // private usersStoragePath = 'images/users';
-  // private recipesStoragePath = 'images/recipes';
-  // private activitiesStoragePath = '';
-  // private workoutsStoragePath = '';
 
-  uploadUserProfileImage(storagePath: string, path: string, upload: Upload) {
+  uploadFile(storagePath: string, path: string, upload: Upload) {
     const storageRef = firebase.storage().ref();
-    const uploadTask = storageRef.child(`${storagePath}`)
-      .put(upload.file);
+    const uploadTask = storageRef.child(`${storagePath}/${upload.file.name}`).put(upload.file);
 
     uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED,
       () => {
@@ -36,7 +31,7 @@ export class UploadService {
   }
 
   private saveFileData(path: string, upload: Upload) {
-    this.db.object(`${path}/`).set(upload);
+    this.db.object(path).set(upload);
   }
 
   deleteFileStorage(storagePath: string, name: string) {
@@ -44,21 +39,24 @@ export class UploadService {
     storageRef.child(`${storagePath}/${name}`).delete();
   }
 
-  // getProfileImageUrl(userId: string) {
-  //   const userStorageRef = firebase.storage().ref().child('images/users/' + userId + '_image.jpg');
-  //   userStorageRef.getDownloadURL().then(url => {
-  //   });
-  // }
+  /**
+   getProfileImageUrl(userId: string) {
+     const userStorageRef = firebase.storage().ref().child('images/users/' + userId + '_image.jpg');
+     userStorageRef.getDownloadURL().then(url => {
+     });
+   }
 
-  // deleteUpload(path: string, upload: Upload) {
-  //   this.deleteFileData(path, upload.$key)
-  //     .then(() => {
-  //       this.deleteFileStorage(upload.name);
-  //     })
-  //     .catch(error => console.log(error));
-  // }
+   deleteUpload(path: string, upload: Upload) {
+     this.deleteFileData(path, upload.$key)
+       .then(() => {
+         this.deleteFileStorage(upload.name);
+       })
+       .catch(error => console.log(error));
+   }
 
-  // private deleteFileData(path: string, key: string) {
-  //   return this.db.list(`${this.basePath}/`).remove(key);
-  // }
+   private deleteFileData(path: string, key: string) {
+     return this.db.list(`${this.basePath}/`).remove(key);
+   }
+   */
+
 }
