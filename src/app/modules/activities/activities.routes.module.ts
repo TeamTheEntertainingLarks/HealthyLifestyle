@@ -1,3 +1,5 @@
+import { EditActivityComponent } from './edit-activity/edit-activity.component';
+import { CreateActivityComponent } from './create-activity/create-activity.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -8,7 +10,9 @@ import { ActivitiesAllComponent } from './all.activities.component/all.activitie
 const routes: Routes = [
     { path: '', redirectTo: 'all', pathMatch: 'full' },
     { path: 'all', component: ActivitiesAllComponent },
-    { path: ':id', component: ActivityComponent }
+    { path: 'create', component: CreateActivityComponent },
+    { path: ':id', component: ActivityComponent },
+    { path: ':id/edit', component: EditActivityComponent },
 
 ];
 
