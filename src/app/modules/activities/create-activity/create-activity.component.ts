@@ -145,7 +145,8 @@ export class CreateActivityComponent implements OnInit {
         }
       })
       .then(() => this.uploadFile());
-    // this.router.navigateByUrl('/activities/all');
+
+    this.router.navigateByUrl('/activities/all');
     this.notificationService.popToast('success', 'Success!', 'Activity added');
   }
 
