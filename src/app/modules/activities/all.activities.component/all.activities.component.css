@@ -1,4 +1,4 @@
-.activities-container {
+.activity-container {
     margin: 50px 0;
     border: solid 2px #636363;
     border-radius: 5px;
@@ -6,20 +6,24 @@
     font-size: 18px;
     width: 60%;
   }
+
 button{
     font-size: 14px;
     border-radius: 5px; 
     margin-right: 10px;
 }
-md-card md-icon{
+
+md-card md-icon {
     color: #96c421;
 }
+
 a{
     text-decoration: none;
     cursor: pointer;
     color: #636363;
     font-weight: bold;
 }
+
 a:hover{
      text-decoration: underline; 
 }
@@ -45,5 +49,3 @@ md-card-content{
 md-card-content p{
     margin-top: 25px;
 }
-
-   
