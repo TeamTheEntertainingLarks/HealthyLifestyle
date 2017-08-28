@@ -1,3 +1,5 @@
+import { NotificationService } from './../../services/notification.service';
+import { ActivityData } from './../../services/activity-data.service';
 import { GooglePlaceModule } from './../../directives/googleplace.module';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
@@ -52,7 +54,10 @@ import { ZoomImageDirective } from '../../directives/zoom-image.directive';
         CreateActivityComponent,
         EditActivityComponent,
     ],
-    providers: [{ provide: MD_PLACEHOLDER_GLOBAL_OPTIONS, useValue: { float: 'always' } }],
+    providers: [
+        { provide: MD_PLACEHOLDER_GLOBAL_OPTIONS, useValue: { float: 'always' } },
+        ActivityData,
+        NotificationService],
 })
 
 export class ActivitiesModule { }

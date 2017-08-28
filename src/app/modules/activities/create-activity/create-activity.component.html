@@ -1,5 +1,6 @@
 <h2>Create New Activity</h2>
 <form class="activity-form" #activityAddForm="ngForm" (ngSubmit)="onSubmit()">
+
   <md-input-container class="form-control">
     <input type="text" mdInput placeholder="Title" name="title" [(ngModel)]="title" [formControl]="titleFormControl" required>
     <md-error *ngIf="titleFormControl.hasError('pattern')">
@@ -9,6 +10,7 @@
       Title is <strong>required</strong>
     </md-error>
   </md-input-container>
+
   <md-select placeholder="Choose Category" class="form-control" name="category" [(ngModel)]="category" [formControl]="categoryFormControl"
     required>
     <md-error *ngIf="categoryFormControl.hasError('pattern')">
@@ -21,6 +23,7 @@
       {{category}}
     </md-option>
   </md-select>
+
   <md-input-container class="form-control">
     <textarea mdInput placeholder="Short Description" name="description" #inputdescription maxlength="256" [(ngModel)]="description"
       [formControl]="descriptionFormControl" required></textarea>
@@ -32,21 +35,34 @@
       Description is <strong>required</strong>
     </md-error>
   </md-input-container>
+
   <md-input-container class="form-control">
-    <input mdInput placeholder="Date and time" name="dateAndTime" [formControl]="eventDateFormControl" [value]="momentValue | date: 'short'"
-      [(ngModel)]="momentValue" dateTimePicker (onChange)="setMoment($event)" />
+    <input mdInput placeholder="Date and time" name="dateAndTime" [formControl]="eventDateFormControl" [value]="dateAndTime | date: 'short'"
+      [(ngModel)]="dateAndTime" dateTimePicker (onChange)="setMoment($event)" />
     <md-error *ngIf="eventDateFormControl.hasError('required')">
       Date is <strong>required</strong>
     </md-error>
   </md-input-container>
+
   <md-input-container class="form-control">
-    <input mdInput type="text" placeholder="Location" name="location" [formControl]="locationFormControl" [(ngModel)]="location" (setAddress)="getLocation($event)"
-      googleplace />
+    <input mdInput type="text" placeholder="Location" name="inputLocation" [formControl]="locationFormControl" [(ngModel)]="inputLocation"
+      (setAddress)="getLocation($event)" googleplace />
     <md-error *ngIf="locationFormControl.hasError('required')">
       Location is <strong>required</strong>
     </md-error>
   </md-input-container>
+
+  <div class="upload">
+    <div *ngIf="upload">
+      Selected photo: {{upload?.name}}
+    </div>
+    <button type="button" md-raised-button (click)="imgFileInput.click()">Add a photo</button>
+    <input hidden type="file" #imgFileInput (change)="detectFile($event)" />
+  </div>
+
   <div>
     <button type="submit" md-raised-button>Create Activity</button>
   </div>
 </form>
+
+<!-- <button type="submit" (click)="test()">test</button> -->
