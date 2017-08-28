@@ -1,5 +1,5 @@
 <h2 md-dialog-title>{{header}}</h2>
-<md-dialog-content>Are you sure?</md-dialog-content>
+<md-dialog-content *ngIf=!changePictureForm>Are you sure?</md-dialog-content>
 <md-dialog-actions *ngIf="!changeEmailForm && !changePictureForm">
   <button md-button [md-dialog-close]="false">No</button>
   <button md-button [md-dialog-close]="true">Yes</button>

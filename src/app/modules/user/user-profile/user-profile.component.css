@@ -1,7 +1,7 @@
 .card {
     vertical-align: middle;
-    height: 40%;   
-    width: 40%;
+    height: 45%;   
+    width: 45%;
     margin: auto;
 }
 
@@ -11,14 +11,14 @@
     width: 45px;
 }
 
-.header-image{
+.header-image {
     margin-right: 2%;
 }
 
 .settings-btn md-icon {
     font-size:45px;
-    height:auto;
-    width: auto;
+    height:45px;
+    width: 45px;
 }
 
 .settings-btn {
