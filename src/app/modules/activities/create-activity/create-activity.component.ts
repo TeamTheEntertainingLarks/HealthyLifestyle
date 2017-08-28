@@ -133,6 +133,7 @@ export class CreateActivityComponent implements OnInit {
       this.location,
       this.dateAndTime.toString(),
       Date.now(),
+      null,
       [],
       []);
 

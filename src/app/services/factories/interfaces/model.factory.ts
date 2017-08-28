@@ -30,6 +30,7 @@ export interface ModelFactoryInterface {
         location: object,
         eventDate: string,
         createdOn: number,
+        image: any,
         participants?: Array<any>,
         comments?: Array<string>): ActivityInterface;
 

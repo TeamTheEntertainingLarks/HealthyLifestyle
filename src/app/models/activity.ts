@@ -9,6 +9,7 @@ export class Activity implements ActivityInterface {
     location: object;
     eventDate: string;
     createdOn: number;
+    image: any;
     participants: Array<any>;
     comments?: Array<string>;
 
@@ -21,6 +22,7 @@ export class Activity implements ActivityInterface {
         location: object,
         eventDate: string,
         createdOn: number,
+        image: any,
         participants?: Array<any>,
         comments?: Array<string>) {
         this.userId = userdId;
@@ -31,6 +33,7 @@ export class Activity implements ActivityInterface {
         this.location = location;
         this.eventDate = eventDate;
         this.createdOn = createdOn;
+        this.image = image;
         this.participants = participants;
         this.comments = comments;
     }
