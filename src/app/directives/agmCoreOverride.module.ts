@@ -13,6 +13,6 @@ export class AgmCoreOverrideModule {
 
 export class IgnoreIncludingApiLoader extends MapsAPILoader {
     load(): Promise<void> {
-        return new Promise<void>(resolve => resolve());
+        return Promise.resolve();
     }
 }
