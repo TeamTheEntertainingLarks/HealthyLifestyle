@@ -1,7 +1,7 @@
 import { ModelFactory } from './../../../services/factories/model.factory';
 import { ModelFactoryInterface } from './../../../services/factories/interfaces/model.factory';
 import { Component, OnInit } from '@angular/core';
-import {FormControl} from '@angular/forms';
+import { FormControl } from '@angular/forms';
 import 'rxjs/add/operator/startWith';
 import 'rxjs/add/operator/map';
 
@@ -69,6 +69,6 @@ export class RecipesAllComponent implements OnInit {
 
     filterStates(val: string) {
         return val ? this.categories.filter(s => s.toLowerCase().indexOf(val.toLowerCase()) === 0)
-                   : this.categories;
-      }
+            : this.categories;
+    }
 }

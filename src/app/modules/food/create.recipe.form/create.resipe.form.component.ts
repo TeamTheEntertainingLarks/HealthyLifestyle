@@ -50,7 +50,7 @@ export class CreateFormComponent implements OnInit {
   public stepThirdFormControl: AbstractControl;
   public imageFormControl: AbstractControl;
 
-   constructor(
+  constructor(
     private router: Router,
     recipeDataService: RecipeData,
     factory: ModelFactory,
@@ -60,7 +60,7 @@ export class CreateFormComponent implements OnInit {
     this.recipeDataService = recipeDataService;
     this.auth = auth;
     this.recipe = new Recipe();
-}
+  }
 
   ngOnInit(): void {
     this.titleFormControl = new FormControl('', [
@@ -113,28 +113,28 @@ export class CreateFormComponent implements OnInit {
     step3: string,
     image: string,
     comments?: Array<string>) {
-          title = this.recipe.title;
-          author = this.auth.currentUser.displayName;
-          userId = this.auth.currentUser.uid;
-          category = this.recipe.category;
-          createdOn = Date.now();
-          description = this.recipe.description;
-          ingradients = this.recipe.ingradients;
-          step1 = this.recipe.step1;
-          step2 = this.recipe.step2;
-          step3 = this.recipe.step3;
-          image = this.recipe.image;
-          comments = this.recipe.comments;
+    title = this.recipe.title;
+    author = this.auth.currentUser.displayName;
+    userId = this.auth.currentUser.uid;
+    category = this.recipe.category;
+    createdOn = Date.now();
+    description = this.recipe.description;
+    ingradients = this.recipe.ingradients;
+    step1 = this.recipe.step1;
+    step2 = this.recipe.step2;
+    step3 = this.recipe.step3;
+    image = this.recipe.image;
+    comments = this.recipe.comments;
 
-          const arrayIngredients = this.recipe.ingradients.trim().split(/[,]+/);
+    const arrayIngredients = this.recipe.ingradients.trim().split(/[,]+/);
 
-      this.recipe = this.factory
+    this.recipe = this.factory
       .createRecipe(title, author, userId, category, createdOn, description, arrayIngredients, step1, step2, step3, image, comments);
-      this.recipeDataService.add(this.recipe);
+    this.recipeDataService.add(this.recipe);
 
-      console.log(this.recipe);
-      console.log(this.auth.currentUser);
+    console.log(this.recipe);
+    console.log(this.auth.currentUser);
 
-      this.router.navigate(['recipes']);
+    this.router.navigate(['recipes']);
   }
 }

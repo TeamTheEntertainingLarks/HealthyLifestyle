@@ -11,12 +11,12 @@ export class User implements UserInterface {
     profileImage: any;
 
     constructor(
-        username: string,
-        firstName: string,
-        lastName: string,
-        email: string,
-        isTrainer: boolean,
-        profileImage: any
+        username: string = '',
+        firstName: string = '',
+        lastName: string = '',
+        email: string = '',
+        isTrainer: boolean = false,
+        profileImage: any = ''
     ) {
         this.username = username;
         this.firstName = firstName;
