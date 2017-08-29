@@ -1,14 +1,13 @@
-import { FirebaseListObservable } from 'angularfire2/database';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Inject } from '@angular/core';
+import { DOCUMENT } from '@angular/platform-browser';
 import { FormControl, Validators, FormGroup, FormBuilder, AbstractControl } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Injectable } from '@angular/core';
+import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 
 import { AuthService } from '../../../services/auth.service';
 import { UserInterface } from './../../../interfaces/user';
 import { UserData } from '../../../services/user-data.service';
-import { Recipe } from '../../../models/recipe';
-import { RecipeData } from '../../../services/recipe-data.service';
-import { RecipeInterface } from '../../../interfaces/recipe';
 
 @Component({
   selector: 'app-comments',
@@ -16,7 +15,6 @@ import { RecipeInterface } from '../../../interfaces/recipe';
   styleUrls: ['./comments.component.css']
 })
 export class CommentsComponent implements OnInit {
-  // @Input() recipe: FirebaseListObservable<Recipe>;
 
   public user: UserInterface;
   public userId: string;
@@ -24,8 +22,8 @@ export class CommentsComponent implements OnInit {
   public userImageUrl;
   public date: number;
   public textComment: string;
-  public recipeKey: string;
-  public recipe: RecipeInterface;
+  private firebaseCollection: any;
+  public item: any;
 
   constructor(
     private auth: AuthService,
@@ -33,21 +31,33 @@ export class CommentsComponent implements OnInit {
     public userService: UserData,
     private route: ActivatedRoute,
     private router: Router,
-    private recipeDataService: RecipeData) {
-    this.recipe = new Recipe();
+    private db: AngularFireDatabase,
+    @Inject(DOCUMENT) private document: any) {
     this.textComment = '';
   }
 
   ngOnInit() {
+    // this.userId = localStorage.getItem('authkey');
     this.userId = this.auth.currentUserId;
     this.date = Date.now();
+
     this.userService.getUserByUid(this.userId).subscribe((res) => {
       this.userImageUrl = res.profileImage;
       this.userFullName = res.firstName + ' ' + res.lastName;
       console.log(res);
     });
-    this.recipeKey = this.route.snapshot.params['id'];
-    this.recipeDataService.getRecipeById(this.recipeKey).subscribe((result) => this.recipe = result);
+
+    // console.log(this.document.location.href);
+    // console.log(this.document.location.origin);
+    const pathname = this.document.location.pathname; // /recipes/-Kseo1STtRlugxy83SmO
+    this.route.params.subscribe(params => {
+      this.firebaseCollection = this.db.object(pathname).subscribe((data) => {
+        this.item = data;
+        console.log(this.item);
+        console.log(data);
+      });
+    });
+    console.log(this.firebaseCollection);
   }
 
   onSubmit() {
@@ -60,18 +70,19 @@ export class CommentsComponent implements OnInit {
 
     console.log(comment);
 
-    this.recipe.comments = this.recipe.comments || [];
-    this.recipe.comments.push(comment);
+    this.item.comments = this.item.comments || [];
+    this.item.comments.push(comment);
 
-    this.recipeDataService.editRecipe(this.recipeKey, this.recipe);
+    const pathname = this.document.location.pathname;
+    this.db.object(pathname).update(this.item).then((data) => console.log(data)).catch((err) => console.log(err));
 
     this.textComment = '';
 
-    this.router.navigate(['recipes/' + this.recipeKey]);
-}
+    this.router.navigate([pathname]);
+  }
 
   isAuthenticated() {
     return this.auth.isAuthenticated;
-}
+  }
 
 }
