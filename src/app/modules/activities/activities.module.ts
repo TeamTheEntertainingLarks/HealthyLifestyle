@@ -1,3 +1,4 @@
+import { GoogleplaceDirective } from './../../directives/googleplace.directive';
 import { AgmCoreOverrideModule } from './../../directives/agmCoreOverride.module';
 import { NotificationService } from './../../services/notification.service';
 import { ActivityData } from './../../services/activity-data.service';
@@ -48,9 +49,9 @@ import { AgmCoreModule } from '@agm/core';
         MdMenuModule,
         MdAutocompleteModule,
         DateTimePickerModule,
-        GooglePlaceModule,
-        AgmCoreOverrideModule.forRoot({
-            apiKey: '<key>'
+        AgmCoreModule.forRoot({
+            apiKey: 'AIzaSyDORMqI9tRjPWWOXbJJFkuKgLtnOQrU-ic',
+            libraries: ['places']
         })
     ],
     declarations: [
@@ -58,6 +59,7 @@ import { AgmCoreModule } from '@agm/core';
         ActivitiesAllComponent,
         CreateActivityComponent,
         EditActivityComponent,
+        GoogleplaceDirective
     ],
     providers: [
         { provide: MD_PLACEHOLDER_GLOBAL_OPTIONS, useValue: { float: 'always' } },

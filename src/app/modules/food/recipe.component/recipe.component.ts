@@ -30,14 +30,14 @@ export class RecipeComponent implements OnInit {
 
     ngOnInit() {
         this.route.params
-        .subscribe(params => {
-        this.recipeDataService.getRecipeById(params.id)
-          .subscribe(recipe => {
-            this.recipe = recipe;
-            this.recipeKey = recipe.$key;
-            console.log(recipe);
-          });
-      });
+            .subscribe(params => {
+                this.recipeDataService.getRecipeById(params.id)
+                    .subscribe(recipe => {
+                        this.recipe = recipe;
+                        this.recipeKey = recipe.$key;
+                        console.log(recipe);
+                    });
+            });
     }
 
     isAuthenticated() {
