@@ -26,5 +26,11 @@
       Description is <strong>required</strong>
     </md-error>
   </md-input-container>
+  <md-select placeholder="Choose Category" class="form-control" name="category" [(ngModel)]="workout.category" 
+    [formControl]="categoriesFormControl" required>
+    <md-option *ngFor="let category of categories" [value]="category">
+      {{ category }}
+    </md-option>
+  </md-select>
   <button type="submit" [disabled]="!workoutForm.valid" class="success" md-raised-button>Create Workout</button>
 </form>

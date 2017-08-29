@@ -5,7 +5,7 @@ export interface WorkoutInterface {
     title: string;
     author: string;
     createdOn: number;
-    category: Category;
+    category: string;
     routines: Array<Routine>;
     description: string;
     comments: Array<string>;

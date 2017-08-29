@@ -51,7 +51,7 @@ export class ModelFactory implements ModelFactoryInterface {
         title: string,
         author: string,
         createdOn: number,
-        category: Category,
+        category: string,
         routines: Array<Routine>,
         description: string,
         comments: Array<string>) {
