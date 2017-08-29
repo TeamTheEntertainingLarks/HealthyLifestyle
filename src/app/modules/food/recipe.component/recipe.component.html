@@ -1,24 +1,24 @@
-<div class="container">
-        <div class="subnav">
-                <a md-raised-button routerLink="/recipes">
-                        <md-icon [ngStyle]="{'color': 'gray'}">menu</md-icon>
-                        Back to Recipes
-                </a>
-                <button md-raised-button [mdMenuTriggerFor]="create" class="create">
-                        <md-icon [ngStyle]="{'color': 'gray'}">add</md-icon>
-                        Create New
+<div class="subnav">
+        <a md-button routerLink="/recipes">
+                <md-icon>menu</md-icon>
+                Back to Recipes
+        </a>
+        <button md-button [mdMenuTriggerFor]="create" class="create">
+                <md-icon>add</md-icon>
+                Create New
+        </button>
+        <md-menu #create="mdMenu">
+                <button md-menu-item *ngIf="isAuthenticated()" routerLink="/recipes/create">
+                        <md-icon>add_circle_outline</md-icon>
+                        <span>Create Recipe</span>
                 </button>
-                <md-menu #create="mdMenu">
-                        <button md-menu-item *ngIf="isAuthenticated()" routerLink="/recipes/create">
-                                <md-icon>add_circle_outline</md-icon>
-                                <span>Create Recipe</span>
-                        </button>
-                        <button md-menu-item *ngIf="isAuthenticated()" routerLink=".">
-                                <md-icon>add_circle_outline</md-icon>
-                                <span>Create Activity</span>
-                        </button>
-                </md-menu>
-        </div>
+                <button md-menu-item *ngIf="isAuthenticated()" routerLink=".">
+                        <md-icon>add_circle_outline</md-icon>
+                        <span>Create Activity</span>
+                </button>
+        </md-menu>
+</div>
+<div class="container">
         <md-card class="info-container">
                 <img md-card-image src="{{recipe?.image}}" alt="recipe-image">
                 <md-card-content>
@@ -50,26 +50,41 @@
                         </button>
                 </md-card-actions>
         </md-card>
-        <h3 class="ingredients-title">Ingredients</h3>
-        <ul *ngFor="let ingredient of recipe?.ingradients">
-                <li>{{ingredient}}</li>
-        </ul>
-        <hr/>
-        <h3 class="steps-title">How to Make it</h3>
-        <p><strong>Step 1</strong></p>
-        <p>{{recipe?.step1}}</p>
-        <p *ngIf="recipe?.step2"><strong>Step 2</strong></p>
-        <p>{{recipe?.step2}}</p>
-        <p *ngIf="recipe?.step3"><strong>Step 3</strong></p>
-        <p>{{recipe?.step3}}</p>
-        <hr />
-        <h3 class="comments-title">Comments</h3>
-        <div *ngIf="recipe?.comments">
-                <div *ngFor="let comment of recipe?.comments">
-                        <p>{{comment}}</p>
+        <div class="additional-info">
+                <h3 class="ingredients-title">Ingredients</h3>
+                <ul *ngFor="let ingredient of recipe?.ingradients">
+                        <li>{{ingredient}}</li>
+                </ul>
+                <hr/>
+                <h3 class="steps-title">How to Make it</h3>
+                <p><strong>Step 1</strong></p>
+                <p>{{recipe?.step1}}</p>
+                <p *ngIf="recipe?.step2"><strong>Step 2</strong></p>
+                <p>{{recipe?.step2}}</p>
+                <p *ngIf="recipe?.step3"><strong>Step 3</strong></p>
+                <p>{{recipe?.step3}}</p>
+        </div>
+        <div class="comments">
+                <h3 class="comments-title">Comments</h3>
+                <div *ngIf="recipe?.comments">
+                        <div *ngFor="let comment of recipe?.comments">
+                                <md-card class="comments-container">
+                                        <md-card-header>
+                                                <img md-card-avatar src="{{comment.profileImage.url}}">
+                                                <md-card-title>{{comment.username}}</md-card-title>
+                                                <md-card-subtitle>on {{comment.date | date}}</md-card-subtitle>
+                                        </md-card-header>
+                                        <md-card-content>
+                                                <p>
+                                                       {{comment.textComment}}
+                                                </p>
+                                        </md-card-content>
+                                </md-card>
+                        </div>
+                </div>
+                <div *ngIf="!recipe?.comments">
+                        <p> No Comments yet</p>
                 </div>
         </div>
-        <div *ngIf="!recipe?.comments">
-                <p> No Comments yet</p>
-        </div>
+        <app-comments></app-comments>
 </div>

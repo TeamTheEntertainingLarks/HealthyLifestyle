@@ -14,7 +14,7 @@ export class Recipe implements RecipeInterface {
     public step2: string;
     public step3: string;
     public image: string;
-    public comments: string[];
+    public comments: any;
 
     constructor(
         title: string = '',
@@ -28,7 +28,7 @@ export class Recipe implements RecipeInterface {
         step2: string = '',
         step3: string = '',
         image: string = '',
-        comments: string[] = null,
+        comments: any = null,
     ) {
         this.title = title;
         this.author = author;

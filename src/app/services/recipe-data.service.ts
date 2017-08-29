@@ -33,22 +33,25 @@ export class RecipeData {
         this.db.object(`/recipes/${recipeKey}`).update(recipe).then((data) => console.log(data)).catch((err) => console.log(err));
     }
 
-    getRecipeByTitle(title: string) {
-        const items = this.db.list('recipes', {
-            preserveSnapshot: true,
-        });
-
-        let item: any;
-
-        // need to be upgraded
-        items.subscribe(snapshots => {
-            snapshots.forEach(snapshot => {
-                if (snapshot.val().title === title) {
-                    item = snapshot.val();
-                }
-            });
-        });
-
-        return item;
+    updateComment(recipeKey: string, comment) {
+        this.db.object(`/recipes/${recipeKey}`).update(comment);
     }
+
+    // getRecipeByTitle(title: string) {
+    //     const items = this.db.list('recipes', {
+    //         preserveSnapshot: true,
+    //     });
+
+    //     let item: any;
+
+    //     items.subscribe(snapshots => {
+    //         snapshots.forEach(snapshot => {
+    //             if (snapshot.val().title === title) {
+    //                 item = snapshot.val();
+    //             }
+    //         });
+    //     });
+
+    //     return item;
+    // }
 }

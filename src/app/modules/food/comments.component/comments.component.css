@@ -1,0 +1,21 @@
+textarea {
+  padding: 10px;
+  border: 2px solid gray;
+  width: 70%;
+}
+
+button {
+  background-color: #95C420;
+  display: block;
+  float: right;
+  position: relative;
+  top: 50px;
+}
+
+.comments-form {
+  margin-top: 50px;
+}
+
+div{
+  clear: both;
+}
