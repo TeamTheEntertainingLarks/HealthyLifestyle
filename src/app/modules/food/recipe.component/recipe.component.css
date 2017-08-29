@@ -20,7 +20,7 @@
    font-weight: bold;
 }
 
-md-icon{
+md-card md-icon{
       color: #96c421;
 }
 
@@ -48,6 +48,36 @@ md-card-content p{
 h3{
   color: #96c421;
 }
+
 p, li{
   color:#636363;
+  text-align: justify;
 }
+
+.additional-info{
+  width: 80%;
+}
+
+.comments{
+  width: 60%;
+}
+
+.comments-container md-card-header{
+  border-bottom: 1px solid #EEE8E8;
+  margin: 0;
+  padding: 10px;
+}
+
+.comments-container md-card-content{
+  border-top: 1px solid #EEE8E8;
+  margin: 0;
+  padding: 10px;
+  text-align: justify;
+
+}
+
+.comments-container{
+  margin: 20px 0;
+  border: 1px solid gray;
+}
+
