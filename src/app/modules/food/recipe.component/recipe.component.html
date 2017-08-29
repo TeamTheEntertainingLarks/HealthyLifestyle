@@ -40,11 +40,11 @@
                                 <md-icon>share</md-icon>
                                 Share
                         </button>
-                        <button md-button routerLink="/recipes/{{recipe?.$key}}/edit">
+                        <button *ngIf=isAuthor(recipe?.userId) md-button routerLink="/recipes/{{recipe?.$key}}/edit">
                                 <md-icon>mode_edit</md-icon>
                                 Edit
                         </button>
-                        <button md-button>
+                        <button *ngIf=isAuthor(recipe?.userId) md-button>
                                 <md-icon>delete</md-icon>
                                 Delete
                         </button>

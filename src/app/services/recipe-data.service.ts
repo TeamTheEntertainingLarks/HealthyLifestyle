@@ -22,7 +22,6 @@ export class RecipeData {
         return this.db.object(`/recipes/${recipeKey}`);
     }
 
-    // need to add some notifications, not console outputs
     add(recipe: RecipeInterface): void {
         this.firebaseCollection.push(recipe)
             .then(_ => console.log('recipe added'))
@@ -33,9 +32,9 @@ export class RecipeData {
         this.db.object(`/recipes/${recipeKey}`).update(recipe).then((data) => console.log(data)).catch((err) => console.log(err));
     }
 
-    updateComment(recipeKey: string, comment) {
-        this.db.object(`/recipes/${recipeKey}`).update(comment);
-    }
+    // updateComment(recipeKey: string, comment) {
+    //     this.db.object(`/recipes/${recipeKey}`).update(comment);
+    // }
 
     // getRecipeByTitle(title: string) {
     //     const items = this.db.list('recipes', {
