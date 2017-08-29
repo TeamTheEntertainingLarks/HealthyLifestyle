@@ -1,5 +1,5 @@
 <h2>Create New Exercise</h2>
-<form class="routine-form" #carAddForm="ngForm" (ngSubmit)="onSubmit()">
+<form class="exercise-form" #carAddForm="ngForm" (ngSubmit)="onSubmit()">
   <md-input-container class="form-control">
     <input type="text" mdInput placeholder="Name" name="name" [(ngModel)]="exercise.name" 
       [formControl]="nameFormControl" required>
@@ -8,14 +8,20 @@
       Name is <strong>required</strong>
     </md-error>
   </md-input-container>
-    <div *ngIf="currentUpload">
-      <div class="progress">
-        <div class="progress-bar progress-bar-animated" [ngStyle]="{ 'width': currentUpload?.progress + '%' }"></div>
-      </div>
-      Progress: {{currentUpload?.name}} | {{currentUpload?.progress}}% Complete
+  <div *ngIf="currentUpload">
+    <div class="progress">
+      <div class="progress-bar progress-bar-animated" [ngStyle]="{ 'width': currentUpload?.progress + '%' }"></div>
     </div>
+    Progress: {{currentUpload?.name}} | {{currentUpload?.progress}}% Complete
+  </div>
+  <div>
+    <p>Set an image *</p>
     <label>
-        <input type="file" (change)="detectFiles($event)">
-      </label>
-  <button type="submit" md-raised-button>Create exercise</button>
+        <input type="file" (change)="detectFiles($event)" required>
+    </label>
+    <div class="buttons">
+      <button type="submit" class="success" md-raised-button>Create exercise</button>
+      <button type="button" class="cancel" md-raised-button>Cancel</button>
+    </div>
+  </div>
 </form>

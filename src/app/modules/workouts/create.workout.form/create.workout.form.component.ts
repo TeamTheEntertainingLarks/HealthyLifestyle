@@ -98,7 +98,11 @@ export class CreateWorkoutFormComponent implements OnInit {
   }
 
     openDialog() {
-    const dialogRef = this.dialog.open(CreateRoutineFormComponent);
+    const dialogRef = this.dialog.open(CreateRoutineFormComponent,
+    {
+        height: '90%',
+        width: '40%',
+    });
     dialogRef.afterClosed().subscribe(result => {
       this.selectedOption = result;
     });
