@@ -10,5 +10,5 @@ export interface RecipeInterface {
     step2: string;
     step3: string;
     image: string;
-    comments?: Array<string>;
+    comments?: any;
 }

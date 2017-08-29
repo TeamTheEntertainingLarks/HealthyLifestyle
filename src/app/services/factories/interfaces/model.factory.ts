@@ -19,7 +19,7 @@ export interface ModelFactoryInterface {
         step2: string,
         step3: string,
         image: string,
-        comments?: Array<string>): RecipeInterface;
+        comments?: any): RecipeInterface;
 
     createActivity(
         userdId: string,
