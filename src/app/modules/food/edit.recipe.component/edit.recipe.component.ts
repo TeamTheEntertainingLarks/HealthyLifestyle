@@ -25,15 +25,17 @@ export class EditRecipeComponent implements OnInit {
 
   public recipeForm: FormGroup;
 
-    public titleFormControl: AbstractControl;
-    public authorFormControl: AbstractControl;
-    public categoryFormControl: AbstractControl;
-    public descriptionFormControl: AbstractControl;
-    public ingredientsFormControl: AbstractControl;
-    public stepFirstFormControl: AbstractControl;
-    public stepSecondFormControl: AbstractControl;
-    public stepThirdFormControl: AbstractControl;
-    public imageFormControl: AbstractControl;
+  categories = ['breakfast', 'soups', 'salads', 'desserts', 'breads', 'main dishes', 'side dishes'];
+
+  public titleFormControl: AbstractControl;
+  public authorFormControl: AbstractControl;
+  public categoryFormControl: AbstractControl;
+  public descriptionFormControl: AbstractControl;
+  public ingredientsFormControl: AbstractControl;
+  public stepFirstFormControl: AbstractControl;
+  public stepSecondFormControl: AbstractControl;
+  public stepThirdFormControl: AbstractControl;
+  public imageFormControl: AbstractControl;
 
   constructor(private route: ActivatedRoute,
     private router: Router,
@@ -43,7 +45,7 @@ export class EditRecipeComponent implements OnInit {
     this.recipeDataService = recipeDataService;
     this.auth = auth;
     this.recipe = new Recipe();
-}
+  }
 
   ngOnInit() {
     this.recipeKey = this.route.snapshot.params['id'];
