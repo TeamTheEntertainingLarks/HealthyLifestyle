@@ -1,3 +1,5 @@
+import { CreateRoutineFormComponent } from './../create.routine.form/create.routine.form.component';
+import { MdDialog } from '@angular/material';
 import { Exercise } from './../../../models/exercise';
 import { Routine } from './../../../models/routine';
 import { Workout } from './../../../models/workout';
@@ -21,7 +23,7 @@ import { Category } from '../../../enums/workoutCategories';
   styleUrls: ['./create.workout.form.component.css']
 })
 export class CreateWorkoutFormComponent implements OnInit {
-
+  public selectedOption: string;
   public workout: WorkoutInterface;
   private factory: ModelFactory;
   private workoutDataService: WorkoutData;
@@ -46,6 +48,7 @@ export class CreateWorkoutFormComponent implements OnInit {
   public availableRoutines: Array<Routine>;
 
    constructor(
+     public dialog: MdDialog,
     private router: Router,
     workoutDataService: WorkoutData,
     factory: ModelFactory,
@@ -94,6 +97,12 @@ export class CreateWorkoutFormComponent implements OnInit {
     this.showRoutineForm = permission;
   }
 
+    openDialog() {
+    const dialogRef = this.dialog.open(CreateRoutineFormComponent);
+    dialogRef.afterClosed().subscribe(result => {
+      this.selectedOption = result;
+    });
+  }
   onSubmit(title: string,
     author: string,
     createdOn: number,

@@ -1,3 +1,4 @@
+import { MdDialog, MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
 import { UploadService } from './../../../services/uploads/shared/upload.service';
 import { Upload } from './../../../services/uploads/shared/upload';
 import { Exercise } from './../../../models/exercise';
@@ -6,7 +7,7 @@ import { AuthService } from './../../../services/auth.service';
 import { WorkoutData } from './../../../services/workouts-data.service';
 import { ModelFactory } from './../../../services/factories/model.factory';
 import { Routine } from './../../../models/routine';
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Inject } from '@angular/core';
 import { Category } from '../../../enums/workoutCategories';
 
 @Component({
@@ -32,9 +33,12 @@ export class CreateRoutineFormComponent implements OnInit {
   public restingFormControl: AbstractControl;
 
    constructor(
+    @Inject(MD_DIALOG_DATA) public data: WorkoutData,
+    public dialog: MdDialog,
     workoutDataService: WorkoutData,
     factory: ModelFactory,
     auth: AuthService,
+    public dialogRef: MdDialogRef<CreateRoutineFormComponent>,
     private formBuilder: FormBuilder) {
     this.factory = factory;
     this.workoutDataService = workoutDataService;

@@ -1,3 +1,4 @@
+import { WorkoutData } from './../../services/workouts-data.service';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -9,7 +10,7 @@ import { CreateWorkoutFormComponent } from './create.workout.form/create.workout
 
 import {
   MdChipsModule, MdButtonModule, MdCheckboxModule, MdCardModule, MdInputModule,
-  MdIconModule, MdGridListModule, MdSelectModule
+  MdIconModule, MdGridListModule, MdSelectModule, MdDialogModule
 } from '@angular/material';
 import { MD_PLACEHOLDER_GLOBAL_OPTIONS } from '@angular/material';
 
@@ -31,6 +32,7 @@ import { CreateExerciseFform } from './create.exercise.form/create.exercise.form
     MdSelectModule,
     FormsModule,
     ReactiveFormsModule,
+    MdDialogModule
   ],
   declarations: [
     WorkoutsComponent,
@@ -39,8 +41,10 @@ import { CreateExerciseFform } from './create.exercise.form/create.exercise.form
     CreateRoutineFormComponent,
     CreateExerciseFform
 ],
+  entryComponents: [CreateRoutineFormComponent, CreateExerciseFform],
   providers: [
     { provide: MD_PLACEHOLDER_GLOBAL_OPTIONS, useValue: { float: 'always' } },
+    WorkoutData
   ],
 })
 export class WorkoutsModule { }
