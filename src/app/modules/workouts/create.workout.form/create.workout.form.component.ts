@@ -29,7 +29,6 @@ export class CreateWorkoutFormComponent implements OnInit {
   private workoutDataService: WorkoutData;
   auth: AuthService;
   public title: string;
-  public author: string;
   public createdOn: number;
   public showRoutineForm: boolean;
   public category: Category;
@@ -67,9 +66,6 @@ export class CreateWorkoutFormComponent implements OnInit {
       this.titleFormControl = new FormControl('', [
       Validators.required]);
 
-    this.authorFormControl = new FormControl('', [
-      Validators.required]);
-
     this.descriptionFormControl = new FormControl('', [
       Validators.required]);
 
@@ -78,7 +74,6 @@ export class CreateWorkoutFormComponent implements OnInit {
 
     this.workoutForm = this.formBuilder.group({
       titleFormControl: this.titleFormControl,
-      authorFormControl: this.authorFormControl,
       descriptionFormControl: this.descriptionFormControl,
       routinesFormControl: this.routinesFormControl
     });
@@ -118,7 +113,6 @@ export class CreateWorkoutFormComponent implements OnInit {
     comments?: Array<string>) {
           title = this.workout.title;
           author = this.auth.currentUserDisplayName;
-          console.log(this.auth.currentUserDisplayName);
           routines = this.routines;
           category = this.category;
           createdOn = Date.now();

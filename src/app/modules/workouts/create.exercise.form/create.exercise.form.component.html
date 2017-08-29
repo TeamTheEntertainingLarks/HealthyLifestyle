@@ -17,10 +17,10 @@
   <div>
     <p>Set an image *</p>
     <label>
-        <input type="file" (change)="detectFiles($event)" required>
+        <input type="file" (change)="detectFiles($event)">
     </label>
     <div class="buttons">
-      <button type="submit" class="success" md-raised-button>Create exercise</button>
+      <button type="submit" [disabled]="!exerciseForm.valid" class="success" md-raised-button>Create exercise</button>
       <button type="button" class="cancel" (click)="onClose()" md-raised-button>Cancel</button>
     </div>
   </div>
