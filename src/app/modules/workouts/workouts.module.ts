@@ -44,7 +44,7 @@ import { CreateExerciseFform } from './create.exercise.form/create.exercise.form
   entryComponents: [CreateRoutineFormComponent, CreateExerciseFform],
   providers: [
     { provide: MD_PLACEHOLDER_GLOBAL_OPTIONS, useValue: { float: 'always' } },
-    WorkoutData
+    WorkoutData,
   ],
 })
 export class WorkoutsModule { }

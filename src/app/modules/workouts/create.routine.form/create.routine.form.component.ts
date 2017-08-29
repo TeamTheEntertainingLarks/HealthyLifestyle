@@ -16,9 +16,6 @@ import { Category } from '../../../enums/workoutCategories';
   styleUrls: ['./create.routine.form.component.css']
 })
 export class CreateRoutineFormComponent implements OnInit {
-
-  @Output()
-  public hideRoutineForm: EventEmitter<boolean>;
   public routine: Routine;
   private factory: ModelFactory;
   private workoutDataService: WorkoutData;
@@ -47,7 +44,6 @@ export class CreateRoutineFormComponent implements OnInit {
     this.routine.exercise = new Exercise();
     this.exercises = new Array<Exercise>();
     this.showExerciseForm = false;
-    this.hideRoutineForm = new EventEmitter<boolean>();
 }
 
 
@@ -103,11 +99,6 @@ export class CreateRoutineFormComponent implements OnInit {
       this.routine = this.factory
       .createRoutine(exercise, repeats, series, resting);
       this.workoutDataService.addRoutine(this.routine);
-      this.hideRoutineForm.emit();
-  }
-
-  onCancel() {
-    // clear form
-    this.hideRoutineForm.emit();
+      this.dialogRef.close();
   }
 }

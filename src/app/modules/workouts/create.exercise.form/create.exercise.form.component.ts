@@ -62,6 +62,10 @@ export class CreateExerciseFform implements OnInit {
       this.hideExerciseForm.emit(true);
   }
 
+  onClose() {
+    this.hideExerciseForm.emit(true);
+  }
+
   detectFiles(event) {
     this.selectedFiles = event.target.files;
   }
