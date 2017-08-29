@@ -1,3 +1,20 @@
+/* .form-container {
+  position: absolute;
+  align-content: center;
+  margin-top: -15%;
+  height: 70%;
+  background: grey;
+  width: 50%;
+  margin-left: 25%;
+}
+
+.form-container h2 {
+  text-align: center;
+}
+
+.form-container> md-input-container{
+  margin-left: 30%;
+}
 h2 {
     padding:0 100px;
     color: #3D3838;
@@ -6,6 +23,7 @@ h2 {
   .form-control, md-select md-option{
     font-size: 1.2em;
     width: 20%;
+    display: block;
   }
 
   button{
@@ -18,4 +36,4 @@ h2 {
 
   md-input-container, md-select{
     margin-bottom: 20px;
-  }
+  } */

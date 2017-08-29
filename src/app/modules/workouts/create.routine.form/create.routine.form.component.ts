@@ -68,6 +68,7 @@ export class CreateRoutineFormComponent implements OnInit {
     });
 
     this.workoutDataService.getAvailableExercises().subscribe(items => {
+      this.exercises = new Array<Exercise>();
         items.forEach(item => {
           const newExercise = new Exercise(item.name);
           this.exercises.push(newExercise);
