@@ -1,24 +1,24 @@
-<div class="container">
-        <div class="subnav">
-                <a md-button routerLink="/recipes">
-                        <md-icon>menu</md-icon>
-                        Back to Recipes
-                </a>
-                <button md-button [mdMenuTriggerFor]="create" class="create">
-                        <md-icon>add</md-icon>
-                        Create New
+<div class="subnav">
+        <a md-button routerLink="/recipes">
+                <md-icon>menu</md-icon>
+                Back to Recipes
+        </a>
+        <button md-button [mdMenuTriggerFor]="create" class="create">
+                <md-icon>add</md-icon>
+                Create New
+        </button>
+        <md-menu #create="mdMenu">
+                <button md-menu-item *ngIf="isAuthenticated()" routerLink="/recipes/create">
+                        <md-icon>add_circle_outline</md-icon>
+                        <span>Create Recipe</span>
                 </button>
-                <md-menu #create="mdMenu">
-                        <button md-menu-item *ngIf="isAuthenticated()" routerLink="/recipes/create">
-                                <md-icon>add_circle_outline</md-icon>
-                                <span>Create Recipe</span>
-                        </button>
-                        <button md-menu-item *ngIf="isAuthenticated()" routerLink=".">
-                                <md-icon>add_circle_outline</md-icon>
-                                <span>Create Activity</span>
-                        </button>
-                </md-menu>
-        </div>
+                <button md-menu-item *ngIf="isAuthenticated()" routerLink=".">
+                        <md-icon>add_circle_outline</md-icon>
+                        <span>Create Activity</span>
+                </button>
+        </md-menu>
+</div>
+<div class="container">
         <md-card class="info-container">
                 <img md-card-image src="{{recipe?.image}}" alt="recipe-image">
                 <md-card-content>
