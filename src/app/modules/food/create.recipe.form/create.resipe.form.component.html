@@ -78,7 +78,7 @@
       Please enter a valid step.
     </md-error>
   </md-input-container>
-  <button type="submit" md-raised-button>Create Recipe</button>
+  <button type="submit" [disabled]="!recipeAddForm.valid" md-raised-button>Create Recipe</button>
 </form>
      
       

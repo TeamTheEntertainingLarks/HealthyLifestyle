@@ -78,5 +78,5 @@
       Please enter a valid step.
     </md-error>
   </md-input-container>
-  <button type="submit" md-raised-button>Edit Recipe</button>
+  <button type="submit" [disabled]="!editRecipe.valid" md-raised-button>Edit Recipe</button>
 </form>
