@@ -5,45 +5,56 @@
       overflow: hidden;
       font-size: 18px;
       width: 60%;
-    }
-button{
+}
+
+button {
       font-size: 14px;
-      border-radius: 5px; 
+      border-radius: 5px;
       margin-right: 10px;
 }
 
 md-card md-icon {
       color: #96c421;
 }
-a{
+
+a {
       text-decoration: none;
       cursor: pointer;
       color: #636363;
       font-weight: bold;
 }
-a:hover{
-       text-decoration: underline; 
+
+a:hover {
+      text-decoration: underline;
 }
 
-.container{
+.container {
       padding: 0 100px;
 }
 
-input[type=text]{
+input[type=text] {
       padding: 10px;
       font-size: 14px;
       border-radius: 5px;
 }
 
-.subnav{
+.subnav {
       text-align: right;
-      clear: both;	
-}
-md-card-content{
-      margin-top: 25px; 
+      clear: both;
 }
 
-md-card-content p{
+md-card-content {
       margin-top: 25px;
 }
-     
+
+md-card-content p {
+      margin-top: 25px;
+}
+
+rating {
+      float: right;
+}
+
+.createdOn {
+      display: inline-block;
+}

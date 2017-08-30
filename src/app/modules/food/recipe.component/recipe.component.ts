@@ -1,10 +1,12 @@
 import { ActivatedRoute } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
+import { MdDialog, MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
 
 import { RecipeData } from '../../../services/recipe-data.service';
 import { RecipeInterface } from '../../../interfaces/recipe';
 import { AppComponent } from '../../../app.component';
 import { AuthService } from '../../../services/auth.service';
+import { RecipeDialogComponent } from '../recipe.dialog.component/recipe.dialog.component';
 
 @Component({
     selector: 'app-recipe',
@@ -25,7 +27,8 @@ export class RecipeComponent implements OnInit {
 
     constructor(private route: ActivatedRoute,
         recipeDataService: RecipeData,
-        auth: AuthService) {
+        auth: AuthService,
+        public dialog: MdDialog) {
         this.recipeDataService = recipeDataService;
         this.auth = auth;
     }
@@ -53,5 +56,9 @@ export class RecipeComponent implements OnInit {
         }
 
         return false;
+    }
+
+    openDialog() {
+        this.dialog.open(RecipeDialogComponent, { width: '550px' });
     }
 }

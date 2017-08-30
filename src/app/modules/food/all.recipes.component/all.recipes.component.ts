@@ -29,6 +29,8 @@ export class RecipesAllComponent implements OnInit {
 
     searchWord: string;
 
+    starsCount: number;
+
     categoryCtrl: FormControl;
     filteredCategories: any;
 
@@ -50,6 +52,7 @@ export class RecipesAllComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.starsCount = 3.5;
         this.recipeDataService.getAllRecipes().subscribe(items => {
             this.recipes = items;
         });
