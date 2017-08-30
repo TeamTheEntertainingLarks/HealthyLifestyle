@@ -21,8 +21,12 @@ div{
   padding-bottom: 20px;
 }
 
-md-input-container, md-select{
+md-input-container{
   margin-bottom: 20px;
+}
+
+md-select {
+  margin-bottom: 0.4%;
 }
 .preview{
   width: 80%;
