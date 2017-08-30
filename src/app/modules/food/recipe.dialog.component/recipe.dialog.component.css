@@ -1,0 +1,6 @@
+md-dialog-content, md-input-container{
+    width: 100%;
+}
+button:first-of-type{
+    margin-right: 50%;
+}
