@@ -8,7 +8,7 @@ export class Workout implements WorkoutInterface {
     public title: string;
     public author: string;
     public createdOn: number;
-    public category: Category;
+    public category: string;
     public routines: Array<Routine>;
     public description: string;
     public comments: string[];
@@ -17,7 +17,7 @@ export class Workout implements WorkoutInterface {
         title: string = '',
         author: string = '',
         createdOn: number = 0,
-        category: Category = null,
+        category: string = null,
         routines: Array<Routine> = null,
         description: string = '',
         comments: Array<string> = null,

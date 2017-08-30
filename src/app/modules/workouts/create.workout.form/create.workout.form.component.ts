@@ -29,7 +29,6 @@ export class CreateWorkoutFormComponent implements OnInit {
   private workoutDataService: WorkoutData;
   auth: AuthService;
   public title: string;
-  public author: string;
   public createdOn: number;
   public showRoutineForm: boolean;
   public category: Category;
@@ -39,12 +38,14 @@ export class CreateWorkoutFormComponent implements OnInit {
   public comments: string[];
 
   public userId: any;
+  public categories: Array<string>;
   public workoutForm: FormGroup;
 
   public titleFormControl: AbstractControl;
   public authorFormControl: AbstractControl;
   public descriptionFormControl: AbstractControl;
   public routinesFormControl: AbstractControl;
+  public categoriesFormControl: AbstractControl;
   public availableRoutines: Array<Routine>;
 
    constructor(
@@ -60,14 +61,11 @@ export class CreateWorkoutFormComponent implements OnInit {
     this.workout = new Workout();
     this.routines = new Array<Routine>();
     this.showRoutineForm = false;
+    this.categories = new Array<string>();
 }
-
 
   ngOnInit(): void {
       this.titleFormControl = new FormControl('', [
-      Validators.required]);
-
-    this.authorFormControl = new FormControl('', [
       Validators.required]);
 
     this.descriptionFormControl = new FormControl('', [
@@ -76,11 +74,15 @@ export class CreateWorkoutFormComponent implements OnInit {
     this.routinesFormControl = new FormControl('', [
       Validators.required]);
 
+    this.categoriesFormControl = new FormControl('', [
+      Validators.required,
+    ]);
+
     this.workoutForm = this.formBuilder.group({
       titleFormControl: this.titleFormControl,
-      authorFormControl: this.authorFormControl,
       descriptionFormControl: this.descriptionFormControl,
-      routinesFormControl: this.routinesFormControl
+      routinesFormControl: this.routinesFormControl,
+      categoriesFormControl: this.categoriesFormControl,
     });
 
     this.routines = new Array<Routine>();
@@ -91,6 +93,14 @@ export class CreateWorkoutFormComponent implements OnInit {
           this.routines.push(newRoutine);
         });
     });
+
+    // tslint:disable-next-line:forin
+    for (const enumMember in Category) {
+       const isValueProperty = parseInt(enumMember, 10) >= 0;
+       if (isValueProperty) {
+          this.categories.push(Category[enumMember]);
+       }
+    }
   }
 
   showCreateRoutineForm(permission) {
@@ -111,16 +121,15 @@ export class CreateWorkoutFormComponent implements OnInit {
   onSubmit(title: string,
     author: string,
     createdOn: number,
-    category: Category,
+    category: string,
     routines: Array<Routine>,
     description: string,
     image: string,
     comments?: Array<string>) {
           title = this.workout.title;
           author = this.auth.currentUserDisplayName;
-          console.log(this.auth.currentUserDisplayName);
-          routines = this.routines;
-          category = this.category;
+          routines = this.workout.routines;
+          category = this.workout.category.toString();
           createdOn = Date.now();
           description = this.workout.description;
           comments = this.workout.comments;

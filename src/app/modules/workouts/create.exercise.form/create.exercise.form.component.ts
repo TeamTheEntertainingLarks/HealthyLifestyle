@@ -23,7 +23,7 @@ export class CreateExerciseFform implements OnInit {
   private auth: AuthService;
   private uploadService: UploadService;
   public selectedFiles: FileList;
-  public workoutForm: FormGroup;
+  public exerciseForm: FormGroup;
   public nameFormControl: AbstractControl;
   public imageFormControl: AbstractControl;
 
@@ -46,10 +46,12 @@ export class CreateExerciseFform implements OnInit {
     this.nameFormControl = new FormControl('', [
       Validators.required]);
 
+      // TODO fix the image validation
     this.imageFormControl = new FormControl('', [
-      Validators.required]);
+      //Validators.required
+    ]);
 
-    this.workoutForm = this.formBuilder.group({
+    this.exerciseForm = this.formBuilder.group({
       nameFormControl: this.nameFormControl,
       imageFormControl: this.imageFormControl,
     });
