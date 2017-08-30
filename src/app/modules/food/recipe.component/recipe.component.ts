@@ -21,6 +21,8 @@ export class RecipeComponent implements OnInit {
 
     recipeKey: string;
 
+    starsCount: number;
+
     constructor(private route: ActivatedRoute,
         recipeDataService: RecipeData,
         auth: AuthService) {
@@ -29,6 +31,7 @@ export class RecipeComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.starsCount = 3.5;
         this.route.params
             .subscribe(params => {
                 this.recipeDataService.getRecipeById(params.id)

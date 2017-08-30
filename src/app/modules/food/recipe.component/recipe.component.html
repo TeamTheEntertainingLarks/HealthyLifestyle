@@ -12,9 +12,13 @@
                         <md-icon>add_circle_outline</md-icon>
                         <span>Create Recipe</span>
                 </button>
-                <button md-menu-item *ngIf="isAuthenticated()" routerLink=".">
+                <button md-menu-item *ngIf="isAuthenticated()" routerLink="/activities/create">
                         <md-icon>add_circle_outline</md-icon>
                         <span>Create Activity</span>
+                </button>
+                <button md-menu-item *ngIf="isAuthenticated()" routerLink="/workouts/create">
+                        <md-icon>add_circle_outline</md-icon>
+                        <span>Create Workout</span>
                 </button>
         </md-menu>
 </div>
@@ -23,6 +27,7 @@
                 <img md-card-image src="{{recipe?.image}}" alt="recipe-image">
                 <md-card-content>
                         <p class="title">{{recipe?.title}}</p>
+                        <rating [(ngModel)]="starsCount" [max]="10" [float]="true" [readonly]="true"></rating>
                         <p>by {{recipe?.author}} <strong>|</strong> on {{recipe?.createdOn | date}}</p>
                         <p>category {{recipe?.category}}</p>
                         <p><em>{{recipe?.description}}</em></p>
@@ -76,7 +81,7 @@
                                         </md-card-header>
                                         <md-card-content>
                                                 <p>
-                                                       {{comment.textComment}}
+                                                        {{comment.textComment}}
                                                 </p>
                                         </md-card-content>
                                 </md-card>

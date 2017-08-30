@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { MdButtonModule, MdCheckboxModule, MdCardModule, MdIconModule, MdGridListModule, MdSelectModule } from '@angular/material';
 import { MdInputModule, MdMenuModule, MdAutocompleteModule, MD_PLACEHOLDER_GLOBAL_OPTIONS } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RatingModule } from 'ngx-rating';
 
 import { RecipesRoutesModule } from './recipes.routes.module';
 
@@ -31,7 +32,8 @@ import { ZoomImageDirective } from './../../directives/zoom-image.directive';
         ReactiveFormsModule,
         MdSelectModule,
         MdMenuModule,
-        MdAutocompleteModule
+        MdAutocompleteModule,
+        RatingModule
     ],
     declarations: [
         RecipeComponent,
