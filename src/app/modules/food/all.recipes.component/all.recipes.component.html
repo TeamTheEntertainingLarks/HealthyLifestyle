@@ -55,7 +55,7 @@
         </md-autocomplete>
     </div>
     <md-card *ngFor="let recipe of (recipes | sort:order:path | search:searchWord)" class="recipe-container">
-        <img appZoomImage md-card-image src="{{recipe.image}}" alt="recipe-image">
+        <a routerLink="/recipes/{{recipe.$key}}"><img appZoomImage md-card-image src="{{recipe.image}}" alt="recipe-image"></a>
         <md-card-content>
             <h3><a routerLink="/recipes/{{recipe.$key}}">{{recipe.title}}</a></h3>
             <p class="createdOn">
@@ -75,10 +75,10 @@
                 <md-icon>favorite</md-icon>
                 Add to Favorites
             </button>
-            <button md-button (click)="openDialog()">
+            <!-- <button md-button (click)="openDialog()">
                 <md-icon>share</md-icon>
                 Share
-            </button>
+            </button> -->
         </md-card-actions>
     </md-card>
 </div>

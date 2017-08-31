@@ -2,7 +2,7 @@ import { ModelFactory } from './../../../services/factories/model.factory';
 import { ModelFactoryInterface } from './../../../services/factories/interfaces/model.factory';
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { MdDialog, MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
+// import { MdDialog, MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
 import 'rxjs/add/operator/startWith';
 import 'rxjs/add/operator/map';
 
@@ -10,7 +10,7 @@ import { RecipeInterface } from '../../../interfaces/recipe';
 import { RecipeData } from '../../../services/recipe-data.service';
 import { AppComponent } from '../../../app.component';
 import { AuthService } from '../../../services/auth.service';
-import { RecipeDialogComponent } from '../recipe.dialog.component/recipe.dialog.component';
+// import { RecipeDialogComponent } from '../recipe.dialog.component/recipe.dialog.component';
 
 @Component({
     selector: 'app-recipes',
@@ -40,9 +40,9 @@ export class RecipesAllComponent implements OnInit {
 
     constructor(
         recipeDataService: RecipeData,
+        // public dialog: MdDialog,
         factory: ModelFactory,
-        auth: AuthService,
-        public dialog: MdDialog) {
+        auth: AuthService) {
         this.factory = factory;
         this.recipeDataService = recipeDataService;
         this.auth = auth;
@@ -78,7 +78,7 @@ export class RecipesAllComponent implements OnInit {
             : this.categories;
     }
 
-    openDialog() {
-        this.dialog.open(RecipeDialogComponent, { width: '550px' });
-    }
+    // openDialog() {
+    //     this.dialog.open(RecipeDialogComponent, { width: '550px' });
+    // }
 }
