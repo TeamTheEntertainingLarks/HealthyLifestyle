@@ -2,28 +2,26 @@ import { Injectable } from '@angular/core';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import { Upload } from './upload';
 import * as firebase from 'firebase';
+import { NotificationService } from '../../notification.service';
 
 @Injectable()
 export class UploadService {
-  constructor(private db: AngularFireDatabase) { }
+  constructor(
+    private db: AngularFireDatabase,
+    private notificationService: NotificationService) { }
 
   uploads: FirebaseListObservable<Upload[]>;
-  private usersPath = '/images/users';
-  private recipesPath = 'images/recipes';
-  private activitiesPath = '';
-  private workoutsPath = '';
 
-  uploadUserProfileImage(userId: string, path: string, upload: Upload) {
+  uploadFile(storagePath: string, path: string, upload: Upload) {
     const storageRef = firebase.storage().ref();
-    const uploadTask = storageRef.child(`${this.usersPath}/${userId}/${upload.file.name}`)
-      .put(upload.file);
+    const uploadTask = storageRef.child(`${storagePath}/${upload.file.name}`).put(upload.file);
 
     uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED,
       () => {
         upload.progress = (uploadTask.snapshot.bytesTransferred / uploadTask.snapshot.totalBytes) * 100;
       },
       (error) => {
-        console.log(error);
+        this.notificationService.popToast('error', 'Ooops!', error.message);
       },
       () => {
         upload.url = uploadTask.snapshot.downloadURL;
@@ -32,31 +30,33 @@ export class UploadService {
       });
   }
 
-  // getProfileImageUrl(userId: string) {
-  //   const userStorageRef = firebase.storage().ref().child('images/users/' + userId + '_image.jpg');
-  //   userStorageRef.getDownloadURL().then(url => {
-
-  //   });
-  // }
-
   private saveFileData(path: string, upload: Upload) {
-    this.db.object(`${path}/`).set(upload);
+    this.db.object(path).set(upload);
   }
 
-  // deleteUpload(path: string, upload: Upload) {
-  //   this.deleteFileData(path, upload.$key)
-  //     .then(() => {
-  //       this.deleteFileStorage(upload.name);
-  //     })
-  //     .catch(error => console.log(error));
-  // }
+  deleteFileStorage(storagePath: string, name: string) {
+    const storageRef = firebase.storage().ref();
+    storageRef.child(`${storagePath}/${name}`).delete();
+  }
 
-  // private deleteFileData(path: string, key: string) {
-  //   return this.db.list(`${this.basePath}/`).remove(key);
-  // }
+  /**
+   getProfileImageUrl(userId: string) {
+     const userStorageRef = firebase.storage().ref().child('images/users/' + userId + '_image.jpg');
+     userStorageRef.getDownloadURL().then(url => {
+     });
+   }
 
-  // private deleteFileStorage(name: string) {
-  //   const storageRef = firebase.storage().ref();
-  //   storageRef.child(`${this.basePath}/${name}`).delete();
-  // }
+   deleteUpload(path: string, upload: Upload) {
+     this.deleteFileData(path, upload.$key)
+       .then(() => {
+         this.deleteFileStorage(upload.name);
+       })
+       .catch(error => console.log(error));
+   }
+
+   private deleteFileData(path: string, key: string) {
+     return this.db.list(`${this.basePath}/`).remove(key);
+   }
+   */
+
 }

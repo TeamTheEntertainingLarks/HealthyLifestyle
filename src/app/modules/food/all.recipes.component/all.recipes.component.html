@@ -37,33 +37,49 @@
                 <md-icon>add_circle_outline</md-icon>
                 <span>Create Recipe</span>
             </button>
-            <button md-menu-item *ngIf="isAuthenticated()" routerLink=".">
+            <button md-menu-item *ngIf="isAuthenticated()" routerLink="/activities/create">
                 <md-icon>add_circle_outline</md-icon>
                 <span>Create Activity</span>
             </button>
+            <button md-menu-item *ngIf="isAuthenticated()" routerLink="/workouts/create">
+                <md-icon>add_circle_outline</md-icon>
+                <span>Create Workout</span>
+            </button>
         </md-menu>
-        <input type="text" [(ngModel)]="searchWord" class="form-control" placeholder="Search for ...">    
+        <input mdInput type="text" placeholder="Search for..." [mdAutocomplete]="auto" [formControl]="categoryCtrl" [(ngModel)]="searchWord"
+            class="form-control">
+        <md-autocomplete #auto="mdAutocomplete">
+            <md-option *ngFor="let category of filteredCategories | async" [value]="category">
+                {{ category }}
+            </md-option>
+        </md-autocomplete>
     </div>
     <md-card *ngFor="let recipe of (recipes | sort:order:path | search:searchWord)" class="recipe-container">
-        <img md-card-image src="{{recipe.image}}" alt="recipe-image">
+        <a routerLink="/recipes/{{recipe.$key}}"><img appZoomImage md-card-image src="{{recipe.image}}" alt="recipe-image"></a>
         <md-card-content>
             <h3><a routerLink="/recipes/{{recipe.$key}}">{{recipe.title}}</a></h3>
             <p class="createdOn">
                 <span>{{recipe.createdOn | date}}</span>
             </p>
+            <rating [(ngModel)]="starsCount" [max]="10" [float]="true" [readonly]="true"></rating>
             <p>
-                <span>{{recipe.description}}</span>
+                <span><em>{{recipe.description}}</em></span>
             </p>
         </md-card-content>
         <md-card-actions *ngIf="isAuthenticated()">
             <button md-button>
-                    <md-icon>star_rate</md-icon>
-                    Like
-                </button>
+                <md-icon>star_rate</md-icon>
+                Like
+            </button>
             <button md-button>
-                     <md-icon>favorite</md-icon>
-                    Add to Favorites
-                </button>
+                <md-icon>favorite</md-icon>
+                Add to Favorites
+            </button>
+            <!-- <button md-button (click)="openDialog()">
+                <md-icon>share</md-icon>
+                Share
+            </button> -->
         </md-card-actions>
     </md-card>
 </div>
+

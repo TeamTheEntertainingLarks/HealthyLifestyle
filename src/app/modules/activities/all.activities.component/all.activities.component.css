@@ -1,0 +1,69 @@
+.container {
+    padding: 0 100px;
+}
+
+.activity-container {
+    margin: 50px 0;
+    border: solid 2px #636363;
+    border-radius: 5px;
+    overflow: hidden;
+    font-size: 1.2em;
+    width: 50%;
+    height: 50%;
+}
+
+.settings-btn {
+    position: absolute;
+    right: 0;
+}
+
+.settings-btn md-icon {
+    font-size:40px;
+    height:40px;
+    width: 40px;
+}
+
+.activity-container button {
+    font-size: 0.8em;
+    border-radius: 5px; 
+    margin-right: 10px;
+}
+
+
+md-card md-icon {
+    color: #96c421;
+}
+
+a {
+    text-decoration: none;
+    cursor: pointer;
+    color: #636363;
+    font-weight: bold;
+}
+
+a:hover {
+     text-decoration: underline; 
+}
+
+input[type=text]{
+    padding: 10px;
+    font-size: 14px;
+    border-radius: 5px;
+}
+
+.subnav{
+    text-align: right;
+    clear: both;	
+}
+md-card-content{
+    margin-top: 25px; 
+}
+
+md-card-content p{
+    margin-top: 25px;
+}
+
+agm-map {
+    height: 300px;
+  }
+  

@@ -8,6 +8,7 @@ import { RecipeInterface } from '../../../interfaces/recipe';
 import { ModelFactory } from './../../../services/factories/model.factory';
 import { ModelFactoryInterface } from './../../../services/factories/interfaces/model.factory';
 import { AuthService } from '../../../services/auth.service';
+import { NotificationService } from '../../../services/notification.service';
 
 @Component({
   selector: 'app-create.resipe.form',
@@ -25,6 +26,7 @@ export class CreateFormComponent implements OnInit {
 
   public title: string;
   public author: string;
+  public userId: string;
   public category: string;
   public createdOn: number;
   public description: string;
@@ -34,7 +36,6 @@ export class CreateFormComponent implements OnInit {
   public step3: string;
   public image: string;
   public comments: any;
-  public userId: any;
 
   categories = ['breakfast', 'soups', 'salads', 'desserts', 'breads', 'main dishes', 'side dishes'];
 
@@ -50,17 +51,18 @@ export class CreateFormComponent implements OnInit {
   public stepThirdFormControl: AbstractControl;
   public imageFormControl: AbstractControl;
 
-   constructor(
+  constructor(
     private router: Router,
     recipeDataService: RecipeData,
     factory: ModelFactory,
     auth: AuthService,
+    private notificationService: NotificationService,
     private formBuilder: FormBuilder) {
     this.factory = factory;
     this.recipeDataService = recipeDataService;
     this.auth = auth;
     this.recipe = new Recipe();
-}
+  }
 
   ngOnInit(): void {
     this.titleFormControl = new FormControl('', [
@@ -103,6 +105,7 @@ export class CreateFormComponent implements OnInit {
 
   onSubmit(title: string,
     author: string,
+    userId: string,
     category: string,
     createdOn: number,
     description: string,
@@ -112,27 +115,29 @@ export class CreateFormComponent implements OnInit {
     step3: string,
     image: string,
     comments?: Array<string>) {
-          title = this.recipe.title;
-          author = this.recipe.author;
-          category = this.recipe.category;
-          createdOn = Date.now();
-          description = this.recipe.description;
-          ingradients = this.recipe.ingradients;
-          step1 = this.recipe.step1;
-          step2 = this.recipe.step2;
-          step3 = this.recipe.step3;
-          image = this.recipe.image;
-          comments = this.recipe.comments;
-          this.userId = this.auth.currentUser.uid;
-           //  const userId = firebase.auth().currentUser.uid;
+    title = this.recipe.title;
+    author = this.auth.currentUser.displayName;
+    userId = this.auth.currentUser.uid;
+    category = this.recipe.category;
+    createdOn = Date.now();
+    description = this.recipe.description;
+    ingradients = this.recipe.ingradients;
+    step1 = this.recipe.step1;
+    step2 = this.recipe.step2;
+    step3 = this.recipe.step3;
+    image = this.recipe.image;
+    comments = this.recipe.comments;
 
-          console.log(this.recipe.ingradients);
-          const arrayIngredients = this.recipe.ingradients.trim().split(/[,]+/);
+    const arrayIngredients = this.recipe.ingradients.trim().split(/[,]+/);
 
-      this.recipe = this.factory
-      .createRecipe(title, author, category, createdOn, description, arrayIngredients, step1, step2, step3, image, comments);
-      this.recipeDataService.add(this.recipe);
+    this.recipe = this.factory
+      .createRecipe(title, author, userId, category, createdOn, description, arrayIngredients, step1, step2, step3, image, comments);
+    this.recipeDataService.add(this.recipe);
+    this.notificationService.popToast('info', 'Success!', 'Your recipe was added successfully!');
 
-      this.router.navigate(['recipes']);
+    console.log(this.recipe);
+    console.log(this.auth.currentUser);
+
+    this.router.navigate(['recipes']);
   }
 }

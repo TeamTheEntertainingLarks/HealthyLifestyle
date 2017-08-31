@@ -1,3 +1,4 @@
+import { Activity } from './../../models/activity';
 import { Exercise } from './../../models/exercise';
 import { Routine } from './../../models/routine';
 import { Injectable } from '@angular/core';
@@ -14,6 +15,7 @@ export class ModelFactory implements ModelFactoryInterface {
     createRecipe(
         title: string,
         author: string,
+        userId: string,
         category: string,
         createdOn: number,
         description: string,
@@ -22,12 +24,23 @@ export class ModelFactory implements ModelFactoryInterface {
         step2: string,
         step3: string,
         image: string,
-        comments?: Array<string>) {
-        return new Recipe(title, author, category, createdOn, description, ingradients, step1, step2, step3, image, comments);
+        comments?: any) {
+        return new Recipe(title, author, userId, category, createdOn, description, ingradients, step1, step2, step3, image, comments);
     }
 
-    createActivity() {
-        // TODO: Implement activity class
+    createActivity(
+        userdId: string,
+        title: string,
+        author: string,
+        category: string,
+        description: string,
+        location: object,
+        eventDate: string,
+        createdOn: number,
+        image: any,
+        participants?: Array<any>,
+        comments?: Array<string>) {
+        return new Activity(userdId, title, author, category, description, location, eventDate, createdOn, image, participants, comments);
     }
 
     createArticle() {
@@ -38,7 +51,7 @@ export class ModelFactory implements ModelFactoryInterface {
         title: string,
         author: string,
         createdOn: number,
-        category: Category,
+        category: string,
         routines: Array<Routine>,
         description: string,
         comments: Array<string>) {
@@ -51,6 +64,10 @@ export class ModelFactory implements ModelFactoryInterface {
         series: number,
         restingTime: number) {
         return new Routine(exercise, repeatTimes, series, restingTime);
+    }
+
+    createExercise(name: string) {
+        return new Exercise(name);
     }
 
     createUser(

@@ -1,9 +1,10 @@
+import { Exercise } from './../models/exercise';
 import { Routine } from './../models/routine';
 import { Workout } from './../models/workout';
 import { WorkoutInterface } from './../interfaces/workout';
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
-import { Category } from "../enums/workoutCategories";
+import { Category } from '../enums/workoutCategories';
 
 @Injectable()
 export class WorkoutData {
@@ -36,22 +37,35 @@ export class WorkoutData {
             .then(_ => console.log('routine added'))
             .catch(err => console.log(err, 'err when adding routine'));
     }
-    getAvailableRoutines(category: Category) {
-        const routines = this.db.list('routines', {
+
+    addExercise(exercise: Exercise): void {
+        this.db.list('/workouts/exercises').push(exercise)
+            .then(_ => console.log('exercise added'))
+            .catch(err => console.log(err, 'err when adding exercise'));
+    }
+
+    getExerciseSnapshot(name: string) {
+        const exercises = this.db.list('/workouts/exercises', {
             preserveSnapshot: true,
         });
 
-        const avaialableRoutines: Array<Routine> = new Array<Routine>();
-
-        routines.subscribe( snapshot => {
-            snapshot.forEach(routine => {
-                if (routine.val().category === category) {
-                    avaialableRoutines.push(routine.val());
+        let item: any;
+        exercises.subscribe(snapshots => {
+            snapshots.forEach(snapshot => {
+                if (snapshot.val().name === name) {
+                    item = snapshot;
                 }
             });
         });
 
-        return avaialableRoutines;
+        return item;
+    }
+    getAvailableRoutines() {
+        return this.db.list('/workouts/routines');
+    }
+
+    getAvailableExercises() {
+        return this.db.list('/workouts/exercises');
     }
     getWorkoutByTitle(title: string) {
         const items = this.db.list('workouts', {

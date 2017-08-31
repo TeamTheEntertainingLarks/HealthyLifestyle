@@ -1,8 +1,9 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div id="wrapper">
   <app-nav></app-nav>
-  <div id="content">    
+  <div id="content">
+    <toaster-container [toasterconfig]="toasterconfig"></toaster-container>
     <router-outlet></router-outlet>
   </div>
-  <footer>Copiright 2017</footer>
+  <app-footer></app-footer>
 </div>

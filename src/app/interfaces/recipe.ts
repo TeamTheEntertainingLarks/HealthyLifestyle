@@ -1,6 +1,7 @@
 export interface RecipeInterface {
     title: string;
     author: string;
+    userId: string;
     category: string;
     createdOn: number;
     description: string;
@@ -9,5 +10,5 @@ export interface RecipeInterface {
     step2: string;
     step3: string;
     image: string;
-    comments?: Array<string>;
+    comments?: any;
 }

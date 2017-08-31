@@ -35,7 +35,15 @@ export class UserData {
             .catch(error => console.log(error));
     }
 
-    private update(userId: number, data: object): void {
+    set(userId: string, data: object) {
+        const path = `users/${userId}`;
+
+        this.db.object(path)
+            .set(data)
+            .catch(error => console.log(error));
+    }
+
+    update(userId: string, data: object): void {
         const path = `users/${userId}`;
 
         this.db.object(path)
@@ -44,8 +52,7 @@ export class UserData {
     }
 
     getUserByUid(userId: string) {
-        const path = `users/${userId}`;
-        return this.db.object(path);
+        return this.db.object(`users/${userId}`);
     }
 
     getUserProfileImageUrl(userId: string) {

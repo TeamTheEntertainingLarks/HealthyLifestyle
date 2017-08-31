@@ -1,14 +1,13 @@
+import { NotificationService } from './notification.service';
 import { UserInterface } from './../interfaces/user';
 import { UserData } from './user-data.service';
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
-import { Observable } from 'rxjs/Observable';
 import { Router } from '@angular/router';
-import * as firebase from 'firebase/app';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { EventEmitter } from 'events';
 import { Subject } from 'rxjs/Subject';
+import { LOCALSTORAGE_AUTH_KEY_NAME, LOCALSTORAGE_EMAIL_KEY_NAME } from '../common/constants';
+import { ToasterService } from 'angular2-toaster/angular2-toaster';
 
 @Injectable()
 export class AuthService {
@@ -19,7 +18,8 @@ export class AuthService {
         private afAuth: AngularFireAuth,
         private db: AngularFireDatabase,
         private router: Router,
-        private userData: UserData) {
+        private userData: UserData,
+        private notificationService: NotificationService) {
 
         this.afAuth.authState.subscribe((auth) => {
             this.authState = auth;
@@ -33,10 +33,6 @@ export class AuthService {
 
     get currentUser(): any {
         return this.isAuthenticated ? this.authState : null;
-    }
-
-    get currentUserObservable(): any {
-        return this.afAuth.authState;
     }
 
     get currentUserId(): string {
@@ -62,31 +58,56 @@ export class AuthService {
             .then((user) => {
                 user.updateProfile({ displayName: `${model.firstName} ${model.lastName}` });
                 this.authState = user;
+            })
+            .then(() => {
                 this.userData.add(this.currentUserId, model);
                 this.router.navigateByUrl('/');
             })
-            .catch(error => console.log(error));
+            .catch((error) => this.notificationService.popToast('error', 'Ooops!', error.message));
     }
 
     emailLogin(email: string, password: string) {
         return this.afAuth.auth.signInWithEmailAndPassword(email, password)
             .then((user) => {
                 this.authState = user;
+                localStorage.setItem(LOCALSTORAGE_AUTH_KEY_NAME, user.uid);
+                localStorage.setItem(LOCALSTORAGE_EMAIL_KEY_NAME, user.email);
+                this.notificationService.popToast('success', 'Success!', 'You have logged successfully!');
                 this.router.navigateByUrl('/user/profile');
             })
-            .catch(error => console.log(error));
+            .catch((error) => {
+                this.notificationService.popToast('error', 'Ooops!', error.message);
+            });
     }
 
     resetPassword(email: string) {
         const fbAuth = firebase.auth();
 
         return fbAuth.sendPasswordResetEmail(email)
-            .then(() => console.log('email sent'))
-            .catch((error) => console.log(error));
+            .then(() => {
+                this.notificationService.popToast('success', 'Success!', 'Email with verification was send to your email');
+                this.signOut();
+            })
+            .catch((error) => this.notificationService.popToast('error', 'Ooops!', error.message));
+    }
+
+    changeEmail(oldEmail: string, newEmail: string, password: string) {
+        this.afAuth.auth.signInWithEmailAndPassword(oldEmail, password)
+            .then((user) => {
+                user.updateEmail(newEmail);
+                this.userData.update(this.currentUserId, { email: newEmail });
+            })
+            .catch((error) => this.notificationService.popToast('error', 'Ooops!', error.message));
+
     }
 
     signOut(): void {
-        this.afAuth.auth.signOut();
-        this.router.navigate(['/']);
+        this.afAuth.auth.signOut()
+            .then(() => {
+                localStorage.removeItem(LOCALSTORAGE_AUTH_KEY_NAME);
+                localStorage.removeItem(LOCALSTORAGE_EMAIL_KEY_NAME);
+                this.notificationService.popToast('info', 'Success!', 'You have logged out! Cya!');
+                this.router.navigate(['/']);
+            });
     }
 }

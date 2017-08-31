@@ -1,0 +1,105 @@
+<div class="container">
+    <div class="subnav">
+        <button md-button [mdMenuTriggerFor]="byTitle">
+            <md-icon>sort</md-icon>
+            Order by Title
+        </button>
+        <md-menu #byTitle="mdMenu">
+            <button md-menu-item (click)="orderBy('title', -1)">
+                    <md-icon>arrow_upward</md-icon>
+                      <span>Order Ascending</span>
+                    </button>
+            <button md-menu-item (click)="orderBy('title', 1)">
+                    <md-icon>arrow_downward</md-icon>
+                    <span>Order Descending</span>
+            </button>
+        </md-menu>
+        <button md-button [mdMenuTriggerFor]="byDate">
+            <md-icon>sort</md-icon>
+            Order by Date
+        </button>
+        <md-menu #byDate="mdMenu">
+            <button md-menu-item (click)="orderBy('createdOn', -1)">
+                      <md-icon>arrow_upward</md-icon>
+                      <span>Order Ascending</span>
+                    </button>
+            <button md-menu-item (click)="orderBy('createdOn', 1)">
+                      <md-icon>arrow_downward</md-icon>
+                      <span>Order Descending</span>
+                    </button>
+        </md-menu>
+        <button md-button [mdMenuTriggerFor]="create">
+                <md-icon>add</md-icon>
+                Create
+        </button>
+        <md-menu #create="mdMenu">
+            <button md-menu-item *ngIf="isAuthenticated()" routerLink="/recipes/create">
+                <md-icon>add_circle_outline</md-icon>
+                <span>Create Recipe</span>
+            </button>
+            <button md-menu-item *ngIf="isAuthenticated()" routerLink="/activities/create">
+                <md-icon>add_circle_outline</md-icon>
+                <span>Create Activity</span>
+            </button>
+            <button md-menu-item *ngIf="isAuthenticated()" routerLink="/workouts/create">
+                <md-icon>add_circle_outline</md-icon>
+                <span>Create Workout</span>
+            </button>
+        </md-menu>
+        <!-- <input mdInput type="text" placeholder="Search for..." [mdAutocomplete]="auto" [formControl]="categoryCtrl" [(ngModel)]="searchWord"
+            class="form-control">
+        <md-autocomplete #auto="mdAutocomplete">
+            <md-option *ngFor="let category of filteredCategories | async" [value]="category">
+                {{ category }}
+            </md-option>
+        </md-autocomplete> -->
+    </div>
+    <md-card *ngFor="let activity of activities | async" class="activity-container">
+
+        <img class="activity-image" md-card-image src="{{activity.image.url}}" alt="activity-image">
+        <md-card-content>
+            <h3><a #navigate routerLink="/activities/{{activity.$key}}">{{activity.title}}</a></h3>
+            <p class="createdOn">
+                <span>{{activity.createdOn | date}}</span>
+            </p>
+            <p class="eventDate">
+                <span>{{activity.eventDate | date:'medium'}}</span>
+            </p>
+            <p>
+                <span><md-icon>place</md-icon>{{activity.location.place}}</span>
+            </p>
+            <p>
+                <agm-map [latitude]="activity.location.lat" [longitude]="activity.location.lng">
+                    <agm-marker [latitude]="activity.location.lat" [longitude]="activity.location.lng"></agm-marker>
+                </agm-map>
+            </p>
+            <p>
+                <span><em>{{activity.category}}</em></span>
+            </p>
+            <p>
+                <span><em>{{activity.description}}</em></span>
+            </p>
+        </md-card-content>
+        <md-card-actions *ngIf="isAuthenticated()">
+            <button md-button>
+                <md-icon>star_rate</md-icon>
+                Like
+            </button>
+            <button md-button>
+                <md-icon>group</md-icon>
+                Participate
+            </button>
+            <button md-button>
+                <md-icon>share</md-icon>
+                Share
+            </button>
+            <button md-button [mdMenuTriggerFor]="settings" class="settings-btn" *ngIf=isAuthor(activity.userId)>
+                    <md-icon>settings</md-icon>
+                </button>
+            <md-menu class="settings-menu" #settings="mdMenu">
+                <button md-menu-item (click)="navigate.click()"><md-icon>edit</md-icon> Edit</button>
+                <button md-menu-item (click)="delete()"><md-icon>delete</md-icon> Delete</button>
+            </md-menu>
+        </md-card-actions>
+    </md-card>
+</div>

@@ -1,3 +1,5 @@
+import { ActivityInterface } from './../../../interfaces/activity';
+import { ExerciseInterface } from './../../../interfaces/exercise';
 import { Routine } from './../../../models/routine';
 import { UserInterface } from './../../../interfaces/user';
 import { RecipeInterface } from './../../../interfaces/recipe';
@@ -8,6 +10,7 @@ export interface ModelFactoryInterface {
     createRecipe(
         title: string,
         author: string,
+        userId: string,
         category: string,
         createdOn: number,
         description: string,
@@ -16,9 +19,20 @@ export interface ModelFactoryInterface {
         step2: string,
         step3: string,
         image: string,
-        comments?: Array<string>): RecipeInterface;
+        comments?: any): RecipeInterface;
 
-    createActivity();
+    createActivity(
+        userdId: string,
+        title: string,
+        author: string,
+        category: string,
+        description: string,
+        location: object,
+        eventDate: string,
+        createdOn: number,
+        image: any,
+        participants?: Array<any>,
+        comments?: Array<string>): ActivityInterface;
 
     createArticle();
 
@@ -26,7 +40,7 @@ export interface ModelFactoryInterface {
         title: string,
         author: string,
         createdOn: number,
-        category: Category,
+        category: string,
         routines: Array<Routine>,
         description: string,
         comments: Array<string>): WorkoutInterface;
@@ -38,4 +52,6 @@ export interface ModelFactoryInterface {
         email: string,
         isTrainer: boolean,
         profileImage: any): UserInterface;
+
+    createExercise(name: string): ExerciseInterface;
 }

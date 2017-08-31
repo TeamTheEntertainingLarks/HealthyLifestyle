@@ -1,23 +1,23 @@
 <h2>Create New Workout</h2>
 <form class="workout-form" #carAddForm="ngForm" (ngSubmit)="onSubmit()">
   <md-input-container class="form-control">
-    <input type="text" mdInput placeholder="Title" name="title" [(ngModel)]="workout.title" 
+    <input type="text" mdInput placeholder="Title" name="title" [(ngModel)]="workout.title" class="form-control"
       [formControl]="titleFormControl" required>
     <md-icon mdSuffix>mode_edit</md-icon>
-    <md-error *ngIf="titleFormControl.hasError('pattern')">
-      Please enter a valid title.
-    </md-error>
     <md-error *ngIf="titleFormControl.hasError('required')">
       Title is <strong>required</strong>
     </md-error>
   </md-input-container>
-  <md-select placeholder="Choose Routine" class="form-control" multiple name="routine" [(ngModel)]="workout.routines" [formControl]="routinesFormControl" required>
-    <md-option *ngFor="let routine of getAvailableRoutines()" [value]="routine">
-      {{routine}}
+  <md-select placeholder="Choose Routine" class="form-control" multiple name="routine" [(ngModel)]="workout.routines" 
+    [formControl]="routinesFormControl" required>
+    <md-option *ngFor="let routine of routines" [value]="routine">
+      {{routine.exercise.name + ' ' + routine.repeatTimes + 'x' + routine.seriesCount}}
     </md-option>
   </md-select>
+  <button type="button" class="success routine" md-raised-button (click)='openDialog()'>Add a routine</button>
   <md-input-container class="form-control">
-    <textarea mdInput placeholder="Short Description" name="description" #description maxlength="256" [(ngModel)]="workout.description" [formControl]="descriptionFormControl" required></textarea>
+    <textarea mdInput placeholder="Short Description" name="description" #description maxlength="256" 
+      [(ngModel)]="workout.description" [formControl]="descriptionFormControl" required></textarea>
     <md-hint align="end">{{description.value.length}} / 256</md-hint>
     <md-error *ngIf="descriptionFormControl.hasError('pattern')">
       Please enter a valid description.
@@ -26,6 +26,11 @@
       Description is <strong>required</strong>
     </md-error>
   </md-input-container>
-  <button type="submit" md-raised-button>Create Workout</button>
+  <md-select placeholder="Choose Category" class="form-control" name="category" [(ngModel)]="workout.category" 
+    [formControl]="categoriesFormControl" required>
+    <md-option *ngFor="let category of categories" [value]="category">
+      {{ category }}
+    </md-option>
+  </md-select>
+  <button type="submit" [disabled]="!workoutForm.valid" class="success" md-raised-button>Create Workout</button>
 </form>
-<app-create-routine></app-create-routine>
