@@ -81,13 +81,17 @@ rating {
   float: right;
 }
 
-.comments span{
+.comments span {
   display: inline-block;
-  color: #95C420;
-  border: 2px solid #95C420; 
-  width: 20px;
+  color: #86AF1D;
+  background-color: #E0E0E0;
+  width: 35px;
 	height: 20px;
-	-moz-border-radius: 10px;
-	-webkit-border-radius: 10px;
-	border-radius: 10px;
+	-moz-border-radius: 100px / 50px;
+	-webkit-border-radius: 100px / 50px;
+  border-radius: 100px / 50px;
+  text-align: center;
+  margin-left: 10px;
+  margin-bottom: 5px;
+  font-size: 15px;
 }
