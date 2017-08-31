@@ -11,7 +11,8 @@
     </md-error>
   </md-input-container>
   <md-input-container class="form-control">
-    <input type="text" mdInput placeholder="Image URL" name="image" [(ngModel)]="recipe.image" [formControl]="imageFormControl" required>
+    <input type="text" mdInput placeholder="Image URL" name="image" [(ngModel)]="recipe.image" [formControl]="imageFormControl"
+      required>
     <md-icon mdSuffix>mode_edit</md-icon>
     <md-error *ngIf="imageFormControl.hasError('pattern')">
       Please enter a valid image adress.
@@ -21,19 +22,21 @@
     </md-error>
   </md-input-container>
   <img [src]="recipe.image" class=preview>
-  <md-select placeholder="Choose Category" class="form-control" name="category" [(ngModel)]="recipe.category" [formControl]="categoryFormControl" required>
+  <md-select placeholder="Choose Category" class="form-control" name="category" [(ngModel)]="recipe.category" [formControl]="categoryFormControl"
+    required>
     <md-option *ngFor="let category of categories" [value]="category">
       {{category}}
     </md-option>
     <md-error *ngIf="categoryFormControl.hasError('pattern')">
-    Please enter a valid category.
+      Please enter a valid category.
     </md-error>
     <md-error *ngIf="categoryFormControl.hasError('required')">
-    Category is <strong>required</strong>
+      Category is <strong>required</strong>
     </md-error>
-    </md-select>
+  </md-select>
   <md-input-container class="form-control">
-    <textarea mdInput placeholder="Short Description" name="description" #description maxlength="256" [(ngModel)]="recipe.description" [formControl]="descriptionFormControl" required></textarea>
+    <textarea mdInput placeholder="Short Description" name="description" #description maxlength="256" [(ngModel)]="recipe.description"
+      [formControl]="descriptionFormControl" required></textarea>
     <md-hint align="end">{{description.value.length}} / 256</md-hint>
     <md-error *ngIf="descriptionFormControl.hasError('pattern')">
       Please enter a valid description.
@@ -43,19 +46,21 @@
     </md-error>
   </md-input-container>
   <md-input-container class="form-control">
-      <input type="text" mdInput placeholder="Ingredients" name="ingradients" [(ngModel)]="recipe.ingradients" [formControl]="ingredientsFormControl" required>
-      <md-icon mdSuffix>mode_edit</md-icon>
-      <md-hint align="end">Enter ingredients separeted with comma</md-hint>
-      <md-error *ngIf="ingredientsFormControl.hasError('pattern')">
-        Please enter a valid ingredients.
-      </md-error>
-      <md-error *ngIf="ingredientsFormControl.hasError('required')">
-        Ingredients field is <strong>required</strong>
-      </md-error>
+    <input type="text" mdInput placeholder="Ingredients" name="ingradients" [(ngModel)]="recipe.ingradients" [formControl]="ingredientsFormControl"
+      required>
+    <md-icon mdSuffix>mode_edit</md-icon>
+    <md-hint align="end">Enter ingredients separeted with comma</md-hint>
+    <md-error *ngIf="ingredientsFormControl.hasError('pattern')">
+      Please enter a valid ingredients.
+    </md-error>
+    <md-error *ngIf="ingredientsFormControl.hasError('required')">
+      Ingredients field is <strong>required</strong>
+    </md-error>
   </md-input-container>
   <div>Steps How to Make the Recipe</div>
   <md-input-container class="form-control">
-    <input type="text" mdInput name="step1" [(ngModel)]="recipe.step1" placeholder="First Step" [formControl]="stepFirstFormControl" required>
+    <input type="text" mdInput name="step1" [(ngModel)]="recipe.step1" placeholder="First Step" [formControl]="stepFirstFormControl"
+      required>
     <md-icon mdSuffix>mode_edit</md-icon>
     <md-error *ngIf="stepFirstFormControl.hasError('pattern')">
       Please enter a valid step.
@@ -71,7 +76,7 @@
       Please enter a valid step.
     </md-error>
   </md-input-container>
-    <md-input-container class="form-control">
+  <md-input-container class="form-control">
     <input type="text" mdInput name="step3" [(ngModel)]="recipe.step3" placeholder="Third Step" [formControl]="stepThirdFormControl">
     <md-icon mdSuffix>mode_edit</md-icon>
     <md-error *ngIf="categoryFormControl.hasError('pattern')">
@@ -80,10 +85,3 @@
   </md-input-container>
   <button type="submit" [disabled]="!recipeAddForm.valid" md-raised-button>Create Recipe</button>
 </form>
-     
-      
-
-
-
-
- 

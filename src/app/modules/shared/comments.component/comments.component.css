@@ -1,15 +1,13 @@
 textarea {
   padding: 10px;
   border: 2px solid gray;
-  width: 70%;
+  width: 97%;
 }
 
 button {
   background-color: #95C420;
-  display: block;
-  float: right;
-  position: relative;
-  top: 50px;
+  /* position: relative;
+  top: 50px; */
 }
 
 .comments-form {
@@ -17,5 +15,13 @@ button {
 }
 
 div{
+  text-align: right;
+  color: #636363;
+  font-size: 10px;
   clear: both;
+}
+
+.btn{
+  text-align: right;
+  margin-top: 10px;
 }
