@@ -1,10 +1,98 @@
-<div class="container">
+<!-- <div class="container">
     <div class="sort-control">
         <button *ngIf="isAuthenticated()" routerLink="/workouts/create" md-raised-button>
                 Create Workout
         </button>
     </div>
+</div> -->
+<div class="container">
+    <div class="subnav">
+        <button md-button [mdMenuTriggerFor]="byTitle">
+            <md-icon>sort</md-icon>
+            Order by Title
+        </button>
+        <md-menu #byTitle="mdMenu">
+            <button md-menu-item (click)="orderBy('title', -1)">
+                    <md-icon>arrow_upward</md-icon>
+                      <span>Order Ascending</span>
+                    </button>
+            <button md-menu-item (click)="orderBy('title', 1)">
+                    <md-icon>arrow_downward</md-icon>
+                    <span>Order Descending</span>
+            </button>
+        </md-menu>
+        <button md-button [mdMenuTriggerFor]="byDate">
+            <md-icon>sort</md-icon>
+            Order by Date
+        </button>
+        <md-menu #byDate="mdMenu">
+            <button md-menu-item (click)="orderBy('createdOn', -1)">
+                      <md-icon>arrow_upward</md-icon>
+                      <span>Order Ascending</span>
+                    </button>
+            <button md-menu-item (click)="orderBy('createdOn', 1)">
+                      <md-icon>arrow_downward</md-icon>
+                      <span>Order Descending</span>
+                    </button>
+        </md-menu>
+        <button md-button [mdMenuTriggerFor]="create">
+                <md-icon>add</md-icon>
+                Create
+        </button>
+        <md-menu #create="mdMenu">
+            <button md-menu-item *ngIf="isAuthenticated()" routerLink="/recipes/create">
+                <md-icon>add_circle_outline</md-icon>
+                <span>Create Recipe</span>
+            </button>
+            <button md-menu-item *ngIf="isAuthenticated()" routerLink="/activities/create">
+                <md-icon>add_circle_outline</md-icon>
+                <span>Create Activity</span>
+            </button>
+            <button md-menu-item *ngIf="isAuthenticated()" routerLink="/workouts/create">
+                <md-icon>add_circle_outline</md-icon>
+                <span>Create Workout</span>
+            </button>
+        </md-menu>
+    </div>
 </div>
-<p>
-hi
-</p>
+    <div class="content">
+        <div class="week">
+            <div class="day">
+                <p>Day</p>
+                <p>Workout Name</p>
+            </div>
+            <div class="day">Day</div>
+            <div class="day">Day</div>
+            <div class="day">Day</div>
+            <div class="day">Day</div>
+            <div class="day">Day</div>
+            <div class="day">Day</div>
+        </div>
+        <div class="week">
+            <div class="day">Day</div>
+            <div class="day">Day</div>
+            <div class="day">Day</div>
+            <div class="day">Day</div>
+            <div class="day">Day</div>
+            <div class="day">Day</div>
+            <div class="day">Day</div>
+        </div>
+        <div class="week">
+            <div class="day">Day</div>
+            <div class="day">Day</div>
+            <div class="day">Day</div>
+            <div class="day">Day</div>
+            <div class="day">Day</div>
+            <div class="day">Day</div>
+            <div class="day">Day</div>
+        </div>
+        <div class="week">
+            <div class="day">Day</div>
+            <div class="day">Day</div>
+            <div class="day">Day</div>
+            <div class="day">Day</div>
+            <div class="day">Day</div>
+            <div class="day">Day</div>
+            <div class="day">Day</div>
+        </div>
+    </div>

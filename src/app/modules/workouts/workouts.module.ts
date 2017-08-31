@@ -10,7 +10,7 @@ import { CreateWorkoutFormComponent } from './create.workout.form/create.workout
 
 import {
   MdChipsModule, MdButtonModule, MdCheckboxModule, MdCardModule, MdInputModule,
-  MdIconModule, MdGridListModule, MdSelectModule, MdDialogModule
+  MdIconModule, MdGridListModule, MdSelectModule, MdDialogModule, MdMenuModule
 } from '@angular/material';
 import { MD_PLACEHOLDER_GLOBAL_OPTIONS } from '@angular/material';
 
@@ -32,7 +32,8 @@ import { CreateExerciseFform } from './create.exercise.form/create.exercise.form
     MdSelectModule,
     FormsModule,
     ReactiveFormsModule,
-    MdDialogModule
+    MdDialogModule,
+    MdMenuModule
   ],
   declarations: [
     WorkoutsComponent,

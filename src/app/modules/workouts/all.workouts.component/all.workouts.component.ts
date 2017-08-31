@@ -17,6 +17,8 @@ import { WorkoutInterface } from './../../../interfaces/workout';
 export class WorkoutsAllComponent implements OnInit {
 
     public recipe: WorkoutInterface;
+    public path: string;
+    public order: number; // 1 asc, -1 desc;
     public workouts: Array<WorkoutInterface>;
     private factory: ModelFactory;
     private workoutDataService: WorkoutData;
@@ -38,6 +40,12 @@ export class WorkoutsAllComponent implements OnInit {
         });
 
         return this.workouts;
+    }
+
+    orderBy(prop: string, num: number) {
+        this.path = prop;
+        this.order = num;
+        return false; // do not reload
     }
     isAuthenticated() {
       return this.auth.isAuthenticated;
