@@ -1,4 +1,4 @@
-import { ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Component, OnInit, Inject } from '@angular/core';
 import { MdDialog, MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
 
@@ -7,6 +7,7 @@ import { RecipeInterface } from '../../../interfaces/recipe';
 import { AppComponent } from '../../../app.component';
 import { AuthService } from '../../../services/auth.service';
 import { RecipeDialogComponent } from '../recipe.dialog.component/recipe.dialog.component';
+import { NotificationService } from '../../../services/notification.service';
 
 @Component({
     selector: 'app-recipe',
@@ -20,14 +21,16 @@ export class RecipeComponent implements OnInit {
 
     private recipeDataService: RecipeData;
     auth: AuthService;
-
     recipeKey: string;
+    commentsLength: number;
 
     starsCount: number;
 
     constructor(private route: ActivatedRoute,
+        private router: Router,
         recipeDataService: RecipeData,
         auth: AuthService,
+        private notificationService: NotificationService,
         public dialog: MdDialog) {
         this.recipeDataService = recipeDataService;
         this.auth = auth;
@@ -41,6 +44,7 @@ export class RecipeComponent implements OnInit {
                     .subscribe(recipe => {
                         this.recipe = recipe;
                         this.recipeKey = recipe.$key;
+                        this.commentsLength = this.recipe.comments.length;
                         console.log(recipe);
                     });
             });
@@ -59,6 +63,15 @@ export class RecipeComponent implements OnInit {
     }
 
     openDialog() {
-        this.dialog.open(RecipeDialogComponent, { width: '550px' });
+        this.dialog.open(RecipeDialogComponent, { width: '50%' });
+    }
+
+    remove() {
+        const recipeKey = this.route.snapshot.params['id'];
+        this.recipeDataService.removeRecipe(recipeKey);
+
+        this.notificationService.popToast('info', 'Success!', 'Your recipe was removed successfully!');
+
+        this.router.navigate(['recipes']);
     }
 }
