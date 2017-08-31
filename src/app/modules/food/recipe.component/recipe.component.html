@@ -71,8 +71,8 @@
         </div>
         <div class="comments">
                 <h3 class="comments-title">Comments</h3>
+                <span *ngIf="recipe?.comments">{{commentsLength}}</span>
                 <div *ngIf="recipe?.comments">
-                        <span>{{commentsLength}}</span>
                         <div *ngFor="let comment of recipe?.comments">
                                 <md-card class="comments-container">
                                         <md-card-header>

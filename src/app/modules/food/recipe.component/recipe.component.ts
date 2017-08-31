@@ -44,7 +44,9 @@ export class RecipeComponent implements OnInit {
                     .subscribe(recipe => {
                         this.recipe = recipe;
                         this.recipeKey = recipe.$key;
-                        this.commentsLength = this.recipe.comments.length;
+                        if (recipe.comments) {
+                            this.commentsLength = this.recipe.comments.length;
+                        }
                         console.log(recipe);
                     });
             });

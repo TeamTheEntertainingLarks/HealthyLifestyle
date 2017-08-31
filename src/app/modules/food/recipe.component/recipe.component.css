@@ -50,6 +50,7 @@ md-card-content p {
 
 h3 {
   color: #96c421;
+  display: inline-block;
 }
 
 p, li {
