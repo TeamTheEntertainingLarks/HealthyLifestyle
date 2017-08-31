@@ -1,7 +1,8 @@
 import { ModelFactory } from './../../../services/factories/model.factory';
 import { ModelFactoryInterface } from './../../../services/factories/interfaces/model.factory';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { MdDialog, MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
 import 'rxjs/add/operator/startWith';
 import 'rxjs/add/operator/map';
 
@@ -9,6 +10,7 @@ import { RecipeInterface } from '../../../interfaces/recipe';
 import { RecipeData } from '../../../services/recipe-data.service';
 import { AppComponent } from '../../../app.component';
 import { AuthService } from '../../../services/auth.service';
+import { RecipeDialogComponent } from '../recipe.dialog.component/recipe.dialog.component';
 
 @Component({
     selector: 'app-recipes',
@@ -39,7 +41,8 @@ export class RecipesAllComponent implements OnInit {
     constructor(
         recipeDataService: RecipeData,
         factory: ModelFactory,
-        auth: AuthService) {
+        auth: AuthService,
+        public dialog: MdDialog) {
         this.factory = factory;
         this.recipeDataService = recipeDataService;
         this.auth = auth;
@@ -73,5 +76,9 @@ export class RecipesAllComponent implements OnInit {
     filterStates(val: string) {
         return val ? this.categories.filter(s => s.toLowerCase().indexOf(val.toLowerCase()) === 0)
             : this.categories;
+    }
+
+    openDialog() {
+        this.dialog.open(RecipeDialogComponent, { width: '550px' });
     }
 }
