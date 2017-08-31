@@ -1,0 +1,52 @@
+<div class="content">
+  <div class="week">
+    <div class="day">
+        <p>Day</p>
+        <p>Workout Name</p>
+    </div>
+    <div class="day">Day</div>
+    <div class="day">Day</div>
+    <div class="day">Day</div>
+    <div class="day">Day</div>
+    <div class="day">Day</div>
+    <div class="day">Day</div>
+  </div>
+  <div class="week">
+    <div class="day">Day</div>
+    <div class="day">Day</div>
+    <div class="day">Day</div>
+    <div class="day">Day</div>
+    <div class="day">Day</div>
+    <div class="day">Day</div>
+    <div class="day">Day</div>
+  </div>
+  <div class="week">
+    <div class="day">Day</div>
+    <div class="day">Day</div>
+    <div class="day">Day</div>
+    <div class="day">Day</div>
+    <div class="day">Day</div>
+    <div class="day">Day</div>
+    <div class="day">Day</div>
+  </div>
+  <div class="week">
+    <div class="day">Day</div>
+    <div class="day">Day</div>
+    <div class="day">Day</div>
+    <div class="day">Day</div>
+    <div class="day">Day</div>
+    <div class="day">Day</div>
+  <button class="day" (click)="addDay(scroller)">
+    Add
+  </button>
+  </div>
+
+</div>
+<div class="form-container"  *ngIf="add==true" #scroller>
+  <md-select placeholder="Choose Routine" name="workout" [(ngModel)]="workout" required>
+    <md-option *ngFor="let workout of workouts" [value]="workout">
+      {{workout.title}}
+    </md-option>
+  </md-select>
+  <app-create-workout></app-create-workout>
+</div>

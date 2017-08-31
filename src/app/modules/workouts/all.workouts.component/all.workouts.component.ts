@@ -35,7 +35,7 @@ export class WorkoutsAllComponent implements OnInit {
 
     ngOnInit() {
       // todo
-        this.workoutDataService.getAll().subscribe(items => {
+        this.workoutDataService.getAvailableWorkouts().subscribe(items => {
             this.workouts = items;
         });
 

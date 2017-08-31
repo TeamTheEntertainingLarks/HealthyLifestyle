@@ -17,7 +17,7 @@ export class WorkoutData {
         this.firebaseCollection = this.db.list('/workouts');
     }
 
-    getAll() {
+    getAvailableWorkouts() {
         return this.db.list('/workouts');
     }
 
