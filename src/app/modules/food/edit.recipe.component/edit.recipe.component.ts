@@ -9,7 +9,7 @@ import { RecipeInterface } from '../../../interfaces/recipe';
 import { ModelFactory } from './../../../services/factories/model.factory';
 import { ModelFactoryInterface } from './../../../services/factories/interfaces/model.factory';
 import { AuthService } from '../../../services/auth.service';
-
+import { NotificationService } from '../../../services/notification.service';
 
 @Component({
   selector: 'app-edit.recipe',
@@ -41,6 +41,7 @@ export class EditRecipeComponent implements OnInit {
     private router: Router,
     recipeDataService: RecipeData,
     auth: AuthService,
+    private notificationService: NotificationService,
     private formBuilder: FormBuilder) {
     this.recipeDataService = recipeDataService;
     this.auth = auth;
@@ -92,6 +93,7 @@ export class EditRecipeComponent implements OnInit {
 
   onSubmit() {
     this.recipeDataService.editRecipe(this.recipeKey, this.recipe);
+    this.notificationService.popToast('info', 'Success!', 'Your recipe was updated successfully!');
 
     this.router.navigate(['recipes']);
   }

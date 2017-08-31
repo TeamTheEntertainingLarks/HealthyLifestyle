@@ -1,10 +1,13 @@
-import { ActivatedRoute } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+import { Component, OnInit, Inject } from '@angular/core';
+import { MdDialog, MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
 
 import { RecipeData } from '../../../services/recipe-data.service';
 import { RecipeInterface } from '../../../interfaces/recipe';
 import { AppComponent } from '../../../app.component';
 import { AuthService } from '../../../services/auth.service';
+import { RecipeDialogComponent } from '../recipe.dialog.component/recipe.dialog.component';
+import { NotificationService } from '../../../services/notification.service';
 
 @Component({
     selector: 'app-recipe',
@@ -18,14 +21,17 @@ export class RecipeComponent implements OnInit {
 
     private recipeDataService: RecipeData;
     auth: AuthService;
-
     recipeKey: string;
+    commentsLength: number;
 
     starsCount: number;
 
     constructor(private route: ActivatedRoute,
+        private router: Router,
         recipeDataService: RecipeData,
-        auth: AuthService) {
+        auth: AuthService,
+        private notificationService: NotificationService,
+        public dialog: MdDialog) {
         this.recipeDataService = recipeDataService;
         this.auth = auth;
     }
@@ -38,6 +44,9 @@ export class RecipeComponent implements OnInit {
                     .subscribe(recipe => {
                         this.recipe = recipe;
                         this.recipeKey = recipe.$key;
+                        if (recipe.comments) {
+                            this.commentsLength = this.recipe.comments.length;
+                        }
                         console.log(recipe);
                     });
             });
@@ -53,5 +62,18 @@ export class RecipeComponent implements OnInit {
         }
 
         return false;
+    }
+
+    openDialog() {
+        this.dialog.open(RecipeDialogComponent, { width: '50%' });
+    }
+
+    remove() {
+        const recipeKey = this.route.snapshot.params['id'];
+        this.recipeDataService.removeRecipe(recipeKey);
+
+        this.notificationService.popToast('info', 'Success!', 'Your recipe was removed successfully!');
+
+        this.router.navigate(['recipes']);
     }
 }

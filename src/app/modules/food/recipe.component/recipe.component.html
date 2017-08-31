@@ -41,7 +41,7 @@
                                 <md-icon>favorite</md-icon>
                                 Add to Favorites
                         </button>
-                        <button md-button>
+                        <button md-button (click)="openDialog()">
                                 <md-icon>share</md-icon>
                                 Share
                         </button>
@@ -49,7 +49,7 @@
                                 <md-icon>mode_edit</md-icon>
                                 Edit
                         </button>
-                        <button *ngIf=isAuthor(recipe?.userId) md-button>
+                        <button *ngIf=isAuthor(recipe?.userId) md-button (click)="remove()">
                                 <md-icon>delete</md-icon>
                                 Delete
                         </button>
@@ -71,6 +71,7 @@
         </div>
         <div class="comments">
                 <h3 class="comments-title">Comments</h3>
+                <span *ngIf="recipe?.comments">{{commentsLength}}</span>
                 <div *ngIf="recipe?.comments">
                         <div *ngFor="let comment of recipe?.comments">
                                 <md-card class="comments-container">

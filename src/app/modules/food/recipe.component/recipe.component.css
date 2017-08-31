@@ -50,6 +50,7 @@ md-card-content p {
 
 h3 {
   color: #96c421;
+  display: inline-block;
 }
 
 p, li {
@@ -76,6 +77,21 @@ p, li {
   border: 1px solid gray;
 }
 
-rating{
+rating {
   float: right;
+}
+
+.comments span {
+  display: inline-block;
+  color: #86AF1D;
+  background-color: #E0E0E0;
+  width: 35px;
+	height: 20px;
+	-moz-border-radius: 100px / 50px;
+	-webkit-border-radius: 100px / 50px;
+  border-radius: 100px / 50px;
+  text-align: center;
+  margin-left: 10px;
+  margin-bottom: 5px;
+  font-size: 15px;
 }

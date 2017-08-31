@@ -32,6 +32,10 @@ export class RecipeData {
         this.db.object(`/recipes/${recipeKey}`).update(recipe).then((data) => console.log(data)).catch((err) => console.log(err));
     }
 
+    removeRecipe(recipeKey) {
+        this.db.object(`/recipes/${recipeKey}`).remove().then((data) => console.log(data)).catch((err) => console.log(err));
+    }
+
     // updateComment(recipeKey: string, comment) {
     //     this.db.object(`/recipes/${recipeKey}`).update(comment);
     // }

@@ -8,6 +8,7 @@ import { RecipeInterface } from '../../../interfaces/recipe';
 import { ModelFactory } from './../../../services/factories/model.factory';
 import { ModelFactoryInterface } from './../../../services/factories/interfaces/model.factory';
 import { AuthService } from '../../../services/auth.service';
+import { NotificationService } from '../../../services/notification.service';
 
 @Component({
   selector: 'app-create.resipe.form',
@@ -55,6 +56,7 @@ export class CreateFormComponent implements OnInit {
     recipeDataService: RecipeData,
     factory: ModelFactory,
     auth: AuthService,
+    private notificationService: NotificationService,
     private formBuilder: FormBuilder) {
     this.factory = factory;
     this.recipeDataService = recipeDataService;
@@ -131,6 +133,7 @@ export class CreateFormComponent implements OnInit {
     this.recipe = this.factory
       .createRecipe(title, author, userId, category, createdOn, description, arrayIngredients, step1, step2, step3, image, comments);
     this.recipeDataService.add(this.recipe);
+    this.notificationService.popToast('info', 'Success!', 'Your recipe was added successfully!');
 
     console.log(this.recipe);
     console.log(this.auth.currentUser);

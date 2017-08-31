@@ -1,7 +1,8 @@
 import { ModelFactory } from './../../../services/factories/model.factory';
 import { ModelFactoryInterface } from './../../../services/factories/interfaces/model.factory';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { FormControl } from '@angular/forms';
+// import { MdDialog, MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
 import 'rxjs/add/operator/startWith';
 import 'rxjs/add/operator/map';
 
@@ -9,6 +10,7 @@ import { RecipeInterface } from '../../../interfaces/recipe';
 import { RecipeData } from '../../../services/recipe-data.service';
 import { AppComponent } from '../../../app.component';
 import { AuthService } from '../../../services/auth.service';
+// import { RecipeDialogComponent } from '../recipe.dialog.component/recipe.dialog.component';
 
 @Component({
     selector: 'app-recipes',
@@ -29,6 +31,8 @@ export class RecipesAllComponent implements OnInit {
 
     searchWord: string;
 
+    starsCount: number;
+
     categoryCtrl: FormControl;
     filteredCategories: any;
 
@@ -36,6 +40,7 @@ export class RecipesAllComponent implements OnInit {
 
     constructor(
         recipeDataService: RecipeData,
+        // public dialog: MdDialog,
         factory: ModelFactory,
         auth: AuthService) {
         this.factory = factory;
@@ -50,6 +55,7 @@ export class RecipesAllComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.starsCount = 3.5;
         this.recipeDataService.getAllRecipes().subscribe(items => {
             this.recipes = items;
         });
@@ -71,4 +77,8 @@ export class RecipesAllComponent implements OnInit {
         return val ? this.categories.filter(s => s.toLowerCase().indexOf(val.toLowerCase()) === 0)
             : this.categories;
     }
+
+    // openDialog() {
+    //     this.dialog.open(RecipeDialogComponent, { width: '550px' });
+    // }
 }

@@ -8,6 +8,8 @@ import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/databa
 import { AuthService } from '../../../services/auth.service';
 import { UserInterface } from './../../../interfaces/user';
 import { UserData } from '../../../services/user-data.service';
+import { NotificationService } from '../../../services/notification.service';
+
 
 @Component({
   selector: 'app-comments',
@@ -26,6 +28,7 @@ export class CommentsComponent implements OnInit {
   public item: any;
 
   constructor(
+    private notificationService: NotificationService,
     private auth: AuthService,
     private formBuilder: FormBuilder,
     public userService: UserData,
@@ -74,7 +77,10 @@ export class CommentsComponent implements OnInit {
     this.item.comments.push(comment);
 
     const pathname = this.document.location.pathname;
-    this.db.object(pathname).update(this.item).then((data) => console.log(data)).catch((err) => console.log(err));
+    this.db.object(pathname)
+      .update(this.item)
+      .then((data) => this.notificationService.popToast('info', 'Success!', 'Your comment was added successfully!'))
+      .catch((error) => this.notificationService.popToast('error', 'Ooops!', error.message));
 
     this.textComment = '';
 
