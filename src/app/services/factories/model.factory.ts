@@ -24,8 +24,11 @@ export class ModelFactory implements ModelFactoryInterface {
         step2: string,
         step3: string,
         image: string,
+        likes: number,
         comments?: any) {
-        return new Recipe(title, author, userId, category, createdOn, description, ingradients, step1, step2, step3, image, comments);
+        return new Recipe(
+            title, author, userId, category, createdOn, description, ingradients, step1, step2, step3, image, likes, comments
+        );
     }
 
     createActivity(
