@@ -1,5 +1,5 @@
 <h2>Create New Workout</h2>
-<form class="workout-form" #carAddForm="ngForm" (ngSubmit)="onSubmit()">
+<form class="workout-form" (ngSubmit)="onSubmit()">
   <md-input-container class="form-control">
     <input type="text" mdInput placeholder="Title" name="title" [(ngModel)]="workout.title" class="form-control"
       [formControl]="titleFormControl" required>

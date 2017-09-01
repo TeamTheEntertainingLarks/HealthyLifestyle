@@ -1,3 +1,5 @@
+import { ModelFactory } from './../../../services/factories/model.factory';
+import { Routine } from './../../../models/routine';
 import { Workout } from './../../../models/workout';
 import { WorkoutData } from './../../../services/workouts-data.service';
 import { Component, OnInit } from '@angular/core';
@@ -10,14 +12,15 @@ import { ScrollToService } from 'ng2-scroll-to-el';
 })
 export class CreateProgramComponent implements OnInit {
   public name: string;
-  public workout: Workout;
-  public days: Array<Workout>;
-  public workouts: Array<Workout>;
+  public workout: any;
+  public days: Array<any>;
+  public workouts: Array<any>;
   constructor(
     public workoutData: WorkoutData,
+    private factory: ModelFactory,
     public scrollToService: ScrollToService) {
     this.days = new Array<Workout>();
-    this.workouts = new Array<Workout>();
+    this.workouts = new Array<any>();
     this.add = false;
   }
 
@@ -25,20 +28,32 @@ export class CreateProgramComponent implements OnInit {
 
   ngOnInit() {
     this.workoutData.getAvailableWorkouts().subscribe(items => {
-      this.workouts = new Array<Workout>();
-      items.forEach(item => {
-        const newWorkout = new Workout(item.title, item.author, item.createdOn,
-           item.category, item.Routines, item.description, item.comments);
-        this.workouts.push(newWorkout);
-      });
+        this.workouts = items;
     });
   }
 
-  addDay(element) {
+  getAddForm(element) {
     this.add = true;
     setTimeout(() => {
       this.scrollToService.scrollTo(element);
     }, 100);
   }
 
+  addWorkout() {
+    let currentWorkout: any;
+    this.workoutData.getWorkoutById(this.workout).subscribe(item => {
+      currentWorkout = item;
+    });
+
+    this.days.push(currentWorkout);
+    this.add = false;
+    //TODO - Clear Select
+  }
+
+  addNewWorkout(workout: any) {
+    const currentWorkout = this.workoutData.getWorkoutByTitle(workout.title);
+    this.days.push(currentWorkout);
+    this.add = false;
+    //clear form
+  }
 }
