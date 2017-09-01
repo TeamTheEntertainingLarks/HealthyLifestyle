@@ -1,4 +1,3 @@
-import { WeekContainer } from './../../../helpers/weekContainer';
 import { ModelFactory } from './../../../services/factories/model.factory';
 import { Routine } from './../../../models/routine';
 import { Workout } from './../../../models/workout';
@@ -14,7 +13,7 @@ import { ScrollToService } from 'ng2-scroll-to-el';
 export class CreateProgramComponent implements OnInit {
   public name: string;
   public workout: any;
-  public days: WeekContainer;
+  public days: Array<any>;
   public workouts: Array<any>;
   constructor(
     public workoutData: WorkoutData,
@@ -22,10 +21,10 @@ export class CreateProgramComponent implements OnInit {
     public scrollToService: ScrollToService) {
     this.workouts = new Array<any>();
     this.add = false;
-    this.days = new WeekContainer();
+    this.days = new Array<any>();
 
     //temp
-    this.days.Add(
+    this.days.push(
       {
         workout: {
           title: 'best title ever',
@@ -61,7 +60,8 @@ export class CreateProgramComponent implements OnInit {
       checked: false,
     };
 
-    this.days.Add(newDay);
+    this.days.push(newDay);
+
     this.add = false;
     //TODO - Clear Select
   }
@@ -73,8 +73,12 @@ export class CreateProgramComponent implements OnInit {
       checked: false,
     };
 
-    this.days.Add(newDay);
+    this.days.push(newDay);
     this.add = false;
     //clear form
+  }
+
+  checkIfHide(el) {
+
   }
 }

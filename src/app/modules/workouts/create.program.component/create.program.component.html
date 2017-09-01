@@ -1,20 +1,14 @@
 <div class="content">
-  <div *ngFor="let week of days.weeks" class="week">
-    <div class="day" *ngFor="let day of week; let i = index">
-      <p>{{'Day '}}{{i+1}}</p>
+  <div class="week">
+    <div *ngFor="let day of days; let w = index" class="day">
+      <p>{{'Day '}}{{w+1}}</p>
       <p>{{day.workout.title}}</p>
     </div>
-    <button *ngIf="days.daysCount % 7 != 0" class="day" (click)="getAddForm(scroller)">
-      Add
-    </button>
-  </div>
-  <div *ngIf="days.daysCount % 7 == 0" class="week">
-    <button class="day" (click)="getAddForm(scroller)">
-      Add
-    </button>
+      <button class="day" (click)="getAddForm(scroller)">
+        Add
+      </button>
   </div>
 </div>
-
 <div class="form-container" [ngClass]="{'hidden': add==false}" #scroller>
   <form class="workout-form" (ngSubmit)="addWorkout()">
   <md-select placeholder="Choose Routine" name="workout" [(ngModel)]="workout" required>
