@@ -61,7 +61,7 @@
             <p class="createdOn">
                 <span>{{recipe.createdOn | date}}</span>
             </p>
-            <rating [(ngModel)]="starsCount" [max]="10" [float]="true" [readonly]="true"></rating>
+            <rating [(ngModel)]="recipe.likes" [max]="10" [float]="true" [readonly]="true"></rating>
             <p>
                 <span><em>{{recipe.description}}</em></span>
             </p>

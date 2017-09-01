@@ -33,7 +33,7 @@
                         <p><em>{{recipe?.description}}</em></p>
                 </md-card-content>
                 <md-card-actions *ngIf="isAuthenticated()">
-                        <button md-button>
+                        <button md-button (click)="rateRecipe(recipe.$key)">
                                 <md-icon>star_rate</md-icon>
                                 Like
                         </button>

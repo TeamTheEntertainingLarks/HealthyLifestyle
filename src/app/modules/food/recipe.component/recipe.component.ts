@@ -37,13 +37,13 @@ export class RecipeComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.starsCount = 3.5;
         this.route.params
             .subscribe(params => {
                 this.recipeDataService.getRecipeById(params.id)
                     .subscribe(recipe => {
                         this.recipe = recipe;
                         this.recipeKey = recipe.$key;
+                        this.starsCount = recipe.likes;
                         if (recipe.comments) {
                             this.commentsLength = this.recipe.comments.length;
                         }
@@ -75,5 +75,14 @@ export class RecipeComponent implements OnInit {
         this.notificationService.popToast('info', 'Success!', 'Your recipe was removed successfully!');
 
         this.router.navigate(['recipes']);
+    }
+
+    rateRecipe(recipeKey) {
+        this.recipe.likes = this.recipe.likes + 0.5;
+        this.recipeDataService.editRecipe(recipeKey, this.recipe);
+
+        this.notificationService.popToast('info', 'Success!', 'Your like was added successfully!');
+
+        this.router.navigate(['recipes/' + recipeKey]);
     }
 }
