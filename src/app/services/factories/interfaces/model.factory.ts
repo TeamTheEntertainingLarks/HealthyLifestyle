@@ -27,7 +27,11 @@ export interface ModelFactoryInterface {
         author: string,
         category: string,
         description: string,
-        location: object,
+        location: {
+            place: string,
+            lat: string,
+            lng: string
+        },
         eventDate: string,
         createdOn: number,
         image: any,

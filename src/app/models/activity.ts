@@ -6,7 +6,11 @@ export class Activity implements ActivityInterface {
     author: string;
     category: string;
     description: string;
-    location: object;
+    location: {
+        place: string,
+        lat: string,
+        lng: string
+    };
     eventDate: string;
     createdOn: number;
     image: any;
@@ -19,7 +23,11 @@ export class Activity implements ActivityInterface {
         author: string,
         category: string,
         description: string,
-        location: object,
+        location: {
+            place: string,
+            lat: string,
+            lng: string
+        },
         eventDate: string,
         createdOn: number,
         image: any,
