@@ -42,11 +42,13 @@
   </div>
 
 </div>
-<div class="form-container"  *ngIf="add==true" #scroller>
+<div class="form-container" #scroller>
+  <form class="workout-form">
   <md-select placeholder="Choose Routine" name="workout" [(ngModel)]="workout" required>
     <md-option *ngFor="let workout of workouts" [value]="workout">
       {{workout.title}}
     </md-option>
   </md-select>
+</form>
   <app-create-workout></app-create-workout>
 </div>

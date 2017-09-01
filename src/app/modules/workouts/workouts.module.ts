@@ -19,6 +19,7 @@ import { CreateRoutineFormComponent } from './create.routine.form/create.routine
 import { CreateExerciseFform } from './create.exercise.form/create.exercise.form.component';
 import { ProgramComponent } from './program.component/program.component';
 import { CreateProgramComponent } from './create.program.component/create.program.component';
+import { ScrollToModule } from 'ng2-scroll-to-el';
 
 @NgModule({
   imports: [
@@ -35,7 +36,8 @@ import { CreateProgramComponent } from './create.program.component/create.progra
     FormsModule,
     ReactiveFormsModule,
     MdDialogModule,
-    MdMenuModule
+    MdMenuModule,
+    ScrollToModule.forRoot()
   ],
   declarations: [
     WorkoutsComponent,

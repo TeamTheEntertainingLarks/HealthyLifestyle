@@ -1,6 +1,7 @@
 import { Workout } from './../../../models/workout';
 import { WorkoutData } from './../../../services/workouts-data.service';
 import { Component, OnInit } from '@angular/core';
+import { ScrollToService } from 'ng2-scroll-to-el';
 
 @Component({
   selector: 'app-create-program',
@@ -12,7 +13,9 @@ export class CreateProgramComponent implements OnInit {
   public workout: Workout;
   public days: Array<Workout>;
   public workouts: Array<Workout>;
-  constructor(public workoutData: WorkoutData) {
+  constructor(
+    public workoutData: WorkoutData,
+    public scrollToService: ScrollToService) {
     this.days = new Array<Workout>();
     this.workouts = new Array<Workout>();
     this.add = false;
@@ -31,8 +34,9 @@ export class CreateProgramComponent implements OnInit {
     });
   }
 
-  addDay() {
+  addDay(element) {
     this.add = true;
+    this.scrollToService.scrollTo(element);
   }
 
 }
