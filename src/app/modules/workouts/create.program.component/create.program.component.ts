@@ -22,16 +22,6 @@ export class CreateProgramComponent implements OnInit {
     this.workouts = new Array<any>();
     this.add = false;
     this.days = new Array<any>();
-
-    //temp
-    this.days.push(
-      {
-        workout: {
-          title: 'best title ever',
-        },
-        checked: false,
-      },
-    );
   }
 
   public add: boolean;

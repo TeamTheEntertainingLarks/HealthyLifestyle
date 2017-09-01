@@ -3,6 +3,7 @@
     <div *ngFor="let day of days; let w = index" class="day">
       <p>{{'Day '}}{{w+1}}</p>
       <p>{{day.workout.title}}</p>
+      <a href='workouts/{{day.workout.$key}}'>{{day.workout.$key}}</a>
     </div>
       <button class="day" (click)="getAddForm(scroller)">
         Add
