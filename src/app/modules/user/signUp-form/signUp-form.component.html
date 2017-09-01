@@ -76,15 +76,13 @@
         </md-grid-tile>
 
         <md-grid-tile>
-          <div *ngIf="currentUpload">
-            <div class="progress">
-              <div class="progress-bar progress-bar-animated" [ngStyle]="{ 'width': currentUpload?.progress + '%' }"></div>
+          <div class="upload">
+            <div *ngIf="upload">
+              Selected photo: {{upload?.name}}
             </div>
-            Progress: {{currentUpload?.name}} | {{currentUpload?.progress}}% Complete
+            <button type="button" md-raised-button (click)="imgFileInput.click()">Add a photo</button>
+            <input hidden type="file" #imgFileInput (change)="detectFile($event)" />
           </div>
-          <label>
-              <input type="file" (change)="detectFiles($event)">
-            </label>
         </md-grid-tile>
 
             <md-grid-tile colspan=2>

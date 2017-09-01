@@ -11,6 +11,7 @@ import { User } from '../../../models/user';
 import { UserInterface } from '../../../interfaces/user';
 import { Upload } from '../../../services/uploads/shared/upload';
 import { PASSWORD_REGEX, EMAIL_REGEX } from '../../../common/constants';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup-form',
@@ -26,7 +27,7 @@ export class SignUpFormComponent implements OnInit {
   public email;
   public isTrainer = false;
   public sport;
-  public currentUpload: Upload;
+  public upload: Upload;
   public selectedFiles: FileList;
 
   private user: UserInterface;
@@ -45,7 +46,8 @@ export class SignUpFormComponent implements OnInit {
     private auth: AuthService,
     private formBuilder: FormBuilder,
     private modelFactory: ModelFactory,
-    private uploadService: UploadService) {
+    private uploadService: UploadService,
+    private router: Router) {
   }
 
   ngOnInit(): void {
@@ -88,7 +90,7 @@ export class SignUpFormComponent implements OnInit {
     });
   }
 
-  detectFiles(event) {
+  detectFile(event) {
     this.selectedFiles = event.target.files;
   }
 
@@ -98,8 +100,8 @@ export class SignUpFormComponent implements OnInit {
     const dbPath = `users/${userId}/profileImage`;
     const storagePath = `images/users/${userId}`;
 
-    this.currentUpload = new Upload(file);
-    this.uploadService.uploadFile(storagePath, dbPath, this.currentUpload);
+    this.upload = new Upload(file);
+    return this.uploadService.uploadFile(storagePath, dbPath, this.upload);
   }
 
   signUp(): void {
@@ -108,7 +110,8 @@ export class SignUpFormComponent implements OnInit {
 
     this.auth.emailSignUp(this.email, this.password, user)
       .then(() => {
-        this.uploadFile();
+        this.uploadFile()
+          .then(() => this.router.navigateByUrl('/user/profile'));
       });
   }
 }
