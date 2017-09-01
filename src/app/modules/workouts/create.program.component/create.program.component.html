@@ -1,44 +1,17 @@
 <div class="content">
-  <div class="week">
-    <div class="day">
-        <p>Day</p>
-        <p>Workout Name</p>
+  <div *ngFor="let week of days.weeks" class="week">
+    <div class="day" *ngFor="let day of week; let i = index">
+      <p>{{'Day '}}{{i+1}}</p>
+      <p>{{day.workout.title}}</p>
     </div>
-    <div class="day">Day</div>
-    <div class="day">Day</div>
-    <div class="day">Day</div>
-    <div class="day">Day</div>
-    <div class="day">Day</div>
-    <div class="day">Day</div>
+    <button *ngIf="days.daysCount % 7 != 0" class="day" (click)="getAddForm(scroller)">
+      Add
+    </button>
   </div>
-  <div class="week">
-    <div class="day">Day</div>
-    <div class="day">Day</div>
-    <div class="day">Day</div>
-    <div class="day">Day</div>
-    <div class="day">Day</div>
-    <div class="day">Day</div>
-    <div class="day">Day</div>
-  </div>
-  <div class="week">
-    <div class="day">Day</div>
-    <div class="day">Day</div>
-    <div class="day">Day</div>
-    <div class="day">Day</div>
-    <div class="day">Day</div>
-    <div class="day">Day</div>
-    <div class="day">Day</div>
-  </div>
-  <div class="week">
-    <div class="day">Day</div>
-    <div class="day">Day</div>
-    <div class="day">Day</div>
-    <div class="day">Day</div>
-    <div class="day">Day</div>
-    <div class="day">Day</div>
-  <button class="day" (click)="getAddForm(scroller)">
-    Add
-  </button>
+  <div *ngIf="days.daysCount % 7 == 0" class="week">
+    <button class="day" (click)="getAddForm(scroller)">
+      Add
+    </button>
   </div>
 </div>
 

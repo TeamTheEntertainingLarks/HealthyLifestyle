@@ -143,5 +143,6 @@ export class CreateWorkoutFormComponent implements OnInit {
       this.workoutDataService.addWorkout(this.workout);
 
       this.onCreate.emit(this.workout);
+      this.workoutForm.reset();
   }
 }
