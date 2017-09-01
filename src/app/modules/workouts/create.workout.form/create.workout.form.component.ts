@@ -15,7 +15,7 @@ import { FormControl, Validators, FormGroup, FormBuilder, AbstractControl } from
 import { Category } from '../../../enums/workoutCategories';
 
 @Component({
-  selector: 'app-create.workout.form',
+  selector: 'app-create-workout',
    providers: [
     WorkoutData
   ],

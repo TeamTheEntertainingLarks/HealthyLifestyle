@@ -1,0 +1,41 @@
+.container {
+    padding: 0 100px;
+}
+
+body {
+    height: 100%;
+    width: 100%;
+}
+
+
+.day {
+    width: 12%;
+    height: 120px;
+    background: #b39cdb;
+    float: left;
+    margin-right: 1%;
+    text-align: center;
+}
+
+.content {
+    margin-top: 7%;
+    padding: 20px;
+    border: 1px solid black;
+}
+
+.content:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.week {
+    margin-bottom: 4%;
+    margin-left: 8%;
+}
+
+.week:after {
+  content: "";
+  display: table;
+  clear: both;
+}

@@ -1,3 +1,5 @@
+import { CreateProgramComponent } from './create.program.component/create.program.component';
+import { ProgramComponent } from './program.component/program.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -7,8 +9,9 @@ import { CreateWorkoutFormComponent } from './create.workout.form/create.workout
 
 const routes: Routes = [
     { path: '', redirectTo: 'all', pathMatch: 'full' },
-    { path: 'all', component: WorkoutsAllComponent },
+    { path: 'all', component: ProgramComponent },
     { path: 'create', component: CreateWorkoutFormComponent },
+    { path: 'programs/create', component: CreateProgramComponent },
     { path: ':id', component: WorkoutsComponent },
 ];
 
