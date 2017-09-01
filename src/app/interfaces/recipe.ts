@@ -10,5 +10,6 @@ export interface RecipeInterface {
     step2: string;
     step3: string;
     image: string;
+    likes: number;
     comments?: any;
 }

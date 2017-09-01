@@ -19,6 +19,7 @@ export interface ModelFactoryInterface {
         step2: string,
         step3: string,
         image: string,
+        likes: number,
         comments?: any): RecipeInterface;
 
     createActivity(
