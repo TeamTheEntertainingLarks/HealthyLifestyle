@@ -36,7 +36,9 @@ export class CreateProgramComponent implements OnInit {
 
   addDay(element) {
     this.add = true;
-    this.scrollToService.scrollTo(element);
+    setTimeout(() => {
+      this.scrollToService.scrollTo(element);
+    }, 100);
   }
 
 }

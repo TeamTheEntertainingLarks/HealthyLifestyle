@@ -40,9 +40,9 @@
     Add
   </button>
   </div>
-
 </div>
-<div class="form-container" #scroller>
+
+<div class="form-container" [ngClass]="{'hidden': add==false}" #scroller>
   <form class="workout-form">
   <md-select placeholder="Choose Routine" name="workout" [(ngModel)]="workout" required>
     <md-option *ngFor="let workout of workouts" [value]="workout">
