@@ -12,12 +12,13 @@ import 'hammerjs';
 
 import { AppRoutesModule } from './routes.module';
 
-import { RecipesModule } from './modules/food/recipes.module';
+import { RecipesModule } from './modules/recipes/recipes.module';
 import { UserModule } from './modules/user/user.module';
 import { UserDialogComponent } from './modules/user/user-profile-dialog/user-profile-dialog.component';
 import { ActivitiesModule } from './modules/activities/activities.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './modules/home/home.component';
+import { NutritionModule } from './modules/nutrition/nutrition.module';
 
 import { firebaseConfig } from '../environments/firebaseConfig';
 import { AngularFireModule } from 'angularfire2';
@@ -44,6 +45,7 @@ import { NotificationService } from './services/notification.service';
     RecipesModule,
     ActivitiesModule,
     UserModule,
+    NutritionModule,
     MaterialModule,
     ToasterModule
   ],
