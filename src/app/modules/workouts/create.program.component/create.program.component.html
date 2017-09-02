@@ -1,47 +1,15 @@
 <div class="content">
   <div class="week">
-    <div class="day">
-        <p>Day</p>
-        <p>Workout Name</p>
+    <div *ngFor="let day of days; let w = index" class="day">
+      <p>{{'Day '}}{{w+1}}</p>
+      <p>{{day.workout.title}}</p>
+      <a href='workouts/{{day.workout.$key}}'>{{day.workout.$key}}</a>
     </div>
-    <div class="day">Day</div>
-    <div class="day">Day</div>
-    <div class="day">Day</div>
-    <div class="day">Day</div>
-    <div class="day">Day</div>
-    <div class="day">Day</div>
-  </div>
-  <div class="week">
-    <div class="day">Day</div>
-    <div class="day">Day</div>
-    <div class="day">Day</div>
-    <div class="day">Day</div>
-    <div class="day">Day</div>
-    <div class="day">Day</div>
-    <div class="day">Day</div>
-  </div>
-  <div class="week">
-    <div class="day">Day</div>
-    <div class="day">Day</div>
-    <div class="day">Day</div>
-    <div class="day">Day</div>
-    <div class="day">Day</div>
-    <div class="day">Day</div>
-    <div class="day">Day</div>
-  </div>
-  <div class="week">
-    <div class="day">Day</div>
-    <div class="day">Day</div>
-    <div class="day">Day</div>
-    <div class="day">Day</div>
-    <div class="day">Day</div>
-    <div class="day">Day</div>
-  <button class="day" (click)="getAddForm(scroller)">
-    Add
-  </button>
+      <button class="day" (click)="getAddForm(scroller)">
+        Add
+      </button>
   </div>
 </div>
-
 <div class="form-container" [ngClass]="{'hidden': add==false}" #scroller>
   <form class="workout-form" (ngSubmit)="addWorkout()">
   <md-select placeholder="Choose Routine" name="workout" [(ngModel)]="workout" required>

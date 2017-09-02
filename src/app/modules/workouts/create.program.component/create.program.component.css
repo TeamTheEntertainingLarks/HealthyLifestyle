@@ -38,11 +38,19 @@ body {
     margin-bottom: 4%;
     margin-left: 8%;
 }
-
+/* 
 .week:after {
   content: "";
   display: table;
   clear: both;
+} */
+
+.week:nth-child(7n+1) {
+    clear: left;
+}
+
+.day{
+    margin-bottom: 2%;
 }
 
 .hidden {

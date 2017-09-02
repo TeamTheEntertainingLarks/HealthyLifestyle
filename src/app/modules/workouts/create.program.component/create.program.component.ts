@@ -19,9 +19,9 @@ export class CreateProgramComponent implements OnInit {
     public workoutData: WorkoutData,
     private factory: ModelFactory,
     public scrollToService: ScrollToService) {
-    this.days = new Array<Workout>();
     this.workouts = new Array<any>();
     this.add = false;
+    this.days = new Array<any>();
   }
 
   public add: boolean;
@@ -45,15 +45,30 @@ export class CreateProgramComponent implements OnInit {
       currentWorkout = item;
     });
 
-    this.days.push(currentWorkout);
+    const newDay = {
+      workout: currentWorkout,
+      checked: false,
+    };
+
+    this.days.push(newDay);
+
     this.add = false;
     //TODO - Clear Select
   }
 
   addNewWorkout(workout: any) {
     const currentWorkout = this.workoutData.getWorkoutByTitle(workout.title);
-    this.days.push(currentWorkout);
+    const newDay = {
+      workout: currentWorkout,
+      checked: false,
+    };
+
+    this.days.push(newDay);
     this.add = false;
     //clear form
+  }
+
+  checkIfHide(el) {
+
   }
 }
