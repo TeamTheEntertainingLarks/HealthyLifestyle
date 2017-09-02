@@ -20,11 +20,14 @@ export class RecipeComponent implements OnInit {
     public recipes: Array<RecipeInterface>;
 
     private recipeDataService: RecipeData;
+    public userId: string;
     auth: AuthService;
     recipeKey: string;
     commentsLength: number;
 
     starsCount: number;
+    isLiked: any;
+    likeButtonText: string;
 
     constructor(private route: ActivatedRoute,
         private router: Router,
@@ -37,6 +40,7 @@ export class RecipeComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.userId = localStorage.getItem('authkey');
         this.route.params
             .subscribe(params => {
                 this.recipeDataService.getRecipeById(params.id)
@@ -44,10 +48,13 @@ export class RecipeComponent implements OnInit {
                         this.recipe = recipe;
                         this.recipeKey = recipe.$key;
                         this.starsCount = recipe.likes;
+                        recipe.userLiked = recipe.userLiked || [];
+                        this.isLiked = recipe.userLiked.find(like => like === this.userId);
                         if (recipe.comments) {
                             this.commentsLength = this.recipe.comments.length;
                         }
                         console.log(recipe);
+                        console.log(this.isLiked);
                     });
             });
     }
@@ -79,9 +86,13 @@ export class RecipeComponent implements OnInit {
 
     rateRecipe(recipeKey) {
         this.recipe.likes = this.recipe.likes + 0.5;
-        this.recipeDataService.editRecipe(recipeKey, this.recipe);
-
-        this.notificationService.popToast('info', 'Success!', 'Your like was added successfully!');
+        this.recipe.userLiked.push(this.userId);
+        if (this.isLiked) {
+            this.notificationService.popToast('info', 'Success!', 'Your like was already added!');
+        } else {
+            this.recipeDataService.editRecipe(recipeKey, this.recipe);
+            this.notificationService.popToast('info', 'Success!', 'Your like was added successfully!');
+        }
 
         this.router.navigate(['recipes/' + recipeKey]);
     }

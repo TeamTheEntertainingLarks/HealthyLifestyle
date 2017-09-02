@@ -36,6 +36,7 @@ export class CreateFormComponent implements OnInit {
   public step3: string;
   public image: string;
   public likes: number;
+  public userLiked: Array<string>;
   public comments: any;
 
   categories = ['breakfast', 'soups', 'salads', 'desserts', 'breads', 'main dishes', 'side dishes'];
@@ -116,6 +117,7 @@ export class CreateFormComponent implements OnInit {
     step3: string,
     image: string,
     likes: number,
+    userLiked: Array<string>,
     comments?: Array<string>) {
     title = this.recipe.title;
     author = this.auth.currentUser.displayName;
@@ -129,12 +131,14 @@ export class CreateFormComponent implements OnInit {
     step3 = this.recipe.step3;
     image = this.recipe.image;
     likes = this.recipe.likes;
+    userLiked = this.recipe.userLiked;
     comments = this.recipe.comments;
 
     const arrayIngredients = this.recipe.ingradients.trim().split(/[,]+/);
 
-    this.recipe = this.factory
-      .createRecipe(title, author, userId, category, createdOn, description, arrayIngredients, step1, step2, step3, image, likes, comments);
+    this.recipe = this.factory.createRecipe
+      (title, author, userId, category, createdOn, description, arrayIngredients, step1,
+      step2, step3, image, likes, userLiked, comments);
     this.recipeDataService.add(this.recipe);
     this.notificationService.popToast('info', 'Success!', 'Your recipe was added successfully!');
 
