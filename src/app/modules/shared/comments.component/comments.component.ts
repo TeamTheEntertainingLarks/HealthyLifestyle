@@ -40,8 +40,8 @@ export class CommentsComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.userId = localStorage.getItem('authkey');
-    this.userId = this.auth.currentUserId;
+    this.userId = localStorage.getItem('authkey');
+    // this.userId = this.auth.currentUserId;
     this.date = Date.now();
 
     this.userService.getUserByUid(this.userId).subscribe((res) => {
