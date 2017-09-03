@@ -1,4 +1,4 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators, FormGroup, FormBuilder, AbstractControl } from '@angular/forms';
 
 @Component({
@@ -62,8 +62,30 @@ export class CalorieCalculatorComponent implements OnInit {
     let calorie = 0;
     if (genderValue === 'male') {
       calorie = 66 + (13.7 * weight) + (5 * height) - (6.8 * age);
+      if (activenessValue === 'sedentary') {
+        calorie = calorie * 1.2;
+      } else if (activenessValue === 'lightActive') {
+        calorie = calorie * 1.375;
+      } else if (activenessValue === 'moderatelyActive') {
+        calorie = calorie * 1.53;
+      } else if (activenessValue === 'veryActive') {
+        calorie = calorie * 1.725;
+      } else {
+        calorie = calorie * 1.9;
+      }
     } else {
       calorie = 655 + (9.6 * weight) + (1.8 * height) - (4.7 * age);
+      if (activenessValue === 'sedentary') {
+        calorie = calorie * 1.2;
+      } else if (activenessValue === 'lightActive') {
+        calorie = calorie * 1.375;
+      } else if (activenessValue === 'moderatelyActive') {
+        calorie = calorie * 1.53;
+      } else if (activenessValue === 'veryActive') {
+        calorie = calorie * 1.725;
+      } else {
+        calorie = calorie * 1.9;
+      }
     }
 
     this.result = `You need rouhgly ${calorie} calories a day.`;
