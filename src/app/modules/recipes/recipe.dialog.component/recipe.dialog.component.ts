@@ -14,6 +14,7 @@ export class RecipeDialogComponent implements OnInit {
 
     ngOnInit() {
         this.pathname = this.document.location.href;
+        // this.pathname = window.location.pathname;
     }
 
     copyToClipboard() {

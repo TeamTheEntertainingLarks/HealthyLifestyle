@@ -52,7 +52,8 @@ export class CommentsComponent implements OnInit {
 
     // console.log(this.document.location.href);
     // console.log(this.document.location.origin);
-    const pathname = this.document.location.pathname; // /recipes/-Kseo1STtRlugxy83SmO
+    // console.log(this.document.location.pathname);
+    const pathname = window.location.pathname; // /recipes/-Kseo1STtRlugxy83SmO
     this.route.params.subscribe(params => {
       this.firebaseCollection = this.db.object(pathname).subscribe((data) => {
         this.item = data;
