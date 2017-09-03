@@ -36,11 +36,6 @@ export class RecipeData {
         this.db.object(`/recipes/${recipeKey}`).remove().then((data) => console.log(data)).catch((err) => console.log(err));
     }
 
-    // rateRecipe(recipeKey: string, value: number) {
-    //     value = +value;
-    //     this.db.object(`/recipes/${recipeKey}`).update(value).then((data) => console.log(data)).catch((err) => console.log(err));
-    // }
-
     // getRecipeByTitle(title: string) {
     //     const items = this.db.list('recipes', {
     //         preserveSnapshot: true,
