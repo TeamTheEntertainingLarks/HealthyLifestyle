@@ -4,7 +4,6 @@
       border-radius: 5px;
       overflow: hidden;
       font-size: 18px;
-      width: 60%;
 }
 
 button {
@@ -57,4 +56,18 @@ rating {
 
 .createdOn {
       display: inline-block;
+}
+
+.wrapper {
+      display: flex;
+      flex-direction: row;
+}
+
+.content-container {
+      flex: auto;
+      margin-right: 10%;
+}
+
+app-calorie-calculator {
+      width: 30rem;
 }

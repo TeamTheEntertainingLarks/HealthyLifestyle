@@ -1,13 +1,8 @@
-.container {
-  font-size: 18px;
-  padding: 0 100px;
-  width: 60%;
-}
-
 .info-container {
   border-radius: 5px;
   border: solid 1px gray;
   margin: 50px 0;
+  width: 90%;
 }
 
 .aside-info {
@@ -94,3 +89,34 @@ rating {
   margin-bottom: 5px;
   font-size: 15px;
 }
+
+.wrapper{
+  display: flex;
+  flex-direction: row;
+  padding: 0 100px;
+}
+
+.container {
+  flex: auto;
+  margin-right: 10%;
+  font-size: 18px;
+}
+
+aside {
+  width: 55rem;
+  text-align: right;
+}
+
+aside ul{
+  list-style-type: none;
+}
+
+aside ul li{
+  margin-top: 20px;
+}
+
+aside h4{
+  text-transform: uppercase;
+  color: #636363;
+}
+
