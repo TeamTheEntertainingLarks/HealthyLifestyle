@@ -1,0 +1,30 @@
+.container {
+    margin: 50px 0;
+    padding: 0 100px;
+    display: flex;
+    flex-direction: row;
+}
+
+app-calorie-calculator{
+    width: 16rem;
+}
+
+.menu-container{
+    flex: auto;
+    margin-right: 10%;
+}
+
+.main-img{
+    width: 100%;
+}
+
+h2{
+    color: #636363;
+    text-transform: uppercase;
+    font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
+}
+
+button{
+    margin-top: 30px;
+    display: block;
+}
