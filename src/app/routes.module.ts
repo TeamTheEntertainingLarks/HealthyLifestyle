@@ -11,9 +11,10 @@ const routes: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full' },
     { path: 'home', component: HomeComponent },
     { path: 'activities', loadChildren: './modules/activities/activities.module#ActivitiesModule' },
-    { path: 'recipes', loadChildren: './modules/food/recipes.module#RecipesModule' },
+    { path: 'recipes', loadChildren: './modules/recipes/recipes.module#RecipesModule' },
     { path: 'user', loadChildren: './modules/user/user.module#UserModule' },
     { path: 'workouts', loadChildren: './modules/workouts/workouts.module#WorkoutsModule' },
+    { path: 'nutrition', loadChildren: './modules/nutrition/nutrition.module#NutritionModule' },
     { path: '**', component: PageNotFoundComponent },
 ];
 

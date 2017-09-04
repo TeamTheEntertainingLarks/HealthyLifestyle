@@ -10,6 +10,7 @@ import { PageNotFoundComponent } from './page.not.found/page.not.found.component
 import { NavComponent } from './nav/nav.component';
 import { FooterComponent } from './footer/footer.component';
 import { CommentsComponent } from './comments.component/comments.component';
+import { CalorieCalculatorComponent } from './calorie.calculator/calorie.calculator.component';
 
 @NgModule({
     imports: [
@@ -33,13 +34,15 @@ import { CommentsComponent } from './comments.component/comments.component';
         NavComponent,
         PageNotFoundComponent,
         FooterComponent,
-        CommentsComponent
-    ],
+        CommentsComponent,
+        CalorieCalculatorComponent
+],
     exports: [
         NavComponent,
         PageNotFoundComponent,
         FooterComponent,
-        CommentsComponent
+        CommentsComponent,
+        CalorieCalculatorComponent
     ]
 })
 export class SharedModule { }

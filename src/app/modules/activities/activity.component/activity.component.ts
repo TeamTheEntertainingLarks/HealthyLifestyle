@@ -1,8 +1,10 @@
 import { ActivatedRoute } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 import { DataService } from '../../../services/data.service';
 import { ActivityInterface } from '../../../interfaces/activity';
+import { AuthService } from '../../../services/auth.service';
+import { ActivityData } from '../../../services/activity-data.service';
 
 @Component({
     selector: 'app-activity',
@@ -11,13 +13,37 @@ import { ActivityInterface } from '../../../interfaces/activity';
 })
 
 export class ActivityComponent implements OnInit {
+
+    @Input()
     activity: ActivityInterface;
 
-    constructor(private route: ActivatedRoute) {
+    @Input()
+    activityId: string;
+
+    constructor(
+        private auth: AuthService,
+        private route: ActivatedRoute,
+        private activitiesDataService: ActivityData) {
 
     }
 
     ngOnInit() {
 
+    }
+
+    isAuthenticated() {
+        return this.auth.isAuthenticated;
+    }
+
+    isAuthor(authorId: string) {
+        if (this.auth.currentUserId === authorId) {
+            return true;
+        }
+
+        return false;
+    }
+
+    delete() {
+        this.activitiesDataService.delete(this.activityId);
     }
 }

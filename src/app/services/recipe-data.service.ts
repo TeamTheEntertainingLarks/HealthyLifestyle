@@ -32,13 +32,9 @@ export class RecipeData {
         this.db.object(`/recipes/${recipeKey}`).update(recipe).then((data) => console.log(data)).catch((err) => console.log(err));
     }
 
-    removeRecipe(recipeKey) {
+    removeRecipe(recipeKey: string) {
         this.db.object(`/recipes/${recipeKey}`).remove().then((data) => console.log(data)).catch((err) => console.log(err));
     }
-
-    // updateComment(recipeKey: string, comment) {
-    //     this.db.object(`/recipes/${recipeKey}`).update(comment);
-    // }
 
     // getRecipeByTitle(title: string) {
     //     const items = this.db.list('recipes', {

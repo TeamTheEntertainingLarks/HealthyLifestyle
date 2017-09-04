@@ -61,7 +61,6 @@ export class AuthService {
             })
             .then(() => {
                 this.userData.add(this.currentUserId, model);
-                this.router.navigateByUrl('/');
             })
             .catch((error) => this.notificationService.popToast('error', 'Ooops!', error.message));
     }

@@ -40,6 +40,11 @@ export class ActivityData {
             .catch((err) => console.log(err));
     }
 
+    delete(activityKey: string) {
+        this.db.object(`/activities/${activityKey}`)
+        .remove();
+    }
+
     getActivityByTitle(title: string) {
         const items = this.db.list('activities', {
             preserveSnapshot: true,

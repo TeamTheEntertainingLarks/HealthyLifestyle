@@ -17,12 +17,8 @@ export class WorkoutData {
         this.firebaseCollection = this.db.list('/workouts');
     }
 
-    getAll() {
+    getAvailableWorkouts() {
         return this.db.list('/workouts');
-    }
-
-    getWorkoutById(workoutKey: string) {
-        return this.db.object(`/workouts/${workoutKey}`);
     }
 
     // need to add some notifications, not console outputs
@@ -30,6 +26,28 @@ export class WorkoutData {
         this.firebaseCollection.push(workout)
             .then(_ => console.log('workout added'))
             .catch(err => console.log(err, 'err when adding workout'));
+    }
+
+    getWorkoutById(id: string) {
+        return this.db.object(`workouts/${id}`);
+    }
+
+    getWorkoutByTitle(title: string) {
+        const items = this.db.list('workouts', {
+            preserveSnapshot: true,
+        });
+
+        let item: any;
+
+        items.subscribe(snapshots => {
+            snapshots.forEach(snapshot => {
+                if (snapshot.val().title === title) {
+                    item = snapshot.val();
+                }
+            });
+        });
+
+        return item;
     }
 
     addRoutine(routine: Routine): void {
@@ -66,23 +84,5 @@ export class WorkoutData {
 
     getAvailableExercises() {
         return this.db.list('/workouts/exercises');
-    }
-    getWorkoutByTitle(title: string) {
-        const items = this.db.list('workouts', {
-            preserveSnapshot: true,
-        });
-
-        let item: any;
-
-        // need to be upgraded
-        items.subscribe(snapshots => {
-            snapshots.forEach(snapshot => {
-                if (snapshot.val().title === title) {
-                    item = snapshot.val();
-                }
-            });
-        });
-
-        return item;
     }
 }

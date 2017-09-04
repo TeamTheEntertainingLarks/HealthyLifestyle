@@ -24,8 +24,19 @@ export class ModelFactory implements ModelFactoryInterface {
         step2: string,
         step3: string,
         image: string,
+        likes: number,
+        userLiked: Array<string>,
+        calories: number,
+        protein: number,
+        fat: number,
+        carbs: number,
+        prepareTime: number,
+        yields: number,
         comments?: any) {
-        return new Recipe(title, author, userId, category, createdOn, description, ingradients, step1, step2, step3, image, comments);
+        return new Recipe(
+            title, author, userId, category, createdOn, description, ingradients,
+            step1, step2, step3, image, likes, userLiked, calories, protein, fat, carbs, prepareTime, yields, comments
+        );
     }
 
     createActivity(
@@ -34,7 +45,11 @@ export class ModelFactory implements ModelFactoryInterface {
         author: string,
         category: string,
         description: string,
-        location: object,
+        location: {
+            place: string,
+            lat: string,
+            lng: string
+        },
         eventDate: string,
         createdOn: number,
         image: any,

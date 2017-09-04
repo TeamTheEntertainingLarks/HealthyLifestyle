@@ -5,6 +5,7 @@ import { UserData } from '../../services/user-data.service';
 import { AuthService } from '../../services/auth.service';
 import { AuthGuard } from '../../guards/auth.guard';
 import { RecipeData } from '../../services/recipe-data.service';
+import { NutritionData } from '../../services/nutrition-data.service';
 import { ModelFactory } from '../../services/factories/model.factory';
 import { UploadService } from '../../services/uploads/shared/upload.service';
 import { NotificationService } from '../../services/notification.service';
@@ -16,6 +17,7 @@ import { NotificationService } from '../../services/notification.service';
     AuthService,
     AuthGuard,
     RecipeData,
+    NutritionData,
     ModelFactory,
     UploadService,
     NotificationService,

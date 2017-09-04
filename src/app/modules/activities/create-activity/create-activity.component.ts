@@ -99,13 +99,11 @@ export class CreateActivityComponent implements OnInit {
   uploadFile() {
     const userId = this.auth.currentUserId;
     const file = this.upload;
-    console.log(this.activityData.getActivityById(this.activityKey));
-    console.log(this.activityKey);
     const dbPath = `activities/${this.activityKey}/image`;
     const storagePath = `images/activities/${this.activityKey}`;
 
     this.upload = new Upload(file);
-    this.uploadService.uploadFile(storagePath, dbPath, this.upload);
+    return this.uploadService.uploadFile(storagePath, dbPath, this.upload);
   }
 
   getLocation(place: Object) {
@@ -144,9 +142,9 @@ export class CreateActivityComponent implements OnInit {
           this.activityKey = activityKey;
         }
       })
-      .then(() => this.uploadFile());
+      .then(() => this.uploadFile()
+        .then(() => this.router.navigateByUrl('/activities/all')));
 
-    this.router.navigateByUrl('/activities/all');
     this.notificationService.popToast('success', 'Success!', 'Activity added');
   }
 

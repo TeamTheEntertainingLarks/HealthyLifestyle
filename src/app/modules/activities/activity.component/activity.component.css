@@ -1,28 +1,61 @@
-.container {
-  width: 70%;
-  font-size: 18px;
+.activity-container {
+  margin: 50px 0;
+  border: solid 2px #636363;
+  border-radius: 5px;
+  overflow: hidden;
+  font-size: 1.2em;
+  width: 50%;
+  height: 50%;
 }
 
-.info-container {
-  border: solid 2px gray;
+.settings-btn {
+  position: absolute;
+  right: 0;
+}
+
+.settings-btn md-icon {
+  font-size:40px;
+  height:40px;
+  width: 40px;
+}
+
+.activity-container button {
+  font-size: 0.8em;
+  border-radius: 5px; 
+  margin-right: 10px;
+}
+
+
+.user-actions md-icon {
+  color: #96c421;
+}
+
+a {
+  text-decoration: none;
+  cursor: pointer;
+  color: #636363;
+  font-weight: bold;
+}
+
+a:hover {
+   text-decoration: underline; 
+}
+
+input[type=text]{
+  padding: 10px;
+  font-size: 14px;
   border-radius: 5px;
 }
 
-.title{
-   color: #636363;
-   font-size: 25px;
+md-card-content{
+  margin-top: 25px; 
 }
 
-md-icon{
-      color: #636363;
+md-card-content p{
+  margin-top: 25px;
 }
 
-.activity-text, .sub-title {
-  font-size: 22px;
-  text-align: justify;
-  padding: 20px;
+agm-map {
+  height: 300px;
 }
 
-.comments-title {
-  margin: 30px 0;
-}

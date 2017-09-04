@@ -19,6 +19,14 @@ export interface ModelFactoryInterface {
         step2: string,
         step3: string,
         image: string,
+        likes: number,
+        userLiked: Array<string>,
+        calories: number,
+        protein: number,
+        fat: number,
+        carbs: number,
+        prepareTime: number,
+        yields: number,
         comments?: any): RecipeInterface;
 
     createActivity(
@@ -27,14 +35,16 @@ export interface ModelFactoryInterface {
         author: string,
         category: string,
         description: string,
-        location: object,
+        location: {
+            place: string,
+            lat: string,
+            lng: string
+        },
         eventDate: string,
         createdOn: number,
         image: any,
         participants?: Array<any>,
         comments?: Array<string>): ActivityInterface;
-
-    createArticle();
 
     createWorkout(
         title: string,

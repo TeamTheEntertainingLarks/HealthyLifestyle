@@ -7,7 +7,7 @@ import { WorkoutInterface } from './../../../interfaces/workout';
 import { ModelFactory } from './../../../services/factories/model.factory';
 import { WorkoutData } from './../../../services/workouts-data.service';
 import { AuthService } from './../../../services/auth.service';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 import { Router } from '@angular/router';
 
@@ -15,7 +15,7 @@ import { FormControl, Validators, FormGroup, FormBuilder, AbstractControl } from
 import { Category } from '../../../enums/workoutCategories';
 
 @Component({
-  selector: 'app-create.workout.form',
+  selector: 'app-create-workout',
    providers: [
     WorkoutData
   ],
@@ -23,6 +23,7 @@ import { Category } from '../../../enums/workoutCategories';
   styleUrls: ['./create.workout.form.component.css']
 })
 export class CreateWorkoutFormComponent implements OnInit {
+  @Output() onCreate: EventEmitter<any>;
   public selectedOption: string;
   public workout: WorkoutInterface;
   private factory: ModelFactory;
@@ -62,6 +63,7 @@ export class CreateWorkoutFormComponent implements OnInit {
     this.routines = new Array<Routine>();
     this.showRoutineForm = false;
     this.categories = new Array<string>();
+    this.onCreate = new EventEmitter<any>();
 }
 
   ngOnInit(): void {
@@ -140,6 +142,7 @@ export class CreateWorkoutFormComponent implements OnInit {
       .createWorkout(title, author, createdOn, category, routines, description, comments);
       this.workoutDataService.addWorkout(this.workout);
 
-      this.router.navigate(['workouts']);
+      this.onCreate.emit(this.workout);
+      this.workoutForm.reset();
   }
 }

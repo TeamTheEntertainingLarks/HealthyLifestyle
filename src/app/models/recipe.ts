@@ -14,6 +14,14 @@ export class Recipe implements RecipeInterface {
     public step2: string;
     public step3: string;
     public image: string;
+    public likes: number;
+    public userLiked: Array<string>;
+    public calories: number;
+    public protein: number;
+    public fat: number;
+    public carbs: number;
+    public prepareTime: number;
+    public yields: number;
     public comments: any;
 
     constructor(
@@ -28,6 +36,14 @@ export class Recipe implements RecipeInterface {
         step2: string = '',
         step3: string = '',
         image: string = '',
+        likes: number = 0,
+        userLiked: Array<string> = [],
+        calories: number = null,
+        protein: number = null,
+        fat: number = null,
+        carbs: number = null,
+        prepareTime: number = null,
+        yields: number = null,
         comments: any = null,
     ) {
         this.title = title;
@@ -41,6 +57,14 @@ export class Recipe implements RecipeInterface {
         this.step2 = step2;
         this.step3 = step3;
         this.image = image;
+        this.likes = likes;
+        this.userLiked = userLiked;
+        this.calories = calories;
+        this.protein = protein;
+        this.fat = fat;
+        this.carbs = carbs;
+        this.prepareTime = prepareTime;
+        this.yields = yields;
         this.comments = comments;
     }
 }

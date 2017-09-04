@@ -14,24 +14,28 @@ export class UploadService {
 
   uploadFile(storagePath: string, path: string, upload: Upload) {
     const storageRef = firebase.storage().ref();
-    const uploadTask = storageRef.child(`${storagePath}/${upload.file.name}`).put(upload.file);
+    const uploadTask = storageRef
+      .child(`${storagePath}/${upload.file.name}`)
+      .put(upload.file);
 
-    uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED,
-      () => {
-        upload.progress = (uploadTask.snapshot.bytesTransferred / uploadTask.snapshot.totalBytes) * 100;
-      },
-      (error) => {
-        this.notificationService.popToast('error', 'Ooops!', error.message);
-      },
-      () => {
-        upload.url = uploadTask.snapshot.downloadURL;
-        upload.name = upload.file.name;
-        this.saveFileData(path, upload);
-      });
+    return new Promise((resolve, reject) => {
+      uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED,
+        () => {
+          upload.progress = (uploadTask.snapshot.bytesTransferred / uploadTask.snapshot.totalBytes) * 100;
+        },
+        (error) => {
+          this.notificationService.popToast('error', 'Ooops!', error.message);
+        },
+        () => {
+          upload.url = uploadTask.snapshot.downloadURL;
+          upload.name = upload.file.name;
+          resolve(this.saveFileData(path, upload));
+        });
+    });
   }
 
   private saveFileData(path: string, upload: Upload) {
-    this.db.object(path).set(upload);
+    return this.db.object(path).set(upload);
   }
 
   deleteFileStorage(storagePath: string, name: string) {

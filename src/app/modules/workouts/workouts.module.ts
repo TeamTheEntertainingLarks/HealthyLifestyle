@@ -10,13 +10,16 @@ import { CreateWorkoutFormComponent } from './create.workout.form/create.workout
 
 import {
   MdChipsModule, MdButtonModule, MdCheckboxModule, MdCardModule, MdInputModule,
-  MdIconModule, MdGridListModule, MdSelectModule, MdDialogModule
+  MdIconModule, MdGridListModule, MdSelectModule, MdDialogModule, MdMenuModule
 } from '@angular/material';
 import { MD_PLACEHOLDER_GLOBAL_OPTIONS } from '@angular/material';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CreateRoutineFormComponent } from './create.routine.form/create.routine.form.component';
 import { CreateExerciseFform } from './create.exercise.form/create.exercise.form.component';
+import { ProgramComponent } from './program.component/program.component';
+import { CreateProgramComponent } from './create.program.component/create.program.component';
+import { ScrollToModule } from 'ng2-scroll-to-el';
 
 @NgModule({
   imports: [
@@ -32,14 +35,18 @@ import { CreateExerciseFform } from './create.exercise.form/create.exercise.form
     MdSelectModule,
     FormsModule,
     ReactiveFormsModule,
-    MdDialogModule
+    MdDialogModule,
+    MdMenuModule,
+    ScrollToModule.forRoot()
   ],
   declarations: [
     WorkoutsComponent,
     WorkoutsAllComponent,
     CreateWorkoutFormComponent,
     CreateRoutineFormComponent,
-    CreateExerciseFform
+    CreateExerciseFform,
+    ProgramComponent,
+    CreateProgramComponent
 ],
   entryComponents: [CreateRoutineFormComponent, CreateExerciseFform],
   providers: [
