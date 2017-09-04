@@ -12,5 +12,11 @@ export interface RecipeInterface {
     image: string;
     likes: number;
     userLiked: Array<string>;
+    calories: number;
+    protein: number;
+    fat: number;
+    carbs: number;
+    prepareTime: number;
+    yields: number;
     comments?: any;
 }

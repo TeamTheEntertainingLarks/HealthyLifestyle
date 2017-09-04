@@ -26,9 +26,16 @@ export class ModelFactory implements ModelFactoryInterface {
         image: string,
         likes: number,
         userLiked: Array<string>,
+        calories: number,
+        protein: number,
+        fat: number,
+        carbs: number,
+        prepareTime: number,
+        yields: number,
         comments?: any) {
         return new Recipe(
-            title, author, userId, category, createdOn, description, ingradients, step1, step2, step3, image, likes, userLiked, comments
+            title, author, userId, category, createdOn, description, ingradients,
+            step1, step2, step3, image, likes, userLiked, calories, protein, fat, carbs, prepareTime, yields, comments
         );
     }
 

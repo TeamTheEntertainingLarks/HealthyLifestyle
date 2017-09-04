@@ -21,6 +21,12 @@ export interface ModelFactoryInterface {
         image: string,
         likes: number,
         userLiked: Array<string>,
+        calories: number,
+        protein: number,
+        fat: number,
+        carbs: number,
+        prepareTime: number,
+        yields: number,
         comments?: any): RecipeInterface;
 
     createActivity(
@@ -40,7 +46,7 @@ export interface ModelFactoryInterface {
         participants?: Array<any>,
         comments?: Array<string>): ActivityInterface;
 
-    createArticle();
+        createArticle();
 
     createWorkout(
         title: string,
