@@ -36,6 +36,12 @@ export class EditRecipeComponent implements OnInit {
   public stepSecondFormControl: AbstractControl;
   public stepThirdFormControl: AbstractControl;
   public imageFormControl: AbstractControl;
+  public caloriesFormControl: AbstractControl;
+  public proteinFormControl: AbstractControl;
+  public fatFormControl: AbstractControl;
+  public carbsFormControl: AbstractControl;
+  public prepareTimeFormControl: AbstractControl;
+  public yieldsFormControl: AbstractControl;
 
   constructor(private route: ActivatedRoute,
     private router: Router,
@@ -78,6 +84,24 @@ export class EditRecipeComponent implements OnInit {
     this.imageFormControl = new FormControl('', [
       Validators.required]);
 
+      this.caloriesFormControl = new FormControl('', [
+        Validators.required]);
+
+      this.proteinFormControl = new FormControl('', [
+        Validators.required]);
+
+      this.fatFormControl = new FormControl('', [
+        Validators.required]);
+
+      this.carbsFormControl = new FormControl('', [
+        Validators.required]);
+
+      this.prepareTimeFormControl = new FormControl('', [
+        Validators.required]);
+
+      this.yieldsFormControl = new FormControl('', [
+        Validators.required]);
+
     this.recipeForm = this.formBuilder.group({
       titleFormControl: this.titleFormControl,
       authorFormControl: this.authorFormControl,
@@ -87,7 +111,13 @@ export class EditRecipeComponent implements OnInit {
       stepFirstFormControl: this.stepFirstFormControl,
       stepSecondFormControl: this.stepSecondFormControl,
       stepThirdFormControl: this.stepThirdFormControl,
-      imageFormControl: this.imageFormControl
+      imageFormControl: this.imageFormControl,
+      caloriesFormControl: this.caloriesFormControl,
+      proteinFormControl: this.proteinFormControl,
+      fatFormControl: this.fatFormControl,
+      carbsFormControl: this.carbsFormControl,
+      prepareTimeFormControl: this.prepareTimeFormControl,
+      yieldsFormControl: this.yieldsFormControl
     });
   }
 
