@@ -37,6 +37,12 @@ export class CreateFormComponent implements OnInit {
   public image: string;
   public likes: number;
   public userLiked: Array<string>;
+  public calories: number;
+  public protein: number;
+  public fat: number;
+  public carbs: number;
+  public prepareTime: number;
+  public yields: number;
   public comments: any;
 
   categories = ['breakfast', 'soups', 'salads', 'desserts', 'breads', 'main dishes', 'side dishes'];
@@ -52,6 +58,12 @@ export class CreateFormComponent implements OnInit {
   public stepSecondFormControl: AbstractControl;
   public stepThirdFormControl: AbstractControl;
   public imageFormControl: AbstractControl;
+  public caloriesFormControl: AbstractControl;
+  public proteinFormControl: AbstractControl;
+  public fatFormControl: AbstractControl;
+  public carbsFormControl: AbstractControl;
+  public prepareTimeFormControl: AbstractControl;
+  public yieldsFormControl: AbstractControl;
 
   constructor(
     private router: Router,
@@ -92,6 +104,24 @@ export class CreateFormComponent implements OnInit {
     this.imageFormControl = new FormControl('', [
       Validators.required]);
 
+    this.caloriesFormControl = new FormControl('', [
+      Validators.required]);
+
+    this.proteinFormControl = new FormControl('', [
+      Validators.required]);
+
+    this.fatFormControl = new FormControl('', [
+      Validators.required]);
+
+    this.carbsFormControl = new FormControl('', [
+      Validators.required]);
+
+    this.prepareTimeFormControl = new FormControl('', [
+      Validators.required]);
+
+    this.yieldsFormControl = new FormControl('', [
+      Validators.required]);
+
     this.recipeForm = this.formBuilder.group({
       titleFormControl: this.titleFormControl,
       authorFormControl: this.authorFormControl,
@@ -101,7 +131,13 @@ export class CreateFormComponent implements OnInit {
       stepFirstFormControl: this.stepFirstFormControl,
       stepSecondFormControl: this.stepSecondFormControl,
       stepThirdFormControl: this.stepThirdFormControl,
-      imageFormControl: this.imageFormControl
+      imageFormControl: this.imageFormControl,
+      caloriesFormControl: this.caloriesFormControl,
+      proteinFormControl: this.proteinFormControl,
+      fatFormControl: this.fatFormControl,
+      carbsFormControl: this.carbsFormControl,
+      prepareTimeFormControl: this.prepareTimeFormControl,
+      yieldsFormControl: this.yieldsFormControl
     });
   }
 
@@ -118,6 +154,12 @@ export class CreateFormComponent implements OnInit {
     image: string,
     likes: number,
     userLiked: Array<string>,
+    calories: number,
+    protein: number,
+    fat: number,
+    carbs: number,
+    prepareTime: number,
+    yields: number,
     comments?: Array<string>) {
     title = this.recipe.title;
     author = this.auth.currentUser.displayName;
@@ -132,15 +174,21 @@ export class CreateFormComponent implements OnInit {
     image = this.recipe.image;
     likes = this.recipe.likes;
     userLiked = this.recipe.userLiked;
+    calories = this.recipe.calories;
+    protein = this.recipe.protein;
+    fat = this.recipe.fat;
+    carbs = this.recipe.carbs;
+    prepareTime = this.recipe.prepareTime;
+    yields = this.recipe.yields;
     comments = this.recipe.comments;
 
     const arrayIngredients = this.recipe.ingradients.trim().split(/[,]+/);
 
     this.recipe = this.factory.createRecipe
       (title, author, userId, category, createdOn, description, arrayIngredients, step1,
-      step2, step3, image, likes, userLiked, comments);
+      step2, step3, image, likes, userLiked, calories, protein, fat, carbs, prepareTime, yields, comments);
     this.recipeDataService.add(this.recipe);
-    this.notificationService.popToast('info', 'Success!', 'Your recipe was added successfully!');
+    this.notificationService.popToast('info', 'Success!', 'Your recipe was created successfully!');
 
     console.log(this.recipe);
     console.log(this.auth.currentUser);
