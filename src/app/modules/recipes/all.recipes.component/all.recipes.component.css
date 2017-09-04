@@ -19,7 +19,7 @@ md-card md-icon {
 a {
       text-decoration: none;
       cursor: pointer;
-      color: #636363;
+      color: #4A4A4A;
       font-weight: bold;
 }
 
@@ -70,4 +70,5 @@ rating {
 
 app-calorie-calculator {
       width: 30rem;
+      margin-top: 20px;
 }

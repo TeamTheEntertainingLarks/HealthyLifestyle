@@ -46,8 +46,12 @@
                 <span>Create Workout</span>
             </button>
         </md-menu>
-        <input mdInput type="text" placeholder="Search for..." [mdAutocomplete]="auto" [formControl]="categoryCtrl" [(ngModel)]="searchWord"
-            class="form-control">
+        <input type="text" 
+        placeholder="Search for..."
+        [mdAutocomplete]="auto"
+        [formControl]="categoryCtrl"
+        [(ngModel)]="searchWord"
+        class="form-control">
         <md-autocomplete #auto="mdAutocomplete">
             <md-option *ngFor="let category of filteredCategories | async" [value]="category">
                 {{ category }}
