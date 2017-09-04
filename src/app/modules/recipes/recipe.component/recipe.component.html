@@ -96,12 +96,27 @@
                 <app-comments></app-comments>
         </div>
         <aside>
-                <h4>Nutritional Information</h4>
-                <ul>
-                        <li>Calories per serving: 611</li>
-                        <li>Protein per serving: 21g</li>
-                        <li>Fat per serving: 27g</li>
-                        <li>Carbs per serving: 77g</li>
-                </ul>
+                <p>Nutritional Information</p>
+                <table class="table" cellspacing="0">
+                        <tr>
+                                <td class="nutrition">Calories per serving:</td>
+                                <td cass="size">{{recipe?.calories}}</td>
+                        </tr>
+                        <tr>
+                                <td class="nutrition">Protein per serving:</td>
+                                <td cass="size">{{recipe?.protein}} g</td>
+                        </tr>
+                        <tr>
+                                <td class="nutrition">Fat per serving:</td>
+                                <td cass="size">{{recipe?.fat}} g</td>
+                        </tr>
+                        <tr>
+                                <td class="nutrition">Carbs per serving:</td>
+                                <td cass="size">{{recipe?.carbs}} g</td>
+                        </tr>
+                </table>
+                <p>Prepare Time: <span class="time">{{recipe?.prepareTime}} min</span></p>
+                <p>Yield: <span class="yield">{{recipe?.yields}}</span></p>
+
         </aside>
 </div>

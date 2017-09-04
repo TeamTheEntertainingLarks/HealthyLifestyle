@@ -2,7 +2,6 @@
   border-radius: 5px;
   border: solid 1px gray;
   margin: 50px 0;
-  width: 90%;
 }
 
 .aside-info {
@@ -10,7 +9,7 @@
 }
 
 .title {
-  color: #636363;
+  color: #4A4A4A;
   font-size: 16px;
   font-weight: bold;
   display: inline-block;
@@ -49,7 +48,7 @@ h3 {
 }
 
 p, li {
-  color: #636363;
+  color: #4A4A4A;
   text-align: justify;
 }
 
@@ -105,18 +104,23 @@ rating {
 aside {
   width: 55rem;
   text-align: right;
-}
-
-aside ul{
-  list-style-type: none;
-}
-
-aside ul li{
   margin-top: 20px;
 }
 
-aside h4{
-  text-transform: uppercase;
-  color: #636363;
+aside p{
+  color: #96c421;
+  font-size: 18px;
 }
 
+.nutrition{
+  text-align: left;
+}
+
+.size{
+  text-align: left;
+}
+
+.time, .yield{
+  color: #383838;
+  font-size: 16px;
+}
