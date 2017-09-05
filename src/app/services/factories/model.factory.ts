@@ -9,6 +9,7 @@ import { Recipe } from '../../models/recipe';
 import { User } from '../../models/user';
 import { Workout } from './../../models/workout';
 import { Category } from '../../enums/workoutCategories';
+import { Article } from '../../models/article';
 
 @Injectable()
 export class ModelFactory implements ModelFactoryInterface {
@@ -58,10 +59,6 @@ export class ModelFactory implements ModelFactoryInterface {
         return new Activity(userdId, title, author, category, description, location, eventDate, createdOn, image, participants, comments);
     }
 
-    createArticle() {
-        // TODO: Implement article class
-    }
-
     createWorkout(
         title: string,
         author: string,
@@ -93,5 +90,15 @@ export class ModelFactory implements ModelFactoryInterface {
         isTrainer: boolean,
         profileImage: any) {
         return new User(username, firstName, lastName, email, isTrainer, profileImage);
+    }
+
+    createArticle(
+        title: string,
+        author: string,
+        userId: string,
+        createdOn: number,
+        description: string,
+        image: any) {
+        return new Article(title, author, userId, createdOn, description, image);
     }
 }

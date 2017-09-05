@@ -1,3 +1,4 @@
+import { ArticleInterface } from './../../../interfaces/article';
 import { ActivityInterface } from './../../../interfaces/activity';
 import { ExerciseInterface } from './../../../interfaces/exercise';
 import { Routine } from './../../../models/routine';
@@ -46,8 +47,6 @@ export interface ModelFactoryInterface {
         participants?: Array<any>,
         comments?: Array<string>): ActivityInterface;
 
-        createArticle();
-
     createWorkout(
         title: string,
         author: string,
@@ -66,4 +65,12 @@ export interface ModelFactoryInterface {
         profileImage: any): UserInterface;
 
     createExercise(name: string): ExerciseInterface;
+
+    createArticle(
+        title: string,
+        author: string,
+        userId: string,
+        createdOn: number,
+        description: string,
+        image: any): ArticleInterface;
 }
