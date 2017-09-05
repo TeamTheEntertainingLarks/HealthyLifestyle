@@ -1,3 +1,4 @@
+import { CreateArticleComponent } from './create.article/create.article.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -5,7 +6,8 @@ import { NutritionComponent } from './nutrition/nutrition.component';
 
 const routes: Routes = [
     { path: '', redirectTo: 'all', pathMatch: 'full' },
-    { path: 'all', component: NutritionComponent }
+    { path: 'all', component: NutritionComponent },
+    { path: 'createarticle', component: CreateArticleComponent }
 ];
 
 @NgModule({
