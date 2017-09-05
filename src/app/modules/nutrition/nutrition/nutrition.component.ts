@@ -19,12 +19,10 @@ export class NutritionComponent implements OnInit {
   ngOnInit() {
     this.nutritonDataService.getAllArticles().subscribe(items => {
       this.articles = items;
-      console.log(this.articles);
     });
 
     this.nutritonDataService.getAllMeals().subscribe(items => {
       this.meal = items;
-      console.log(this.meal);
     });
 
   }

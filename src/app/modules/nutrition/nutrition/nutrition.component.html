@@ -11,11 +11,18 @@
     <div class="article-container">
       <h2>Short Articles About Healthy Eating</h2>
       <button md-raised-button routerLink="/nutrition/createarticle">Post Article</button>
+      <table class="article-content">
       <div *ngFor="let article of articles">
-        <img src="{{article.image.url}}" alt="image">
-        <p>{{article.title}}</p>
-        <div>{{article.description}}</div>
+          <tr>
+            <td class="article-image"><img src="{{article.image.url}}" alt="image"></td>
+            <td class="article-info">
+                <p class="title">{{article.title}}</p>
+                <p class="date"><em>published on {{article.createdOn | date}}</em></p>
+                <p class="description">{{article.description}}</p>
+            </td>
+          </tr>
       </div>
+    </table>
     </div>
   </div>
   <app-calorie-calculator></app-calorie-calculator>
