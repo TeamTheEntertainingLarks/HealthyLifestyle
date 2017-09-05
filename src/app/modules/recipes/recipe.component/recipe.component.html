@@ -46,7 +46,7 @@
                                 <md-icon>share</md-icon>
                                 Share
                         </button>
-                                <button *ngIf=isAuthor(recipe?.userId) md-button routerLink="/recipes/{{recipe?.$key}}/edit">
+                                <button *ngIf=isAuthor(recipe?.userId) md-button routerLink="/recipes/{{recipeKey}}/edit">
                                 <md-icon>mode_edit</md-icon>
                                 Edit
                         </button>

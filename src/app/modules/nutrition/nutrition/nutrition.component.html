@@ -4,10 +4,18 @@
       <h2>Ideas About Healthy Meal</h2>
       <img src="/assets/images/plan-food.jpg" alt="food-image" class="main-img">
       <button md-raised-button>Post Meal</button>
+      <!-- <div *ngFor="let m of meal">
+        <p>{{m.name}}</p>
+      </div> -->
     </div>
     <div class="article-container">
       <h2>Short Articles About Healthy Eating</h2>
-      <button md-raised-button>Post Article</button>
+      <button md-raised-button routerLink="/nutrition/createarticle">Post Article</button>
+      <div *ngFor="let article of articles">
+        <img src="{{article.image.url}}" alt="image">
+        <p>{{article.title}}</p>
+        <div>{{article.description}}</div>
+      </div>
     </div>
   </div>
   <app-calorie-calculator></app-calorie-calculator>

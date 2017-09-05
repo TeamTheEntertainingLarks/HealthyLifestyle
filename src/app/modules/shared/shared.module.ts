@@ -36,7 +36,7 @@ import { CalorieCalculatorComponent } from './calorie.calculator/calorie.calcula
         FooterComponent,
         CommentsComponent,
         CalorieCalculatorComponent
-],
+    ],
     exports: [
         NavComponent,
         PageNotFoundComponent,

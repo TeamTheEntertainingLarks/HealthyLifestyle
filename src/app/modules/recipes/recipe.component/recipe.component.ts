@@ -17,26 +17,19 @@ import { NotificationService } from '../../../services/notification.service';
 
 export class RecipeComponent implements OnInit {
     public recipe: RecipeInterface;
-    public recipes: Array<RecipeInterface>;
-
-    private recipeDataService: RecipeData;
     public userId: string;
-    auth: AuthService;
+
     recipeKey: string;
     commentsLength: number;
-
     starsCount: number;
     isLiked: any;
-    likeButtonText: string;
 
     constructor(private route: ActivatedRoute,
         private router: Router,
-        recipeDataService: RecipeData,
-        auth: AuthService,
+        private recipeDataService: RecipeData,
+        private auth: AuthService,
         private notificationService: NotificationService,
         public dialog: MdDialog) {
-        this.recipeDataService = recipeDataService;
-        this.auth = auth;
     }
 
     ngOnInit() {
@@ -53,8 +46,7 @@ export class RecipeComponent implements OnInit {
                         if (recipe.comments) {
                             this.commentsLength = this.recipe.comments.length;
                         }
-                        console.log(recipe);
-                        console.log(this.isLiked);
+                        console.log(this.recipeKey);
                     });
             });
     }
