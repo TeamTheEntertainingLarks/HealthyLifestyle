@@ -12,6 +12,8 @@ import { NotificationService } from '../../../services/notification.service';
 import { Upload } from '../../../services/uploads/shared/upload';
 import { UploadService } from '../../../services/uploads/shared/upload.service';
 
+const BLANK_INPUT_REGEX = /^\s*\S.*$/;
+
 @Component({
   selector: 'app-create.article',
   templateUrl: './create.article.component.html',
@@ -42,10 +44,12 @@ export class CreateArticleComponent implements OnInit {
 
   ngOnInit() {
     this.titleFormControl = new FormControl('', [
-      Validators.required]);
+      Validators.required, Validators.pattern(BLANK_INPUT_REGEX),
+      Validators.minLength(10), Validators.maxLength(150)]);
 
     this.descriptionFormControl = new FormControl('', [
-      Validators.required]);
+      Validators.required, Validators.pattern(BLANK_INPUT_REGEX),
+      Validators.minLength(100), Validators.maxLength(500)]);
 
     this.articleForm = this.formBuilder.group({
       titleFormControl: this.titleFormControl,
