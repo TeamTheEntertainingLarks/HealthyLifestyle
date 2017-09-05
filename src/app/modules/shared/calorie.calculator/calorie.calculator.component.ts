@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators, FormGroup, FormBuilder, AbstractControl } from '@angular/forms';
 
+const NUMBER_REGEX = /^[0-9]+$/;
+
 @Component({
   selector: 'app-calorie-calculator',
   templateUrl: './calorie.calculator.component.html',
@@ -35,16 +37,16 @@ export class CalorieCalculatorComponent implements OnInit {
 
   ngOnInit() {
     this.ageFormControl = new FormControl('', [
-      Validators.required]);
+      Validators.required, Validators.pattern(NUMBER_REGEX), Validators.minLength(0)]);
 
     this.genderFormControl = new FormControl('', [
       Validators.required]);
 
     this.weightFormControl = new FormControl('', [
-      Validators.required]);
+      Validators.required, Validators.pattern(NUMBER_REGEX), Validators.minLength(0)]);
 
     this.heightFormControl = new FormControl('', [
-      Validators.required]);
+      Validators.required, Validators.pattern(NUMBER_REGEX), Validators.minLength(0)]);
 
     this.activenessFormControl = new FormControl('', [
       Validators.required]);
@@ -94,8 +96,7 @@ export class CalorieCalculatorComponent implements OnInit {
 
   }
 
-  clearCalculatorForm(age, genderValue, weight, height, activenessValue) {
-    this.genderValue = ' ';
+  clearForm(age, genderValue, weight, height, activenessValue) {
     this.age = 0;
     this.genderValue = ' ';
     this.weight = 0;
