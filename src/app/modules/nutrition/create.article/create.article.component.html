@@ -21,10 +21,10 @@
     </md-error>
   </md-input-container>
   <div class="upload">
+    <button type="button" md-raised-button (click)="imgFileInput.click()">Add image</button>
     <div *ngIf="upload">
-      Selected photo: {{upload?.name}}
+      Selected image: {{upload?.name}}
     </div>
-    <button type="button" md-raised-button (click)="imgFileInput.click()">Add a photo</button>
     <input hidden type="file" #imgFileInput (change)="detectFile($event)" />
   </div>
   <button type="submit" [disabled]="!articleAddForm.valid" md-raised-button>Create Article</button>
