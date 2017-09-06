@@ -1,5 +1,5 @@
 import { WorkoutData } from './../../../services/workouts-data.service';
-import {Router, ActivatedRoute, Params} from '@angular/router';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -15,10 +15,16 @@ export class WorkoutsComponent implements OnInit {
   public router: ActivatedRoute) { }
   ngOnInit() {
     this.router.params.subscribe((params: Params) => {
-      const id = params['id'];
-      this.workoutData.getWorkoutById(id).subscribe(item => {
-        this.workout = item;
+      const title = params['title'];
+
+      this.workoutData.getAvailableWorkouts().subscribe(workouts => {
+        workouts.forEach(workout => {
+          if (workout.val().title === title) {
+            this.workout = workout.val();
+          }
+        });
       });
     });
   }
+
 }
