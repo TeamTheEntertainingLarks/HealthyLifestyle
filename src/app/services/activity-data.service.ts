@@ -18,8 +18,7 @@ export class ActivityData {
     }
 
     getActivityById(activityKey: string) {
-        return this.db.object(`/activities/${activityKey}`)
-            .subscribe(activity => activity);
+        return this.db.object(`/activities/${activityKey}`);
     }
 
     add(activity: ActivityInterface) {
