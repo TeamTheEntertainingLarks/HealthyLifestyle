@@ -75,7 +75,22 @@ export class WorkoutData {
                 }
             });
         });
+        return item;
+    }
 
+    getExerciseByName(name: string) {
+        const exercises = this.db.list('/workouts/exercises', {
+            preserveSnapshot: true,
+        });
+
+        let item: any;
+        exercises.subscribe(snapshots => {
+            snapshots.forEach(snapshot => {
+                if (snapshot.val().name === name) {
+                    item = snapshot.val();
+                }
+            });
+        });
         return item;
     }
     getAvailableRoutines() {

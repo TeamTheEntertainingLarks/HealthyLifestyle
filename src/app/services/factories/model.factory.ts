@@ -71,15 +71,15 @@ export class ModelFactory implements ModelFactoryInterface {
     }
 
     createRoutine(
-        exercise: Exercise,
+        exercise: any,
         repeatTimes: number,
         series: number,
         restingTime: number) {
         return new Routine(exercise, repeatTimes, series, restingTime);
     }
 
-    createExercise(name: string) {
-        return new Exercise(name);
+    createExercise(name: string, image: string) {
+        return new Exercise(name, image);
     }
 
     createUser(

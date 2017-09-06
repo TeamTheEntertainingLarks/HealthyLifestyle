@@ -7,7 +7,7 @@ import { NutritionComponent } from './nutrition/nutrition.component';
 const routes: Routes = [
     { path: '', redirectTo: 'all', pathMatch: 'full' },
     { path: 'all', component: NutritionComponent },
-    { path: 'createarticle', component: CreateArticleComponent }
+    { path: 'create', component: CreateArticleComponent }
 ];
 
 @NgModule({

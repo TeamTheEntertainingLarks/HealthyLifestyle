@@ -19,10 +19,6 @@ export class RecipesAllComponent implements OnInit {
     public recipe: RecipeInterface;
     public recipes: Array<RecipeInterface>;
 
-    private factory: ModelFactory;
-    private recipeDataService: RecipeData;
-    auth: AuthService;
-
     path: string;
     order: number; // 1 asc, -1 desc;
 
@@ -34,12 +30,9 @@ export class RecipesAllComponent implements OnInit {
     categories = ['breakfast', 'soups', 'salads', 'desserts', 'breads', 'main dishes', 'side dishes'];
 
     constructor(
-        recipeDataService: RecipeData,
-        factory: ModelFactory,
-        auth: AuthService) {
-        this.factory = factory;
-        this.recipeDataService = recipeDataService;
-        this.auth = auth;
+        private recipeDataService: RecipeData,
+        private factory: ModelFactory,
+        private auth: AuthService) {
         this.searchWord = '';
 
         this.categoryCtrl = new FormControl();

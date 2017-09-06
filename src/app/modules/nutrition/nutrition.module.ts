@@ -10,7 +10,6 @@ import { SharedModule } from '../shared/shared.module';
 import { NutritionComponent } from './nutrition/nutrition.component';
 import { CreateArticleComponent } from './create.article/create.article.component';
 
-
 @NgModule({
   imports: [
     CommonModule,
@@ -29,7 +28,7 @@ import { CreateArticleComponent } from './create.article/create.article.componen
   ],
   declarations: [
     NutritionComponent,
-    CreateArticleComponent
+    CreateArticleComponent,
 ]
 })
 export class NutritionModule { }

@@ -22,6 +22,8 @@ export class CreateRoutineFormComponent implements OnInit {
   private auth: AuthService;
   public routineForm: FormGroup;
   public exercises: Array<Exercise>;
+
+  public exerciseName: string;
   public showExerciseForm: boolean;
 
   public exerciseFormControl: AbstractControl;
@@ -87,11 +89,11 @@ export class CreateRoutineFormComponent implements OnInit {
   hideExerciseForm() {
     this.showExerciseForm = false;
   }
-  onSubmit(exercise: Exercise,
+  onSubmit(exercise: any,
     series: number,
     repeats: number,
     resting: number) {
-          exercise = new Exercise(this.routine.exercise.name);
+          exercise = this.workoutDataService.getExerciseByName(this.exerciseName);
           series = this.routine.seriesCount;
           repeats = this.routine.repeatTimes;
           resting = this.routine.restingTime;

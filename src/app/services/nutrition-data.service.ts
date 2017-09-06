@@ -24,4 +24,8 @@ export class NutritionData {
     addArticle(article: ArticleInterface) {
         return this.db.list('/nutrition/articles').push(article);
     }
+
+    // addMeal(meal: MealInterface) {
+    //     return this.db.list('/nutrition/meal').push(meal);
+    // }
 }
