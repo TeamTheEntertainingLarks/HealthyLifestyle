@@ -1,7 +1,7 @@
 <h3>Calorie calculator</h3>
 <form class="calculator-form" #calculatorForm="ngForm">
   <md-input-container class="form-control">
-    <input mdInput placeholder="Age years" [(ngModel)]="age" [formControl]="ageFormControl">
+    <input mdInput placeholder="Age years" [(ngModel)]="age" [formControl]="ageFormControl" required>
     <md-error *ngIf="ageFormControl.hasError('pattern')">
       Please enter a valid age
     </md-error>
@@ -9,7 +9,7 @@
       Age is <strong>required</strong>
     </md-error>
   </md-input-container>
-  <md-select placeholder="Gender" [(ngModel)]="genderValue" class="form-control" [formControl]="genderFormControl">
+  <md-select placeholder="Gender" required [(ngModel)]="genderValue" class="form-control" [formControl]="genderFormControl" >
     <md-option *ngFor="let gen of gender" [value]="gen.value">
       {{ gen.viewValue }}
     </md-option>
@@ -21,7 +21,7 @@
     </md-error>
   </md-select>
   <md-input-container class="form-control">
-    <input mdInput placeholder="Weight kg" [(ngModel)]="weight" [formControl]="weightFormControl">
+    <input mdInput placeholder="Weight kg" [(ngModel)]="weight" [formControl]="weightFormControl" required>
     <md-error *ngIf="weightFormControl.hasError('pattern')">
       Please enter a valid weight
     </md-error>
@@ -30,7 +30,7 @@
     </md-error>
   </md-input-container>
   <md-input-container class="form-control">
-    <input mdInput placeholder="Height cm" [(ngModel)]="height" [formControl]="heightFormControl">
+    <input mdInput placeholder="Height cm" [(ngModel)]="height" [formControl]="heightFormControl" required>
     <md-error *ngIf="heightFormControl.hasError('pattern')">
       Please enter a valid height
     </md-error>
@@ -38,7 +38,7 @@
       Height is <strong>required</strong>
     </md-error>
   </md-input-container>
-  <md-select placeholder="Activeness" class="form-control" [(ngModel)]="activenessValue" [formControl]="activenessFormControl">
+  <md-select placeholder="Activeness" class="form-control" required [(ngModel)]="activenessValue" [formControl]="activenessFormControl">
     <md-option *ngFor="let activ of activeness" [value]="activ.value">
       {{activ.viewValue}}
     </md-option>
@@ -50,8 +50,8 @@
     </md-error>
   </md-select>
   <div>
-    <button md-button [disabled]="!calculatorForm.valid" (click)="calculate(age, genderValue, weight,height, activenessValue)">Calculate</button>
-    <button md-button (click)="clearCalculatorForm(age, genderValue, weight,height, activenessValue)">Clear</button>
+    <button md-button [disabled]="calculatorForm.form.invalid" (click)="calculate(age, genderValue, weight,height, activenessValue)">Calculate</button>
+    <button md-button (click)="clearForm(age, genderValue, weight,height, activenessValue)">Clear</button>
   </div>
 </form>
 <div class="result">{{result}}</div>

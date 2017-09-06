@@ -41,6 +41,10 @@
                 <md-icon>add_circle_outline</md-icon>
                 <span>Create Activity</span>
             </button>
+            <button md-menu-item *ngIf="isAuthenticated()" routerLink="/nutrition/create">
+                <md-icon>add_circle_outline</md-icon>
+                <span>Create Article</span>
+            </button>
             <button md-menu-item *ngIf="isAuthenticated()" routerLink="/workouts/create">
                 <md-icon>add_circle_outline</md-icon>
                 <span>Create Workout</span>

@@ -8,7 +8,7 @@ import { NutritionRoutesModule } from './nutrition.routes.module';
 import { SharedModule } from '../shared/shared.module';
 
 import { NutritionComponent } from './nutrition/nutrition.component';
-
+import { CreateArticleComponent } from './create.article/create.article.component';
 
 @NgModule({
   imports: [
@@ -26,6 +26,9 @@ import { NutritionComponent } from './nutrition/nutrition.component';
     MdSelectModule,
     MdMenuModule,
   ],
-  declarations: [NutritionComponent]
+  declarations: [
+    NutritionComponent,
+    CreateArticleComponent,
+]
 })
 export class NutritionModule { }

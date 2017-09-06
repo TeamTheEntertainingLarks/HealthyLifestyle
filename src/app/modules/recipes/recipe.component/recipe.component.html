@@ -3,24 +3,10 @@
                 <md-icon>menu</md-icon>
                 Back to Recipes
         </a>
-        <button md-button [mdMenuTriggerFor]="create" class="create">
+        <a md-button class="create" *ngIf="isAuthenticated()" routerLink="/recipes/create">
                 <md-icon>add</md-icon>
                 Create New
-        </button>
-        <md-menu #create="mdMenu">
-                <button md-menu-item *ngIf="isAuthenticated()" routerLink="/recipes/create">
-                        <md-icon>add_circle_outline</md-icon>
-                        <span>Create Recipe</span>
-                </button>
-                <button md-menu-item *ngIf="isAuthenticated()" routerLink="/activities/create">
-                        <md-icon>add_circle_outline</md-icon>
-                        <span>Create Activity</span>
-                </button>
-                <button md-menu-item *ngIf="isAuthenticated()" routerLink="/workouts/create">
-                        <md-icon>add_circle_outline</md-icon>
-                        <span>Create Workout</span>
-                </button>
-        </md-menu>
+        </a>
 </div>
 <div class="wrapper">
         <div class="container">
@@ -46,7 +32,7 @@
                                 <md-icon>share</md-icon>
                                 Share
                         </button>
-                                <button *ngIf=isAuthor(recipe?.userId) md-button routerLink="/recipes/{{recipe?.$key}}/edit">
+                                <button *ngIf=isAuthor(recipe?.userId) md-button routerLink="/recipes/{{recipeKey}}/edit">
                                 <md-icon>mode_edit</md-icon>
                                 Edit
                         </button>

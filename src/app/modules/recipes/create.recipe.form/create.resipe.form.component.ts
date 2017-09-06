@@ -18,11 +18,6 @@ import { NotificationService } from '../../../services/notification.service';
 
 export class CreateFormComponent implements OnInit {
   public recipe: RecipeInterface;
-  public recipes: Array<RecipeInterface>;
-
-  private factory: ModelFactory;
-  private recipeDataService: RecipeData;
-  auth: AuthService;
 
   public title: string;
   public author: string;
@@ -67,14 +62,11 @@ export class CreateFormComponent implements OnInit {
 
   constructor(
     private router: Router,
-    recipeDataService: RecipeData,
-    factory: ModelFactory,
-    auth: AuthService,
+    private recipeDataService: RecipeData,
+    private factory: ModelFactory,
+    private auth: AuthService,
     private notificationService: NotificationService,
     private formBuilder: FormBuilder) {
-    this.factory = factory;
-    this.recipeDataService = recipeDataService;
-    this.auth = auth;
     this.recipe = new Recipe();
   }
 
@@ -191,7 +183,6 @@ export class CreateFormComponent implements OnInit {
     this.notificationService.popToast('info', 'Success!', 'Your recipe was created successfully!');
 
     console.log(this.recipe);
-    console.log(this.auth.currentUser);
 
     this.router.navigate(['recipes']);
   }

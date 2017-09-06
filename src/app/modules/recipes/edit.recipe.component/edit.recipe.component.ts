@@ -17,11 +17,8 @@ import { NotificationService } from '../../../services/notification.service';
   styleUrls: ['./edit.recipe.component.css']
 })
 export class EditRecipeComponent implements OnInit {
-
-  private recipeDataService: RecipeData;
-  auth: AuthService;
-  recipeKey: string;
-  recipe: RecipeInterface;
+  public recipeKey: string;
+  public recipe: RecipeInterface;
 
   public recipeForm: FormGroup;
 
@@ -45,12 +42,10 @@ export class EditRecipeComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
     private router: Router,
-    recipeDataService: RecipeData,
-    auth: AuthService,
+    private recipeDataService: RecipeData,
+    private auth: AuthService,
     private notificationService: NotificationService,
     private formBuilder: FormBuilder) {
-    this.recipeDataService = recipeDataService;
-    this.auth = auth;
     this.recipe = new Recipe();
   }
 

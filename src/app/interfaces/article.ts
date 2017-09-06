@@ -4,5 +4,5 @@ export interface ArticleInterface {
     userId: string;
     createdOn: number;
     description: string;
-    image: string;
+    image: any;
 }

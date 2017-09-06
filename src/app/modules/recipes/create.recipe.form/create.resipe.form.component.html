@@ -62,7 +62,7 @@
     <tr>
       <td>
         <md-input-container class="form-control">
-          <input type="number" mdInput placeholder="Calories" name="calories" [(ngModel)]="recipe.calories" [formControl]="caloriesFormControl"
+          <input mdInput placeholder="Calories" name="calories" [(ngModel)]="recipe.calories" [formControl]="caloriesFormControl"
           required>
           <md-icon mdSuffix>mode_edit</md-icon>
           <md-error *ngIf="caloriesFormControl.hasError('pattern')">
@@ -75,7 +75,7 @@
       </td>
       <td>
         <md-input-container class="form-control">
-          <input type="number" mdInput placeholder="Protein" name="protein" [(ngModel)]="recipe.protein" [formControl]="proteinFormControl"
+          <input mdInput placeholder="Protein" name="protein" [(ngModel)]="recipe.protein" [formControl]="proteinFormControl"
           required>
           <md-icon mdSuffix>mode_edit</md-icon>
           <md-error *ngIf="proteinFormControl.hasError('pattern')">
@@ -88,7 +88,7 @@
       </td>
       <td>
         <md-input-container class="form-control">
-          <input type="number" mdInput placeholder="Fat" name="fat" [(ngModel)]="recipe.fat" [formControl]="fatFormControl"
+          <input mdInput placeholder="Fat" name="fat" [(ngModel)]="recipe.fat" [formControl]="fatFormControl"
           required>
           <md-icon mdSuffix>mode_edit</md-icon>
           <md-error *ngIf="fatFormControl.hasError('pattern')">
@@ -101,7 +101,7 @@
       </td>
       <td>
         <md-input-container class="form-control">
-          <input type="number" mdInput placeholder="Carbs" name="carbs" [(ngModel)]="recipe.carbs" [formControl]="carbsFormControl"
+          <input mdInput placeholder="Carbs" name="carbs" [(ngModel)]="recipe.carbs" [formControl]="carbsFormControl"
           required>
           <md-icon mdSuffix>mode_edit</md-icon>
           <md-error *ngIf="carbsFormControl.hasError('pattern')">
@@ -118,7 +118,7 @@
     <tr>
       <td>
         <md-input-container class="form-control">
-          <input type="number" mdInput placeholder="Prepare Time min" name="prepareTime" [(ngModel)]="recipe.prepareTime" [formControl]="prepareTimeFormControl"
+          <input mdInput placeholder="Prepare Time min" name="prepareTime" [(ngModel)]="recipe.prepareTime" [formControl]="prepareTimeFormControl"
           required>
           <md-icon mdSuffix>mode_edit</md-icon>
           <md-error *ngIf="prepareTimeFormControl.hasError('pattern')">
@@ -131,7 +131,7 @@
       </td>
       <td>
         <md-input-container class="form-control">
-          <input type="number" mdInput placeholder="Yield" name="yields" [(ngModel)]="recipe.yields" [formControl]="yieldsFormControl"
+          <input mdInput placeholder="Yield" name="yields" [(ngModel)]="recipe.yields" [formControl]="yieldsFormControl"
           required>
           <md-icon mdSuffix>mode_edit</md-icon>
           <md-error *ngIf="yieldsFormControl.hasError('pattern')">

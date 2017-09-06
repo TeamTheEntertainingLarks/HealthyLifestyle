@@ -1,3 +1,4 @@
+import { ArticleInterface } from './../../../interfaces/article';
 import { ActivityInterface } from './../../../interfaces/activity';
 import { ExerciseInterface } from './../../../interfaces/exercise';
 import { Routine } from './../../../models/routine';
@@ -64,4 +65,12 @@ export interface ModelFactoryInterface {
         profileImage: any): UserInterface;
 
     createExercise(name: string): ExerciseInterface;
+
+    createArticle(
+        title: string,
+        author: string,
+        userId: string,
+        createdOn: number,
+        description: string,
+        image: any): ArticleInterface;
 }

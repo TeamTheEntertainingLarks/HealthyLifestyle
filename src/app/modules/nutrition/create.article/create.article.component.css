@@ -1,0 +1,22 @@
+h2{
+    padding: 30px 100px;
+    color: #4A4A4A;
+}
+
+form{
+    padding: 0 100px;
+}
+
+md-input-container{
+    width: 100%;
+}
+
+.upload button{
+    margin: 30px 0;
+}
+
+.upload div{
+    display: inline-block;
+    color: #4A4A4A;
+    margin-left: 30px;
+}

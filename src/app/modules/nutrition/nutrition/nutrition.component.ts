@@ -12,19 +12,17 @@ import { AuthService } from '../../../services/auth.service';
 export class NutritionComponent implements OnInit {
   public nutrition: Array<NutritionInterface>;
   public meal;
-  public article;
+  public articles;
 
   constructor(public nutritonDataService: NutritionData, public auth: AuthService) { }
 
   ngOnInit() {
     this.nutritonDataService.getAllArticles().subscribe(items => {
-      this.article = items;
-      console.log(this.article);
+      this.articles = items;
     });
 
     this.nutritonDataService.getAllMeals().subscribe(items => {
       this.meal = items;
-      console.log(this.meal);
     });
 
   }

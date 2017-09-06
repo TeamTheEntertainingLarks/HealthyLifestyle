@@ -1,3 +1,4 @@
+import { ArticleInterface } from './../interfaces/article';
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 
@@ -13,10 +14,18 @@ export class NutritionData {
     }
 
     getAllArticles() {
-        return this.db.list('/nutrition/facts');
+        return this.db.list('/nutrition/articles');
     }
 
     getAllMeals() {
         return this.db.list('/nutrition/meal');
     }
+
+    addArticle(article: ArticleInterface) {
+        return this.db.list('/nutrition/articles').push(article);
+    }
+
+    // addMeal(meal: MealInterface) {
+    //     return this.db.list('/nutrition/meal').push(meal);
+    // }
 }

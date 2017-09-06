@@ -47,7 +47,6 @@ export class CommentsComponent implements OnInit {
     this.userService.getUserByUid(this.userId).subscribe((res) => {
       this.userImageUrl = res.profileImage;
       this.userFullName = res.firstName + ' ' + res.lastName;
-      console.log(res);
     });
 
     // console.log(this.document.location.href);
@@ -58,10 +57,8 @@ export class CommentsComponent implements OnInit {
       this.firebaseCollection = this.db.object(pathname).subscribe((data) => {
         this.item = data;
         console.log(this.item);
-        console.log(data);
       });
     });
-    console.log(this.firebaseCollection);
   }
 
   onSubmit() {
@@ -71,8 +68,6 @@ export class CommentsComponent implements OnInit {
       profileImage: this.userImageUrl,
       textComment: this.textComment
     };
-
-    console.log(comment);
 
     this.item.comments = this.item.comments || [];
     this.item.comments.push(comment);
