@@ -96,11 +96,8 @@ export class CalorieCalculatorComponent implements OnInit {
 
   }
 
-  clearForm(age, genderValue, weight, height, activenessValue) {
-    this.age = 0;
+  clearForm(genderValue, activenessValue) {
     this.genderValue = ' ';
-    this.weight = 0;
-    this.height = 0;
     this.activenessValue = ' ';
     this.result = '';
   }

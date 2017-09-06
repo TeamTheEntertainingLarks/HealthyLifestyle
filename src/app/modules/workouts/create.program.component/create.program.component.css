@@ -12,7 +12,11 @@ body {
     width: 100%;
 }
 
-
+md-select {
+    width: 100%;
+    margin-top: 2%;
+    margin-bottom: 1%;
+}
 .day {
     width: 12%;
     height: 120px;
@@ -20,14 +24,48 @@ body {
     float: left;
     margin-right: 1%;
     text-align: center;
+    margin-bottom: 2%;
 }
 
+button.showFormBtn {
+    display: block;
+    margin: 9% auto 7%;
+}
+
+.day > .removeBtn {
+    float: right;
+}
+
+.dayCount{
+    clear: both;
+}
 .content {
     margin-top: 7%;
+    margin-bottom: 2%;
     padding: 20px;
-    border: 1px solid black;
+    border: 1px solid #9A60FF;
 }
 
+#createProgramBtn{
+    margin-left: 40%;
+    width: 18%;
+}
+button.success {
+  background: #b39cdb;
+  color: #fff;
+}
+
+.removeBtn {
+    background-color: #FF8C76;
+    font-weight: bold;
+    color: white;
+    border: 0px 0px 1px 1px solid grey;
+}
+.removeBtn:after {
+  content: "";
+  display: table;
+  clear: both;
+}
 .content:after {
   content: "";
   display: table;
@@ -38,19 +76,9 @@ body {
     margin-bottom: 4%;
     margin-left: 8%;
 }
-/* 
-.week:after {
-  content: "";
-  display: table;
-  clear: both;
-} */
 
 .week:nth-child(7n+1) {
     clear: left;
-}
-
-.day{
-    margin-bottom: 2%;
 }
 
 .hidden {

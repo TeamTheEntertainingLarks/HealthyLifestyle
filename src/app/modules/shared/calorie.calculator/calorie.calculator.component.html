@@ -50,8 +50,8 @@
     </md-error>
   </md-select>
   <div>
-    <button md-button [disabled]="calculatorForm.form.invalid" (click)="calculate(age, genderValue, weight,height, activenessValue)">Calculate</button>
-    <button md-button (click)="clearForm(age, genderValue, weight,height, activenessValue)">Clear</button>
+    <button md-button [disabled]="!calculatorForm.valid" (click)="calculate(age, genderValue, weight,height, activenessValue)">Calculate</button>
+    <button type="reset" md-button (click)="clearForm()">Clear</button>
   </div>
 </form>
 <div class="result">{{result}}</div>

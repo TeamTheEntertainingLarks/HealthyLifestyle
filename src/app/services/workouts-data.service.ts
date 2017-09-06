@@ -17,8 +17,19 @@ export class WorkoutData {
         this.firebaseCollection = this.db.list('/workouts');
     }
 
+    getProgramById(id) {
+        return this.db.object(`programs/${id}`);
+    }
+    addProgram(days) {
+        this.db.list('/programs').push(days);
+    }
+
     getAvailableWorkouts() {
-        return this.db.list('/workouts');
+    const items = this.db.list('/workouts', {
+            preserveSnapshot: true,
+        });
+
+    return items;
     }
 
     // need to add some notifications, not console outputs
@@ -32,28 +43,33 @@ export class WorkoutData {
         return this.db.object(`workouts/${id}`);
     }
 
-    getWorkoutByTitle(title: string) {
-        const items = this.db.list('workouts', {
-            preserveSnapshot: true,
-        });
+    // getWorkoutByTitle(title: string) {
+    //     const items = this.db.list('/workouts', {
+    //         preserveSnapshot: true,
+    //     });
 
-        let item: any;
+    //     let item: any;
 
-        items.subscribe(snapshots => {
-            snapshots.forEach(snapshot => {
-                if (snapshot.val().title === title) {
-                    item = snapshot.val();
-                }
-            });
-        });
+    //     items.subscribe(snapshots => {
+    //         snapshots.forEach(snapshot => {
+    //             if (snapshot.val().title === title) {
+    //                 item = snapshot.val();
+    //                 console.log(item);
+    //             }
+    //         });
+    //     });
 
-        return item;
-    }
+    //     return item;
+    // }
 
     addRoutine(routine: Routine): void {
         this.db.list('/workouts/routines').push(routine)
             .then(_ => console.log('routine added'))
             .catch(err => console.log(err, 'err when adding routine'));
+    }
+
+    getAvailableRoutines() {
+        return this.db.list('/workouts/routines');
     }
 
     addExercise(exercise: Exercise): void {
@@ -92,9 +108,6 @@ export class WorkoutData {
             });
         });
         return item;
-    }
-    getAvailableRoutines() {
-        return this.db.list('/workouts/routines');
     }
 
     getAvailableExercises() {
