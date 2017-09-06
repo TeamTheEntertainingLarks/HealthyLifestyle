@@ -32,6 +32,7 @@ import { SortPipe } from '../../pipes/sort.pipe';
 import { SearchPipe } from '../../pipes/search.pipe';
 import { ZoomImageDirective } from '../../directives/zoom-image.directive';
 import { AgmCoreModule } from '@agm/core';
+import { PipesSharedModule } from '../../pipes/pipes-shared.module';
 
 @NgModule({
     imports: [
@@ -52,14 +53,15 @@ import { AgmCoreModule } from '@agm/core';
         AgmCoreModule.forRoot({
             apiKey: 'AIzaSyDORMqI9tRjPWWOXbJJFkuKgLtnOQrU-ic',
             libraries: ['places']
-        })
+        }),
+        PipesSharedModule
     ],
     declarations: [
         ActivityComponent,
         ActivitiesAllComponent,
         CreateActivityComponent,
         EditActivityComponent,
-        GoogleplaceDirective
+        GoogleplaceDirective,
     ],
     providers: [
         { provide: MD_PLACEHOLDER_GLOBAL_OPTIONS, useValue: { float: 'always' } },

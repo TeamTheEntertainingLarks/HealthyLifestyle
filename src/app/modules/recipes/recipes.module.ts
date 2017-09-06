@@ -1,3 +1,4 @@
+import { PipesSharedModule } from './../../pipes/pipes-shared.module';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { MdButtonModule, MdCheckboxModule, MdCardModule, MdIconModule, MdGridListModule, MdSelectModule } from '@angular/material';
@@ -36,7 +37,8 @@ import { ZoomImageDirective } from './../../directives/zoom-image.directive';
         MdMenuModule,
         MdAutocompleteModule,
         RatingModule,
-        MdDialogModule
+        MdDialogModule,
+        PipesSharedModule
     ],
     declarations: [
         RecipeComponent,
@@ -44,9 +46,6 @@ import { ZoomImageDirective } from './../../directives/zoom-image.directive';
         CreateFormComponent,
         EditRecipeComponent,
         RecipeDialogComponent,
-        SortPipe,
-        SearchPipe,
-        ZoomImageDirective,
     ],
     entryComponents: [RecipeDialogComponent],
     providers: [{ provide: MD_PLACEHOLDER_GLOBAL_OPTIONS, useValue: { float: 'always' } }],
