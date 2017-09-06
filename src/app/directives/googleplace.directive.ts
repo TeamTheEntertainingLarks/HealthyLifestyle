@@ -1,5 +1,6 @@
 import { Directive, ElementRef, EventEmitter, Output, HostListener } from '@angular/core';
 import { NgModel } from '@angular/forms';
+import { MapsAPILoader } from "@agm/core";
 
 declare var google: any;
 
@@ -14,16 +15,18 @@ export class GoogleplaceDirective {
     autocomplete: any;
     private _el: HTMLElement;
 
-    constructor(el: ElementRef, private model: NgModel) {
+    constructor(el: ElementRef, private model: NgModel, private mapsAPILoader: MapsAPILoader) {
         this._el = el.nativeElement;
         this.modelValue = this.model;
         const input = this._el;
-        this.autocomplete = new google.maps.places.Autocomplete(input, {});
-        google.maps.event.addListener(this.autocomplete, 'place_changed', () => {
-            const place = this.autocomplete.getPlace();
-            this.invokeEvent(place);
+        this.mapsAPILoader.load().then(() => {
+            this.autocomplete = new google.maps.places.Autocomplete(input, {});
+            google.maps.event.addListener(this.autocomplete, 'place_changed', () => {
+                const place = this.autocomplete.getPlace();
+                this.invokeEvent(place);
+            });
         });
-    }
+    };
 
     invokeEvent(place: Object) {
         this.setAddress.emit(place);
