@@ -17,10 +17,11 @@ import { Router } from '@angular/router';
   styleUrls: ['./create-activity.component.css'],
 })
 export class CreateActivityComponent implements OnInit {
-  public recipeForm: FormGroup;
+  public activityForm: FormGroup;
   public title: string;
   public category: string;
   public description: string;
+  public additionalInfo: string;
   public inputLocation;
   public location = {
     place: '',
@@ -36,6 +37,7 @@ export class CreateActivityComponent implements OnInit {
   public authorFormControl: AbstractControl;
   public categoryFormControl: AbstractControl;
   public descriptionFormControl: AbstractControl;
+  public additionalInfoFormControl: AbstractControl;
   public locationFormControl: AbstractControl;
   public eventDateFormControl: AbstractControl;
 
@@ -74,18 +76,21 @@ export class CreateActivityComponent implements OnInit {
     this.descriptionFormControl = new FormControl('', [
       Validators.required]);
 
+    this.additionalInfoFormControl = new FormControl('', [
+      Validators.required]);
+
     this.locationFormControl = new FormControl('', [
       Validators.required]);
 
     this.eventDateFormControl = new FormControl('', [
       Validators.required]);
 
-
-    this.recipeForm = this.formBuilder.group({
+    this.activityForm = this.formBuilder.group({
       titleFormControl: this.titleFormControl,
       authorFormControl: this.authorFormControl,
       categoryFormControl: this.categoryFormControl,
       descriptionFormControl: this.descriptionFormControl,
+      additionalInfoFormControl: this.additionalInfoFormControl,
       locationFormControl: this.authorFormControl,
       eventDateFormControl: this.categoryFormControl,
       createdOnFormControl: this.descriptionFormControl,
@@ -128,6 +133,7 @@ export class CreateActivityComponent implements OnInit {
       author,
       this.category,
       this.description,
+      this.additionalInfo,
       this.location,
       this.dateAndTime.toString(),
       Date.now(),
@@ -146,11 +152,5 @@ export class CreateActivityComponent implements OnInit {
         .then(() => this.router.navigateByUrl('/activities/all')));
 
     this.notificationService.popToast('success', 'Success!', 'Activity added');
-  }
-
-  test() {
-    console.log(this.userService.getUserByUid(this.auth.currentUserId));
-    console.log(this.activityKey);
-    console.log(this.activityData.getActivityById(this.activityKey));
   }
 }
