@@ -22,12 +22,12 @@
         <span><em>{{activity.description}}</em></span>
     </p>
 </md-card-content>
-<md-card-actions class="user-actions" *ngIf="(isAuthenticated() && !isAuthor(activity.userId))">
+<md-card-actions class="user-actions" *ngIf="(isAuthenticated() && !isAuthor(activity.userId) && !isParticipating())">
     <button md-button>
         <md-icon>star_rate</md-icon>
         Like
     </button>
-    <button md-button>
+    <button md-button (click)="participate()" >
         <md-icon>group</md-icon>
         Participate
     </button>
@@ -36,7 +36,21 @@
         Share
     </button>
 </md-card-actions>
-<md-card-actions class="author-actions" *ngIf="isAuthor(activity.userId)">
+<md-card-actions class="user-actions" *ngIf="(isAuthenticated() && !isAuthor(activity.userId) && isParticipating())">
+    <button md-button>
+        <md-icon>star_rate</md-icon>
+        Like
+    </button>
+    <button md-button (click)="leave()" >
+        <md-icon>clear</md-icon>
+        Leave
+    </button>
+    <button md-button>
+        <md-icon>share</md-icon>
+        Share
+    </button>
+</md-card-actions>
+<md-card-actions class="author-actions" *ngIf="(isAuthenticated() && isAuthor(activity.userId))">
     <button md-button (click)="navigate.click()">
         <md-icon>edit</md-icon>
         Edit
