@@ -1,5 +1,5 @@
-import { ActivatedRoute } from '@angular/router';
-import { Component, OnInit, Input } from '@angular/core';
+import { ActivatedRoute, Router, Data } from '@angular/router';
+import { Component, OnInit, Input, OnChanges, SimpleChanges, DoCheck } from '@angular/core';
 
 import { DataService } from '../../../services/data.service';
 import { ActivityInterface } from '../../../interfaces/activity';
@@ -13,24 +13,46 @@ import { ActivityData } from '../../../services/activity-data.service';
 })
 
 export class ActivityComponent implements OnInit {
+    @Input()
+    public activity;
 
     @Input()
-    activity: ActivityInterface;
+    public activityId: string;
 
-    @Input()
-    activityId: string;
-
-    private userId: string;
+    public userId: string;
+    public type: string;
+    public commentsLength: number;
+    public activityLoaded: Promise<boolean>;
 
     constructor(
+        private router: Router,
         private auth: AuthService,
         private route: ActivatedRoute,
         private activitiesDataService: ActivityData) {
-
     }
 
     ngOnInit() {
         this.userId = localStorage.getItem('authkey');
+
+        this.route.data
+            .subscribe((data) => {
+                this.type = data.type;
+            });
+
+        this.route.params
+            .subscribe(params => {
+                if (params.id) {
+                    this.activitiesDataService
+                        .getActivityById(params.id)
+                        .subscribe((activity) => {
+                            this.activity = activity;
+                            if (activity.comments) {
+                                this.commentsLength = this.activity.comments.length;
+                            }
+                            this.activityLoaded = Promise.resolve(true);
+                        });
+                }
+            });
     }
 
     isAuthenticated() {
@@ -50,7 +72,6 @@ export class ActivityComponent implements OnInit {
             if (this.activity.participants.indexOf(this.userId) === -1) {
                 return false;
             }
-
             return true;
         }
         return false;

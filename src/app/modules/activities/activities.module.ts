@@ -1,8 +1,7 @@
+import { SharedModule } from './../shared/shared.module';
 import { GoogleplaceDirective } from './../../directives/googleplace.directive';
-import { AgmCoreOverrideModule } from './../../directives/agmCoreOverride.module';
 import { NotificationService } from './../../services/notification.service';
 import { ActivityData } from './../../services/activity-data.service';
-import { GooglePlaceModule } from './../../directives/googleplace.module';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { DateTimePickerModule } from 'ng-pick-datetime';
@@ -18,7 +17,9 @@ import {
     MdSelectModule,
     MdMenuModule,
     MdAutocompleteModule,
-    MD_PLACEHOLDER_GLOBAL_OPTIONS
+    MD_PLACEHOLDER_GLOBAL_OPTIONS,
+    MD_ERROR_GLOBAL_OPTIONS,
+    showOnDirtyErrorStateMatcher
 } from '@angular/material';
 
 import { ActivitiesRoutesModule } from './activities.routes.module';
@@ -54,16 +55,18 @@ import { PipesSharedModule } from '../../pipes/pipes-shared.module';
             apiKey: 'AIzaSyDORMqI9tRjPWWOXbJJFkuKgLtnOQrU-ic',
             libraries: ['places']
         }),
-        PipesSharedModule
+        PipesSharedModule,
+        SharedModule
     ],
     declarations: [
+        GoogleplaceDirective,
         ActivityComponent,
         ActivitiesAllComponent,
         CreateActivityComponent,
         EditActivityComponent,
-        GoogleplaceDirective,
     ],
     providers: [
+        { provide: MD_ERROR_GLOBAL_OPTIONS, useValue: { errorStateMatcher: showOnDirtyErrorStateMatcher } },
         { provide: MD_PLACEHOLDER_GLOBAL_OPTIONS, useValue: { float: 'always' } },
         ActivityData,
         NotificationService],
