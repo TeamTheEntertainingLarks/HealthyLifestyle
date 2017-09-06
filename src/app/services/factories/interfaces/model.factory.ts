@@ -64,7 +64,7 @@ export interface ModelFactoryInterface {
         isTrainer: boolean,
         profileImage: any): UserInterface;
 
-    createExercise(name: string): ExerciseInterface;
+    createExercise(name: string, image: string): ExerciseInterface;
 
     createArticle(
         title: string,
