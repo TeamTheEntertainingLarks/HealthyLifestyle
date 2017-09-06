@@ -6,6 +6,7 @@ export class Activity implements ActivityInterface {
     author: string;
     category: string;
     description: string;
+    additionalInfo: string;
     location: {
         place: string,
         lat: string,
@@ -23,6 +24,7 @@ export class Activity implements ActivityInterface {
         author: string,
         category: string,
         description: string,
+        additionalInfo: string,
         location: {
             place: string,
             lat: string,
@@ -38,6 +40,7 @@ export class Activity implements ActivityInterface {
         this.author = author;
         this.category = category;
         this.description = description;
+        this.additionalInfo = additionalInfo;
         this.location = location;
         this.eventDate = eventDate;
         this.createdOn = createdOn;
