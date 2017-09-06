@@ -39,6 +39,13 @@ export class CreateProgramComponent implements OnInit {
     }, 100);
   }
 
+  skipDay() {
+    this.days.push(null);
+  }
+
+  removeDay(index) {
+    this.days.splice(index);
+  }
   addWorkout() {
     let currentWorkout: any;
     this.workoutData.getWorkoutById(this.workout).subscribe(item => {

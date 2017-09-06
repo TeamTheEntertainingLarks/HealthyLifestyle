@@ -1,13 +1,20 @@
 <div class="content">
   <div class="week">
-    <div *ngFor="let day of days; let w = index" class="day">
-      <p>{{'Day '}}{{w+1}}</p>
-      <p>{{day.workout.title}}</p>
-      <a href='workouts/{{day.workout.$key}}'>{{day.workout.$key}}</a>
+    <div *ngFor="let day of days; let d = index" class="day">
+      <button type="button" (click)="removeDay(d)">X</button>
+      <p>{{'Day '}}{{d+1}}</p>
+      <ng-container *ngIf="day != null; else elseTemplate">
+        <p>{{day.workout.title}}</p>
+        <a href='workouts/{{day.workout.$key}}'>{{day.workout.$key}}</a>
+      </ng-container>
+      <ng-template #elseTemplate>
+        <p>Rest Day</p>
+      </ng-template>
     </div>
-      <button class="day" (click)="getAddForm(scroller)">
-        Add
-      </button>
+      <div class="day" >
+        <button (click)="getAddForm(scroller)">Add</button>
+        <button (click)="skipDay()">Skip Day</button>
+      </div>
   </div>
 </div>
 <div class="form-container" [ngClass]="{'hidden': add==false}" #scroller>
