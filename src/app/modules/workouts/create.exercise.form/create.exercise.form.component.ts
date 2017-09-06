@@ -56,9 +56,9 @@ export class CreateExerciseFform implements OnInit {
       imageFormControl: this.imageFormControl,
     });
   }
-  onSubmit(name: string) {
+  onSubmit(name: string, image: string) {
       name = this.exercise.name;
-      this.exercise = this.factory.createExercise(name);
+      this.exercise = this.factory.createExercise(name, image);
       this.workoutDataService.addExercise(this.exercise);
       this.uploadSingle(name);
       this.hideExerciseForm.emit(true);
@@ -77,6 +77,7 @@ export class CreateExerciseFform implements OnInit {
     const file = this.selectedFiles.item(0);
     const dbPath = `workouts/exercises/${exerciseKey}/image`;
     const storagePath = `images/exercises/${exerciseKey}/${file.name}`;
+    this.exercise.image = storagePath;
 
     this.currentUpload = new Upload(file);
     this.uploadService.uploadFile(storagePath, dbPath, this.currentUpload);

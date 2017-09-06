@@ -44,8 +44,8 @@ export interface ModelFactoryInterface {
         eventDate: string,
         createdOn: number,
         image: any,
-        participants?: Array<any>,
-        comments?: Array<string>): ActivityInterface;
+        participants: Array<any>,
+        comments: Array<string>): ActivityInterface;
 
     createWorkout(
         title: string,
@@ -64,7 +64,7 @@ export interface ModelFactoryInterface {
         isTrainer: boolean,
         profileImage: any): UserInterface;
 
-    createExercise(name: string): ExerciseInterface;
+    createExercise(name: string, image: string): ExerciseInterface;
 
     createArticle(
         title: string,

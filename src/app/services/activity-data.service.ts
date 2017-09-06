@@ -33,7 +33,8 @@ export class ActivityData {
     }
 
     editActivity(activityKey: string, activity: object) {
-        this.db.object(`/activities/${activityKey}`)
+        this.db
+            .object(`/activities/${activityKey}`)
             .update(activity)
             .then((data) =>
                 console.log(data))
@@ -42,7 +43,7 @@ export class ActivityData {
 
     delete(activityKey: string) {
         this.db.object(`/activities/${activityKey}`)
-        .remove();
+            .remove();
     }
 
     getActivityByTitle(title: string) {
@@ -52,7 +53,6 @@ export class ActivityData {
 
         let item: any;
 
-        // need to be upgraded
         items.subscribe(snapshots => {
             snapshots.forEach(snapshot => {
                 if (snapshot.val().title === title) {

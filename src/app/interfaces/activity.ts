@@ -9,5 +9,5 @@ export interface ActivityInterface {
     createdOn: number;
     image: any;
     participants: Array<any>;
-    comments?: Array<string>;
+    comments: Array<string>;
 }

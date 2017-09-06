@@ -54,7 +54,7 @@
             </md-option>
         </md-autocomplete> -->
     </div>
-    <md-card *ngFor="let activity of activities | async" class="activity-container">
-        <app-activity [activity]=activity [activityId]=activity.$key></app-activity> 
+    <md-card *ngFor="let activity of (activities | async | sort:order:path)" class="activity-container">
+        <app-activity [activity]=activity [activityId]=activity.$key></app-activity>
     </md-card>
 </div>

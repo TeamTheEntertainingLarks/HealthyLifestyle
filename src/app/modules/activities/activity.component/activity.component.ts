@@ -20,6 +20,8 @@ export class ActivityComponent implements OnInit {
     @Input()
     activityId: string;
 
+    private userId: string;
+
     constructor(
         private auth: AuthService,
         private route: ActivatedRoute,
@@ -28,7 +30,7 @@ export class ActivityComponent implements OnInit {
     }
 
     ngOnInit() {
-
+        this.userId = localStorage.getItem('authkey');
     }
 
     isAuthenticated() {
@@ -36,11 +38,36 @@ export class ActivityComponent implements OnInit {
     }
 
     isAuthor(authorId: string) {
-        if (this.auth.currentUserId === authorId) {
+        if (this.userId === authorId) {
             return true;
         }
 
         return false;
+    }
+
+    isParticipating() {
+        if (this.activity.participants) {
+            if (this.activity.participants.indexOf(this.userId) === -1) {
+                return false;
+            }
+
+            return true;
+        }
+        return false;
+    }
+
+    participate() {
+        this.activity.participants = this.activity.participants || [];
+        this.activity.participants.push(this.userId);
+        this.activitiesDataService.editActivity(this.activityId, this.activity);
+    }
+
+    leave() {
+        const index = this.activity.participants.indexOf(this.userId);
+        if (index !== -1) {
+            this.activity.participants.splice(index, 1);
+            this.activitiesDataService.editActivity(this.activityId, this.activity);
+        }
     }
 
     delete() {

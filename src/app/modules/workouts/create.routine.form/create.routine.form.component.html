@@ -1,7 +1,8 @@
 <div class="form-container">
   <h2>Create New Routine</h2>
   <form class="routine-form" #carAddForm="ngForm" (ngSubmit)="onSubmit()">
-    <md-select (change)="addExercise($event)" placeholder="Choose Exercise" class="form-control" name="exerciseName" [(ngModel)]="routine.exercise.name" [formControl]="exerciseFormControl" required>
+    <md-select (change)="addExercise($event)" placeholder="Choose Exercise" class="form-control" name="exercise" 
+          [(ngModel)]="exerciseName" [formControl]="exerciseFormControl" required>
       <md-option *ngFor="let exercise of exercises" [value]="exercise.name">
         {{exercise.name}}
       </md-option>
