@@ -17,6 +17,10 @@ export class WorkoutData {
         this.firebaseCollection = this.db.list('/workouts');
     }
 
+    addProgram(days) {
+        this.db.list('/programs').push(days);
+    }
+
     getAvailableWorkouts() {
         return this.db.list('/workouts');
     }
@@ -56,6 +60,10 @@ export class WorkoutData {
             .catch(err => console.log(err, 'err when adding routine'));
     }
 
+    getAvailableRoutines() {
+        return this.db.list('/workouts/routines');
+    }
+
     addExercise(exercise: Exercise): void {
         this.db.list('/workouts/exercises').push(exercise)
             .then(_ => console.log('exercise added'))
@@ -92,9 +100,6 @@ export class WorkoutData {
             });
         });
         return item;
-    }
-    getAvailableRoutines() {
-        return this.db.list('/workouts/routines');
     }
 
     getAvailableExercises() {

@@ -15,6 +15,7 @@ export class CreateProgramComponent implements OnInit {
   public workout: any;
   public days: Array<any>;
   public workouts: Array<any>;
+
   constructor(
     public workoutData: WorkoutData,
     private factory: ModelFactory,
@@ -39,13 +40,21 @@ export class CreateProgramComponent implements OnInit {
     }, 100);
   }
 
+  hideAddForm() {
+    this.add = false;
+  }
+
   skipDay() {
-    this.days.push(null);
+    const restDay = {
+      checked: false,
+    };
+    this.days.push(restDay);
   }
 
   removeDay(index) {
-    this.days.splice(index);
+    this.days.splice(index, 1);
   }
+
   addWorkout() {
     let currentWorkout: any;
     this.workoutData.getWorkoutById(this.workout).subscribe(item => {
@@ -58,9 +67,12 @@ export class CreateProgramComponent implements OnInit {
     };
 
     this.days.push(newDay);
-
     this.add = false;
     //TODO - Clear Select
+  }
+
+  addProgram() {
+    this.workoutData.addProgram(this.days);
   }
 
   addNewWorkout(workout: any) {
@@ -73,9 +85,5 @@ export class CreateProgramComponent implements OnInit {
     this.days.push(newDay);
     this.add = false;
     //clear form
-  }
-
-  checkIfHide(el) {
-
   }
 }

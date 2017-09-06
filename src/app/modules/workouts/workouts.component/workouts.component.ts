@@ -3,12 +3,11 @@ import {Router, ActivatedRoute, Params} from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-workouts',
+  selector: 'app-workout',
   templateUrl: './workouts.component.html',
   styleUrls: ['./workouts.component.css']
 })
 export class WorkoutsComponent implements OnInit {
-  //-KskBQbpvr9rqJDcwtMC
   public workout: any;
 
   constructor(
@@ -18,8 +17,6 @@ export class WorkoutsComponent implements OnInit {
     this.router.params.subscribe((params: Params) => {
       const id = params['id'];
       this.workoutData.getWorkoutById(id).subscribe(item => {
-      console.log(item);
-        
         this.workout = item;
       });
     });

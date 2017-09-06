@@ -1,30 +1,34 @@
 <div class="content">
   <div class="week">
     <div *ngFor="let day of days; let d = index" class="day">
-      <button type="button" (click)="removeDay(d)">X</button>
-      <p>{{'Day '}}{{d+1}}</p>
-      <ng-container *ngIf="day != null; else elseTemplate">
+      <button type="button" class="removeBtn" (click)="removeDay(d)">X</button>
+      <p class="dayCount">{{'Day '}}{{d+1}}</p>
+      <ng-container *ngIf="day.workout != null; else elseTemplate">
         <p>{{day.workout.title}}</p>
-        <a href='workouts/{{day.workout.$key}}'>{{day.workout.$key}}</a>
       </ng-container>
       <ng-template #elseTemplate>
         <p>Rest Day</p>
       </ng-template>
     </div>
-      <div class="day" >
-        <button (click)="getAddForm(scroller)">Add</button>
-        <button (click)="skipDay()">Skip Day</button>
+      <div class="day">
+        <button class="showFormBtn" (click)="getAddForm(formScroller)" md-raised-button>Add</button>
+        <button class="showFormBtn" (click)="skipDay()"  md-raised-button>Skip Day</button>
       </div>
   </div>
 </div>
-<div class="form-container" [ngClass]="{'hidden': add==false}" #scroller>
+<div submission-container>
+  <button type="submit" routerLink="/workouts/all" id="createProgramBtn" class="success" md-raised-button>Create Program</button>
+</div>
+<div class="form-container" [ngClass]="{'hidden': add==false}" #formScroller>
   <form class="workout-form" (ngSubmit)="addWorkout()">
-  <md-select placeholder="Choose Routine" name="workout" [(ngModel)]="workout" required>
+  <h1>Choose Workout</h1>
+  <md-select placeholder="Choose Workout" name="workout" [(ngModel)]="workout" required>
     <md-option *ngFor="let workout of workouts" [value]="workout.$key">
       {{workout.title}}
     </md-option>
   </md-select>
   <button type="submit" class="success" md-raised-button>Add</button>
+  <button type="button" (click)="hideAddForm()" md-raised-button>Cancel</button>
 </form>
   <app-create-workout (onCreate)="addNewWorkout($event)"></app-create-workout>
 </div>
