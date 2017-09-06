@@ -15,7 +15,7 @@ export class Activity implements ActivityInterface {
     createdOn: number;
     image: any;
     participants: Array<any>;
-    comments?: Array<string>;
+    comments: Array<string>;
 
     constructor(
         userdId: string,
@@ -31,8 +31,8 @@ export class Activity implements ActivityInterface {
         eventDate: string,
         createdOn: number,
         image: any,
-        participants?: Array<any>,
-        comments?: Array<string>) {
+        participants: Array<any>,
+        comments: Array<string>) {
         this.userId = userdId;
         this.title = title;
         this.author = author;

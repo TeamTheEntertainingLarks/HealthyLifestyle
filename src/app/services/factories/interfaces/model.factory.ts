@@ -44,8 +44,8 @@ export interface ModelFactoryInterface {
         eventDate: string,
         createdOn: number,
         image: any,
-        participants?: Array<any>,
-        comments?: Array<string>): ActivityInterface;
+        participants: Array<any>,
+        comments: Array<string>): ActivityInterface;
 
     createWorkout(
         title: string,

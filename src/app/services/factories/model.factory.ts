@@ -54,8 +54,8 @@ export class ModelFactory implements ModelFactoryInterface {
         eventDate: string,
         createdOn: number,
         image: any,
-        participants?: Array<any>,
-        comments?: Array<string>) {
+        participants: Array<any>,
+        comments: Array<string>) {
         return new Activity(userdId, title, author, category, description, location, eventDate, createdOn, image, participants, comments);
     }
 
