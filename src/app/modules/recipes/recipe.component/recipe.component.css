@@ -96,13 +96,13 @@ rating {
 }
 
 .container {
-  flex: auto;
+  flex: 1;
   margin-right: 10%;
   font-size: 18px;
 }
 
 aside {
-  width: 55rem;
+  width: 12rem;
   text-align: right;
   margin-top: 20px;
 }
