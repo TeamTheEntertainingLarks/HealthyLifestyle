@@ -76,7 +76,13 @@ export class CreateProgramComponent implements OnInit {
   }
 
   addNewWorkout(workout: any) {
-    const currentWorkout = this.workoutData.getWorkoutByTitle(workout.title);
+    const currentWorkout = this.workoutData.getAvailableWorkouts().subscribe(workouts => {
+      workouts.forEach(snapshot => {
+        if (snapshot.val().title === workout.title) {
+          this.workout = snapshot.val();
+        }
+      });
+    });
     const newDay = {
       workout: currentWorkout,
       checked: false,
