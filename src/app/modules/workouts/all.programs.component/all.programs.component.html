@@ -1,0 +1,19 @@
+<div class="container">
+  <div class="wrapper">
+    <div class="content-container">
+        <md-card *ngFor="let program of programs" class="program-container">
+            <a routerLink="/programs/{{program.name}}"><img md-card-image src="{{program.image}}" alt="program-image"></a>
+            <md-card-content>
+                <h3><a routerLink="/programs/{{program.name}}">{{program.title}}</a></h3>
+                <p class="createdOn">
+                    <span>{{program.createdOn | date}}</span>
+                </p>
+                <!-- <rating [(ngModel)]="program.likes" [max]="10" [float]="true" [readonly]="true"></rating> -->
+                <p>
+                    <span><em>{{program.description}}</em></span>
+                </p>
+            </md-card-content>
+        </md-card>
+    </div>
+  </div>
+</div>

@@ -54,7 +54,6 @@ export class SignUpFormComponent implements OnInit {
     this.createForm();
   }
 
-  // TODO: More validation need to be added
   createForm() {
     this.usernameFormControl = new FormControl('', [
       Validators.required]);

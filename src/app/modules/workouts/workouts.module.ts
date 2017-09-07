@@ -20,6 +20,8 @@ import { CreateRoutineFormComponent } from './create.routine.form/create.routine
 import { CreateExerciseFform } from './create.exercise.form/create.exercise.form.component';
 import { ProgramComponent } from './program.component/program.component';
 import { CreateProgramComponent } from './create.program.component/create.program.component';
+import { AllProgramsComponent } from './all.programs.component/all.programs.component';
+
 
 @NgModule({
   imports: [
@@ -46,7 +48,8 @@ import { CreateProgramComponent } from './create.program.component/create.progra
     CreateRoutineFormComponent,
     CreateExerciseFform,
     ProgramComponent,
-    CreateProgramComponent
+    CreateProgramComponent,
+    AllProgramsComponent
 ],
   entryComponents: [CreateRoutineFormComponent, CreateExerciseFform],
   providers: [

@@ -46,6 +46,7 @@ export class ModelFactory implements ModelFactoryInterface {
         author: string,
         category: string,
         description: string,
+        additionalInfo: string,
         location: {
             place: string,
             lat: string,
@@ -56,7 +57,19 @@ export class ModelFactory implements ModelFactoryInterface {
         image: any,
         participants: Array<any>,
         comments: Array<string>) {
-        return new Activity(userdId, title, author, category, description, location, eventDate, createdOn, image, participants, comments);
+        return new Activity(
+            userdId,
+            title,
+            author,
+            category,
+            description,
+            additionalInfo,
+            location,
+            eventDate,
+            createdOn,
+            image,
+            participants,
+            comments);
     }
 
     createWorkout(

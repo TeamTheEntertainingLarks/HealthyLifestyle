@@ -36,6 +36,7 @@ export interface ModelFactoryInterface {
         author: string,
         category: string,
         description: string,
+        additionalInfo: string,
         location: {
             place: string,
             lat: string,

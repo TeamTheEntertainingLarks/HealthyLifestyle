@@ -50,42 +50,14 @@
 </div> -->
 <div class="content">
   <div class="week">
-    <div class="day">
-        <p>Day</p>
-        <p>Workout Name</p>
+    <div *ngFor="let day of days; let d = index" class="day">
+      <p class="dayCount">{{'Day '}}{{d+1}}</p>
+      <ng-container *ngIf="day.workout != null; else elseTemplate">
+        <p><a href="/programs/workouts/{{day.workout.title}}">{{day.workout.title}}</a></p>
+      </ng-container>
+      <ng-template #elseTemplate>
+        <p>Rest Day</p>
+      </ng-template>
     </div>
-    <div class="day">Day</div>
-    <div class="day">Day</div>
-    <div class="day">Day</div>
-    <div class="day">Day</div>
-    <div class="day">Day</div>
-    <div class="day">Day</div>
-  </div>
-  <div class="week">
-    <div class="day">Day</div>
-    <div class="day">Day</div>
-    <div class="day">Day</div>
-    <div class="day">Day</div>
-    <div class="day">Day</div>
-    <div class="day">Day</div>
-    <div class="day">Day</div>
-  </div>
-  <div class="week">
-    <div class="day">Day</div>
-    <div class="day">Day</div>
-    <div class="day">Day</div>
-    <div class="day">Day</div>
-    <div class="day">Day</div>
-    <div class="day">Day</div>
-    <div class="day">Day</div>
-  </div>
-  <div class="week">
-    <div class="day">Day</div>
-    <div class="day">Day</div>
-    <div class="day">Day</div>
-    <div class="day">Day</div>
-    <div class="day">Day</div>
-    <div class="day">Day</div>
-    <div class="day">Day</div>
   </div>
 </div>

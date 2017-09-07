@@ -47,7 +47,7 @@ import { NotificationService } from './services/notification.service';
     UserModule,
     NutritionModule,
     MaterialModule,
-    ToasterModule
+    ToasterModule,
   ],
   providers: [
 

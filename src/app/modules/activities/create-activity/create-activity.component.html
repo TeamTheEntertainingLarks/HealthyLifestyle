@@ -1,5 +1,5 @@
 <h2>Create New Activity</h2>
-<form class="activity-form" #activityAddForm="ngForm" (ngSubmit)="onSubmit()">
+<form class="activity-form" [formGroup]="activityForm" (ngSubmit)="onSubmit()">
 
   <md-input-container class="form-control">
     <input type="text" mdInput placeholder="Title" name="title" [(ngModel)]="title" [formControl]="titleFormControl" required>
@@ -37,8 +37,20 @@
   </md-input-container>
 
   <md-input-container class="form-control">
+    <textarea mdInput placeholder="Additional Info / Requirements" name="additionalInfo" #inputinfo maxlength="256" [(ngModel)]="additionalInfo"
+      [formControl]="additionalInfoFormControl" required></textarea>
+    <md-hint align="end">{{inputinfo.value.length}} / 256</md-hint>
+    <md-error *ngIf="additionalInfoFormControl.hasError('pattern')">
+      Please enter a valid additional information.
+    </md-error>
+    <md-error *ngIf="additionalInfoFormControl.hasError('required')">
+      Additional information is <strong>required</strong>
+    </md-error>
+  </md-input-container>
+
+  <md-input-container class="form-control">
     <input mdInput placeholder="Date and time" name="dateAndTime" [formControl]="eventDateFormControl" [value]="dateAndTime | date: 'short'"
-      [(ngModel)]="dateAndTime" dateTimePicker (onChange)="setMoment($event)" />
+      [(ngModel)]="dateAndTime" dateTimePicker (onChange)="setMoment($event)" required/>
     <md-error *ngIf="eventDateFormControl.hasError('required')">
       Date is <strong>required</strong>
     </md-error>
@@ -64,5 +76,3 @@
     <button type="submit" md-raised-button>Create Activity</button>
   </div>
 </form>
-
-<!-- <button type="submit" (click)="test()">test</button> -->

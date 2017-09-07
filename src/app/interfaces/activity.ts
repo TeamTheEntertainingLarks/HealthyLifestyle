@@ -4,6 +4,7 @@ export interface ActivityInterface {
     author: string;
     category: string;
     description: string;
+    additionalInfo: string;
     location: object;
     eventDate: string;
     createdOn: number;

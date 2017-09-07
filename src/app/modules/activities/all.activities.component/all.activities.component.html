@@ -46,15 +46,15 @@
                 <span>Create Workout</span>
             </button>
         </md-menu>
-        <!-- <input mdInput type="text" placeholder="Search for..." [mdAutocomplete]="auto" [formControl]="categoryCtrl" [(ngModel)]="searchWord"
+        <input mdInput type="text" placeholder="Search for..." [mdAutocomplete]="auto" [formControl]="categoryCtrl" [(ngModel)]="searchWord"
             class="form-control">
         <md-autocomplete #auto="mdAutocomplete">
             <md-option *ngFor="let category of filteredCategories | async" [value]="category">
                 {{ category }}
             </md-option>
-        </md-autocomplete> -->
+        </md-autocomplete>
     </div>
-    <md-card *ngFor="let activity of (activities | async | sort:order:path)" class="activity-container">
+    <div *ngFor="let activity of (activities | async | sort:order:path)">
         <app-activity [activity]=activity [activityId]=activity.$key></app-activity>
-    </md-card>
+    </div>
 </div>
