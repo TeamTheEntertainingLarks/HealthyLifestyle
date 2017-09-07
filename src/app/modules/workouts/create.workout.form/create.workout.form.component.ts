@@ -8,9 +8,6 @@ import { ModelFactory } from './../../../services/factories/model.factory';
 import { WorkoutData } from './../../../services/workouts-data.service';
 import { AuthService } from './../../../services/auth.service';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-
-import { Router } from '@angular/router';
-
 import { FormControl, Validators, FormGroup, FormBuilder, AbstractControl } from '@angular/forms';
 import { Category } from '../../../enums/workoutCategories';
 
@@ -51,7 +48,6 @@ export class CreateWorkoutFormComponent implements OnInit {
 
    constructor(
     public dialog: MdDialog,
-    private router: Router,
     workoutDataService: WorkoutData,
     factory: ModelFactory,
     auth: AuthService,

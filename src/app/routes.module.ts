@@ -13,7 +13,7 @@ const routes: Routes = [
     { path: 'activities', loadChildren: './modules/activities/activities.module#ActivitiesModule' },
     { path: 'recipes', loadChildren: './modules/recipes/recipes.module#RecipesModule' },
     { path: 'user', loadChildren: './modules/user/user.module#UserModule' },
-    { path: 'workouts', loadChildren: './modules/workouts/workouts.module#WorkoutsModule' },
+    { path: 'programs', loadChildren: './modules/workouts/workouts.module#WorkoutsModule' },
     { path: 'nutrition', loadChildren: './modules/nutrition/nutrition.module#NutritionModule' },
     { path: '**', component: PageNotFoundComponent },
 ];

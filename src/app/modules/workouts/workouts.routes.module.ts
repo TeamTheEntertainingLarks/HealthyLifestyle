@@ -1,3 +1,4 @@
+import { AllProgramsComponent } from './all.programs.component/all.programs.component';
 import { CreateProgramComponent } from './create.program.component/create.program.component';
 import { ProgramComponent } from './program.component/program.component';
 import { NgModule } from '@angular/core';
@@ -9,11 +10,11 @@ import { CreateWorkoutFormComponent } from './create.workout.form/create.workout
 
 const routes: Routes = [
     { path: '', redirectTo: 'all', pathMatch: 'full' },
-    { path: 'all', component: ProgramComponent },
-    { path: 'create', component: CreateWorkoutFormComponent },
-    { path: 'programs/create', component: CreateProgramComponent },
-    { path: 'programs/workouts/:title', component: WorkoutsComponent },
-    { path: 'programs/:id', component: ProgramComponent },
+    { path: 'all', component: AllProgramsComponent },
+    //{ path: 'create', component: CreateWorkoutFormComponent },
+    { path: 'create', component: CreateProgramComponent },
+    { path: 'workouts/:title', component: WorkoutsComponent },
+    { path: ':id', component: ProgramComponent },
 ];
 
 @NgModule({

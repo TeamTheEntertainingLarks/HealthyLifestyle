@@ -17,6 +17,9 @@ export class WorkoutData {
         this.firebaseCollection = this.db.list('/workouts');
     }
 
+    getAvailablePrograms() {
+        return this.db.list('programs');
+    }
     getProgramById(id) {
         return this.db.object(`programs/${id}`);
     }

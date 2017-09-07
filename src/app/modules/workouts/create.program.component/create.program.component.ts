@@ -4,6 +4,7 @@ import { Workout } from './../../../models/workout';
 import { WorkoutData } from './../../../services/workouts-data.service';
 import { Component, OnInit } from '@angular/core';
 import { ScrollToService } from 'ng2-scroll-to-el';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-program',
@@ -15,8 +16,10 @@ export class CreateProgramComponent implements OnInit {
   public workout: any;
   public days: Array<any>;
   public workouts: Array<any>;
+  public workoutTitle: string;
 
   constructor(
+    private router: Router,
     public workoutData: WorkoutData,
     private factory: ModelFactory,
     public scrollToService: ScrollToService) {
@@ -29,7 +32,9 @@ export class CreateProgramComponent implements OnInit {
 
   ngOnInit() {
     this.workoutData.getAvailableWorkouts().subscribe(items => {
-        this.workouts = items;
+      items.forEach(item => {
+        this.workouts.push(item.val());
+      });
     });
   }
 
@@ -57,8 +62,12 @@ export class CreateProgramComponent implements OnInit {
 
   addWorkout() {
     let currentWorkout: any;
-    this.workoutData.getWorkoutById(this.workout).subscribe(item => {
-      currentWorkout = item;
+    this.workoutData.getAvailableWorkouts().subscribe(workouts => {
+      workouts.forEach(snapshot => {
+        if (snapshot.val().title === this.workoutTitle) {
+          currentWorkout = snapshot.val();
+        }
+      });
     });
 
     const newDay = {
@@ -73,16 +82,20 @@ export class CreateProgramComponent implements OnInit {
 
   addProgram() {
     this.workoutData.addProgram(this.days);
+    this.router.navigate(['programs/all']);
+
   }
 
   addNewWorkout(workout: any) {
     const currentWorkout = this.workoutData.getAvailableWorkouts().subscribe(workouts => {
       workouts.forEach(snapshot => {
         if (snapshot.val().title === workout.title) {
-          this.workout = snapshot.val();
+          workout = snapshot.val();
         }
       });
     });
+
+    console.log(workout);
     const newDay = {
       workout: currentWorkout,
       checked: false,

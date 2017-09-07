@@ -17,13 +17,13 @@
   </div>
 </div>
 <div submission-container>
-  <button type="submit" routerLink="/workouts/all" id="createProgramBtn" class="success" md-raised-button>Create Program</button>
+  <button type="button" (click)="addProgram()" id="createProgramBtn" class="success" md-raised-button>Create Program</button>
 </div>
 <div class="form-container" [ngClass]="{'hidden': add==false}" #formScroller>
   <form class="workout-form" (ngSubmit)="addWorkout()">
   <h1>Choose Workout</h1>
-  <md-select placeholder="Choose Workout" name="workout" [(ngModel)]="workout" required>
-    <md-option *ngFor="let workout of workouts" [value]="workout.$key">
+  <md-select placeholder="Choose Workout" name="workout" [(ngModel)]="workoutTitle" required>
+    <md-option *ngFor="let workout of workouts" [value]="workout.title">
       {{workout.title}}
     </md-option>
   </md-select>
