@@ -1,7 +1,6 @@
 <div class="container">
     <div class="subnav">
         <button md-button [mdMenuTriggerFor]="byTitle">
-            <md-icon>sort</md-icon>
             Order by Title
         </button>
         <md-menu #byTitle="mdMenu">
@@ -15,7 +14,6 @@
             </button>
         </md-menu>
         <button md-button [mdMenuTriggerFor]="byDate">
-            <md-icon>sort</md-icon>
             Order by Date
         </button>
         <md-menu #byDate="mdMenu">
@@ -29,7 +27,6 @@
                     </button>
         </md-menu>
         <button md-button [mdMenuTriggerFor]="create">
-                <md-icon>add</md-icon>
                 Create
         </button>
         <md-menu #create="mdMenu">
@@ -76,20 +73,6 @@
                         <span><em>{{recipe.description}}</em></span>
                     </p>
                 </md-card-content>
-                <!-- <md-card-actions *ngIf="isAuthenticated()">
-                <button md-button>
-                    <md-icon>star_rate</md-icon>
-                    Like
-                </button>
-                <button md-button>
-                    <md-icon>favorite</md-icon>
-                    Add to Favorites
-                </button>
-                <button md-button (click)="openDialog()">
-                    <md-icon>share</md-icon>
-                    Share
-                </button>
-            </md-card-actions> -->
             </md-card>
         </div>
         <app-calorie-calculator></app-calorie-calculator>

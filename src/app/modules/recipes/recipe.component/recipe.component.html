@@ -1,11 +1,9 @@
 <div class="subnav">
         <a md-button routerLink="/recipes">
-                <md-icon>menu</md-icon>
                 Back to Recipes
         </a>
         <a md-button class="create" *ngIf="isAuthenticated()" routerLink="/recipes/create">
-                <md-icon>add</md-icon>
-                Create New
+                Create Recipe
         </a>
 </div>
 <div class="wrapper">
@@ -24,10 +22,6 @@
                                 <md-icon>star_rate</md-icon>
                                 Like
                         </button>
-                                <!-- <button md-button>
-                                <md-icon>favorite</md-icon>
-                                Add to Favorites
-                        </button> -->
                                 <button md-button (click)="openDialog()">
                                 <md-icon>share</md-icon>
                                 Share
@@ -90,15 +84,15 @@
                         </tr>
                         <tr>
                                 <td class="nutrition">Protein per serving:</td>
-                                <td cass="size">{{recipe?.protein}} g</td>
+                                <td cass="size">{{recipe?.protein | grams}}</td>
                         </tr>
                         <tr>
                                 <td class="nutrition">Fat per serving:</td>
-                                <td cass="size">{{recipe?.fat}} g</td>
+                                <td cass="size">{{recipe?.fat | grams}}</td>
                         </tr>
                         <tr>
                                 <td class="nutrition">Carbs per serving:</td>
-                                <td cass="size">{{recipe?.carbs}} g</td>
+                                <td cass="size">{{recipe?.carbs | grams}}</td>
                         </tr>
                 </table>
                 <p>Prepare Time: <span class="time">{{recipe?.prepareTime}} min</span></p>

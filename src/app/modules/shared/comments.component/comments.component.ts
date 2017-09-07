@@ -1,5 +1,4 @@
 import { Component, OnInit, Input, Inject } from '@angular/core';
-import { DOCUMENT } from '@angular/platform-browser';
 import { FormControl, Validators, FormGroup, FormBuilder, AbstractControl } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Injectable } from '@angular/core';
@@ -34,14 +33,12 @@ export class CommentsComponent implements OnInit {
     public userService: UserData,
     private route: ActivatedRoute,
     private router: Router,
-    private db: AngularFireDatabase,
-    @Inject(DOCUMENT) private document: any) {
+    private db: AngularFireDatabase) {
     this.textComment = '';
   }
 
   ngOnInit() {
     this.userId = localStorage.getItem('authkey');
-    // this.userId = this.auth.currentUserId;
     this.date = Date.now();
 
     this.userService.getUserByUid(this.userId).subscribe((res) => {
@@ -49,10 +46,7 @@ export class CommentsComponent implements OnInit {
       this.userFullName = res.firstName + ' ' + res.lastName;
     });
 
-    // console.log(this.document.location.href);
-    // console.log(this.document.location.origin);
-    // console.log(this.document.location.pathname);
-    const pathname = window.location.pathname; // /recipes/-Kseo1STtRlugxy83SmO
+    const pathname = window.location.pathname;
     this.route.params.subscribe(params => {
       this.firebaseCollection = this.db.object(pathname).subscribe((data) => {
         this.item = data;
@@ -72,7 +66,7 @@ export class CommentsComponent implements OnInit {
     this.item.comments = this.item.comments || [];
     this.item.comments.push(comment);
 
-    const pathname = this.document.location.pathname;
+    const pathname = window.location.pathname;
     this.db.object(pathname)
       .update(this.item)
       .then((data) => this.notificationService.popToast('info', 'Success!', 'Your comment was added successfully!'))

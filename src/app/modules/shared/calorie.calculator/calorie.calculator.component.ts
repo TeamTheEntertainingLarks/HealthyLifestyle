@@ -37,16 +37,16 @@ export class CalorieCalculatorComponent implements OnInit {
 
   ngOnInit() {
     this.ageFormControl = new FormControl('', [
-      Validators.required, Validators.pattern(NUMBER_REGEX), Validators.minLength(0)]);
+      Validators.required, Validators.pattern(NUMBER_REGEX)]);
 
     this.genderFormControl = new FormControl('', [
       Validators.required]);
 
     this.weightFormControl = new FormControl('', [
-      Validators.required, Validators.pattern(NUMBER_REGEX), Validators.minLength(0)]);
+      Validators.required, Validators.pattern(NUMBER_REGEX)]);
 
     this.heightFormControl = new FormControl('', [
-      Validators.required, Validators.pattern(NUMBER_REGEX), Validators.minLength(0)]);
+      Validators.required, Validators.pattern(NUMBER_REGEX)]);
 
     this.activenessFormControl = new FormControl('', [
       Validators.required]);

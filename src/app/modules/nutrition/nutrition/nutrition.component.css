@@ -17,6 +17,7 @@ app-calorie-calculator {
 
 .main-img {
     width: 100%;
+    margin-bottom: 20px;
 }
 
 h2 {
@@ -26,9 +27,7 @@ h2 {
 }
 
 button {
-    margin-top: 30px;
-    display: block;
-    background-color: rgba(149, 196, 32, 0.80);
+    margin-right: 10px;
 }
 
 .article-image {
@@ -57,3 +56,17 @@ button {
 .description{
     text-align: justify;
 }
+
+.subnav {
+    text-align: right;
+    clear: both;
+    padding-right: 100px;
+}
+
+input[type=text] {
+    padding: 10px;
+    font-size: 14px;
+    border-radius: 5px;
+}
+
+

@@ -1,24 +1,62 @@
+<div class="subnav">
+    <button md-button [mdMenuTriggerFor]="byTitle">
+        Order by Title
+    </button>
+    <md-menu #byTitle="mdMenu">
+        <button md-menu-item >
+                <md-icon>arrow_upward</md-icon>
+                  <span>Order Ascending</span>
+                </button>
+        <button md-menu-item >
+                <md-icon>arrow_downward</md-icon>
+                <span>Order Descending</span>
+        </button>
+    </md-menu>
+    <button md-button [mdMenuTriggerFor]="byDate">
+        Order by Date
+    </button>
+    <md-menu #byDate="mdMenu">
+        <button md-menu-item >
+                  <md-icon>arrow_upward</md-icon>
+                  <span>Order Ascending</span>
+                </button>
+        <button md-menu-item >
+                  <md-icon>arrow_downward</md-icon>
+                  <span>Order Descending</span>
+                </button>
+    </md-menu>
+    <button md-button routerLink="/nutrition/create">Create Article</button>
+    <input type="text" 
+    placeholder="Search for..."
+
+    class="form-control">
+
+    <!-- [mdAutocomplete]="auto"
+    [formControl]="categoryCtrl"
+    [(ngModel)]="searchWord" -->
+
+
+    <!-- <md-autocomplete #auto="mdAutocomplete">
+        <md-option *ngFor="let category of filteredCategories | async" [value]="category">
+            {{ category }}
+        </md-option>
+    </md-autocomplete> -->
+</div>
 <div class="container">
   <div class="content-container">
     <div class="meal-container">
-      <!-- <h2>Ideas About Healthy Meal</h2> -->
       <h2>Short Articles About Healthy Eating</h2>
       <img src="/assets/images/plan-food.jpg" alt="food-image" class="main-img">
-      <!-- <button md-raised-button>Post Meal</button> -->
-      <!-- <div *ngFor="let m of meal">
-        <p>{{m.name}}</p>
-      </div> -->
     </div>
     <div class="article-container">
-      <button md-raised-button routerLink="/nutrition/create">Post Article</button>
       <table class="article-content">
       <div *ngFor="let article of articles">
           <tr>
-            <td class="article-image"><img src="{{article.image.url}}" alt="image"></td>
+            <td class="article-image"><img src="{{article?.image.url}}" alt="image"></td>
             <td class="article-info">
-                <p class="title">{{article.title}}</p>
-                <p class="date"><em>published on {{article.createdOn | date}}</em></p>
-                <p class="description">{{article.description}}</p>
+                <p class="title">{{article?.title}}</p>
+                <p class="date"><em>published on {{article?.createdOn | date}}</em></p>
+                <p class="description">{{article?.description}}</p>
             </td>
           </tr>
       </div>
