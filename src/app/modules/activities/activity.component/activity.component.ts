@@ -91,6 +91,10 @@ export class ActivityComponent implements OnInit {
         }
     }
 
+    navigateToEdit() {
+        this.router.navigate([`/activities/${this.activityId}/edit`]);
+    }
+
     delete() {
         this.activitiesDataService.delete(this.activityId);
     }
