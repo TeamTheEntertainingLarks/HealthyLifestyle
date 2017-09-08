@@ -55,7 +55,9 @@
         </md-autocomplete>
     </div>
 
-    <div class="map-container">
+    <button md-fab color="primary" (click)="openDialog()"><md-icon>place</md-icon></button>
+
+    <!-- <div class="map-container">
         <agm-map class="map" [zoom]="7" [latitude]="42.5" [longitude]="25.50">
             <agm-marker *ngFor="let marker of locationMarkers" [latitude]="marker.lat" [longitude]="marker.lng">
                 <agm-info-window>
@@ -64,9 +66,11 @@
                 </agm-info-window>
             </agm-marker>
         </agm-map>
-    </div>
+    </div> -->
 
-    <div *ngFor="let activity of (activities | sort:order:path)">
-        <app-activity [activity]=activity [activityId]=activity.$key></app-activity>
+    <div class="activities-container">
+        <div *ngFor="let activity of (activities | sort:order:path)">
+            <app-activity [activity]=activity [activityId]=activity.$key></app-activity>
+        </div>
     </div>
 </div>

@@ -1,3 +1,4 @@
+import { GoogleMapDialogComponent } from './../google-map-dialog/google-map-dialog.component';
 import { ActivityInterface } from './../../../interfaces/activity';
 import { ActivityData } from './../../../services/activity-data.service';
 import { AuthService } from './../../../services/auth.service';
@@ -7,6 +8,7 @@ import { DataService } from '../../../services/data.service';
 import { WorkoutInterface } from '../../../interfaces/workout';
 import { FirebaseListObservable } from 'angularfire2/database';
 import { FormControl } from '@angular/forms';
+import { MdDialog } from '@angular/material';
 
 @Component({
     selector: 'app-activities',
@@ -35,7 +37,10 @@ export class ActivitiesAllComponent implements OnInit {
 
     public locationMarkers = [];
 
-    constructor(private auth: AuthService, private activitiesDataService: ActivityData) { }
+    constructor(
+        private auth: AuthService,
+        private activitiesDataService: ActivityData,
+        private dialog: MdDialog) { }
 
     ngOnInit() {
         this.categoryCtrl = new FormControl();
@@ -48,7 +53,7 @@ export class ActivitiesAllComponent implements OnInit {
                     const location = item.location;
                     const activityTitle = item.title;
                     const imageUrl = item.image.url;
-                    this.getActivitiesCoordinates(location, activityId, activityTitle, imageUrl);
+                    this.getActivitiesLocation(location, activityId, activityTitle, imageUrl);
                 });
             });
 
@@ -58,7 +63,7 @@ export class ActivitiesAllComponent implements OnInit {
                 .map(name => this.filterStates(name));
     }
 
-    getActivitiesCoordinates(location, activityId, title, imageUrl) {
+    getActivitiesLocation(location, activityId, title, imageUrl) {
         const marker = {
             id: activityId,
             title: title,
@@ -71,8 +76,12 @@ export class ActivitiesAllComponent implements OnInit {
         this.locationMarkers.push(marker);
     }
 
-    test(event) {
-        console.log(event);
+    openDialog() {
+        const dialogRef = this.dialog.open(GoogleMapDialogComponent, {
+            data: {
+                markers: this.locationMarkers,
+            }
+        });
     }
 
     isAuthenticated() {

@@ -19,7 +19,8 @@ import {
     MdAutocompleteModule,
     MD_PLACEHOLDER_GLOBAL_OPTIONS,
     MD_ERROR_GLOBAL_OPTIONS,
-    showOnDirtyErrorStateMatcher
+    showOnDirtyErrorStateMatcher,
+    MdDialogModule
 } from '@angular/material';
 
 import { ActivitiesRoutesModule } from './activities.routes.module';
@@ -34,6 +35,7 @@ import { SearchPipe } from '../../pipes/search.pipe';
 import { ZoomImageDirective } from '../../directives/zoom-image.directive';
 import { AgmCoreModule } from '@agm/core';
 import { PipesSharedModule } from '../../pipes/pipes-shared.module';
+import { GoogleMapDialogComponent } from './google-map-dialog/google-map-dialog.component';
 
 @NgModule({
     imports: [
@@ -45,6 +47,7 @@ import { PipesSharedModule } from '../../pipes/pipes-shared.module';
         MdIconModule,
         MdGridListModule,
         MdInputModule,
+        MdDialogModule,
         FormsModule,
         ReactiveFormsModule,
         MdSelectModule,
@@ -64,6 +67,10 @@ import { PipesSharedModule } from '../../pipes/pipes-shared.module';
         ActivitiesAllComponent,
         CreateActivityComponent,
         EditActivityComponent,
+        GoogleMapDialogComponent
+    ],
+    entryComponents: [
+        GoogleMapDialogComponent,
     ],
     providers: [
         { provide: MD_ERROR_GLOBAL_OPTIONS, useValue: { errorStateMatcher: showOnDirtyErrorStateMatcher } },

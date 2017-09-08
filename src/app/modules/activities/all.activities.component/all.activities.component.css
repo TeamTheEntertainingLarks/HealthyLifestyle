@@ -1,3 +1,8 @@
+.activities-container{
+    width: 60%;
+    margin: 0 auto;
+}
+
 .subnav {
     text-align: right;
     clear: both;
@@ -8,21 +13,4 @@ input[type=text]{
     padding: 10px;
     font-size: 14px;
     border-radius: 5px;
-}
-
-.map{
-    height: 500px;
-}
-
-.map-image {
-    height: 60px;
-    width: 60px;
-}
-
-.map-container{
-    border-radius: 5px;
-    border: solid 1px gray;
-    margin: 50px 0;
-    width: 45%;
-    float:right;
 }

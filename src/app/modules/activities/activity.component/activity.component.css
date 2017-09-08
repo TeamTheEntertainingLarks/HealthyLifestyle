@@ -1,16 +1,14 @@
 .container {
-    width: 50%;
-    height: 50%;
+    height: 100%;
     flex: auto;
-    margin-right: 10%;
-    overflow: hidden;
     font-size: 1.2em;
-  }
-
-.activity-container {
     border-radius: 5px;
     border: solid 1px gray;
     margin: 50px 0;
+  }
+
+.activity-image {
+    max-height: 650px;
 }
 
 .subnav {
@@ -19,12 +17,6 @@
     padding-right: 100px;
   }
 
-/* .wrapper{
-    display: flex;
-    flex-direction: row;
-    padding: 0 100px;
-  } */
- 
 .settings-btn {
     position: absolute;
     right: 0;
@@ -66,7 +58,7 @@ md-card-content p{
 }
 
 agm-map {
-    height: 300px;
+    height: 400px;
 }
 
 .comments-container md-card-header {
