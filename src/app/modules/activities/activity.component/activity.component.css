@@ -1,11 +1,30 @@
 .container {
+    width: 1000px;
     height: 100%;
     flex: auto;
     font-size: 1.2em;
     border-radius: 5px;
-    border: solid 1px gray;
-    margin: 50px 0;
-  }
+    margin: 50px auto;
+}
+
+.wrapper{
+      padding-left: 10%;
+      padding-right: 10%;
+}
+
+.container button {
+    font-size: 0.8em;
+    border-radius: 5px; 
+    margin-right: 10px;
+}
+
+md-card-content md-icon {
+    color: #96c421;
+}
+
+.user-actions md-icon {
+    color: #96c421;
+}
 
 .activity-image {
     max-height: 650px;
@@ -26,16 +45,6 @@
     font-size:40px;
     height:40px;
     width: 40px;
-}
-
-.activity-container button {
-    font-size: 0.8em;
-    border-radius: 5px; 
-    margin-right: 10px;
-}
-
-.user-actions md-icon {
-    color: #96c421;
 }
 
 a {
@@ -78,6 +87,10 @@ agm-map {
 .comments-container {
     margin: 20px 0;
     border: 1px solid gray;
+}
+
+.comments-title{
+    color: #86AF1D;
 }
 
 .comments span {

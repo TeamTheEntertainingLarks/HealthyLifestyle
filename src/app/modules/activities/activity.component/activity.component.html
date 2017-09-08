@@ -8,97 +8,101 @@
         Create New
     </a>
 </div>
-<div *ngIf="activity || (activityLoaded | async)" class="container">
-    <md-card>
-        <img *ngIf="activity.image?.url" class="activity-image" md-card-image src="{{activity.image?.url}}" alt="activity-image">
-        <md-card-content>
-            <h3><a *ngIf="(isAuthenticated() && isAuthor(activity.userId))" routerLink="/activities/{{activityId}}/edit">{{activity.title}}</a></h3>
-            <h3><a *ngIf="!isAuthor(activity.userId)" routerLink="/activities/{{activityId}}">{{activity.title}}</a></h3>
-            <p class="createdOn">
-                <span *ngIf="type == 'view'">by {{activity.author}} <strong>|</strong> on {{activity.createdOn | date}}</span>
-                <span>{{activity.createdOn | date}}</span>
-            </p>
-            <p class="eventDate">
-                <span>{{activity.eventDate | date:'medium'}}</span>
-            </p>
-            <p>
-                <span><md-icon>place</md-icon>{{activity?.location.place}}</span>
-            </p>
-            <p>
-                <agm-map [zoom]="15" [latitude]="activity.location.lat" [longitude]="activity.location.lng">
-                    <agm-marker [latitude]="activity.location.lat" [longitude]="activity.location.lng"></agm-marker>
-                </agm-map>
-            </p>
-            <p>
-                <span *ngIf="type == 'view'"><em>{{activity.category}}</em></span>
-            </p>
-            <p>
-                <span><em>{{activity.description}}</em></span>
-            </p>
-        </md-card-content>
-        <md-card-actions class="user-actions" *ngIf="(isAuthenticated() && !isAuthor(activity.userId) && !isParticipating())">
-            <button md-button>
-                    <md-icon>star_rate</md-icon>
-                    Like
-                </button>
-            <button md-button (click)="participate()">
-                    <md-icon>group</md-icon>
-                    Participate
-                </button>
-            <button md-button>
-                    <md-icon>share</md-icon>
-                    Share
-                </button>
-        </md-card-actions>
-        <md-card-actions class="user-actions" *ngIf="(isAuthenticated() && !isAuthor(activity.userId) && isParticipating())">
-            <button md-button>
-                    <md-icon>star_rate</md-icon>
-                    Like
-                </button>
-            <button md-button (click)="leave()">
-                    <md-icon>clear</md-icon>
-                    Leave
-                </button>
-            <button md-button>
-                    <md-icon>share</md-icon>
-                    Share
-                </button>
-        </md-card-actions>
-        <md-card-actions class="author-actions" *ngIf="(isAuthenticated() && isAuthor(activity.userId))">
-            <button md-button (click)="navigateToEdit()">
-                    <md-icon>edit</md-icon>
-                    Edit
-                </button>
-            <button md-button color="warn" (click)="delete()">
-                    <md-icon>delete</md-icon>
-                    Delete
-                </button>
-        </md-card-actions>
-    </md-card>
-    <div *ngIf="type == 'view'">
-        <div class="comments">
-            <h3 class="comments-title">Comments</h3>
-            <span *ngIf="activity.comments">{{commentsLength}}</span>
-            <div *ngIf="activity.comments">
-                <div *ngFor="let comment of activity?.comments">
-                    <md-card class="comments-container">
-                        <md-card-header>
-                            <img md-card-avatar src="{{comment.profileImage.url}}">
-                            <md-card-title>{{comment.username}}</md-card-title>
-                            <md-card-subtitle>on {{comment.date | date}}</md-card-subtitle>
-                        </md-card-header>
-                        <md-card-content>
-                            <p>
-                                {{comment.textComment}}
-                            </p>
-                        </md-card-content>
-                    </md-card>
+<div class="wrapper">
+    <div *ngIf="activity || (activityLoaded | async)" class="container">
+        <md-card>
+            <img appZoomImage *ngIf="activity.image?.url" class="activity-image" md-card-image src="{{activity.image?.url}}" alt="activity-image">
+            <md-card-content>
+                <h3><a *ngIf="isAuthor(activity.userId)" routerLink="/activities/{{activityId}}">{{activity.title}}</a></h3>
+                <p class="createdOn">
+                    <span *ngIf="type == 'view'">by {{activity.author}} <strong>|</strong> on {{activity.createdOn | date}}</span>
+                </p>
+                <p class="eventDate">
+                    <span><md-icon>access_time</md-icon> {{activity.eventDate | date:'medium'}}</span>
+                </p>
+                <p>
+                    <span><md-icon>place</md-icon> {{activity?.location.place}}</span>
+                </p>
+                <p *ngIf="type == 'view'">
+                    <agm-map [zoom]="15" [latitude]="activity.location.lat" [longitude]="activity.location.lng">
+                        <agm-marker [latitude]="activity.location.lat" [longitude]="activity.location.lng"></agm-marker>
+                    </agm-map>
+                </p>
+                <p>
+                    <span *ngIf="type == 'view'"><em>{{activity.category}}</em></span>
+                </p>
+                <p>
+                    <span><em>{{activity.description}}</em></span>
+                </p>
+                <hr>
+                <p *ngIf="type == 'view'">
+                    <span><em>{{activity.additionalInfo}}</em></span>
+                </p>
+            </md-card-content>
+            <md-card-actions class="user-actions" *ngIf="(isAuthenticated() && !isAuthor(activity.userId) && !isParticipating())">
+                <button md-button>
+                        <md-icon>star_rate</md-icon>
+                        Like
+                    </button>
+                <button md-button (click)="participate()">
+                        <md-icon>group</md-icon>
+                        Participate
+                    </button>
+                <button md-button>
+                        <md-icon>share</md-icon>
+                        Share
+                    </button>
+            </md-card-actions>
+            <md-card-actions class="user-actions" *ngIf="(isAuthenticated() && !isAuthor(activity.userId) && isParticipating())">
+                <button md-button>
+                        <md-icon>star_rate</md-icon>
+                        Like
+                    </button>
+                <button md-button (click)="leave()">
+                        <md-icon>clear</md-icon>
+                        Leave
+                    </button>
+                <button md-button>
+                        <md-icon>share</md-icon>
+                        Share
+                    </button>
+            </md-card-actions>
+            <md-card-actions *ngIf="(isAuthenticated() && isAuthor(activity.userId))">
+                <button md-button color="primary" (click)="navigateToEdit()">
+                        <md-icon>edit</md-icon>
+                        Edit
+                    </button>
+                <button md-button color="warn" (click)="delete()">
+                        <md-icon>delete</md-icon>
+                        Delete
+                    </button>
+            </md-card-actions>
+        </md-card>
+        <div *ngIf="type == 'view'">
+            <div class="comments">
+                <h3 class="comments-title">Comments</h3>
+                <span *ngIf="activity.comments">{{commentsLength}}</span>
+                <div *ngIf="activity.comments">
+                    <div *ngFor="let comment of activity?.comments">
+                        <md-card class="comments-container">
+                            <md-card-header>
+                                <img md-card-avatar src="{{comment.profileImage.url}}">
+                                <md-card-title>{{comment.username}}</md-card-title>
+                                <md-card-subtitle>on {{comment.date | date}}</md-card-subtitle>
+                            </md-card-header>
+                            <md-card-content>
+                                <p>
+                                    {{comment.textComment}}
+                                </p>
+                            </md-card-content>
+                        </md-card>
+                    </div>
+                </div>
+                <div *ngIf="!activity?.comments">
+                    <p> No Comments yet</p>
                 </div>
             </div>
-            <div *ngIf="!activity?.comments">
-                <p> No Comments yet</p>
-            </div>
+            <app-comments></app-comments>
         </div>
-        <app-comments></app-comments>
     </div>
 </div>
