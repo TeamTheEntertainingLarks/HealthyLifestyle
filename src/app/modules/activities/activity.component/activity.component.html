@@ -9,7 +9,7 @@
     </a>
 </div>
 <div *ngIf="activity || (activityLoaded | async)" class="container">
-    <md-card class="activity-container">
+    <md-card>
         <img *ngIf="activity.image?.url" class="activity-image" md-card-image src="{{activity.image?.url}}" alt="activity-image">
         <md-card-content>
             <h3><a *ngIf="(isAuthenticated() && isAuthor(activity.userId))" routerLink="/activities/{{activityId}}/edit">{{activity.title}}</a></h3>
