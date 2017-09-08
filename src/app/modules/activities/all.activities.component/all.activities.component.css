@@ -1,5 +1,4 @@
 .activities-container{
-    width: 60%;
     margin: 0 auto;
 }
 
@@ -13,4 +12,11 @@ input[type=text]{
     padding: 10px;
     font-size: 14px;
     border-radius: 5px;
+}
+
+.map-btn{
+    position: fixed;
+    right: 3%;
+    margin-top: 4%;
+    margin-right: 5%;
 }

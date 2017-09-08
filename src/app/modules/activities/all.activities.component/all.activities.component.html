@@ -27,18 +27,7 @@
         </md-autocomplete>
     </div>
 
-    <button md-fab color="primary" (click)="openDialog()"><md-icon>place</md-icon></button>
-
-    <!-- <div class="map-container">
-            <agm-map class="map" [zoom]="7" [latitude]="42.5" [longitude]="25.50">
-                <agm-marker *ngFor="let marker of locationMarkers" [latitude]="marker.lat" [longitude]="marker.lng">
-                    <agm-info-window>
-                        <a routerLink="/activities/{{marker.id}}">
-                            <img class="map-image" [src]="marker.imageUrl"> {{marker.title}}</a>
-                    </agm-info-window>
-                </agm-marker>
-            </agm-map>
-        </div> -->
+    <button md-fab color="primary" class="map-btn" (click)="openDialog()"><md-icon>place</md-icon></button>
 
     <div class="activities-container">
         <div *ngFor="let activity of activities">
