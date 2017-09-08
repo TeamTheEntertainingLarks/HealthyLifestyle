@@ -1,3 +1,4 @@
+import { FormControl, FormBuilder, Validators, FormGroup, AbstractControl } from '@angular/forms';
 import { ModelFactory } from './../../../services/factories/model.factory';
 import { Routine } from './../../../models/routine';
 import { Workout } from './../../../models/workout';
@@ -5,6 +6,11 @@ import { WorkoutData } from './../../../services/workouts-data.service';
 import { Component, OnInit } from '@angular/core';
 import { ScrollToService } from 'ng2-scroll-to-el';
 import { Router } from '@angular/router';
+import { Difficulty } from '../../../enums/programDifficulty';
+import { UploadService } from './../../../services/uploads/shared/upload.service';
+import { Upload } from './../../../services/uploads/shared/upload';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/toPromise';
 
 @Component({
   selector: 'app-create-program',
@@ -13,29 +19,81 @@ import { Router } from '@angular/router';
 })
 export class CreateProgramComponent implements OnInit {
   public name: string;
+  public difficulty: string;
+  public description: string;
   public workout: any;
   public days: Array<any>;
   public workouts: Array<any>;
+  public currentUpload: Upload;
+  public programForm: FormGroup;
+  public selectedFiles: FileList;
+  public programNameControl: AbstractControl;
+  public difficultiesFormControl: AbstractControl;
+  public descriptionFormControl: AbstractControl;
+
+  public difficulties: Array<string>;
   public workoutTitle: string;
 
   constructor(
     private router: Router,
     public workoutData: WorkoutData,
+    private uploadService: UploadService,
     private factory: ModelFactory,
+    private formBuilder: FormBuilder,
     public scrollToService: ScrollToService) {
     this.workouts = new Array<any>();
     this.add = false;
     this.days = new Array<any>();
+    this.difficulties = new Array<string>();
   }
 
   public add: boolean;
 
   ngOnInit() {
+    this.programNameControl = new FormControl('', [
+      Validators.required]);
+
+    this.difficultiesFormControl = new FormControl('', [
+      Validators.required]);
+
+    this.descriptionFormControl = new FormControl('', [
+      Validators.required]);
+
+    this.programForm = this.formBuilder.group({
+      programNameControl: this.programNameControl,
+      difficultiesFormControl: this.difficultiesFormControl,
+      descriptionFormControl: this.descriptionFormControl,
+    });
+
     this.workoutData.getAvailableWorkouts().subscribe(items => {
       items.forEach(item => {
         this.workouts.push(item.val());
       });
     });
+
+    // tslint:disable-next-line:forin
+    for (const enumMember in Difficulty) {
+       const isValueProperty = parseInt(enumMember, 10) >= 0;
+       if (isValueProperty) {
+          this.difficulties.push(Difficulty[enumMember]);
+       }
+    }
+  }
+
+  addProgram() {
+    const newProgram = {
+      name: this.name,
+      difficulty: this.difficulty,
+      description: this.description,
+      image: null,
+      days: this.days,
+    };
+    this.workoutData.add(newProgram).then(key => {
+      this.uploadSingle(key);
+    }).then(() => {
+      return this.router.navigate(['programs/all']);
+    });
+
   }
 
   getAddForm(element) {
@@ -80,12 +138,6 @@ export class CreateProgramComponent implements OnInit {
     //TODO - Clear Select
   }
 
-  addProgram() {
-    this.workoutData.addProgram(this.days);
-    this.router.navigate(['programs/all']);
-
-  }
-
   addNewWorkout(workout: any) {
     const currentWorkout = this.workoutData.getAvailableWorkouts().subscribe(workouts => {
       workouts.forEach(snapshot => {
@@ -95,7 +147,6 @@ export class CreateProgramComponent implements OnInit {
       });
     });
 
-    console.log(workout);
     const newDay = {
       workout: currentWorkout,
       checked: false,
@@ -104,5 +155,20 @@ export class CreateProgramComponent implements OnInit {
     this.days.push(newDay);
     this.add = false;
     //clear form
+  }
+
+  detectFiles(event) {
+    this.selectedFiles = event.target.files;
+  }
+
+  uploadSingle(key: string) {
+    let dbPath: string;
+    let storagePath: string;
+    const file = this.selectedFiles.item(0);
+
+    dbPath = `programs/${key}/image`;
+    storagePath = `images/programs/${key}/${file.name}`;
+    this.currentUpload = new Upload(file);
+    return this.uploadService.uploadFile(storagePath, dbPath, this.currentUpload);
   }
 }
