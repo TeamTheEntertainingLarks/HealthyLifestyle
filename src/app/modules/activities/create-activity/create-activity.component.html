@@ -25,9 +25,9 @@
   </md-select>
 
   <md-input-container class="form-control">
-    <textarea mdInput placeholder="Short Description" name="description" #inputdescription maxlength="256" [(ngModel)]="description"
+    <textarea mdInput placeholder="Short Description" name="description" #inputdescription maxlength="500" [(ngModel)]="description"
       [formControl]="descriptionFormControl" required></textarea>
-    <md-hint align="end">{{inputdescription.value.length}} / 256</md-hint>
+    <md-hint align="end">{{inputdescription.value.length}} / 500</md-hint>
     <md-error *ngIf="descriptionFormControl.hasError('pattern')">
       Please enter a valid description.
     </md-error>
@@ -37,9 +37,9 @@
   </md-input-container>
 
   <md-input-container class="form-control">
-    <textarea mdInput placeholder="Additional Info / Requirements" name="additionalInfo" #inputinfo maxlength="256" [(ngModel)]="additionalInfo"
+    <textarea mdInput placeholder="Additional Info / Requirements" name="additionalInfo" #inputinfo maxlength="500" [(ngModel)]="additionalInfo"
       [formControl]="additionalInfoFormControl" required></textarea>
-    <md-hint align="end">{{inputinfo.value.length}} / 256</md-hint>
+    <md-hint align="end">{{inputinfo.value.length}} / 500</md-hint>
     <md-error *ngIf="additionalInfoFormControl.hasError('pattern')">
       Please enter a valid additional information.
     </md-error>

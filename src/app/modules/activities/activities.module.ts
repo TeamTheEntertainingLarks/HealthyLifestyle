@@ -34,7 +34,6 @@ import { SortPipe } from '../../pipes/sort.pipe';
 import { SearchPipe } from '../../pipes/search.pipe';
 import { ZoomImageDirective } from '../../directives/zoom-image.directive';
 import { AgmCoreModule } from '@agm/core';
-import { PipesSharedModule } from '../../pipes/pipes-shared.module';
 import { GoogleMapDialogComponent } from './google-map-dialog/google-map-dialog.component';
 
 @NgModule({
@@ -58,7 +57,6 @@ import { GoogleMapDialogComponent } from './google-map-dialog/google-map-dialog.
             apiKey: 'AIzaSyDORMqI9tRjPWWOXbJJFkuKgLtnOQrU-ic',
             libraries: ['places'],
         }),
-        PipesSharedModule,
         SharedModule
     ],
     declarations: [
