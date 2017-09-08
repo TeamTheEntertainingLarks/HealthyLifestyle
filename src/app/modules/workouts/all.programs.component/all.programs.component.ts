@@ -25,7 +25,12 @@ export class AllProgramsComponent implements OnInit {
 
   ngOnInit() {
     this.workoutDataService.getAvailablePrograms().subscribe(pr => {
-      this.programs = pr;
+      this.programs = new Array<any>();
+      pr.forEach(p => {
+        if (typeof p.image !== 'undefined') {
+          this.programs.push(p);
+        }
+      });
     });
   }
 
