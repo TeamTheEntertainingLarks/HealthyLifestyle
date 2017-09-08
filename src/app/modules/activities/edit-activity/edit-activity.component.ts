@@ -132,10 +132,10 @@ export class EditActivityComponent implements OnInit {
       .editActivity(this.activityKey, this.activity)
       .then(() => {
         if (this.upload) {
-          this.uploadFile()
-            .then(() => this.router.navigateByUrl('/activities/all'));
+          this.uploadFile();
         }
-      });
+      })
+      .then(() => this.router.navigateByUrl('/activities/all'));
 
     this.notificationService.popToast('success', 'Success!', 'Your activity is updated! Redirecting...');
   }
