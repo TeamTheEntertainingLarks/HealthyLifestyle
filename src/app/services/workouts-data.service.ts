@@ -6,6 +6,7 @@ import { WorkoutInterface } from './../interfaces/workout';
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import { Category } from '../enums/workoutCategories';
+import 'rxjs/add/operator/map';
 
 @Injectable()
 export class WorkoutData {
@@ -21,8 +22,10 @@ export class WorkoutData {
     getAvailablePrograms() {
         return this.db.list('/programs');
     }
-    getProgramById(id) {
-        return this.db.object(`programs/${id}`);
+    getProgramByName(name: string) {
+        return this.db.list(`/programs`).map(programs => {
+            return programs.filter(pr => pr.name === name);
+        });
     }
 
     add(activity: any) {

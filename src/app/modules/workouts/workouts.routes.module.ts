@@ -11,10 +11,9 @@ import { CreateWorkoutFormComponent } from './create.workout.form/create.workout
 const routes: Routes = [
     { path: '', redirectTo: 'all', pathMatch: 'full' },
     { path: 'all', component: AllProgramsComponent },
-    //{ path: 'create', component: CreateWorkoutFormComponent },
     { path: 'create', component: CreateProgramComponent },
     { path: 'workouts/:title', component: WorkoutsComponent },
-    { path: ':id', component: ProgramComponent },
+    { path: ':name', component: ProgramComponent },
 ];
 
 @NgModule({

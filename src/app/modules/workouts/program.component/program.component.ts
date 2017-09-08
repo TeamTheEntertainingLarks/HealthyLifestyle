@@ -11,8 +11,8 @@ import { Component, OnInit } from '@angular/core';
 export class ProgramComponent implements OnInit {
 
   public days: Array<any>;
-  // TODO make it enum
-  public difficulty: string;
+  public name: string;
+  public description: string;
 
   constructor(
       private router: ActivatedRoute,
@@ -22,16 +22,15 @@ export class ProgramComponent implements OnInit {
    }
 
   ngOnInit() {
-    let id: string;
+    let name: string;
     this.router.params.subscribe((params: Params) => {
-      id = params['id'];
+      name = params['name'];
     });
-    this.workoutData.getProgramById(id).subscribe(pr => {
-      this.days = pr;
+    this.workoutData.getProgramByName(name).subscribe(pr => {
+      this.days = pr[0].days;
+      this.name = pr[0].name;
+      this.description = pr[0].description;
     });
-    setTimeout(() => {
-      console.log(this.days);
-    }, 4000);
   }
 
 
