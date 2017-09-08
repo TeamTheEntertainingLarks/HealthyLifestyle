@@ -93,7 +93,6 @@ export class CreateActivityComponent implements OnInit {
       additionalInfoFormControl: this.additionalInfoFormControl,
       locationFormControl: this.authorFormControl,
       eventDateFormControl: this.categoryFormControl,
-      createdOnFormControl: this.descriptionFormControl,
     });
   }
 
