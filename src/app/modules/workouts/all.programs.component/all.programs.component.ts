@@ -1,3 +1,4 @@
+import { FirebaseListObservable } from 'angularfire2/database';
 import { AuthService } from './../../../services/auth.service';
 import { ModelFactory } from './../../../services/factories/model.factory';
 import { WorkoutData } from './../../../services/workouts-data.service';
@@ -23,15 +24,9 @@ export class AllProgramsComponent implements OnInit {
         }
 
   ngOnInit() {
-    this.workoutDataService.getAvailablePrograms().subscribe(programs => {
-      programs.forEach(program => {
-        this.programs = program;
-      });
+    this.workoutDataService.getAvailablePrograms().subscribe(pr => {
+      this.programs = pr;
     });
-
-    setInterval(() => {
-      console.log(this.programs);
-    }, 3000);
   }
 
     orderBy(prop: string, num: number) {

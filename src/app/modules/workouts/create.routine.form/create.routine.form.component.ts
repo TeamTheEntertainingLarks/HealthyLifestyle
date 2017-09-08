@@ -8,7 +8,6 @@ import { WorkoutData } from './../../../services/workouts-data.service';
 import { ModelFactory } from './../../../services/factories/model.factory';
 import { Routine } from './../../../models/routine';
 import { Component, OnInit, Output, EventEmitter, Inject } from '@angular/core';
-import { Category } from '../../../enums/workoutCategories';
 
 @Component({
   selector: 'app-create-routine',
@@ -22,10 +21,8 @@ export class CreateRoutineFormComponent implements OnInit {
   private auth: AuthService;
   public routineForm: FormGroup;
   public exercises: Array<Exercise>;
-
   public exerciseName: string;
   public showExerciseForm: boolean;
-
   public exerciseFormControl: AbstractControl;
   public seriesFormControl: AbstractControl;
   public repeatsFormControl: AbstractControl;

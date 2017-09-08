@@ -1,3 +1,4 @@
+import { Observable } from 'rxjs/Observable';
 import { Exercise } from './../models/exercise';
 import { Routine } from './../models/routine';
 import { Workout } from './../models/workout';
@@ -18,13 +19,20 @@ export class WorkoutData {
     }
 
     getAvailablePrograms() {
-        return this.db.list('programs');
+        return this.db.list('/programs');
     }
     getProgramById(id) {
         return this.db.object(`programs/${id}`);
     }
-    addProgram(days) {
-        this.db.list('/programs').push(days);
+
+    add(activity: any) {
+        return Promise.resolve(
+            this.db.list('/programs')
+                .push(activity)
+                .then(_ => {
+                    return _.key;
+                }));
+                //.catch((error) => this.notificationService.popToast('error', 'Ooops!', error.message)));
     }
 
     getAvailableWorkouts() {
