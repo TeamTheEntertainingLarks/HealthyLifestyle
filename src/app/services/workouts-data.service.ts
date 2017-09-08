@@ -55,24 +55,13 @@ export class WorkoutData {
         return this.db.object(`workouts/${id}`);
     }
 
-    // getWorkoutByTitle(title: string) {
-    //     const items = this.db.list('/workouts', {
-    //         preserveSnapshot: true,
-    //     });
+    getWorkoutByTitle(title: string) {
+        const items = this.db.list('/workouts').map(workouts => {
+            return workouts.filter(w => w.title === title);
+        });
 
-    //     let item: any;
-
-    //     items.subscribe(snapshots => {
-    //         snapshots.forEach(snapshot => {
-    //             if (snapshot.val().title === title) {
-    //                 item = snapshot.val();
-    //                 console.log(item);
-    //             }
-    //         });
-    //     });
-
-    //     return item;
-    // }
+        return items;
+    }
 
     addRoutine(routine: Routine): void {
         this.db.list('/workouts/routines').push(routine)

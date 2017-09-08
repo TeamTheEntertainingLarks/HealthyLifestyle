@@ -67,7 +67,7 @@ export class CreateProgramComponent implements OnInit {
 
     this.workoutData.getAvailableWorkouts().subscribe(items => {
       items.forEach(item => {
-        this.workouts.push(item.val());
+        this.workouts.push(item);
       });
     });
 
@@ -119,13 +119,17 @@ export class CreateProgramComponent implements OnInit {
   }
 
   addWorkout() {
+    // let currentWorkout: any;
+    // this.workoutData.getAvailableWorkouts().subscribe(workouts => {
+    //   workouts.forEach(snapshot => {
+    //     if (snapshot.title === this.workoutTitle) {
+    //       currentWorkout = snapshot;
+    //     }
+    //   });
+    // });
     let currentWorkout: any;
-    this.workoutData.getAvailableWorkouts().subscribe(workouts => {
-      workouts.forEach(snapshot => {
-        if (snapshot.val().title === this.workoutTitle) {
-          currentWorkout = snapshot.val();
-        }
-      });
+    this.workoutData.getWorkoutByTitle(this.workoutTitle).subscribe(workouts => {
+      currentWorkout = workouts[0];
     });
 
     const newDay = {
@@ -139,12 +143,16 @@ export class CreateProgramComponent implements OnInit {
   }
 
   addNewWorkout(workout: any) {
-    const currentWorkout = this.workoutData.getAvailableWorkouts().subscribe(workouts => {
-      workouts.forEach(snapshot => {
-        if (snapshot.val().title === workout.title) {
-          workout = snapshot.val();
-        }
-      });
+    // const currentWorkout = this.workoutData.getAvailableWorkouts().subscribe(workouts => {
+    //   workouts.forEach(snapshot => {
+    //     if (snapshot.val().title === workout.title) {
+    //       workout = snapshot.val();
+    //     }
+    //   });
+    // });
+    let currentWorkout: any;
+    this.workoutData.getWorkoutByTitle(workout.title).subscribe(workouts => {
+      currentWorkout = workouts[0];
     });
 
     const newDay = {
