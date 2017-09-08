@@ -53,7 +53,7 @@ import { PipesSharedModule } from '../../pipes/pipes-shared.module';
         DateTimePickerModule,
         AgmCoreModule.forRoot({
             apiKey: 'AIzaSyDORMqI9tRjPWWOXbJJFkuKgLtnOQrU-ic',
-            libraries: ['places']
+            libraries: ['places'],
         }),
         PipesSharedModule,
         SharedModule

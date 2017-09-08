@@ -1,10 +1,10 @@
-<div class="container">
+ <div class="container">
   <div class="wrapper">
     <div class="content-container">
         <md-card *ngFor="let program of programs" class="program-container">
-            <a routerLink="/programs/{{program.name}}"><img md-card-image src="{{program.image}}" alt="program-image"></a>
+            <a routerLink="/programs/{{program.name}}"><img md-card-image src="{{program.image.url}}" alt="program-image"></a>
             <md-card-content>
-                <h3><a routerLink="/programs/{{program.name}}">{{program.title}}</a></h3>
+                <h3><a routerLink="/programs/{{program.name}}">{{program.name}}</a></h3>
                 <p class="createdOn">
                     <span>{{program.createdOn | date}}</span>
                 </p>
@@ -16,4 +16,4 @@
         </md-card>
     </div>
   </div>
-</div>
+</div> 

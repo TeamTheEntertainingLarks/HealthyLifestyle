@@ -93,7 +93,6 @@ export class CreateActivityComponent implements OnInit {
       additionalInfoFormControl: this.additionalInfoFormControl,
       locationFormControl: this.authorFormControl,
       eventDateFormControl: this.categoryFormControl,
-      createdOnFormControl: this.descriptionFormControl,
     });
   }
 
@@ -151,6 +150,6 @@ export class CreateActivityComponent implements OnInit {
       .then(() => this.uploadFile()
         .then(() => this.router.navigateByUrl('/activities/all')));
 
-    this.notificationService.popToast('success', 'Success!', 'Activity added');
+    this.notificationService.popToast('success', 'Success!', 'Your activity is added! Redirecting...');
   }
 }

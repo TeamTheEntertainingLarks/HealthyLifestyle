@@ -10,10 +10,10 @@
 </div>
 <div *ngIf="activity || (activityLoaded | async)" class="container">
     <md-card class="activity-container">
-        <img *ngIf="activity.image.url" class="activity-image" md-card-image src="{{activity.image.url}}" alt="activity-image">
+        <img *ngIf="activity.image?.url" class="activity-image" md-card-image src="{{activity.image?.url}}" alt="activity-image">
         <md-card-content>
-            <h3><a *ngIf="(isAuthenticated() && isAuthor(activity.userId))" #navigate routerLink="/activities/{{activityId}}/edit">{{activity.title}}</a></h3>
-            <h3><a *ngIf="!isAuthor(activity.userId)" #navigate routerLink="/activities/{{activityId}}">{{activity.title}}</a></h3>
+            <h3><a *ngIf="(isAuthenticated() && isAuthor(activity.userId))" routerLink="/activities/{{activityId}}/edit">{{activity.title}}</a></h3>
+            <h3><a *ngIf="!isAuthor(activity.userId)" routerLink="/activities/{{activityId}}">{{activity.title}}</a></h3>
             <p class="createdOn">
                 <span *ngIf="type == 'view'">by {{activity.author}} <strong>|</strong> on {{activity.createdOn | date}}</span>
                 <span>{{activity.createdOn | date}}</span>
@@ -25,7 +25,7 @@
                 <span><md-icon>place</md-icon>{{activity?.location.place}}</span>
             </p>
             <p>
-                <agm-map [latitude]="activity.location.lat" [longitude]="activity.location.lng">
+                <agm-map [zoom]="15" [latitude]="activity.location.lat" [longitude]="activity.location.lng">
                     <agm-marker [latitude]="activity.location.lat" [longitude]="activity.location.lng"></agm-marker>
                 </agm-map>
             </p>
@@ -65,7 +65,7 @@
                 </button>
         </md-card-actions>
         <md-card-actions class="author-actions" *ngIf="(isAuthenticated() && isAuthor(activity.userId))">
-            <button md-button (click)="navigate.click()">
+            <button md-button (click)="navigateToEdit()">
                     <md-icon>edit</md-icon>
                     Edit
                 </button>
