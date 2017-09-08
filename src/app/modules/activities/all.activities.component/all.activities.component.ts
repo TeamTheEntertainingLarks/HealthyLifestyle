@@ -88,15 +88,13 @@ export class ActivitiesAllComponent implements OnInit {
         return this.auth.isAuthenticated;
     }
 
-    orderBy(prop: string, num: number) {
-        this.path = prop;
-        this.order = num;
-        return false;
-    }
-
     filterStates(val: string) {
         return val ? this.categories
             .filter(s => s.toLowerCase()
                 .indexOf(val.toLowerCase()) === 0) : this.categories;
+    }
+
+    dataReceived(data) {
+        this.activities = data;
     }
 }
