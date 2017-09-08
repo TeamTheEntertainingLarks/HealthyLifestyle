@@ -22,3 +22,7 @@ md-input-container{
     color: #4A4A4A;
     margin-left: 30px;
 }
+
+md-input-container, md-select {
+    margin-bottom: 20px;
+  }

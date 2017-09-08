@@ -6,6 +6,12 @@
     <md-error *ngIf="titleFormControl.hasError('pattern')">
       Please enter a valid title
     </md-error>
+    <md-error *ngIf="titleFormControl.hasError('minlength')">
+      Title must be at least 10 characters long
+    </md-error>
+    <md-error *ngIf="titleFormControl.hasError('maxlength')">
+      Title must be maximum 150 characters long
+    </md-error>
     <md-error *ngIf="titleFormControl.hasError('required')">
       Title is <strong>required</strong>
     </md-error>
@@ -33,10 +39,16 @@
     </md-error>
     </md-select>
   <md-input-container class="form-control">
-    <textarea mdInput placeholder="Short Description" name="description" #description maxlength="256" [(ngModel)]="recipe.description" [formControl]="descriptionFormControl" required></textarea>
-    <md-hint align="end">{{description.value.length}} / 256</md-hint>
+    <textarea mdInput placeholder="Short Description" name="description" #description maxlength="300" [(ngModel)]="recipe.description" [formControl]="descriptionFormControl" required></textarea>
+    <md-hint align="end">{{description.value.length}} / 300</md-hint>
     <md-error *ngIf="descriptionFormControl.hasError('pattern')">
       Please enter a valid description
+    </md-error>
+    <md-error *ngIf="descriptionFormControl.hasError('minlength')">
+      Description must be at least 10 characters long
+    </md-error>
+    <md-error *ngIf="descriptionFormControl.hasError('maxlength')">
+      Description must be maximum 300 characters long
     </md-error>
     <md-error *ngIf="descriptionFormControl.hasError('required')">
       Description is <strong>required</strong>
@@ -58,7 +70,7 @@
     <tr>
       <td>
         <md-input-container class="form-control">
-          <input type="number" mdInput placeholder="Calories" name="calories" [(ngModel)]="recipe.calories" [formControl]="caloriesFormControl"
+          <input mdInput placeholder="Calories" name="calories" [(ngModel)]="recipe.calories" [formControl]="caloriesFormControl"
           required>
           <md-icon mdSuffix>mode_edit</md-icon>
           <md-error *ngIf="caloriesFormControl.hasError('pattern')">
@@ -71,7 +83,7 @@
       </td>
       <td>
         <md-input-container class="form-control">
-          <input type="number" mdInput placeholder="Protein" name="protein" [(ngModel)]="recipe.protein" [formControl]="proteinFormControl"
+          <input mdInput placeholder="Protein" name="protein" [(ngModel)]="recipe.protein" [formControl]="proteinFormControl"
           required>
           <md-icon mdSuffix>mode_edit</md-icon>
           <md-error *ngIf="proteinFormControl.hasError('pattern')">
@@ -84,7 +96,7 @@
       </td>
       <td>
         <md-input-container class="form-control">
-          <input type="number" mdInput placeholder="Fat" name="fat" [(ngModel)]="recipe.fat" [formControl]="fatFormControl"
+          <input mdInput placeholder="Fat" name="fat" [(ngModel)]="recipe.fat" [formControl]="fatFormControl"
           required>
           <md-icon mdSuffix>mode_edit</md-icon>
           <md-error *ngIf="fatFormControl.hasError('pattern')">
@@ -97,7 +109,7 @@
       </td>
       <td>
         <md-input-container class="form-control">
-          <input type="number" mdInput placeholder="Carbs" name="carbs" [(ngModel)]="recipe.carbs" [formControl]="carbsFormControl"
+          <input mdInput placeholder="Carbs" name="carbs" [(ngModel)]="recipe.carbs" [formControl]="carbsFormControl"
           required>
           <md-icon mdSuffix>mode_edit</md-icon>
           <md-error *ngIf="carbsFormControl.hasError('pattern')">
@@ -114,7 +126,7 @@
     <tr>
       <td>
         <md-input-container class="form-control">
-          <input type="number" mdInput placeholder="Prepare Time min" name="prepareTime" [(ngModel)]="recipe.prepareTime" [formControl]="prepareTimeFormControl"
+          <input mdInput placeholder="Prepare Time min" name="prepareTime" [(ngModel)]="recipe.prepareTime" [formControl]="prepareTimeFormControl"
           required>
           <md-icon mdSuffix>mode_edit</md-icon>
           <md-error *ngIf="prepareTimeFormControl.hasError('pattern')">
@@ -127,7 +139,7 @@
       </td>
       <td>
         <md-input-container class="form-control">
-          <input type="number" mdInput placeholder="Yield" name="yields" [(ngModel)]="recipe.yields" [formControl]="yieldsFormControl"
+          <input mdInput placeholder="Yield" name="yields" [(ngModel)]="recipe.yields" [formControl]="yieldsFormControl"
           required>
           <md-icon mdSuffix>mode_edit</md-icon>
           <md-error *ngIf="yieldsFormControl.hasError('pattern')">
@@ -146,6 +158,9 @@
     <md-icon mdSuffix>mode_edit</md-icon>
     <md-error *ngIf="stepFirstFormControl.hasError('pattern')">
       Please enter a valid step
+    </md-error>
+    <md-error *ngIf="stepFirstFormControl.hasError('minlength')">
+      Step must be at least 10 characters long
     </md-error>
     <md-error *ngIf="stepFirstFormControl.hasError('required')">
       Step is <strong>required</strong>
