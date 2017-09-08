@@ -20,4 +20,8 @@ export class GoogleMapDialogComponent implements OnInit {
   ngOnInit() {
     this.markers = this.data.markers;
   }
+
+  close() {
+    this.dialogRef.close();
+  }
 }
