@@ -5,12 +5,12 @@
             <a routerLink="/programs/{{program.name}}"><img md-card-image src="{{program.image.url}}" alt="program-image"></a>
             <md-card-content>
                 <h3><a routerLink="/programs/{{program.name}}">{{program.name}}</a></h3>
-                <p class="createdOn">
-                    <span>{{program.createdOn | date}}</span>
-                </p>
                 <!-- <rating [(ngModel)]="program.likes" [max]="10" [float]="true" [readonly]="true"></rating> -->
                 <p>
-                    <span><em>{{program.description}}</em></span>
+                    <span class="difficulty" [style.color]=(getDifficultyColor(program.difficulty))><em>{{program.difficulty}}</em></span>
+                </p>
+                <p>
+                    <span class="desciption"><em>{{program.description}}</em></span>
                 </p>
             </md-card-content>
         </md-card>

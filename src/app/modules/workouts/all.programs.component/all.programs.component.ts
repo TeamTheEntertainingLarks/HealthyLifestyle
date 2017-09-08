@@ -3,6 +3,7 @@ import { AuthService } from './../../../services/auth.service';
 import { ModelFactory } from './../../../services/factories/model.factory';
 import { WorkoutData } from './../../../services/workouts-data.service';
 import { Component, OnInit } from '@angular/core';
+import { Difficulty } from '../../../enums/programDifficulty';
 
 @Component({
   selector: 'app-all.programs',
@@ -32,6 +33,14 @@ export class AllProgramsComponent implements OnInit {
         }
       });
     });
+  }
+
+  getDifficultyColor(diff) {
+    switch (diff) {
+      case Difficulty[Difficulty.Begginer]: return 'green';
+      case Difficulty[Difficulty.Intermediate]: return 'orange';
+      case Difficulty[Difficulty.Professional]: return 'red';
+    }
   }
 
     orderBy(prop: string, num: number) {

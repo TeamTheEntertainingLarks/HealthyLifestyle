@@ -4,6 +4,8 @@
       border-radius: 5px;
       overflow: hidden;
       font-size: 18px;
+      clear: both;
+      width: 20%;
 }
 
 button {
@@ -66,4 +68,17 @@ rating {
 .content-container {
       flex: auto;
       margin-right: 10%;
+}
+
+.difficulty {
+      padding: 1%;
+      border: 1px solid;
+      border-radius: 30%;
+      float: right;
+}
+
+.desciption {
+      float: left;
+      width: 60%;
+      overflow: hidden;
 }
