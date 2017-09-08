@@ -17,7 +17,7 @@ import { FormControl } from '@angular/forms';
 export class ActivitiesAllComponent implements OnInit {
     public path: string;
     public order: number;
-    public activities: FirebaseListObservable<any>;
+    public activities;
     public searchWord: string;
     public categoryCtrl: FormControl;
     public filteredCategories: any;
@@ -33,17 +33,46 @@ export class ActivitiesAllComponent implements OnInit {
         'Winter Activities',
         'Volunteer Activities'];
 
+    public locationMarkers = [];
+
     constructor(private auth: AuthService, private activitiesDataService: ActivityData) { }
 
     ngOnInit() {
         this.categoryCtrl = new FormControl();
-        this.activities = this.activitiesDataService
-            .getAllActivities();
+
+        this.activitiesDataService.getAllActivities()
+            .subscribe(items => {
+                this.activities = items;
+                items.map(item => {
+                    const activityId = item.$key;
+                    const location = item.location;
+                    const activityTitle = item.title;
+                    const imageUrl = item.image.url;
+                    this.getActivitiesCoordinates(location, activityId, activityTitle, imageUrl);
+                });
+            });
 
         this.filteredCategories =
             this.categoryCtrl.valueChanges
                 .startWith(null)
                 .map(name => this.filterStates(name));
+    }
+
+    getActivitiesCoordinates(location, activityId, title, imageUrl) {
+        const marker = {
+            id: activityId,
+            title: title,
+            imageUrl: imageUrl,
+            lat: location.lat,
+            lng: location.lng,
+            openInfoWindow: true,
+            markerClickable: true
+        };
+        this.locationMarkers.push(marker);
+    }
+
+    test(event) {
+        console.log(event);
     }
 
     isAuthenticated() {
