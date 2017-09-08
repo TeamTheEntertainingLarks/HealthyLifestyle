@@ -11,6 +11,7 @@ import { NavComponent } from './nav/nav.component';
 import { FooterComponent } from './footer/footer.component';
 import { CommentsComponent } from './comments.component/comments.component';
 import { CalorieCalculatorComponent } from './calorie.calculator/calorie.calculator.component';
+import { SortComponent } from './sort/sort.component';
 
 @NgModule({
     imports: [
@@ -35,14 +36,16 @@ import { CalorieCalculatorComponent } from './calorie.calculator/calorie.calcula
         PageNotFoundComponent,
         FooterComponent,
         CommentsComponent,
-        CalorieCalculatorComponent
-    ],
+        CalorieCalculatorComponent,
+        SortComponent
+],
     exports: [
         NavComponent,
         PageNotFoundComponent,
         FooterComponent,
         CommentsComponent,
-        CalorieCalculatorComponent
+        CalorieCalculatorComponent,
+        SortComponent
     ]
 })
 export class SharedModule { }
