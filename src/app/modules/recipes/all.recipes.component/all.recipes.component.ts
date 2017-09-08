@@ -19,10 +19,8 @@ export class RecipesAllComponent implements OnInit {
     public recipe: RecipeInterface;
     public recipes: Array<RecipeInterface>;
 
-    path: string;
-    order: number; // 1 asc, -1 desc;
-
     searchWord: string;
+    filteredItems: any;
 
     categoryCtrl: FormControl;
     filteredCategories: any;
@@ -44,15 +42,8 @@ export class RecipesAllComponent implements OnInit {
     ngOnInit() {
         this.recipeDataService.getAllRecipes().subscribe(items => {
             this.recipes = items;
+            this.filteredItems = Object.assign([], this.recipes);
         });
-
-        return this.recipes;
-    }
-
-    orderBy(prop: string, num: number) {
-        this.path = prop;
-        this.order = num;
-        return false; // do not reload
     }
 
     isAuthenticated() {
@@ -63,4 +54,22 @@ export class RecipesAllComponent implements OnInit {
         return val ? this.categories.filter(s => s.toLowerCase().indexOf(val.toLowerCase()) === 0)
             : this.categories;
     }
+
+    search(): void {
+        this.searchWord = this.searchWord.toLowerCase();
+
+        if (this.searchWord) {
+            this.recipes = this.filteredItems.filter(item => {
+                return item.title.toLowerCase().indexOf(this.searchWord) !== -1 ||
+                    item.author.toLowerCase().indexOf(this.searchWord) !== -1 ||
+                    item.category.toLowerCase().indexOf(this.searchWord) !== -1;
+            });
+        } else {
+            this.recipes = this.filteredItems;
+        }
+    }
+
+    dataReceived(data) {
+        this.recipes = data;
+      }
 }

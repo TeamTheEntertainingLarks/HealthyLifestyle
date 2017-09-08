@@ -14,17 +14,38 @@ export class NutritionComponent implements OnInit {
   public meal;
   public articles;
 
-  constructor(public nutritonDataService: NutritionData, public auth: AuthService) { }
+  searchWord: string;
+  filteredItems: any;
+
+  constructor(public nutritonDataService: NutritionData, public auth: AuthService) {
+    this.searchWord = '';
+  }
 
   ngOnInit() {
     this.nutritonDataService.getAllArticles().subscribe(items => {
       this.articles = items;
+      this.filteredItems = Object.assign([], this.articles);
     });
-
-    this.nutritonDataService.getAllMeals().subscribe(items => {
-      this.meal = items;
-    });
-
   }
 
+  isAuthenticated() {
+    return this.auth.isAuthenticated;
+  }
+
+  search(): void {
+    this.searchWord = this.searchWord.toLowerCase();
+
+      if (this.searchWord) {
+        this.articles = this.filteredItems.filter(item => {
+          return item.title.toLowerCase().indexOf(this.searchWord) !== -1;
+        });
+      } else {
+        this.articles = this.filteredItems;
+      }
+  }
+
+  dataReceived(data) {
+    this.articles = data;
+  }
 }
+
