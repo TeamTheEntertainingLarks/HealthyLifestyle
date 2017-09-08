@@ -17,14 +17,11 @@ export class WorkoutsComponent implements OnInit {
     this.router.params.subscribe((params: Params) => {
       const title = params['title'];
 
-      this.workoutData.getAvailableWorkouts().subscribe(workouts => {
-        workouts.forEach(workout => {
-          if (workout.val().title === title) {
-            this.workout = workout.val();
-          }
-        });
+      this.workoutData.getAvailableWorkouts().map(workouts => {
+        return workouts.filter(w => w.title === title);
+      }).subscribe(workouts => {
+            this.workout = workouts[0];
       });
     });
   }
-
 }

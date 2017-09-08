@@ -39,9 +39,7 @@ export class WorkoutData {
     }
 
     getAvailableWorkouts() {
-    const items = this.db.list('/workouts', {
-            preserveSnapshot: true,
-        });
+    const items = this.db.list('/workouts');
 
     return items;
     }
