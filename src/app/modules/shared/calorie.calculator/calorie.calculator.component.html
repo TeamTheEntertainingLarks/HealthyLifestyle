@@ -3,7 +3,7 @@
   <md-input-container class="form-control">
     <input mdInput placeholder="Age years" [(ngModel)]="age" [formControl]="ageFormControl" required>
     <md-error *ngIf="ageFormControl.hasError('pattern')">
-      Age must be a number
+      Age must be a number greater then 0
     </md-error>
     <md-error *ngIf="ageFormControl.hasError('required')">
       Age is <strong>required</strong>
@@ -23,7 +23,7 @@
   <md-input-container class="form-control">
     <input mdInput placeholder="Weight kg" [(ngModel)]="weight" [formControl]="weightFormControl" required>
     <md-error *ngIf="weightFormControl.hasError('pattern')">
-      Weight must be a number
+      Weight must be a number greater then 0
     </md-error>
     <md-error *ngIf="weightFormControl.hasError('required')">
       Weight is <strong>required</strong>
@@ -32,7 +32,7 @@
   <md-input-container class="form-control">
     <input mdInput placeholder="Height cm" [(ngModel)]="height" [formControl]="heightFormControl" required>
     <md-error *ngIf="heightFormControl.hasError('pattern')">
-      Height must be a number
+      Height must be a number greater then 0
     </md-error>
     <md-error *ngIf="heightFormControl.hasError('required')">
       Height is <strong>required</strong>

@@ -15,10 +15,6 @@ import { CreateFormComponent } from './create.recipe.form/create.resipe.form.com
 import { EditRecipeComponent } from './edit.recipe.component/edit.recipe.component';
 import { RecipeDialogComponent } from './recipe.dialog.component/recipe.dialog.component';
 
-import { SortPipe } from '../../pipes/sort.pipe';
-import { SearchPipe } from '../../pipes/search.pipe';
-import { GramsPipe } from '../../pipes/grams.pipe';
-
 import { ZoomImageDirective } from './../../directives/zoom-image.directive';
 
 @NgModule({
