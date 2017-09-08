@@ -32,12 +32,14 @@ export class ActivityData {
     }
 
     editActivity(activityKey: string, activity: object) {
-        this.db
-            .object(`/activities/${activityKey}`)
-            .update(activity)
-            .then((data) =>
-                console.log(data))
-            .catch((err) => console.log(err));
+        return Promise.resolve(
+            this.db
+                .object(`/activities/${activityKey}`)
+                .update(activity)
+                .then(data => {
+                    return data;
+                })
+                .catch((error) => this.notificationService.popToast('error', 'Ooops!', error.message)));
     }
 
     delete(activityKey: string) {

@@ -11,6 +11,9 @@ import { ModelFactoryInterface } from './../../../services/factories/interfaces/
 import { AuthService } from '../../../services/auth.service';
 import { NotificationService } from '../../../services/notification.service';
 
+const BLANK_INPUT_REGEX = /^\s*\S.*$/;
+const IMAGE_REGEX = /^((https?|ftp):)?\/\/.*(jpeg|jpg|png|gif|bmp)$/;
+
 @Component({
   selector: 'app-edit.recipe',
   templateUrl: './edit.recipe.component.html',
@@ -25,7 +28,6 @@ export class EditRecipeComponent implements OnInit {
   categories = ['breakfast', 'soups', 'salads', 'desserts', 'breads', 'main dishes', 'side dishes'];
 
   public titleFormControl: AbstractControl;
-  public authorFormControl: AbstractControl;
   public categoryFormControl: AbstractControl;
   public descriptionFormControl: AbstractControl;
   public ingredientsFormControl: AbstractControl;
@@ -55,51 +57,50 @@ export class EditRecipeComponent implements OnInit {
     console.log(this.recipeKey);
 
     this.titleFormControl = new FormControl('', [
-      Validators.required]);
-
-    this.authorFormControl = new FormControl('', [
-      Validators.required]);
+      Validators.required, Validators.pattern(BLANK_INPUT_REGEX),
+      Validators.minLength(10), Validators.maxLength(150)]);
 
     this.categoryFormControl = new FormControl('', [
       Validators.required]);
 
     this.descriptionFormControl = new FormControl('', [
-      Validators.required]);
+      Validators.required, Validators.pattern(BLANK_INPUT_REGEX),
+      Validators.minLength(10), Validators.maxLength(300)]);
 
     this.ingredientsFormControl = new FormControl('', [
       Validators.required]);
 
     this.stepFirstFormControl = new FormControl('', [
-      Validators.required]);
+      Validators.required, Validators.pattern(BLANK_INPUT_REGEX),
+      Validators.minLength(10)]);
 
     this.stepSecondFormControl = new FormControl();
 
     this.stepThirdFormControl = new FormControl();
 
     this.imageFormControl = new FormControl('', [
+      Validators.required, Validators.pattern(IMAGE_REGEX)]);
+
+    this.caloriesFormControl = new FormControl('', [
       Validators.required]);
 
-      this.caloriesFormControl = new FormControl('', [
-        Validators.required]);
+    this.proteinFormControl = new FormControl('', [
+      Validators.required]);
 
-      this.proteinFormControl = new FormControl('', [
-        Validators.required]);
+    this.fatFormControl = new FormControl('', [
+      Validators.required]);
 
-      this.fatFormControl = new FormControl('', [
-        Validators.required]);
+    this.carbsFormControl = new FormControl('', [
+      Validators.required]);
 
-      this.carbsFormControl = new FormControl('', [
-        Validators.required]);
+    this.prepareTimeFormControl = new FormControl('', [
+      Validators.required]);
 
-      this.prepareTimeFormControl = new FormControl('', [
-        Validators.required]);
-
-      this.yieldsFormControl = new FormControl('', [
-        Validators.required]);
+    this.yieldsFormControl = new FormControl('', [
+      Validators.required]);
 
     this.recipeForm = this.formBuilder.group({
       titleFormControl: this.titleFormControl,
-      authorFormControl: this.authorFormControl,
       categoryFormControl: this.categoryFormControl,
       descriptionFormControl: this.descriptionFormControl,
       ingredientsFormControl: this.ingredientsFormControl,

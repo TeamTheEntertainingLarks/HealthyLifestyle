@@ -83,12 +83,20 @@ export class ActivityComponent implements OnInit {
         this.activitiesDataService.editActivity(this.activityId, this.activity);
     }
 
+    test(event) {
+        console.log(event);
+    }
+
     leave() {
         const index = this.activity.participants.indexOf(this.userId);
         if (index !== -1) {
             this.activity.participants.splice(index, 1);
             this.activitiesDataService.editActivity(this.activityId, this.activity);
         }
+    }
+
+    navigateToEdit() {
+        this.router.navigate([`/activities/${this.activityId}/edit`]);
     }
 
     delete() {

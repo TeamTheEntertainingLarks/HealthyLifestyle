@@ -17,6 +17,7 @@ import { RecipeDialogComponent } from './recipe.dialog.component/recipe.dialog.c
 
 import { SortPipe } from '../../pipes/sort.pipe';
 import { SearchPipe } from '../../pipes/search.pipe';
+import { GramsPipe } from '../../pipes/grams.pipe';
 
 import { ZoomImageDirective } from './../../directives/zoom-image.directive';
 

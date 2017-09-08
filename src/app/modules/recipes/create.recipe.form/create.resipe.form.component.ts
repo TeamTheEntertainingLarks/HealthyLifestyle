@@ -10,6 +10,9 @@ import { ModelFactoryInterface } from './../../../services/factories/interfaces/
 import { AuthService } from '../../../services/auth.service';
 import { NotificationService } from '../../../services/notification.service';
 
+const BLANK_INPUT_REGEX = /^\s*\S.*$/;
+const IMAGE_REGEX = /^((https?|ftp):)?\/\/.*(jpeg|jpg|png|gif|bmp)$/;
+
 @Component({
   selector: 'app-create.resipe.form',
   templateUrl: './create.resipe.form.component.html',
@@ -45,7 +48,6 @@ export class CreateFormComponent implements OnInit {
   public recipeForm: FormGroup;
 
   public titleFormControl: AbstractControl;
-  public authorFormControl: AbstractControl;
   public categoryFormControl: AbstractControl;
   public descriptionFormControl: AbstractControl;
   public ingredientsFormControl: AbstractControl;
@@ -72,29 +74,29 @@ export class CreateFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.titleFormControl = new FormControl('', [
-      Validators.required]);
-
-    this.authorFormControl = new FormControl('', [
-      Validators.required]);
+      Validators.required, Validators.pattern(BLANK_INPUT_REGEX),
+      Validators.minLength(10), Validators.maxLength(150)]);
 
     this.categoryFormControl = new FormControl('', [
       Validators.required]);
 
     this.descriptionFormControl = new FormControl('', [
-      Validators.required]);
+      Validators.required, Validators.pattern(BLANK_INPUT_REGEX),
+      Validators.minLength(10), Validators.maxLength(300)]);
 
     this.ingredientsFormControl = new FormControl('', [
       Validators.required]);
 
     this.stepFirstFormControl = new FormControl('', [
-      Validators.required]);
+      Validators.required, Validators.pattern(BLANK_INPUT_REGEX),
+      Validators.minLength(10)]);
 
     this.stepSecondFormControl = new FormControl();
 
     this.stepThirdFormControl = new FormControl();
 
     this.imageFormControl = new FormControl('', [
-      Validators.required]);
+      Validators.required, Validators.pattern(IMAGE_REGEX)]);
 
     this.caloriesFormControl = new FormControl('', [
       Validators.required]);
@@ -116,7 +118,6 @@ export class CreateFormComponent implements OnInit {
 
     this.recipeForm = this.formBuilder.group({
       titleFormControl: this.titleFormControl,
-      authorFormControl: this.authorFormControl,
       categoryFormControl: this.categoryFormControl,
       descriptionFormControl: this.descriptionFormControl,
       ingredientsFormControl: this.ingredientsFormControl,
