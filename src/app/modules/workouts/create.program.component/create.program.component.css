@@ -33,11 +33,6 @@ button.showFormBtn {
     display: block;
     margin: 9% auto 7%;
 }
-
-.day > .removeBtn {
-    float: right;
-}
-
 .dayCount{
     clear: both;
 }
@@ -56,10 +51,15 @@ button.success {
 }
 
 .removeBtn {
-    background-color: #FF8C76;
-    font-weight: bold;
+    float: right;
+    background-color: #f25e4b;
     color: white;
     border: 0px 0px 1px 1px solid grey;
+}
+
+.removeBtn:hover {
+    background-color: #db503b;
+    font-weight: bold;
 }
 .removeBtn:after {
   content: "";

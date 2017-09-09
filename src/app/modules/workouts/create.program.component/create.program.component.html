@@ -1,10 +1,9 @@
 <div class="content">
-  <form class="routine-form" >
+  <form class="routine-form">
     <div class="programDetails">
       <h1>Create a Program</h1>
       <md-input-container class="form-control">
-        <input type="text" mdInput placeholder="Name" name="name" [(ngModel)]="name" 
-          [formControl]="programNameControl" required>
+        <input type="text" mdInput placeholder="Name" name="name" [(ngModel)]="name" [formControl]="programNameControl" required>
         <md-error *ngIf="programNameControl.hasError('required')">
           Name is <strong>required</strong>
         </md-error>
@@ -28,13 +27,14 @@
         <div class="progress-bar progress-bar-animated" [ngStyle]="{ 'width': currentUpload?.progress + '%' }"></div>
       </div>
       Progress: {{currentUpload?.name}} | {{currentUpload?.progress}}% Complete
-      </div>
-      <div>
-        <p>Set an image *</p>
-        <label>
-          <input type="file" (change)="detectFiles($event)">
-        </label>
-      </div>
+    </div>
+    <div>
+      <p>Set an image *</p>
+      <label>
+        <input type="file" (change)="detectFiles($event)">
+      </label>
+    </div>
+  </form>
     <h2>Everyday Workouts</h2>
     <div class="week">
       <div *ngFor="let day of days; let d = index" class="day" [style.background-color]="getDayColor(day)">
@@ -52,21 +52,22 @@
           <button class="showFormBtn" (click)="skipDay()"  md-raised-button>Rest Day</button>
         </div>
     </div>
-  </form>
 </div>
 <div submission-container>
-  <button type="button" (click)="addProgram()" id="createProgramBtn" class="success" md-raised-button>Create Program</button>
+  <button type="button" (click)="addProgram()" id="createProgramBtn" class="success" [disabled]="!programForm.valid  || days.length == 0" 
+    md-raised-button>Create Program</button>
 </div>
 <div class="form-container" [ngClass]="{'hidden': add==false}" #formScroller>
   <form class="workout-form" (ngSubmit)="addWorkout()">
   <h1>Choose Workout</h1>
-  <md-select placeholder="Choose Workout" name="workout" [(ngModel)]="workoutTitle" required>
+  <md-select placeholder="Choose Workout" class="form-control" name="workout" 
+      [formControl]="workoutsFormControl" [(ngModel)]="workoutTitle" required>
     <md-option *ngFor="let workout of workouts" [value]="workout.title">
       {{workout.title}}
     </md-option>
   </md-select>
-  <button type="submit" class="success" md-raised-button>Add</button>
+  <button type="submit" class="success" [disabled]="!wokroutForm.valid" md-raised-button>Add</button>
   <button type="button" (click)="hideAddForm()" md-raised-button>Cancel</button>
 </form>
-  <app-create-workout (onCreate)="addNewWorkout($event)"></app-create-workout>
+  <app-create-workout (onCreate)="addNewWorkout($event)" (onHide)="hideAddForm()"></app-create-workout>
 </div>

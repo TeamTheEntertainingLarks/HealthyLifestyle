@@ -26,10 +26,12 @@ export class CreateProgramComponent implements OnInit {
   public workouts: Array<any>;
   public currentUpload: Upload;
   public programForm: FormGroup;
+  public wokroutForm: FormGroup;
   public selectedFiles: FileList;
   public programNameControl: AbstractControl;
   public difficultiesFormControl: AbstractControl;
   public descriptionFormControl: AbstractControl;
+  public workoutsFormControl: AbstractControl;
 
   public difficulties: Array<string>;
   public workoutTitle: string;
@@ -63,6 +65,14 @@ export class CreateProgramComponent implements OnInit {
       programNameControl: this.programNameControl,
       difficultiesFormControl: this.difficultiesFormControl,
       descriptionFormControl: this.descriptionFormControl,
+    });
+
+    this.workoutsFormControl = new FormControl('', [
+      Validators.required,
+    ]);
+
+    this.wokroutForm = this.formBuilder.group({
+      workoutsFormControl: this.workoutsFormControl,
     });
 
     this.workoutData.getAvailableWorkouts().subscribe(items => {
@@ -112,6 +122,7 @@ export class CreateProgramComponent implements OnInit {
       checked: false,
     };
     this.days.push(restDay);
+    this.add = false;
   }
 
   removeDay(index) {

@@ -21,6 +21,7 @@ import { Category } from '../../../enums/workoutCategories';
 })
 export class CreateWorkoutFormComponent implements OnInit {
   @Output() onCreate: EventEmitter<any>;
+  @Output() onHide: EventEmitter<any>;
   public selectedOption: string;
   public workout: WorkoutInterface;
   private factory: ModelFactory;
@@ -57,6 +58,7 @@ export class CreateWorkoutFormComponent implements OnInit {
     this.showRoutineForm = false;
     this.categories = new Array<string>();
     this.onCreate = new EventEmitter<any>();
+    this.onHide = new EventEmitter<any>();
 }
 
   ngOnInit(): void {
@@ -111,6 +113,10 @@ export class CreateWorkoutFormComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       this.selectedOption = result;
     });
+  }
+
+  hideForm() {
+    this.onHide.emit('');
   }
 
   onSubmit(title: string,

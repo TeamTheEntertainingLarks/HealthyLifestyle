@@ -2,15 +2,16 @@ import { ScrollToModule } from 'ng2-scroll-to-el';
 import { WorkoutData } from './../../services/workouts-data.service';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import { SharedModule } from './../shared/shared.module';
 import { WorkoutsRoutesModule } from './workouts.routes.module';
+import { NotificationService } from './../../services/notification.service';
 
 import { WorkoutsComponent } from './workouts.component/workouts.component';
 import { CreateWorkoutFormComponent } from './create.workout.form/create.workout.form.component';
 
 import {
   MdChipsModule, MdButtonModule, MdCheckboxModule, MdCardModule, MdInputModule,
-  MdIconModule, MdGridListModule, MdSelectModule, MdDialogModule, MdMenuModule
+  MdIconModule, MdGridListModule, MdSelectModule, MdDialogModule, MdMenuModule, MdAutocompleteModule
 } from '@angular/material';
 import { MD_PLACEHOLDER_GLOBAL_OPTIONS } from '@angular/material';
 
@@ -32,12 +33,14 @@ import { AllProgramsComponent } from './all.programs.component/all.programs.comp
     MdCardModule,
     MdInputModule,
     MdIconModule,
+    MdAutocompleteModule,
     MdGridListModule,
     MdSelectModule,
     FormsModule,
     ReactiveFormsModule,
     MdDialogModule,
     MdMenuModule,
+    SharedModule,
     ScrollToModule.forRoot()
   ],
   declarations: [
@@ -53,6 +56,7 @@ import { AllProgramsComponent } from './all.programs.component/all.programs.comp
   providers: [
     { provide: MD_PLACEHOLDER_GLOBAL_OPTIONS, useValue: { float: 'always' } },
     WorkoutData,
+    NotificationService
   ],
 })
 export class WorkoutsModule { }
