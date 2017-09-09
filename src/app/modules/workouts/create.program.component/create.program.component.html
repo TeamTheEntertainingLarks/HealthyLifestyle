@@ -37,7 +37,7 @@
       </div>
     <h2>Everyday Workouts</h2>
     <div class="week">
-      <div *ngFor="let day of days; let d = index" class="day">
+      <div *ngFor="let day of days; let d = index" class="day" [style.background-color]="getDayColor(day)">
         <button type="button" class="removeBtn" (click)="removeDay(d)">X</button>
         <p class="dayCount">{{'Day '}}{{d+1}}</p>
         <ng-container *ngIf="day.workout != null; else elseTemplate">
@@ -49,7 +49,7 @@
       </div>
         <div class="day">
           <button class="showFormBtn" (click)="getAddForm(formScroller)" md-raised-button>Add</button>
-          <button class="showFormBtn" (click)="skipDay()"  md-raised-button>Skip Day</button>
+          <button class="showFormBtn" (click)="skipDay()"  md-raised-button>Rest Day</button>
         </div>
     </div>
   </form>

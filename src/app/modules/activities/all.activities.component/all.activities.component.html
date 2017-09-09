@@ -13,9 +13,9 @@
                 <md-icon>add_circle_outline</md-icon>
                 <span>Create Activity</span>
             </button>
-            <button md-menu-item *ngIf="isAuthenticated()" routerLink="/workouts/create">
+            <button md-menu-item *ngIf="isAuthenticated()" routerLink="/programs/create">
                 <md-icon>add_circle_outline</md-icon>
-                <span>Create Workout</span>
+                <span>Create Program</span>
             </button>
         </md-menu>
         <input mdInput type="text" placeholder="Search by category" [mdAutocomplete]="auto" [formControl]="categoryCtrl" [(ngModel)]="searchWord"
