@@ -76,6 +76,7 @@ export class CreateProgramComponent implements OnInit {
     });
 
     this.workoutData.getAvailableWorkouts().subscribe(items => {
+      this.workouts = new Array<any>();
       items.forEach(item => {
         this.workouts.push(item);
       });
@@ -140,6 +141,7 @@ export class CreateProgramComponent implements OnInit {
       checked: false,
     };
 
+    this.wokroutForm.reset();
     this.days.push(newDay);
     this.add = false;
     //TODO - Clear Select

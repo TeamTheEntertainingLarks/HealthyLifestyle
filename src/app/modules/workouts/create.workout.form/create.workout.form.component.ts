@@ -32,14 +32,12 @@ export class CreateWorkoutFormComponent implements OnInit {
   public showRoutineForm: boolean;
   public category: Category;
   public routines: Array<Routine>;
-  public description: string;
   public comments: string[];
   public userId: any;
   public categories: Array<string>;
   public workoutForm: FormGroup;
   public titleFormControl: AbstractControl;
   public authorFormControl: AbstractControl;
-  public descriptionFormControl: AbstractControl;
   public routinesFormControl: AbstractControl;
   public categoriesFormControl: AbstractControl;
   public availableRoutines: Array<Routine>;
@@ -65,9 +63,6 @@ export class CreateWorkoutFormComponent implements OnInit {
       this.titleFormControl = new FormControl('', [
       Validators.required]);
 
-    this.descriptionFormControl = new FormControl('', [
-      Validators.required]);
-
     this.routinesFormControl = new FormControl('', [
       Validators.required]);
 
@@ -77,18 +72,17 @@ export class CreateWorkoutFormComponent implements OnInit {
 
     this.workoutForm = this.formBuilder.group({
       titleFormControl: this.titleFormControl,
-      descriptionFormControl: this.descriptionFormControl,
       routinesFormControl: this.routinesFormControl,
       categoriesFormControl: this.categoriesFormControl,
     });
 
     this.routines = new Array<Routine>();
     this.workoutDataService.getAvailableRoutines().subscribe(items => {
-        this.routines = new Array<Routine>();
-        items.forEach(item => {
-          const newRoutine = new Routine(item.exercise, item.repeatTimes, item.seriesCount, item.restingTime);
-          this.routines.push(newRoutine);
-        });
+      this.routines = new Array<Routine>();
+      items.forEach(item => {
+        const newRoutine = new Routine(item.exercise, item.repeatTimes, item.seriesCount, item.restingTime);
+        this.routines.push(newRoutine);
+      });
     });
 
     // tslint:disable-next-line:forin
@@ -118,7 +112,6 @@ export class CreateWorkoutFormComponent implements OnInit {
   hideForm() {
     this.onHide.emit('');
   }
-
   onSubmit(title: string,
     author: string,
     createdOn: number,
@@ -140,8 +133,7 @@ export class CreateWorkoutFormComponent implements OnInit {
       this.workout = this.factory
       .createWorkout(title, author, createdOn, category, routines, description, comments);
       this.workoutDataService.addWorkout(this.workout);
-
-      this.onCreate.emit(this.workout);
       this.workoutForm.reset();
+      this.onCreate.emit(this.workout);
   }
 }
