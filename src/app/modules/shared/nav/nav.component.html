@@ -5,10 +5,10 @@
     <div class="navigation">
         <ul>
             <li>
-                <a md-button routerLink="/" class="mat-button">
+                <button md-button routerLink="/" class="mat-button">
                     <md-icon>home</md-icon>
                     Home
-                </a>
+                </button>
             </li>
             <li>
                 <button md-button [mdMenuTriggerFor]="food">
@@ -42,21 +42,22 @@
                     </a>
                 </md-menu>
             </li>
-            <li>
+            <li class="user-container">
                 <a *ngIf="isAuthenticated" md-button routerLink="user/profile">
                     <img class="nav-image" *ngIf="userProfileImageUrl" [src]=[userProfileImageUrl]>
                     <img class="nav-image" *ngIf="!userProfileImageUrl" src="../../../assets/images/default-profile.png">
-                    {{getCurrentUserDisplayName()}}
+                    <span>{{getCurrentUserDisplayName()}}</span>
                 </a>
                 <a *ngIf="!isAuthenticated" md-button routerLink="user/sign-in">
                     <img class="nav-image" *ngIf="!isAuthenticated" src="../../../assets/images/default-profile.png"> {{getCurrentUserDisplayName()}}
                 </a>
             </li>
             <li>
-                <button routerLink="user/sign-in" *ngIf="!isAuthenticated" md-raised-button>Sign In</button>
-                <button routerLink="user/sign-up" *ngIf="!isAuthenticated" md-raised-button>Sign Up</button>
-                <button (click)="signOut()" *ngIf="isAuthenticated" md-raised-button>Logout</button>
+                <button routerLink="user/sign-in" *ngIf="!isAuthenticated" md-raised-button color="primary">Sign In</button>
+                <button routerLink="user/sign-up" *ngIf="!isAuthenticated" md-raised-button color="primary">Sign Up</button>
+                <button (click)="signOut()" *ngIf="isAuthenticated" md-button> <md-icon>exit_to_app</md-icon> Logout</button>
             </li>
         </ul>
     </div>
+    <div class="clearfix"></div>
 </div>

@@ -1,6 +1,6 @@
 import { UploadService } from './../../../services/uploads/shared/upload.service';
 import { Component, OnInit } from '@angular/core';
-import { FormControl, Validators, FormGroup, FormBuilder, AbstractControl } from '@angular/forms';
+import { FormControl, Validators, FormGroup, FormBuilder, AbstractControl, ValidatorFn } from '@angular/forms';
 
 import { AuthService } from '../../../services/auth.service';
 
@@ -24,21 +24,23 @@ export class SignUpFormComponent implements OnInit {
   public firstName;
   public lastName;
   public password;
+  public confirmPassword;
   public email;
   public isTrainer = false;
   public sport;
-  public upload: Upload;
+  public upload;
   public selectedFiles: FileList;
 
   private user: UserInterface;
   private userId;
 
-  public userForm: FormGroup;
+  public registerForm: FormGroup;
   public usernameFormControl: AbstractControl;
   public firstNameFormControl: AbstractControl;
   public lastNameFormControl: AbstractControl;
   public emailFormControl: AbstractControl;
   public passwordFormControl: AbstractControl;
+  public confirmPasswordControl: AbstractControl;
   public isTrainerFormControl: AbstractControl;
   public sportFormControl: AbstractControl;
 
@@ -70,6 +72,12 @@ export class SignUpFormComponent implements OnInit {
       Validators.minLength(6),
       Validators.maxLength(25)]);
 
+    this.confirmPasswordControl = new FormControl('', [
+      Validators.required,
+      Validators.pattern(PASSWORD_REGEX),
+      Validators.minLength(6),
+      Validators.maxLength(25)]);
+
     this.emailFormControl = new FormControl('', [
       Validators.required,
       Validators.pattern(EMAIL_REGEX)]);
@@ -78,28 +86,45 @@ export class SignUpFormComponent implements OnInit {
 
     this.sportFormControl = new FormControl();
 
-    this.userForm = this.formBuilder.group({
-      usernameFormControl: this.usernameFormControl,
-      firstNameFormControl: this.firstNameFormControl,
-      lastNameFormControl: this.lastNameFormControl,
-      passwordFormControl: this.passwordFormControl,
-      emailFormControl: this.emailFormControl,
-      isTrainerFormControl: this.isTrainerFormControl,
-      sportFormControl: this.sportFormControl
-    });
+    this.registerForm = this.formBuilder.group(
+      {
+        usernameFormControl: this.usernameFormControl,
+        firstNameFormControl: this.firstNameFormControl,
+        lastNameFormControl: this.lastNameFormControl,
+        passwordFormControl: this.passwordFormControl,
+        confirmPasswordControl: this.confirmPasswordControl,
+        emailFormControl: this.emailFormControl,
+        isTrainerFormControl: this.isTrainerFormControl,
+        sportFormControl: this.sportFormControl
+      },
+      { validator: this.checkIfMatchingPasswords('passwordFormControl', 'confirmPasswordControl') });
+  }
+
+  checkIfMatchingPasswords(passwordKey: string, passwordConfirmationKey: string) {
+    return (group: FormGroup) => {
+      const passwordInput = group.controls[passwordKey],
+        passwordConfirmationInput = group.controls[passwordConfirmationKey];
+      if (passwordInput.value !== passwordConfirmationInput.value) {
+        return passwordConfirmationInput.setErrors({ notEquivalent: true });
+      } else {
+        return passwordConfirmationInput.setErrors(null);
+      }
+    };
   }
 
   detectFile(event) {
-    this.selectedFiles = event.target.files;
+    this.upload = event.target.files.item(0);
   }
 
   uploadFile() {
     const userId = this.auth.currentUserId;
-    const file = this.selectedFiles.item(0);
+    const file = this.upload;
     const dbPath = `users/${userId}/profileImage`;
     const storagePath = `images/users/${userId}`;
 
     this.upload = new Upload(file);
+
+    console.log(this.upload.name);
     return this.uploadService.uploadFile(storagePath, dbPath, this.upload);
   }
 
