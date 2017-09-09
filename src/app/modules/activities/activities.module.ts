@@ -35,6 +35,7 @@ import { ActivitiesAllComponent } from './all.activities.component/all.activitie
 import { ZoomImageDirective } from '../../directives/zoom-image.directive';
 import { AgmCoreModule } from '@agm/core';
 import { GoogleMapDialogComponent } from './google-map-dialog/google-map-dialog.component';
+import { RatingModule } from 'ngx-rating';
 
 @NgModule({
     imports: [
@@ -57,7 +58,8 @@ import { GoogleMapDialogComponent } from './google-map-dialog/google-map-dialog.
             apiKey: 'AIzaSyDORMqI9tRjPWWOXbJJFkuKgLtnOQrU-ic',
             libraries: ['places'],
         }),
-        SharedModule
+        SharedModule,
+        RatingModule
     ],
     declarations: [
         GoogleplaceDirective,

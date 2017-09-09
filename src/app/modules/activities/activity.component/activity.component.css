@@ -18,13 +18,13 @@
     margin-right: 10px;
 }
 
-md-card-content md-icon {
+.md-icon-green {
     color: #96c421;
 }
 
-.user-actions md-icon {
+/* .user-actions md-icon {
     color: #96c421;
-}
+} */
 
 .activity-image {
     max-height: 650px;
