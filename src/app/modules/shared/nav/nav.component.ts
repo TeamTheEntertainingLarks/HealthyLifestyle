@@ -21,7 +21,8 @@ export class NavComponent implements OnInit {
         this.isAuthenticated = res;
         if (this.isAuthenticated) {
           this.userService.getUserByUid(this.auth.currentUserId).
-            subscribe((user) => this.userProfileImageUrl = user.profileImage.url);
+            subscribe((user) =>
+              this.userProfileImageUrl = user.profileImage.url);
         }
       });
   }
