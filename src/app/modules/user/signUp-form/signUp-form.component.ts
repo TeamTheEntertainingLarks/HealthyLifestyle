@@ -119,13 +119,17 @@ export class SignUpFormComponent implements OnInit {
   uploadFile() {
     const userId = this.auth.currentUserId;
     const file = this.upload;
-    const dbPath = `users/${userId}/profileImage`;
-    const storagePath = `images/users/${userId}`;
 
-    this.upload = new Upload(file);
+    if (file) {
+      const dbPath = `users/${userId}/profileImage`;
+      const storagePath = `images/users/${userId}`;
 
-    console.log(this.upload.name);
-    return this.uploadService.uploadFile(storagePath, dbPath, this.upload);
+      this.upload = new Upload(file);
+
+      return this.uploadService.uploadFile(storagePath, dbPath, this.upload);
+    }
+
+    return new Promise((resolve, reject) => { resolve(); });
   }
 
   signUp(): void {

@@ -17,8 +17,8 @@ export class UserDialogComponent implements OnInit {
   public oldEmail: string;
   public newEmail: string;
   public password: string;
-  public upload: Upload;
-  public selectedFiles: FileList;
+  public upload;
+  public fileName;
 
   public changeEmailForm: FormGroup;
   public oldEmailFormControl: AbstractControl;
@@ -77,8 +77,9 @@ export class UserDialogComponent implements OnInit {
     });
   }
 
-  uploadFile(files) {
-    const file = files.item(0);
-    this.upload = new Upload(file);
+  detectFile(event) {
+    this.upload = event.target.files.item(0);
+    this.fileName = this.upload.name;
+    this.upload = new Upload(this.upload);
   }
 }

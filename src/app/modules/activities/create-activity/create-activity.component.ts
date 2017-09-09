@@ -103,11 +103,15 @@ export class CreateActivityComponent implements OnInit {
   uploadFile() {
     const userId = this.auth.currentUserId;
     const file = this.upload;
-    const dbPath = `activities/${this.activityKey}/image`;
-    const storagePath = `images/activities/${this.activityKey}`;
 
-    this.upload = new Upload(file);
-    return this.uploadService.uploadFile(storagePath, dbPath, this.upload);
+    if (file) {
+      const dbPath = `activities/${this.activityKey}/image`;
+      const storagePath = `images/activities/${this.activityKey}`;
+      this.upload = new Upload(file);
+      return this.uploadService.uploadFile(storagePath, dbPath, this.upload);
+    }
+
+    return new Promise((resolve, reject) => { resolve(); });
   }
 
   getLocation(place: Object) {

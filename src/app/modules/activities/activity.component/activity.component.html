@@ -11,7 +11,7 @@
 <div class="wrapper">
     <div *ngIf="activity || (activityLoaded | async)" class="container">
         <md-card>
-            <img appZoomImage *ngIf="activity.image?.url" class="activity-image" md-card-image src="{{activity.image?.url}}" alt="activity-image">
+            <img appZoomImage *ngIf="activity.image" class="activity-image" md-card-image src="{{activity.image?.url}}" alt="activity-image">
             <md-card-content>
                 <h3><a routerLink="/activities/{{activityId}}">{{activity.title}}</a></h3>
                 <p class="createdOn">

@@ -42,17 +42,16 @@
   </form>
 </md-dialog-actions>
 
+<md-dialog-content *ngIf=changePictureForm>
+  <div>
+    <button class="upload-btn" md-fab type="button" md-raised-button (click)="imgFileInput.click()"><md-icon>insert_photo</md-icon></button>
+    <span *ngIf="upload">Selected photo: {{fileName}}</span>
+    <input hidden type="file" #imgFileInput (change)="detectFile($event)" />
+  </div>
+  <br>
+</md-dialog-content>
+
 <md-dialog-actions *ngIf=changePictureForm>
-  <form [formGroup]="changePictureForm">
-    <div *ngIf="upload">
-      <div class="progress">
-        <div class="progress-bar progress-bar-animated" [ngStyle]="{ 'width': currentUpload?.progress + '%' }"></div>
-      </div>
-    </div>
-    <label>
-      <input type="file" [formControl]="pictureFormControl" #file (change)="uploadFile(file.files)">
-   </label>
-    <button md-button [md-dialog-close]="false">Discard</button>
-    <button md-button [md-dialog-close]="true" #upload (click)="file">Change</button>
-  </form>
+  <button md-button [md-dialog-close]="false">Discard</button>
+  <button md-button [md-dialog-close]="true" (click)="imgFileInput">Change</button>
 </md-dialog-actions>

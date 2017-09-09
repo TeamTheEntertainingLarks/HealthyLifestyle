@@ -54,25 +54,29 @@ export class UserProfileComponent implements OnInit {
       }
     });
 
-    dialogRef.afterClosed().subscribe(confirmation => {
-      if (confirmation) {
-        if (dialogType === DialogType.ChangePicture) {
-          const oldImage = this.user.profileImage.name;
-          const storagePath = `images/users/${this.userId}`;
-          const dbPath = `users/${this.userId}/profileImage`;
+    dialogRef.afterClosed()
+      .subscribe(confirmation => {
+        if (confirmation) {
+          if (dialogType === DialogType.ChangePicture) {
+            const storagePath = `images/users/${this.userId}`;
+            const dbPath = `users/${this.userId}/profileImage`;
 
-          this.uploadService.deleteFileStorage(storagePath, oldImage);
-          this.uploadService.uploadFile(storagePath, dbPath, dialogRef.componentInstance.upload);
-        } else if (dialogType === DialogType.ResetPassword) {
-          this.auth.resetPassword(this.user.email);
-        } else {
-          const oldEmail = dialogRef.componentInstance.oldEmail;
-          const password = dialogRef.componentInstance.password;
-          const newEmail = dialogRef.componentInstance.newEmail;
+            if (this.user.profileImage.name) {
+              const oldImage = this.user.profileImage.name;
+              this.uploadService.deleteFileStorage(storagePath, oldImage);
+            }
 
-          this.auth.changeEmail(oldEmail, newEmail, password);
+            this.uploadService.uploadFile(storagePath, dbPath, dialogRef.componentInstance.upload);
+          } else if (dialogType === DialogType.ResetPassword) {
+            this.auth.resetPassword(this.user.email);
+          } else {
+            const oldEmail = dialogRef.componentInstance.oldEmail;
+            const password = dialogRef.componentInstance.password;
+            const newEmail = dialogRef.componentInstance.newEmail;
+
+            this.auth.changeEmail(oldEmail, newEmail, password);
+          }
         }
-      }
-    });
+      });
   }
 }
