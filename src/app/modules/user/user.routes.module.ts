@@ -1,3 +1,4 @@
+import { UserCollectionComponent } from './user-collection/user-collection.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from '../../guards/auth.guard';
@@ -11,6 +12,7 @@ const routes: Routes = [
     { path: 'sign-in', component: SignInFormComponent },
     { path: 'sign-up', component: SignUpFormComponent },
     { path: 'profile', component: UserProfileComponent, canActivate: [AuthGuard] },
+    { path: 'collection', component: UserCollectionComponent, canActivate: [AuthGuard] },
 ];
 
 @NgModule({
