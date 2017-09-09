@@ -1,8 +1,12 @@
+.container{
+    width: 60%;
+    margin: 0 auto;
+}
+
 .card {
+    width: 100%;
+    display: inline-block;
     vertical-align: middle;
-    height: 45%;   
-    width: 45%;
-    margin: auto;
 }
 
 .header-image md-icon {

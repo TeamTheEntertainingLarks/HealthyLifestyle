@@ -1,26 +1,28 @@
-<md-card class="card" *ngIf=user>
-  <button md-button [mdMenuTriggerFor]="settings" class="settings-btn">
-      <md-icon>settings</md-icon>
-  </button>
-  <md-menu class="settings-menu" #settings="mdMenu">
-    <button md-menu-item (click)="openDialog('password')"><md-icon>lock</md-icon> Reset password</button>
-    <button md-menu-item (click)="openDialog('email')"><md-icon>email</md-icon> Change email</button>
-    <button md-menu-item (click)="openDialog('picture')"><md-icon>photo</md-icon> Change picture</button>
-  </md-menu>
-  <md-card-header>
-    <div md-card-avatar class="header-image">
-      <md-icon>account_circle</md-icon>
+<div class="container">
+  <md-card class="card" *ngIf=user>
+    <button md-button [mdMenuTriggerFor]="settings" class="settings-btn">
+        <md-icon>settings</md-icon>
+    </button>
+    <md-menu class="settings-menu" #settings="mdMenu">
+      <button md-menu-item (click)="openDialog('password')"><md-icon>lock</md-icon> Reset password</button>
+      <button md-menu-item (click)="openDialog('email')"><md-icon>email</md-icon> Change email</button>
+      <button md-menu-item (click)="openDialog('picture')"><md-icon>photo</md-icon> Change picture</button>
+    </md-menu>
+    <md-card-header>
+      <div md-card-avatar class="header-image">
+        <md-icon>account_circle</md-icon>
+      </div>
+      <md-card-title id="user-fullname">{{user.firstName + ' ' + user.lastName}}</md-card-title>
+      <md-card-subtitle id="username"><strong>Username:</strong> {{user.username}}</md-card-subtitle>
+      <md-card-subtitle id="user-email"><strong>Email:</strong> {{user.email}}</md-card-subtitle>
+    </md-card-header>
+    <img md-card-image src={{user.profileImage.url}}>
+    <md-card-content>
+    </md-card-content>
+    <div class="buttons-container">
+      <md-card-actions class="card-actions">
+        <button md-button><md-icon>favorite border</md-icon> Favorites</button>
+      </md-card-actions>
     </div>
-    <md-card-title id="user-fullname">{{user.firstName + ' ' + user.lastName}}</md-card-title>
-    <md-card-subtitle id="username"><strong>Username:</strong> {{user.username}}</md-card-subtitle>
-    <md-card-subtitle id="user-email"><strong>Email:</strong> {{user.email}}</md-card-subtitle>
-  </md-card-header>
-  <img md-card-image src={{user.profileImage.url}}>
-  <md-card-content>
-  </md-card-content>
-  <div class="buttons-container">
-    <md-card-actions class="card-actions">
-      <button md-button><md-icon>favorite border</md-icon> Favorites</button>
-    </md-card-actions>
-  </div>
-</md-card>
+  </md-card>
+</div>
