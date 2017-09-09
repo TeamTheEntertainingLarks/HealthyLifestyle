@@ -1,19 +1,17 @@
  <div class="container">
-  <div class="wrapper">
     <div class="content-container">
         <md-card *ngFor="let program of programs" class="program-container">
-            <a routerLink="/programs/{{program.name}}"><img md-card-image src="{{program.image.url}}" alt="program-image"></a>
+            <a routerLink="/programs/{{program.name}}">
+                <img md-card-image src="{{program.image.url}}" alt="program-image">
+            </a>
             <md-card-content>
-                <h3><a routerLink="/programs/{{program.name}}">{{program.name}}</a></h3>
+                <h3><a class="name" routerLink="/programs/{{program.name}}">{{program.name}}</a></h3>
+                <span class="difficulty" [style.color]=(getDifficultyColor(program.difficulty))><em>{{program.difficulty}}</em></span>
                 <!-- <rating [(ngModel)]="program.likes" [max]="10" [float]="true" [readonly]="true"></rating> -->
-                <p>
-                    <span class="difficulty" [style.color]=(getDifficultyColor(program.difficulty))><em>{{program.difficulty}}</em></span>
-                </p>
-                <p>
-                    <span class="desciption"><em>{{program.description}}</em></span>
-                </p>
+                <div class="desciption">
+                    <span ><em>{{program.description}}</em></span>
+                </div>
             </md-card-content>
         </md-card>
     </div>
   </div>
-</div> 

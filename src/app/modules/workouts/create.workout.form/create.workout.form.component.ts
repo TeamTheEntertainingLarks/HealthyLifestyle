@@ -30,15 +30,12 @@ export class CreateWorkoutFormComponent implements OnInit {
   public createdOn: number;
   public showRoutineForm: boolean;
   public category: Category;
-
   public routines: Array<Routine>;
   public description: string;
   public comments: string[];
-
   public userId: any;
   public categories: Array<string>;
   public workoutForm: FormGroup;
-
   public titleFormControl: AbstractControl;
   public authorFormControl: AbstractControl;
   public descriptionFormControl: AbstractControl;

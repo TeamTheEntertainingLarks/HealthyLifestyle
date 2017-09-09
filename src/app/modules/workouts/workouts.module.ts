@@ -6,7 +6,6 @@ import { CommonModule } from '@angular/common';
 import { WorkoutsRoutesModule } from './workouts.routes.module';
 
 import { WorkoutsComponent } from './workouts.component/workouts.component';
-import { WorkoutsAllComponent } from './all.workouts.component/all.workouts.component';
 import { CreateWorkoutFormComponent } from './create.workout.form/create.workout.form.component';
 
 import {
@@ -43,7 +42,6 @@ import { AllProgramsComponent } from './all.programs.component/all.programs.comp
   ],
   declarations: [
     WorkoutsComponent,
-    WorkoutsAllComponent,
     CreateWorkoutFormComponent,
     CreateRoutineFormComponent,
     CreateExerciseFform,

@@ -119,14 +119,6 @@ export class CreateProgramComponent implements OnInit {
   }
 
   addWorkout() {
-    // let currentWorkout: any;
-    // this.workoutData.getAvailableWorkouts().subscribe(workouts => {
-    //   workouts.forEach(snapshot => {
-    //     if (snapshot.title === this.workoutTitle) {
-    //       currentWorkout = snapshot;
-    //     }
-    //   });
-    // });
     let currentWorkout: any;
     this.workoutData.getWorkoutByTitle(this.workoutTitle).subscribe(workouts => {
       currentWorkout = workouts[0];
@@ -143,13 +135,6 @@ export class CreateProgramComponent implements OnInit {
   }
 
   addNewWorkout(workout: any) {
-    // const currentWorkout = this.workoutData.getAvailableWorkouts().subscribe(workouts => {
-    //   workouts.forEach(snapshot => {
-    //     if (snapshot.val().title === workout.title) {
-    //       workout = snapshot.val();
-    //     }
-    //   });
-    // });
     let currentWorkout: any;
     this.workoutData.getWorkoutByTitle(workout.title).subscribe(workouts => {
       currentWorkout = workouts[0];

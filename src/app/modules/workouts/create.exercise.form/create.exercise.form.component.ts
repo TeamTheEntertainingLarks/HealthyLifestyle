@@ -75,7 +75,7 @@ export class CreateExerciseFform implements OnInit {
   uploadSingle(name: string) {
     const exerciseKey = this.workoutDataService.getExerciseSnapshot(name).key;
     const file = this.selectedFiles.item(0);
-    const dbPath = `workouts/exercises/${exerciseKey}/image`;
+    const dbPath = `exercises/${exerciseKey}/image`;
     const storagePath = `images/exercises/${exerciseKey}/${file.name}`;
     this.exercise.image = storagePath;
 

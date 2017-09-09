@@ -64,23 +64,23 @@ export class WorkoutData {
     }
 
     addRoutine(routine: Routine): void {
-        this.db.list('/workouts/routines').push(routine)
+        this.db.list('/routines').push(routine)
             .then(_ => console.log('routine added'))
             .catch(err => console.log(err, 'err when adding routine'));
     }
 
     getAvailableRoutines() {
-        return this.db.list('/workouts/routines');
+        return this.db.list('/routines');
     }
 
     addExercise(exercise: Exercise): void {
-        this.db.list('/workouts/exercises').push(exercise)
+        this.db.list('/exercises').push(exercise)
             .then(_ => console.log('exercise added'))
             .catch(err => console.log(err, 'err when adding exercise'));
     }
 
     getExerciseSnapshot(name: string) {
-        const exercises = this.db.list('/workouts/exercises', {
+        const exercises = this.db.list('/exercises', {
             preserveSnapshot: true,
         });
 
@@ -96,7 +96,7 @@ export class WorkoutData {
     }
 
     getExerciseByName(name: string) {
-        const exercises = this.db.list('/workouts/exercises', {
+        const exercises = this.db.list('/exercises', {
             preserveSnapshot: true,
         });
 
@@ -112,6 +112,6 @@ export class WorkoutData {
     }
 
     getAvailableExercises() {
-        return this.db.list('/workouts/exercises');
+        return this.db.list('/exercises');
     }
 }
