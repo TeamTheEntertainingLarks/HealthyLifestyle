@@ -76,7 +76,11 @@ import { RatingModule } from 'ngx-rating';
         { provide: MD_ERROR_GLOBAL_OPTIONS, useValue: { errorStateMatcher: showOnDirtyErrorStateMatcher } },
         { provide: MD_PLACEHOLDER_GLOBAL_OPTIONS, useValue: { float: 'always' } },
         ActivityData,
-        NotificationService],
+        NotificationService
+    ],
+    exports: [
+        ActivityComponent
+    ]
 })
 
 export class ActivitiesModule { }

@@ -1,0 +1,27 @@
+<div *ngIf="createdActivities?.length > 0" class="container">
+  <md-toolbar>Created Activities</md-toolbar>
+  <div class="activities-container">
+    <div *ngFor="let activity of createdActivities">
+      <app-activity [activity]=activity [activityId]=activity.$key></app-activity>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="createdActivities?.length == 0" class="container">
+  <md-toolbar>Created Activities</md-toolbar>
+  <p><em>Your collection is empty. Click <a href="/activities/create"> here </a>to create one.</em></p>
+</div>
+
+<div *ngIf="joinedActivities?.length > 0" class="container">
+  <md-toolbar>Joined Activities</md-toolbar>
+  <div class="activities-container">
+    <div *ngFor="let activity of joinedActivities">
+      <app-activity [activity]=activity [activityId]=activity.$key></app-activity>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="joinedActivities?.length == 0" class="container">
+  <md-toolbar>Joined Activities</md-toolbar>
+  <p><em>Your collection is empty. Click <a href="/activities/all"> here </a>to explore and participate.</em></p>
+</div>
