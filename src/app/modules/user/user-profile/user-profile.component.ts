@@ -4,7 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../services/auth.service';
 import { UserData } from '../../../services/user-data.service';
 import { MdDialog } from '@angular/material';
-import { DialogType } from '../../../enums/dialogTypes';
+import { UserDialogType } from '../../../enums/userDialogTypes';
 import { UserDialogComponent } from '../user-profile-dialog/user-profile-dialog.component';
 
 @Component({
@@ -37,13 +37,13 @@ export class UserProfileComponent implements OnInit {
     let header: string;
 
     if (buttonText.includes('email')) {
-      dialogType = DialogType.ChangeEmail;
+      dialogType = UserDialogType.ChangeEmail;
       header = 'Reset email';
     } else if (buttonText.includes('password')) {
-      dialogType = DialogType.ResetPassword;
+      dialogType = UserDialogType.ResetPassword;
       header = 'Reset password';
     } else {
-      dialogType = DialogType.ChangePicture;
+      dialogType = UserDialogType.ChangePicture;
       header = 'Change picture';
     }
 
@@ -57,7 +57,7 @@ export class UserProfileComponent implements OnInit {
     dialogRef.afterClosed()
       .subscribe(confirmation => {
         if (confirmation) {
-          if (dialogType === DialogType.ChangePicture) {
+          if (dialogType === UserDialogType.ChangePicture) {
             const storagePath = `images/users/${this.userId}`;
             const dbPath = `users/${this.userId}/profileImage`;
 
@@ -67,7 +67,7 @@ export class UserProfileComponent implements OnInit {
             }
 
             this.uploadService.uploadFile(storagePath, dbPath, dialogRef.componentInstance.upload);
-          } else if (dialogType === DialogType.ResetPassword) {
+          } else if (dialogType === UserDialogType.ResetPassword) {
             this.auth.resetPassword(this.user.email);
           } else {
             const oldEmail = dialogRef.componentInstance.oldEmail;

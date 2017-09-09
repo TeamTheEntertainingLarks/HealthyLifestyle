@@ -6,12 +6,6 @@
     border-radius: 5px;
     margin: 50px auto;
 }
-
-.wrapper{
-      padding-left: 10%;
-      padding-right: 10%;
-}
-
 .container button {
     font-size: 0.8em;
     border-radius: 5px; 
@@ -21,10 +15,6 @@
 .md-icon-green {
     color: #96c421;
 }
-
-/* .user-actions md-icon {
-    color: #96c421;
-} */
 
 .activity-image {
     max-height: 650px;

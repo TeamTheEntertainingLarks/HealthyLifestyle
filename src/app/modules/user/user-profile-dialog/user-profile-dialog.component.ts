@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MdDialog, MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
 import { FormControl, Validators, FormGroup, FormBuilder, AbstractControl } from '@angular/forms';
-import { DialogType } from '../../../enums/dialogTypes';
+import { UserDialogType } from '../../../enums/userDialogTypes';
 import { EMAIL_REGEX } from '../../../common/constants';
 import { Upload } from '../../../services/uploads/shared/upload';
 
@@ -42,9 +42,9 @@ export class UserDialogComponent implements OnInit {
   }
 
   setupDialog(type) {
-    if (type === DialogType.ChangeEmail) {
+    if (type === UserDialogType.ChangeEmail) {
       this.createChangeEmailForm();
-    } else if (type === DialogType.ChangePicture) {
+    } else if (type === UserDialogType.ChangePicture) {
       this.createChangePictureForm();
     }
   }

@@ -6,6 +6,8 @@
 .map-image {
     height: 60px;
     width: 60px;
+    vertical-align: middle;
+    border-radius: 50%;
 }
 
 .map-container {
@@ -16,3 +18,4 @@
 h3 { 
     color: #96c421;
 }
+

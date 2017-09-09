@@ -4,8 +4,10 @@
     <agm-map class="map" [zoom]="7" [latitude]="42.5" [longitude]="25.50">
       <agm-marker *ngFor="let marker of markers" [latitude]="marker.lat" [longitude]="marker.lng">
         <agm-info-window>
+          <img class="map-image" [src]="marker.imageUrl">
           <a (click)="close()" routerLink="/activities/{{marker.id}}">
-                              <img class="map-image" [src]="marker.imageUrl"> {{marker.title}}</a>
+             {{marker.title}}
+          </a>
         </agm-info-window>
       </agm-marker>
     </agm-map>
