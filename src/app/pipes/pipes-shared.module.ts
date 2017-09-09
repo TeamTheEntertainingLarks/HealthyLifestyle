@@ -10,7 +10,7 @@ import { GramsPipe } from './grams.pipe';
     declarations: [
         ZoomImageDirective,
         GramsPipe
-],
+    ],
     exports: [
         ZoomImageDirective,
         GramsPipe

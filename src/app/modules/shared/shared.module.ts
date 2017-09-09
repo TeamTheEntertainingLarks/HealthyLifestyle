@@ -38,7 +38,7 @@ import { SortComponent } from './sort/sort.component';
         CommentsComponent,
         CalorieCalculatorComponent,
         SortComponent
-],
+    ],
     exports: [
         NavComponent,
         PageNotFoundComponent,

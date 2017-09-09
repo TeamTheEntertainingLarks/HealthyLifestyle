@@ -1,3 +1,4 @@
+import { PipesSharedModule } from './../../pipes/pipes-shared.module';
 import { SharedModule } from './../shared/shared.module';
 import { GoogleplaceDirective } from './../../directives/googleplace.directive';
 import { NotificationService } from './../../services/notification.service';
@@ -30,8 +31,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CreateActivityComponent } from './create-activity/create-activity.component';
 import { EditActivityComponent } from './edit-activity/edit-activity.component';
 import { ActivitiesAllComponent } from './all.activities.component/all.activities.component';
-// import { SortPipe } from '../../pipes/sort.pipe';
-// import { SearchPipe } from '../../pipes/search.pipe';
 import { ZoomImageDirective } from '../../directives/zoom-image.directive';
 import { AgmCoreModule } from '@agm/core';
 import { GoogleMapDialogComponent } from './google-map-dialog/google-map-dialog.component';
@@ -59,7 +58,8 @@ import { RatingModule } from 'ngx-rating';
             libraries: ['places'],
         }),
         SharedModule,
-        RatingModule
+        RatingModule,
+        PipesSharedModule
     ],
     declarations: [
         GoogleplaceDirective,

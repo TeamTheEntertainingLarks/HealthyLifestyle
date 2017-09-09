@@ -63,6 +63,7 @@ export class ActivityComponent implements OnInit {
                             if (activity.comments) {
                                 this.commentsLength = this.activity.comments.length;
                             }
+
                             this.activityLoaded = Promise.resolve(true);
                         });
                 }
