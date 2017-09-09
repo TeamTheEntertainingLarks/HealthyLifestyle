@@ -33,7 +33,13 @@ export class ProgramComponent implements OnInit {
     });
   }
 
-
-
-
+  getDayColor(day) {
+    const restDayColor = '#b39cdb';
+    const workoutDayColor = '#8f70c9';
+    if (day.workout != null) {
+      return workoutDayColor;
+    } else {
+      return restDayColor;
+    }
+  }
 }

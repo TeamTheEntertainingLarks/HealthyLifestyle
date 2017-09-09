@@ -164,4 +164,14 @@ export class CreateProgramComponent implements OnInit {
     this.currentUpload = new Upload(file);
     return this.uploadService.uploadFile(storagePath, dbPath, this.currentUpload);
   }
+
+  getDayColor(day) {
+    const restDayColor = '#b39cdb';
+    const workoutDayColor = '#8f70c9';
+    if (day.workout != null) {
+      return workoutDayColor;
+    } else {
+      return restDayColor;
+    }
+  }
 }
