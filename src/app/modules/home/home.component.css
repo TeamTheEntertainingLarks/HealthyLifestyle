@@ -19,8 +19,9 @@ h1 {
 
 h1 > p {
     margin-top: 0.5%;
-    font-size: 200%;
     color: #028e13;
+    font: 200 80px/1.2 'Merienda One', Helvetica, sans-serif;
+    text-shadow: 3px 3px 3px #fff;
     
 }
 
