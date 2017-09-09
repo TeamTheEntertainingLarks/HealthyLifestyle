@@ -1,30 +1,27 @@
-<form [formGroup]="userForm">
-    <md-grid-list cols="1" rowHeight="10:1">
-      <md-grid-tile>
-        <md-input-container class="user-input">
-          <input type="email" mdInput [(ngModel)]="email" placeholder="Email" [formControl]="emailFormControl">
-          <md-error *ngIf="emailFormControl.hasError('pattern')">
-            Please enter a valid email address
-          </md-error>
-          <md-error *ngIf="emailFormControl.hasError('required')">
-            Email is <strong>required</strong>
-          </md-error>
-        </md-input-container>
-      </md-grid-tile>
-      <md-grid-tile>
-        <md-input-container class="user-input">
-          <input type="password" mdInput [(ngModel)]="password" placeholder="Password" [formControl]="passwordFormControl">
-          <md-error *ngIf="passwordFormControl.hasError('pattern')">
-            Please enter a valid password
-          </md-error>
-          <md-error *ngIf="passwordFormControl.hasError('required')">
-            Password is <strong>required</strong>
-          </md-error>
-        </md-input-container>
-      </md-grid-tile>
-      <md-grid-tile>
-        <button md-button type="submit" class="button" [disabled]="!userForm.valid" (click)='signIn()'>Sign In</button>
-        <p *ngIf="passReset" class="help is-info">Reset requested. Check your email instructions.</p>
-      </md-grid-tile>
-    </md-grid-list>
+<div class="container">
+  <form [formGroup]="userForm">
+    <md-input-container class="user-input">
+      <input type="email" mdInput [(ngModel)]="email" placeholder="Email" [formControl]="emailFormControl">
+      <md-error *ngIf="emailFormControl.hasError('pattern')">
+        Please enter a valid email address
+      </md-error>
+      <md-error *ngIf="emailFormControl.hasError('required')">
+        Email is <strong>required</strong>
+      </md-error>
+    </md-input-container>
+
+    <md-input-container class="user-input">
+      <input type="password" mdInput [(ngModel)]="password" placeholder="Password" [formControl]="passwordFormControl">
+      <md-error *ngIf="passwordFormControl.hasError('pattern')">
+        Please enter a valid password
+      </md-error>
+      <md-error *ngIf="passwordFormControl.hasError('required')">
+        Password is <strong>required</strong>
+      </md-error>
+    </md-input-container>
+
+    <div class="btn-signin">
+      <button md-raised-button color="primary" type="submit" class="button" [disabled]="!userForm.valid" (click)='signIn()'>Sign In</button>
+    </div>
   </form>
+</div>
