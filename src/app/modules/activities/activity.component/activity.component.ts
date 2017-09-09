@@ -5,6 +5,7 @@ import { DataService } from '../../../services/data.service';
 import { ActivityInterface } from '../../../interfaces/activity';
 import { AuthService } from '../../../services/auth.service';
 import { ActivityData } from '../../../services/activity-data.service';
+import { NotificationService } from '../../../services/notification.service';
 
 @Component({
     selector: 'app-activity',
@@ -22,13 +23,17 @@ export class ActivityComponent implements OnInit {
     public userId: string;
     public type: string;
     public commentsLength: number;
+    public participantsCount = 0;
     public activityLoaded: Promise<boolean>;
+    private isLiked: any;
+    private starsCount: number;
 
     constructor(
         private router: Router,
         private auth: AuthService,
         private route: ActivatedRoute,
-        private activitiesDataService: ActivityData) {
+        private activitiesDataService: ActivityData,
+        private notificationService: NotificationService) {
     }
 
     ngOnInit() {
@@ -38,7 +43,6 @@ export class ActivityComponent implements OnInit {
             .subscribe((data) => {
                 this.type = data.type;
             });
-
         this.route.params
             .subscribe(params => {
                 if (params.id) {
@@ -46,6 +50,16 @@ export class ActivityComponent implements OnInit {
                         .getActivityById(params.id)
                         .subscribe((activity) => {
                             this.activity = activity;
+                            this.activityId = activity.$key;
+                            this.starsCount = activity.likes;
+                            this.activity.userLiked = activity.userLiked || [];
+
+                            this.isLiked = activity.userLiked
+                                .find(like => like === this.userId);
+
+                            if (activity.participants) {
+                                this.participantsCount = activity.participants.length;
+                            }
                             if (activity.comments) {
                                 this.commentsLength = this.activity.comments.length;
                             }
@@ -83,15 +97,28 @@ export class ActivityComponent implements OnInit {
         this.activitiesDataService.editActivity(this.activityId, this.activity);
     }
 
-    test(event) {
-        console.log(event);
-    }
-
     leave() {
         const index = this.activity.participants.indexOf(this.userId);
         if (index !== -1) {
+            this.participantsCount--;
             this.activity.participants.splice(index, 1);
             this.activitiesDataService.editActivity(this.activityId, this.activity);
+        }
+    }
+
+    rateActivity(activityId) {
+        if (!this.isLiked) {
+            this.notificationService.popToast('info', 'Success!', 'Your like was already added!');
+        } else {
+            if (!this.activity.likes) {
+                this.activity.likes = 0;
+            }
+            this.activity.likes += 0.5;
+            this.activity.userLiked = this.activity.userLiked || [];
+            this.activity.userLiked.push(this.userId);
+
+            this.activitiesDataService.editActivity(this.activityId, this.activity);
+            this.notificationService.popToast('info', 'Success!', 'Your like was added successfully!');
         }
     }
 

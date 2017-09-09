@@ -13,15 +13,15 @@
         <md-card>
             <img appZoomImage *ngIf="activity.image?.url" class="activity-image" md-card-image src="{{activity.image?.url}}" alt="activity-image">
             <md-card-content>
-                <h3><a *ngIf="isAuthor(activity.userId)" routerLink="/activities/{{activityId}}">{{activity.title}}</a></h3>
+                <h3><a routerLink="/activities/{{activityId}}">{{activity.title}}</a></h3>
                 <p class="createdOn">
                     <span *ngIf="type == 'view'">by {{activity.author}} <strong>|</strong> on {{activity.createdOn | date}}</span>
                 </p>
                 <p class="eventDate">
-                    <span><md-icon>access_time</md-icon> {{activity.eventDate | date:'medium'}}</span>
+                    <span><md-icon class="md-icon-green">access_time</md-icon> {{activity.eventDate | date:'medium'}}</span>
                 </p>
                 <p>
-                    <span><md-icon>place</md-icon> {{activity?.location.place}}</span>
+                    <span><md-icon class="md-icon-green">place</md-icon> {{activity?.location.place}}</span>
                 </p>
                 <p *ngIf="type == 'view'">
                     <agm-map [zoom]="15" [latitude]="activity.location.lat" [longitude]="activity.location.lng">
@@ -29,47 +29,52 @@
                     </agm-map>
                 </p>
                 <p>
+                    <span *ngIf="type == 'view'"><md-icon class="md-icon-green">group</md-icon> {{participantsCount}}</span>
+                </p>
+                <p>
                     <span *ngIf="type == 'view'"><em>{{activity.category}}</em></span>
                 </p>
+                <rating [(ngModel)]="activity.likes" [max]="10" [float]="true" [readonly]="true"></rating>
                 <p>
                     <span><em>{{activity.description}}</em></span>
                 </p>
-                <hr>
-                <p *ngIf="type == 'view'">
+                <hr *ngIf="!(type == 'view')">
+                <div *ngIf="type == 'view'">
                     <span><em>{{activity.additionalInfo}}</em></span>
-                </p>
+                    <hr>
+                </div>
             </md-card-content>
             <md-card-actions class="user-actions" *ngIf="(isAuthenticated() && !isAuthor(activity.userId) && !isParticipating())">
-                <button md-button>
-                        <md-icon>star_rate</md-icon>
+                <button md-button (click)="rateActivity(activity.$key)">
+                        <md-icon class="md-icon-green">star_rate</md-icon>
                         Like
                     </button>
                 <button md-button (click)="participate()">
-                        <md-icon>group</md-icon>
+                        <md-icon class="md-icon-green">group</md-icon>
                         Participate
                     </button>
                 <button md-button>
-                        <md-icon>share</md-icon>
+                        <md-icon class="md-icon-green">share</md-icon>
                         Share
                     </button>
             </md-card-actions>
             <md-card-actions class="user-actions" *ngIf="(isAuthenticated() && !isAuthor(activity.userId) && isParticipating())">
-                <button md-button>
-                        <md-icon>star_rate</md-icon>
+                <button md-button (click)="rateActivity(activity.$key)">
+                        <md-icon class="md-icon-green">star_rate</md-icon>
                         Like
                     </button>
-                <button md-button (click)="leave()">
+                <button md-button color="warn" (click)="leave()">
                         <md-icon>clear</md-icon>
                         Leave
                     </button>
                 <button md-button>
-                        <md-icon>share</md-icon>
+                        <md-icon class="md-icon-green">share</md-icon>
                         Share
                     </button>
             </md-card-actions>
             <md-card-actions *ngIf="(isAuthenticated() && isAuthor(activity.userId))">
-                <button md-button color="primary" (click)="navigateToEdit()">
-                        <md-icon>edit</md-icon>
+                <button md-button (click)="navigateToEdit()">
+                        <md-icon class="md-icon-green">edit</md-icon>
                         Edit
                     </button>
                 <button md-button color="warn" (click)="delete()">
