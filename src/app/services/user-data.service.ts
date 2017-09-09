@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import { UserInterface } from '../interfaces/user';
 import * as firebase from 'firebase';
+import { NotificationService } from './notification.service';
 
 @Injectable()
 export class UserData {
@@ -12,7 +13,7 @@ export class UserData {
     public user;
     public userProfileImage;
 
-    constructor(db: AngularFireDatabase) {
+    constructor(db: AngularFireDatabase, private notificationService: NotificationService) {
         this.db = db;
         this.firebaseCollection = this.db.list('/users');
     }
@@ -32,7 +33,7 @@ export class UserData {
 
         this.db.object(path)
             .set(user)
-            .catch(error => console.log(error));
+            .catch((error) => this.notificationService.popToast('error', 'Ooops!', error.message));
     }
 
     set(userId: string, data: object) {
@@ -40,7 +41,7 @@ export class UserData {
 
         this.db.object(path)
             .set(data)
-            .catch(error => console.log(error));
+            .catch((error) => this.notificationService.popToast('error', 'Ooops!', error.message));
     }
 
     update(userId: string, data: object): void {
@@ -48,7 +49,7 @@ export class UserData {
 
         this.db.object(path)
             .update(data)
-            .catch(error => console.log(error));
+            .catch((error) => this.notificationService.popToast('error', 'Ooops!', error.message));
     }
 
     getUserByUid(userId: string) {
