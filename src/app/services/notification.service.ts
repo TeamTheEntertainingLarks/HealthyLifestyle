@@ -12,6 +12,7 @@ export class NotificationService {
         tapToDismiss: true,
         timeout: 3000,
         limit: 5,
+        positionClass: 'toast-top-right',
     });
 
     popToast(type: any, title: string, body: string) {

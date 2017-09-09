@@ -7,3 +7,8 @@ html * {
     font-family: 'Encode Sans', sans-serif;
     font-weight: 500;
 }
+
+#toast-container {
+    margin-top: 5%;
+    position: fixed;
+  }
