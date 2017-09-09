@@ -52,7 +52,7 @@ export class ActivitiesAllComponent implements OnInit {
                     const activityId = item.$key;
                     const location = item.location;
                     const activityTitle = item.title;
-                    const imageUrl = item.image.url;
+                    const imageUrl = item.image ? item.image.url : '';
                     this.getActivitiesLocation(location, activityId, activityTitle, imageUrl);
                 });
             });

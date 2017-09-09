@@ -16,7 +16,8 @@
       <md-card-subtitle id="username"><strong>Username:</strong> {{user.username}}</md-card-subtitle>
       <md-card-subtitle id="user-email"><strong>Email:</strong> {{user.email}}</md-card-subtitle>
     </md-card-header>
-    <img md-card-image src={{user.profileImage.url}}>
+    <img *ngIf="user.profileImage" md-card-image src={{user.profileImage.url}}>
+    <img *ngIf="!user.profileImage" md-card-image src="../../../assets/images/default-profile.png">
     <md-card-content>
     </md-card-content>
     <div class="buttons-container">
