@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators, FormGroup, FormBuilder, AbstractControl } from '@angular/forms';
 
-const NUMBER_REGEX = /^[1-9]+$/;
+const NUMBER_REGEX = /^[0-9]+$/;
 
 @Component({
   selector: 'app-calorie-calculator',
