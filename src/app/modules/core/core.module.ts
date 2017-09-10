@@ -1,6 +1,5 @@
 import { NgModule, Optional, SkipSelf } from '@angular/core';
 
-import { DataService } from '../../services/data.service';
 import { UserData } from '../../services/user-data.service';
 import { AuthService } from '../../services/auth.service';
 import { AuthGuard } from '../../guards/auth.guard';
@@ -12,7 +11,6 @@ import { NotificationService } from '../../services/notification.service';
 
 @NgModule({
   providers: [
-    DataService,
     UserData,
     AuthService,
     AuthGuard,
