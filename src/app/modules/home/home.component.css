@@ -7,32 +7,52 @@
     overflow: hidden;
 }
 
-h2 {
-    font-size: 250%;
-    color:#3a7704;
-}
+
 h1 {
+    font: 100 60px/1.2 'Merienda One', Helvetica, sans-serif;
     text-align: center;
-    font-size: 300%;
-    margin-bottom: 0%;
 }
 
 h1 > p {
     margin-top: 0.5%;
-    color: #028e13;
+    margin-bottom: 0.5%;
+    color: #96c421;
     font: 200 80px/1.2 'Merienda One', Helvetica, sans-serif;
-    text-shadow: 3px 3px 3px #fff;
-    
+    text-shadow: 3px 3px 3px #fff;    
+}
+
+h2 {
+    font: 200 40px/1.2 'Merienda One', Helvetica, sans-serif;
+    margin-bottom: 0;
+}
+
+h3 {
+    font: 200 25px/1.2 'Merienda One', Helvetica, sans-serif;
+    color: #96c421;
 }
 
 .details {
-    margin-top: 5%;
+    width: 50%;
+    margin: 0 auto;
+}
+
+md-card{
+    outline: none;
+    border: 0;
+    width: 80%;
+}
+
+.header-img{
+    box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 20px 0 rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
 }
 
 .item {
     margin-bottom: 10%;
 }
-img{
-    width: 80%;
-    margin: 0% 10%;
+img {
+    cursor: pointer;
+    max-width: 500px;
+    height: 300px;
+    max-height: 300px;
+    border-radius: 1%;
 }
