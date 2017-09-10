@@ -1,3 +1,5 @@
+import { ActivityAuthorGuard } from './../../guards/activity.author.guard';
+import { AuthGuard } from './../../guards/auth.guard';
 import { EditActivityComponent } from './edit-activity/edit-activity.component';
 import { CreateActivityComponent } from './create-activity/create-activity.component';
 import { NgModule } from '@angular/core';
@@ -9,9 +11,9 @@ import { ActivitiesAllComponent } from './all.activities.component/all.activitie
 const routes: Routes = [
     { path: '', redirectTo: 'all', pathMatch: 'full' },
     { path: 'all', component: ActivitiesAllComponent },
-    { path: 'create', component: CreateActivityComponent },
+    { path: 'create', component: CreateActivityComponent, canActivate: [AuthGuard]  },
     { path: ':id', component: ActivityComponent, data: { type: 'view' } },
-    { path: ':id/edit', component: EditActivityComponent },
+    { path: ':id/edit', component: EditActivityComponent, canActivate: [ActivityAuthorGuard]  },
 ];
 
 @NgModule({
