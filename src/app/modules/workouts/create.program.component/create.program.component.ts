@@ -1,3 +1,5 @@
+import { NotificationService } from './../../../services/notification.service';
+import { AuthService } from './../../../services/auth.service';
 import { FormControl, FormBuilder, Validators, FormGroup, AbstractControl } from '@angular/forms';
 import { ModelFactory } from './../../../services/factories/model.factory';
 import { Routine } from './../../../models/routine';
@@ -21,7 +23,7 @@ export class CreateProgramComponent implements OnInit {
   public title: string;
   public difficulty: string;
   public description: string;
-  public workout: any;
+  public imageChosen: boolean;
   public days: Array<any>;
   public workouts: Array<any>;
   public currentUpload: Upload;
@@ -32,21 +34,23 @@ export class CreateProgramComponent implements OnInit {
   public difficultiesFormControl: AbstractControl;
   public descriptionFormControl: AbstractControl;
   public workoutsFormControl: AbstractControl;
-
   public difficulties: Array<string>;
   public workoutTitle: string;
 
   constructor(
+    private auth: AuthService,
     private router: Router,
-    public workoutData: WorkoutData,
+    private workoutData: WorkoutData,
     private uploadService: UploadService,
     private factory: ModelFactory,
     private formBuilder: FormBuilder,
-    public scrollToService: ScrollToService) {
-    this.workouts = new Array<any>();
-    this.add = false;
-    this.days = new Array<any>();
-    this.difficulties = new Array<string>();
+    private notificationService: NotificationService,
+    private scrollToService: ScrollToService) {
+      this.workouts = new Array<any>();
+      this.add = false;
+      this.days = new Array<any>();
+      this.difficulties = new Array<string>();
+      this.imageChosen = false;
   }
 
   public add: boolean;
@@ -97,12 +101,15 @@ export class CreateProgramComponent implements OnInit {
       difficulty: this.difficulty,
       description: this.description,
       createdOn: Date.now(),
+      userId: this.auth.currentUserId,
       image: null,
       days: this.days,
+      comments: [],
     };
     this.workoutData.add(newProgram).then(key => {
       this.uploadSingle(key);
     }).then(() => {
+      this.notificationService.popToast('info', 'Success!', 'Program successfully added!');
       return this.router.navigate(['programs/all']);
     });
 
@@ -145,12 +152,11 @@ export class CreateProgramComponent implements OnInit {
     this.wokroutForm.reset();
     this.days.push(newDay);
     this.add = false;
-    //TODO - Clear Select
   }
 
-  addNewWorkout(workout: any) {
+  addNewWorkout(title: any) {
     let currentWorkout: any;
-    this.workoutData.getWorkoutByTitle(workout.title).subscribe(workouts => {
+    this.workoutData.getWorkoutByTitle(title).subscribe(workouts => {
       currentWorkout = workouts[0];
     });
 
@@ -161,11 +167,11 @@ export class CreateProgramComponent implements OnInit {
 
     this.days.push(newDay);
     this.add = false;
-    //clear form
   }
 
   detectFiles(event) {
     this.selectedFiles = event.target.files;
+    this.imageChosen = true;
   }
 
   uploadSingle(key: string) {

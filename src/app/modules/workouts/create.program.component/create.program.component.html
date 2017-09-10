@@ -54,7 +54,7 @@
     </div>
 </div>
 <div submission-container>
-  <button type="button" (click)="addProgram()" id="createProgramBtn" class="success" [disabled]="!programForm.valid  || days.length == 0" 
+  <button type="button" (click)="addProgram()" id="createProgramBtn" class="success" [disabled]="!programForm.valid  || days.length == 0 || !imageChosen" 
     md-raised-button>Create Program</button>
 </div>
 <div class="form-container" [ngClass]="{'hidden': add==false}" #formScroller>

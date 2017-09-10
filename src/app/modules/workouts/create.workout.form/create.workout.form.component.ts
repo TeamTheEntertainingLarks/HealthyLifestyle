@@ -24,39 +24,29 @@ export class CreateWorkoutFormComponent implements OnInit {
   @Output() onHide: EventEmitter<any>;
   public selectedOption: string;
   public workout: WorkoutInterface;
-  private factory: ModelFactory;
-  private workoutDataService: WorkoutData;
-  auth: AuthService;
   public title: string;
   public createdOn: number;
   public showRoutineForm: boolean;
-  public category: Category;
   public routines: Array<Routine>;
-  public comments: string[];
   public userId: any;
   public categories: Array<string>;
   public workoutForm: FormGroup;
   public titleFormControl: AbstractControl;
-  public authorFormControl: AbstractControl;
   public routinesFormControl: AbstractControl;
   public categoriesFormControl: AbstractControl;
-  public availableRoutines: Array<Routine>;
 
    constructor(
-    public dialog: MdDialog,
-    workoutDataService: WorkoutData,
-    factory: ModelFactory,
-    auth: AuthService,
+    private dialog: MdDialog,
+    private workoutDataService: WorkoutData,
+    private factory: ModelFactory,
+    private auth: AuthService,
     private formBuilder: FormBuilder) {
-    this.factory = factory;
-    this.workoutDataService = workoutDataService;
-    this.auth = auth;
-    this.workout = new Workout();
-    this.routines = new Array<Routine>();
-    this.showRoutineForm = false;
-    this.categories = new Array<string>();
-    this.onCreate = new EventEmitter<any>();
-    this.onHide = new EventEmitter<any>();
+      this.workout = new Workout();
+      this.routines = new Array<Routine>();
+      this.showRoutineForm = false;
+      this.categories = new Array<string>();
+      this.onCreate = new EventEmitter<any>();
+      this.onHide = new EventEmitter<any>();
 }
 
   ngOnInit(): void {
@@ -132,8 +122,10 @@ export class CreateWorkoutFormComponent implements OnInit {
 
       this.workout = this.factory
       .createWorkout(title, author, createdOn, category, routines, description, comments);
-      this.workoutDataService.addWorkout(this.workout);
-      this.workoutForm.reset();
-      this.onCreate.emit(this.workout);
+      return this.workoutDataService.addWorkout(this.workout)
+        .then(() => {
+          this.workoutForm.reset();
+          return this.onCreate.emit(title);
+        });
   }
 }

@@ -17,43 +17,30 @@ export class CreateExerciseFform implements OnInit {
   @Output()
   public hideExerciseForm: EventEmitter<boolean>;
   public exercise: Exercise;
-  private factory: ModelFactory;
   public currentUpload: Upload;
-  private workoutDataService: WorkoutData;
-  private auth: AuthService;
-  private uploadService: UploadService;
+  public imageChosen: boolean;
   public selectedFiles: FileList;
   public exerciseForm: FormGroup;
   public nameFormControl: AbstractControl;
   public imageFormControl: AbstractControl;
 
    constructor(
-    workoutDataService: WorkoutData,
-    factory: ModelFactory,
-    auth: AuthService,
-    uploadService: UploadService,
+    private workoutDataService: WorkoutData,
+    private factory: ModelFactory,
+    private auth: AuthService,
+    private uploadService: UploadService,
     private formBuilder: FormBuilder) {
-    this.factory = factory;
-    this.uploadService = uploadService;
-
-    this.workoutDataService = workoutDataService;
-    this.auth = auth;
-    this.exercise = new Exercise();
-    this.hideExerciseForm = new EventEmitter<boolean>();
+      this.exercise = new Exercise();
+      this.hideExerciseForm = new EventEmitter<boolean>();
+      this.imageChosen = false;
 }
 
   ngOnInit() {
     this.nameFormControl = new FormControl('', [
       Validators.required]);
 
-      // TODO fix the image validation
-    this.imageFormControl = new FormControl('', [
-      //Validators.required
-    ]);
-
     this.exerciseForm = this.formBuilder.group({
       nameFormControl: this.nameFormControl,
-      imageFormControl: this.imageFormControl,
     });
   }
   onSubmit(name: string, image: string) {
@@ -70,6 +57,7 @@ export class CreateExerciseFform implements OnInit {
 
   detectFiles(event) {
     this.selectedFiles = event.target.files;
+    this.imageChosen = true;
   }
 
   uploadSingle(name: string) {

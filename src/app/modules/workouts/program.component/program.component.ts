@@ -16,9 +16,8 @@ export class ProgramComponent implements OnInit {
 
   constructor(
       private router: ActivatedRoute,
-      private workoutData: WorkoutData
-    ) {
-    this.days = new Array<any>();
+      private workoutData: WorkoutData) {
+        this.days = new Array<any>();
    }
 
   ngOnInit() {

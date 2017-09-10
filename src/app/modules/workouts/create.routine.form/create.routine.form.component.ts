@@ -16,9 +16,6 @@ import { Component, OnInit, Output, EventEmitter, Inject } from '@angular/core';
 })
 export class CreateRoutineFormComponent implements OnInit {
   public routine: Routine;
-  private factory: ModelFactory;
-  private workoutDataService: WorkoutData;
-  private auth: AuthService;
   public routineForm: FormGroup;
   public exercises: Array<Exercise>;
   public exerciseName: string;
@@ -30,19 +27,16 @@ export class CreateRoutineFormComponent implements OnInit {
 
    constructor(
     @Inject(MD_DIALOG_DATA) public data: WorkoutData,
-    public dialog: MdDialog,
-    workoutDataService: WorkoutData,
-    factory: ModelFactory,
-    auth: AuthService,
+    private dialog: MdDialog,
+    private workoutDataService: WorkoutData,
+    private factory: ModelFactory,
+    private auth: AuthService,
     public dialogRef: MdDialogRef<CreateRoutineFormComponent>,
     private formBuilder: FormBuilder) {
-    this.factory = factory;
-    this.workoutDataService = workoutDataService;
-    this.auth = auth;
-    this.routine = new Routine();
-    this.routine.exercise = new Exercise();
-    this.exercises = new Array<Exercise>();
-    this.showExerciseForm = false;
+      this.routine = new Routine();
+      this.routine.exercise = new Exercise();
+      this.exercises = new Array<Exercise>();
+      this.showExerciseForm = false;
 }
 
 

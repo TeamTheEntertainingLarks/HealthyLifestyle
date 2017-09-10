@@ -11,8 +11,8 @@ export class WorkoutsComponent implements OnInit {
   public workout: any;
 
   constructor(
-  public workoutData: WorkoutData,
-  public router: ActivatedRoute) { }
+  private workoutData: WorkoutData,
+  private router: ActivatedRoute) { }
   ngOnInit() {
     this.router.params.subscribe((params: Params) => {
       const title = params['title'];

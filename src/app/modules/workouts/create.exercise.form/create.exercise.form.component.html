@@ -20,7 +20,7 @@
         <input type="file" (change)="detectFiles($event)">
     </label>
     <div class="buttons">
-      <button type="submit" [disabled]="!exerciseForm.valid" class="success" md-raised-button>Create exercise</button>
+      <button type="submit" [disabled]="!exerciseForm.valid || !imageChosen" class="success" md-raised-button>Create exercise</button>
       <button type="button" class="cancel" (click)="onClose()" md-raised-button>Cancel</button>
     </div>
   </div>

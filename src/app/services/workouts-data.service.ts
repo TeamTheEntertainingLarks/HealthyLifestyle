@@ -45,8 +45,8 @@ export class WorkoutData {
     }
 
     // need to add some notifications, not console outputs
-    addWorkout(workout: WorkoutInterface): void {
-        this.firebaseCollection.push(workout)
+    addWorkout(workout: WorkoutInterface) {
+        return this.firebaseCollection.push(workout)
             .then(_ => console.log('workout added'))
             .catch(err => console.log(err, 'err when adding workout'));
     }

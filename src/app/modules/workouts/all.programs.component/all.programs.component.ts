@@ -1,3 +1,4 @@
+import { FormControl } from '@angular/forms';
 import { FirebaseListObservable } from 'angularfire2/database';
 import { AuthService } from './../../../services/auth.service';
 import { ModelFactory } from './../../../services/factories/model.factory';
@@ -14,8 +15,14 @@ export class AllProgramsComponent implements OnInit {
 
     public programs: Array<any>;
     public path: string;
+    public filteredCategories: any;
     public order: number; // 1 asc, -1 desc;
-
+    public categoryCtrl: FormControl;
+    public categories = [
+        'Beginner',
+        'Intermediate',
+        'Professional'
+      ];
 
   constructor(
         private workoutDataService: WorkoutData,
@@ -25,6 +32,7 @@ export class AllProgramsComponent implements OnInit {
         }
 
   ngOnInit() {
+    this.categoryCtrl = new FormControl();
     this.workoutDataService.getAvailablePrograms().subscribe(pr => {
       this.programs = new Array<any>();
       pr.forEach(p => {
@@ -33,6 +41,11 @@ export class AllProgramsComponent implements OnInit {
         }
       });
     });
+
+    this.filteredCategories =
+        this.categoryCtrl.valueChanges
+            .startWith(null)
+            .map(name => this.filterStates(name));
   }
 
   getDifficultyColor(diff) {
@@ -43,10 +56,26 @@ export class AllProgramsComponent implements OnInit {
     }
   }
 
-    orderBy(prop: string, num: number) {
-        this.path = prop;
-        this.order = num;
-        return false; // do not reload
+    dataReceivedByDateAsc(data) {
+        this.programs = data;
+    }
+
+    dataReceivedByDateDesc(data) {
+        this.programs = data;
+    }
+
+    dataReceivedByTitleAsc(data) {
+        this.programs = data;
+    }
+
+    dataReceivedByTitleDesc(data) {
+        this.programs = data;
+    }
+
+    filterStates(val: string) {
+        return val ? this.categories
+            .filter(s => s.toLowerCase()
+                .indexOf(val.toLowerCase()) === 0) : this.categories;
     }
     isAuthenticated() {
       return this.auth.isAuthenticated;
