@@ -1,7 +1,6 @@
 import { ActivatedRoute, Router, Data } from '@angular/router';
 import { Component, OnInit, Input, OnChanges, SimpleChanges, DoCheck } from '@angular/core';
 
-import { DataService } from '../../../services/data.service';
 import { ActivityInterface } from '../../../interfaces/activity';
 import { AuthService } from '../../../services/auth.service';
 import { ActivityData } from '../../../services/activity-data.service';

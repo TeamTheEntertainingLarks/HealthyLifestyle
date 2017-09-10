@@ -3,8 +3,6 @@ import { ActivityInterface } from './../../../interfaces/activity';
 import { ActivityData } from './../../../services/activity-data.service';
 import { AuthService } from './../../../services/auth.service';
 import { Component, OnInit } from '@angular/core';
-import { DataService } from '../../../services/data.service';
-
 import { WorkoutInterface } from '../../../interfaces/workout';
 import { FirebaseListObservable } from 'angularfire2/database';
 import { FormControl } from '@angular/forms';
