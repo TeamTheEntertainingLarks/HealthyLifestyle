@@ -21,6 +21,7 @@ export class ActivitiesAllComponent implements OnInit {
     public searchWord: string;
     public categoryCtrl: FormControl;
     public filteredCategories: any;
+    public filteredItems: any;
 
     public categories = [
         'Bicycling',
@@ -42,10 +43,12 @@ export class ActivitiesAllComponent implements OnInit {
 
     ngOnInit() {
         this.categoryCtrl = new FormControl();
+        this.searchWord = '';
 
         this.activitiesDataService.getAllActivities()
             .subscribe(items => {
                 this.activities = items;
+                this.filteredItems = Object.assign([], this.activities);
                 items.map(item => {
                     const activityId = item.$key;
                     const location = item.location;
@@ -54,11 +57,6 @@ export class ActivitiesAllComponent implements OnInit {
                     this.getActivitiesLocation(location, activityId, activityTitle, imageUrl);
                 });
             });
-
-        this.filteredCategories =
-            this.categoryCtrl.valueChanges
-                .startWith(null)
-                .map(name => this.filterStates(name));
     }
 
     getActivitiesLocation(location, activityId, title, imageUrl) {
@@ -87,9 +85,26 @@ export class ActivitiesAllComponent implements OnInit {
     }
 
     filterStates(val: string) {
-        return val ? this.categories
-            .filter(s => s.toLowerCase()
-                .indexOf(val.toLowerCase()) === 0) : this.categories;
+        return val ? this.categories.filter(s => s.toLowerCase().indexOf(val.toLowerCase()) === 0)
+            : this.categories;
+    }
+
+    search(): void {
+        this.filteredCategories = this.categoryCtrl.valueChanges
+            .startWith(null)
+            .map(name => this.filterStates(name));
+
+        this.searchWord = this.searchWord.toLowerCase();
+
+        if (this.searchWord) {
+            this.activities = this.filteredItems.filter(item => {
+                return item.title.toLowerCase().indexOf(this.searchWord) !== -1 ||
+                    item.author.toLowerCase().indexOf(this.searchWord) !== -1 ||
+                    item.category.toLowerCase().indexOf(this.searchWord) !== -1;
+            });
+        } else {
+            this.activities = this.filteredItems;
+        }
     }
 
     dataReceivedByDateAsc(data) {

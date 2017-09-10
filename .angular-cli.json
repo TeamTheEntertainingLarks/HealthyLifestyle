@@ -1,8 +1,7 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "project": {
-    "name": "modules",
-    "ejected": true
+    "name": "modules"
   },
   "apps": [
     {
@@ -20,7 +19,9 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
-        "styles.css"
+        "styles.css",
+        "../node_modules/angular2-toaster/toaster.css",
+        "../node_modules/ng-pick-datetime/styles/picker.min.css"
       ],
       "scripts": [
         "../node_modules/hammerjs/hammer.min.js"
@@ -58,7 +59,6 @@
   },
   "defaults": {
     "styleExt": "css",
-    "component": {
-    }
+    "component": {}
   }
 }
