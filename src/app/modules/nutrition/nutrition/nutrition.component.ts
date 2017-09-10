@@ -44,7 +44,19 @@ export class NutritionComponent implements OnInit {
       }
   }
 
-  dataReceived(data) {
+  dataReceivedByDateAsc(data) {
+    this.articles = data;
+  }
+
+  dataReceivedByDateDesc(data) {
+    this.articles = data;
+  }
+
+  dataReceivedByTitleAsc(data) {
+    this.articles = data;
+  }
+
+  dataReceivedByTitleDesc(data) {
     this.articles = data;
   }
 }

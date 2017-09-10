@@ -1,5 +1,5 @@
 <div class="subnav">
-    <app-sort [items]="articles" (onSendingItems)="dataReceived($event)"></app-sort>
+    <app-sort [items]="articles" (onOrderByDateAsc)="dataReceivedByDateAsc($event)" (onOrderByDateDesc)="dataReceivedByDateDesc($event)" (onOrderByTitleAsc)="dataReceivedByTitleAsc($event)"  (onOrderByTitleDesc)="dataReceivedByTitleDesc($event)"></app-sort>
     <button md-button *ngIf="isAuthenticated()" routerLink="/nutrition/create">Create Article</button>
     <input type="text" placeholder="Search for..." [(ngModel)]="searchWord" (ngModelChange)="search()">
 </div>

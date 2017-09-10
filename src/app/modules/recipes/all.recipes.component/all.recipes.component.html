@@ -1,6 +1,6 @@
 <div class="container">
     <div class="subnav">
-        <app-sort [items]="recipes" (onSendingItems)="dataReceived($event)"></app-sort>
+        <app-sort [items]="recipes" (onOrderByDateAsc)="dataReceivedByDateAsc($event)" (onOrderByDateDesc)="dataReceivedByDateDesc($event)" (onOrderByTitleAsc)="dataReceivedByTitleAsc($event)"  (onOrderByTitleDesc)="dataReceivedByTitleDesc($event)"></app-sort>
         <button md-button *ngIf="isAuthenticated()" [mdMenuTriggerFor]="create">
                 Create
         </button>

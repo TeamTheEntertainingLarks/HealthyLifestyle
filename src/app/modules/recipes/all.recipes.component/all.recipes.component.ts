@@ -69,7 +69,19 @@ export class RecipesAllComponent implements OnInit {
         }
     }
 
-    dataReceived(data) {
+    dataReceivedByDateAsc(data) {
         this.recipes = data;
-      }
+    }
+
+    dataReceivedByDateDesc(data) {
+        this.recipes = data;
+    }
+
+    dataReceivedByTitleAsc(data) {
+        this.recipes = data;
+    }
+
+    dataReceivedByTitleDesc(data) {
+        this.recipes = data;
+    }
 }

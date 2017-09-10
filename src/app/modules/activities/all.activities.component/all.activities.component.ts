@@ -94,7 +94,19 @@ export class ActivitiesAllComponent implements OnInit {
                 .indexOf(val.toLowerCase()) === 0) : this.categories;
     }
 
-    dataReceived(data) {
+    dataReceivedByDateAsc(data) {
+        this.activities = data;
+    }
+
+    dataReceivedByDateDesc(data) {
+        this.activities = data;
+    }
+
+    dataReceivedByTitleAsc(data) {
+        this.activities = data;
+    }
+
+    dataReceivedByTitleDesc(data) {
         this.activities = data;
     }
 }
