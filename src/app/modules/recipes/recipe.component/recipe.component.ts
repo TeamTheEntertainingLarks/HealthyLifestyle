@@ -38,6 +38,10 @@ export class RecipeComponent implements OnInit {
             .subscribe(params => {
                 this.recipeDataService.getRecipeById(params.id)
                     .subscribe(recipe => {
+                        if (recipe.$value === null) {
+                            this.notificationService.popToast('error', 'Error', 'This activity does not exists!')
+                            return this.router.navigate(['/']);
+                        }
                         this.recipe = recipe;
                         this.recipeKey = recipe.$key;
                         this.starsCount = recipe.likes;
