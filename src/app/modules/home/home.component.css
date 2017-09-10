@@ -40,6 +40,7 @@ md-card{
     outline: none;
     border: 0;
     width: 80%;
+    padding-bottom: 0;
 }
 
 .header-img{
@@ -51,7 +52,7 @@ md-card{
 }
 img {
     cursor: pointer;
-    height: 300px;
-    max-height: 300px;
+    height: 320px;
+    max-height: 320px;
     border-radius: 1%;
 }
