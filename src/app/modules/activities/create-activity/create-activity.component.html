@@ -1,6 +1,6 @@
 <div class="container">
   <h2>Create New Activity</h2>
-  <form class="activity-form" [formGroup]="activityForm" (ngSubmit)="onSubmit()">
+  <form [formGroup]="activityForm" class="activity-form" (ngSubmit)="onSubmit()">
 
     <md-input-container class="form-control">
       <input type="text" mdInput placeholder="Title" name="title" [(ngModel)]="title" [formControl]="titleFormControl" required>
@@ -72,7 +72,7 @@
       <button md-fab type="button" md-raised-button (click)="imgFileInput.click()"><md-icon>insert_photo</md-icon></button>
       <input hidden type="file" #imgFileInput (change)="detectFile($event)" />
 
-      <button type="submit" color="primary" md-raised-button>Create Activity</button>
+      <button md-raised-button color="primary" type="submit" class="button" [disabled]="!activityForm.valid">Create Activity</button>
     </div>
   </form>
 </div>

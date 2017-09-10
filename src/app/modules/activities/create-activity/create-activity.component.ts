@@ -34,7 +34,6 @@ export class CreateActivityComponent implements OnInit {
   public activity: ActivityInterface;
 
   public titleFormControl: AbstractControl;
-  public authorFormControl: AbstractControl;
   public categoryFormControl: AbstractControl;
   public descriptionFormControl: AbstractControl;
   public additionalInfoFormControl: AbstractControl;
@@ -67,9 +66,6 @@ export class CreateActivityComponent implements OnInit {
     this.titleFormControl = new FormControl('', [
       Validators.required]);
 
-    this.authorFormControl = new FormControl('', [
-      Validators.required]);
-
     this.categoryFormControl = new FormControl('', [
       Validators.required]);
 
@@ -87,11 +83,10 @@ export class CreateActivityComponent implements OnInit {
 
     this.activityForm = this.formBuilder.group({
       titleFormControl: this.titleFormControl,
-      authorFormControl: this.authorFormControl,
       categoryFormControl: this.categoryFormControl,
       descriptionFormControl: this.descriptionFormControl,
       additionalInfoFormControl: this.additionalInfoFormControl,
-      locationFormControl: this.authorFormControl,
+      locationFormControl: this.locationFormControl,
       eventDateFormControl: this.categoryFormControl,
     });
   }
