@@ -1,5 +1,5 @@
 <h3>Calorie calculator</h3>
-<form class="calculator-form" #calculatorForm="ngForm">
+<form class="calculator-form" [formGroup]="calculatorForm">
   <md-input-container class="form-control">
     <input mdInput placeholder="Age years" [(ngModel)]="age" [formControl]="ageFormControl" required>
     <md-error *ngIf="ageFormControl.hasError('pattern')">
