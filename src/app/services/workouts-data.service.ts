@@ -22,16 +22,16 @@ export class WorkoutData {
     getAvailablePrograms() {
         return this.db.list('/programs');
     }
-    getProgramByName(name: string) {
+    getProgramByTitle(title: string) {
         return this.db.list(`/programs`).map(programs => {
-            return programs.filter(pr => pr.name === name);
+            return programs.filter(pr => pr.title === title);
         });
     }
 
-    add(activity: any) {
+    add(program: any) {
         return Promise.resolve(
             this.db.list('/programs')
-                .push(activity)
+                .push(program)
                 .then(_ => {
                     return _.key;
                 }));

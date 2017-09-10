@@ -11,7 +11,7 @@ import { Component, OnInit } from '@angular/core';
 export class ProgramComponent implements OnInit {
 
   public days: Array<any>;
-  public name: string;
+  public title: string;
   public description: string;
 
   constructor(
@@ -22,13 +22,13 @@ export class ProgramComponent implements OnInit {
    }
 
   ngOnInit() {
-    let name: string;
+    let title: string;
     this.router.params.subscribe((params: Params) => {
-      name = params['name'];
+      title = params['title'];
     });
-    this.workoutData.getProgramByName(name).subscribe(pr => {
+    this.workoutData.getProgramByTitle(title).subscribe(pr => {
       this.days = pr[0].days;
-      this.name = pr[0].name;
+      this.title = pr[0].title;
       this.description = pr[0].description;
     });
   }

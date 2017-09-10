@@ -3,9 +3,9 @@
     <div class="programDetails">
       <h1>Create a Program</h1>
       <md-input-container class="form-control">
-        <input type="text" mdInput placeholder="Name" name="name" [(ngModel)]="name" [formControl]="programNameControl" required>
-        <md-error *ngIf="programNameControl.hasError('required')">
-          Name is <strong>required</strong>
+        <input type="text" mdInput placeholder="Name" name="title" [(ngModel)]="title" [formControl]="programTitleControl" required>
+        <md-error *ngIf="programTitleControl.hasError('required')">
+          Title is <strong>required</strong>
         </md-error>
       </md-input-container>
       <md-input-container class="form-control">

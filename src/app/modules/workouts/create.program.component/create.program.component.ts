@@ -18,7 +18,7 @@ import 'rxjs/add/operator/toPromise';
   styleUrls: ['./create.program.component.css']
 })
 export class CreateProgramComponent implements OnInit {
-  public name: string;
+  public title: string;
   public difficulty: string;
   public description: string;
   public workout: any;
@@ -28,7 +28,7 @@ export class CreateProgramComponent implements OnInit {
   public programForm: FormGroup;
   public wokroutForm: FormGroup;
   public selectedFiles: FileList;
-  public programNameControl: AbstractControl;
+  public programTitleControl: AbstractControl;
   public difficultiesFormControl: AbstractControl;
   public descriptionFormControl: AbstractControl;
   public workoutsFormControl: AbstractControl;
@@ -52,7 +52,7 @@ export class CreateProgramComponent implements OnInit {
   public add: boolean;
 
   ngOnInit() {
-    this.programNameControl = new FormControl('', [
+    this.programTitleControl = new FormControl('', [
       Validators.required]);
 
     this.difficultiesFormControl = new FormControl('', [
@@ -62,7 +62,7 @@ export class CreateProgramComponent implements OnInit {
       Validators.required]);
 
     this.programForm = this.formBuilder.group({
-      programNameControl: this.programNameControl,
+      programTitleControl: this.programTitleControl,
       difficultiesFormControl: this.difficultiesFormControl,
       descriptionFormControl: this.descriptionFormControl,
     });
@@ -93,9 +93,10 @@ export class CreateProgramComponent implements OnInit {
 
   addProgram() {
     const newProgram = {
-      name: this.name,
+      title: this.title,
       difficulty: this.difficulty,
       description: this.description,
+      createdOn: Date.now(),
       image: null,
       days: this.days,
     };

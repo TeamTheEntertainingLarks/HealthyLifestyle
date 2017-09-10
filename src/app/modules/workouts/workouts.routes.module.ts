@@ -12,7 +12,7 @@ const routes: Routes = [
     { path: 'all', component: AllProgramsComponent },
     { path: 'create', component: CreateProgramComponent },
     { path: 'workouts/:title', component: WorkoutsComponent },
-    { path: ':name', component: ProgramComponent },
+    { path: ':title', component: ProgramComponent },
 ];
 
 @NgModule({
