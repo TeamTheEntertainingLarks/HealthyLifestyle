@@ -50,7 +50,6 @@ export class CommentsComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.firebaseCollection = this.db.object(pathname).subscribe((data) => {
         this.item = data;
-        console.log(this.item);
       });
     });
   }

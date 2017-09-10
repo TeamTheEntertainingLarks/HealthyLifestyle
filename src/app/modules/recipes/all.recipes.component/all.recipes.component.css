@@ -60,15 +60,16 @@ rating {
 
 .wrapper {
       display: flex;
+      -webkit-flex-direction: row;
       flex-direction: row;
 }
 
 .content-container {
-      flex: auto;
+      flex: 1;
       margin-right: 10%;
 }
 
 app-calorie-calculator {
-      width: 30rem;
+      width: 12rem;
       margin-top: 20px;
 }

@@ -46,7 +46,6 @@ export class RecipeComponent implements OnInit {
                         if (recipe.comments) {
                             this.commentsLength = this.recipe.comments.length;
                         }
-                        console.log(this.recipeKey);
                     });
             });
     }
