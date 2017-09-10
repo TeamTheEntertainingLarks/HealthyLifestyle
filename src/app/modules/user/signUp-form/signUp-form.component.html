@@ -49,22 +49,22 @@
       <input hidden type="file" #imgFileInput (change)="detectFile($event)" />
 
       <md-input-container class="user-input">
-        <input mdInput [(ngModel)]="firstName" placeholder="First Name" [formControl]="firstNameFormControl">
-        <md-error *ngIf="firstNameFormControl.hasError('pattern')">
-          Please enter a valid first name
-        </md-error>
-        <md-error *ngIf="firstNameFormControl.hasError('required')">
-          First name is <strong>required</strong>
-        </md-error>
-      </md-input-container>
-
-      <md-input-container class="user-input">
         <input mdInput [(ngModel)]="username" placeholder="Username" [formControl]="usernameFormControl">
         <md-error *ngIf="emailFormControl.hasError('pattern')">
           Please enter a valid username
         </md-error>
         <md-error *ngIf="emailFormControl.hasError('required')">
           Username is <strong>required</strong>
+        </md-error>
+      </md-input-container>
+
+      <md-input-container class="user-input">
+        <input mdInput [(ngModel)]="firstName" placeholder="First Name" [formControl]="firstNameFormControl">
+        <md-error *ngIf="firstNameFormControl.hasError('pattern')">
+          Please enter a valid first name
+        </md-error>
+        <md-error *ngIf="firstNameFormControl.hasError('required')">
+          First name is <strong>required</strong>
         </md-error>
       </md-input-container>
 

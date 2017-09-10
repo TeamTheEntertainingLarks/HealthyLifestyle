@@ -58,13 +58,19 @@ export class SignUpFormComponent implements OnInit {
 
   createForm() {
     this.usernameFormControl = new FormControl('', [
-      Validators.required]);
+      Validators.required,
+      Validators.minLength(4),
+      Validators.maxLength(25)]);
 
     this.firstNameFormControl = new FormControl('', [
-      Validators.required]);
+      Validators.required,
+      Validators.minLength(2),
+      Validators.maxLength(25)]);
 
     this.lastNameFormControl = new FormControl('', [
-      Validators.required]);
+      Validators.required,
+      Validators.minLength(2),
+      Validators.maxLength(25)]);
 
     this.passwordFormControl = new FormControl('', [
       Validators.required,
@@ -80,11 +86,13 @@ export class SignUpFormComponent implements OnInit {
 
     this.emailFormControl = new FormControl('', [
       Validators.required,
+      Validators.minLength(6),
+      Validators.maxLength(30),
       Validators.pattern(EMAIL_REGEX)]);
 
-    this.isTrainerFormControl = new FormControl();
+    this.isTrainerFormControl = new FormControl('');
 
-    this.sportFormControl = new FormControl();
+    this.sportFormControl = new FormControl('');
 
     this.registerForm = this.formBuilder.group(
       {
