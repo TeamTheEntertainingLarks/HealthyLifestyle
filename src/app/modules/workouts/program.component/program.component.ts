@@ -30,7 +30,7 @@ export class ProgramComponent implements OnInit {
     });
     this.workoutData.getProgramByTitle(title).subscribe(pr => {
       if (pr.length === 0) {
-        this.notificationService.popToast('info', 'Error', 'This program does not exists!');
+        this.notificationService.popToast('error', 'Error', 'This program does not exists!');
         return this.navigator.navigate(['/']);
       }
       this.days = pr[0].days;
