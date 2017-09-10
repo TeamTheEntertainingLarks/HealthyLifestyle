@@ -23,11 +23,11 @@ import {
 @NgModule({
   imports: [
     CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
     UserRoutesModule,
     MdIconModule,
     MaterialModule,
-    FormsModule,
-    ReactiveFormsModule,
     MdDialogModule,
     ActivitiesModule
   ],
@@ -45,7 +45,5 @@ import {
     { provide: MD_ERROR_GLOBAL_OPTIONS, useValue: { errorStateMatcher: showOnDirtyErrorStateMatcher } },
     { provide: MD_PLACEHOLDER_GLOBAL_OPTIONS, useValue: { float: 'always' } }
   ],
-  exports: [
-  ]
 })
 export class UserModule { }

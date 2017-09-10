@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../services/auth.service';
-import { FormControl, Validators, FormGroup, FormBuilder, AbstractControl } from '@angular/forms';
+import { FormControl, ReactiveFormsModule, Validators, FormGroup, FormBuilder, AbstractControl } from '@angular/forms';
 import { EMAIL_REGEX, PASSWORD_REGEX } from '../../../common/constants';
 
 @Component({
@@ -24,6 +24,8 @@ export class SignInFormComponent implements OnInit {
   createForm() {
     this.emailFormControl = new FormControl('', [
       Validators.required,
+      Validators.minLength(6),
+      Validators.maxLength(30),
       Validators.pattern(EMAIL_REGEX)]);
 
     this.passwordFormControl = new FormControl('', [
