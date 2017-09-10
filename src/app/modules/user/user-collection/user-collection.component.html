@@ -14,7 +14,7 @@
 
 <div *ngIf="joinedActivities?.length > 0" class="container">
   <md-toolbar><a (click)="joinedActivitiesToggle.hidden = !joinedActivitiesToggle.hidden">Joined Activities ({{joinedActivities?.length}})</a></md-toolbar>
-  <div #joinedActivitiesToggle class="activities-container">
+  <div #joinedActivitiesToggle class="activities-container" hidden>
     <div *ngFor="let activity of joinedActivities">
       <app-activity [activity]=activity [activityId]=activity.$key></app-activity>
     </div>
@@ -28,7 +28,7 @@
 
 <div *ngIf="createdArticles?.length > 0" class="container">
   <md-toolbar><a (click)="createdArticlesToggle.hidden = !createdArticlesToggle.hidden">Created Articles ({{createdArticles?.length}})</a></md-toolbar>
-  <div #createdArticlesToggle class="main-container">
+  <div #createdArticlesToggle class="main-container" hidden>
     <md-card *ngFor="let article of createdArticles" class="content-container">
       <img md-card-image src="{{article?.image.url}}" alt="image">
       <md-card-content>
@@ -51,7 +51,7 @@
 
 <div *ngIf="createdRecipes?.length > 0" class="container">
   <md-toolbar><a (click)="createdRecipesToggle.hidden = !createdRecipesToggle.hidden">Created Recipes ({{createdRecipes?.length}})</a></md-toolbar>
-  <div createdRecipesToggle class="main-container">
+  <div createdRecipesToggle class="main-container" hidden>
     <md-card *ngFor="let recipe of createdRecipes" class="content-container">
       <img md-card-image src="{{recipe?.image}}" alt="recipe-image">
       <md-card-content>

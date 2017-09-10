@@ -27,7 +27,6 @@ export class UserData {
         return this.items;
     }
 
-    // need to add some notifications, not console outputs
     add(userId: string, user: UserInterface): void {
         const path = `users/${userId}`;
 
