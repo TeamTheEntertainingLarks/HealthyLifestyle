@@ -17,6 +17,8 @@ export class AllProgramsComponent implements OnInit {
     public path: string;
     public filteredCategories: any;
     public order: number; // 1 asc, -1 desc;
+    public searchWord: string;
+    public filteredItems: any;
     public categoryCtrl: FormControl;
     public categories = [
         'Beginner',
@@ -32,6 +34,7 @@ export class AllProgramsComponent implements OnInit {
         }
 
   ngOnInit() {
+    this.searchWord = '';
     this.categoryCtrl = new FormControl();
     this.workoutDataService.getAvailablePrograms().subscribe(pr => {
       this.programs = new Array<any>();
@@ -40,6 +43,7 @@ export class AllProgramsComponent implements OnInit {
           this.programs.push(p);
         }
       });
+      this.filteredItems = this.programs;
     });
 
     this.filteredCategories =
@@ -73,9 +77,25 @@ export class AllProgramsComponent implements OnInit {
     }
 
     filterStates(val: string) {
-        return val ? this.categories
-            .filter(s => s.toLowerCase()
-                .indexOf(val.toLowerCase()) === 0) : this.categories;
+        return val ? this.categories.filter(s => s.toLowerCase().indexOf(val.toLowerCase()) === 0)
+            : this.categories;
+    }
+
+    search(): void {
+        this.filteredCategories = this.categoryCtrl.valueChanges
+            .startWith(null)
+            .map(name => this.filterStates(name));
+
+        this.searchWord = this.searchWord.toLowerCase();
+
+        if (this.searchWord) {
+            this.programs = this.programs.filter(item => {
+                return item.title.toLowerCase().indexOf(this.searchWord) !== -1 ||
+                    item.difficulty.toLowerCase().indexOf(this.searchWord) !== -1;
+            });
+        } else {
+            this.programs = this.filteredItems;
+        }
     }
     isAuthenticated() {
       return this.auth.isAuthenticated;

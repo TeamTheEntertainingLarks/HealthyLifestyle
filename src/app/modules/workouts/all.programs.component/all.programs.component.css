@@ -83,3 +83,9 @@ rating {
     margin-top: 4%;
     margin-right: 5%;
 }
+
+input[type=text]{
+    padding: 10px;
+    font-size: 14px;
+    border-radius: 5px;
+}
