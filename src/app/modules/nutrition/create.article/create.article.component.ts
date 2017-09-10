@@ -63,8 +63,8 @@ export class CreateArticleComponent implements OnInit {
 
   uploadFile() {
     const file = this.upload;
-    const dbPath = `${this.articleKey}/image`;
-    const storagePath = `${this.articleKey}/images`;
+    const dbPath = `nutrition/articles/${this.articleKey}/image`;
+    const storagePath = `images/nutrition/articles/${this.articleKey}`;
 
     this.upload = new Upload(file);
 
@@ -87,6 +87,7 @@ export class CreateArticleComponent implements OnInit {
       })
       .then(() => this.uploadFile()
         .then(() => this.router.navigateByUrl('/nutrition/all')));
+
     this.notificationService.popToast('info', 'Success!', 'Your article was created successfully!');
   }
 }

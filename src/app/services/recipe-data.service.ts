@@ -35,22 +35,4 @@ export class RecipeData {
     removeRecipe(recipeKey: string) {
         this.db.object(`/recipes/${recipeKey}`).remove().then((data) => console.log(data)).catch((err) => console.log(err));
     }
-
-    // getRecipeByTitle(title: string) {
-    //     const items = this.db.list('recipes', {
-    //         preserveSnapshot: true,
-    //     });
-
-    //     let item: any;
-
-    //     items.subscribe(snapshots => {
-    //         snapshots.forEach(snapshot => {
-    //             if (snapshot.val().title === title) {
-    //                 item = snapshot.val();
-    //             }
-    //         });
-    //     });
-
-    //     return item;
-    // }
 }
