@@ -1,5 +1,5 @@
 <h2>Create New Article</h2>
-<form class="article-form" #articleAddForm="ngForm" (ngSubmit)="onSubmit()">
+<form class="article-form" [formGroup]="articleForm" (ngSubmit)="onSubmit()">
   <md-input-container class="form-control">
     <input type="text" mdInput placeholder="Title" name="title" required [(ngModel)]="title" [formControl]="titleFormControl" >
     <md-icon mdSuffix>mode_edit</md-icon>
@@ -39,5 +39,5 @@
     </div>
     <input hidden type="file" #imgFileInput (change)="detectFile($event)" />
   </div>
-  <button type="submit" md-raised-button [disabled]="!articleAddForm.valid">Create Article</button>
+  <button type="submit" md-raised-button [disabled]="!articleForm.valid">Create Article</button>
 </form>

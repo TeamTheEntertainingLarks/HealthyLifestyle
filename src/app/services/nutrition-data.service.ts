@@ -18,10 +18,6 @@ export class NutritionData {
         return this.db.list('/nutrition/articles');
     }
 
-    getAllMeals() {
-        return this.db.list('/nutrition/meal');
-    }
-
     addArticle(article: ArticleInterface) {
         return this.db.list('/nutrition/articles').push(article).then(_ => {
             return _.key;
