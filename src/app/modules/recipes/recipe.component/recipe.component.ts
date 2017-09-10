@@ -39,7 +39,7 @@ export class RecipeComponent implements OnInit {
                 this.recipeDataService.getRecipeById(params.id)
                     .subscribe(recipe => {
                         if (recipe.$value === null) {
-                            this.notificationService.popToast('error', 'Error', 'This activity does not exists!')
+                            this.notificationService.popToast('error', 'Error', 'This activity does not exists!');
                             return this.router.navigate(['/']);
                         }
                         this.recipe = recipe;
