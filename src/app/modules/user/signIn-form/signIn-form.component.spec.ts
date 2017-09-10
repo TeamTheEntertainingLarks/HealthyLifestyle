@@ -115,8 +115,10 @@ fdescribe('SignInFormComponent', () => {
       passwordCtr.setValue('test1test2');
       expect(passwordCtr.valid).toBeTruthy();
     });
+  });
 
-    fit('signIn() should call AuthService emailLogin()', () => {
+  fdescribe('user signIn()', () => {
+    fit('should call AuthService emailLogin()', () => {
       const authServiceMock = fixture.debugElement.injector.get(AuthService);
       const spy = spyOn(authServiceMock, 'emailLogin');
 
