@@ -57,6 +57,8 @@ export class AuthService {
         return this.afAuth.auth.createUserWithEmailAndPassword(email, password)
             .then((user) => {
                 user.updateProfile({ displayName: `${model.firstName} ${model.lastName}` });
+                localStorage.setItem(LOCALSTORAGE_AUTH_KEY_NAME, user.uid);
+                localStorage.setItem(LOCALSTORAGE_EMAIL_KEY_NAME, user.email);
                 this.authState = user;
             })
             .then(() => {
@@ -84,7 +86,7 @@ export class AuthService {
 
         return fbAuth.sendPasswordResetEmail(email)
             .then(() => {
-                this.notificationService.popToast('success', 'Success!', 'Email with verification was send to your email');
+                this.notificationService.popToast('success', 'Success!', 'Email with verification was send to your email!');
                 this.signOut();
             })
             .catch((error) => this.notificationService.popToast('error', 'Ooops!', error.message));
@@ -95,6 +97,7 @@ export class AuthService {
             .then((user) => {
                 user.updateEmail(newEmail);
                 this.userData.update(this.currentUserId, { email: newEmail });
+                this.notificationService.popToast('success', 'Success!', 'Your email was changed!');
             })
             .catch((error) => this.notificationService.popToast('error', 'Ooops!', error.message));
 
