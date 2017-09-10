@@ -51,7 +51,6 @@ md-card{
 }
 img {
     cursor: pointer;
-    max-width: 500px;
     height: 300px;
     max-height: 300px;
     border-radius: 1%;
