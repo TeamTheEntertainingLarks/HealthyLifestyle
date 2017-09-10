@@ -25,7 +25,6 @@ import {
 } from '@angular/material';
 
 import { ActivitiesRoutesModule } from './activities.routes.module';
-
 import { ActivityComponent } from './activity.component/activity.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CreateActivityComponent } from './create-activity/create-activity.component';
@@ -35,6 +34,7 @@ import { ZoomImageDirective } from '../../directives/zoom-image.directive';
 import { AgmCoreModule } from '@agm/core';
 import { GoogleMapDialogComponent } from './google-map-dialog/google-map-dialog.component';
 import { RatingModule } from 'ngx-rating';
+import { ActivityAuthorGuard } from '../../guards/activity.author.guard';
 
 @NgModule({
     imports: [
@@ -76,7 +76,8 @@ import { RatingModule } from 'ngx-rating';
         { provide: MD_ERROR_GLOBAL_OPTIONS, useValue: { errorStateMatcher: showOnDirtyErrorStateMatcher } },
         { provide: MD_PLACEHOLDER_GLOBAL_OPTIONS, useValue: { float: 'always' } },
         ActivityData,
-        NotificationService
+        NotificationService,
+        ActivityAuthorGuard
     ],
     exports: [
         ActivityComponent

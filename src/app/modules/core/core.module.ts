@@ -20,7 +20,6 @@ import { NotificationService } from '../../services/notification.service';
     ModelFactory,
     UploadService,
     NotificationService,
-    ActivityAuthorGuard,
     RecipeAuthorGuard
   ]
 })
