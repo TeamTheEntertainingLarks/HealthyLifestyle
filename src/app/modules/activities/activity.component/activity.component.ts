@@ -42,12 +42,17 @@ export class ActivityComponent implements OnInit {
             .subscribe((data) => {
                 this.type = data.type;
             });
+
         this.route.params
             .subscribe(params => {
                 if (params.id) {
                     this.activitiesDataService
                         .getActivityById(params.id)
                         .subscribe((activity) => {
+                            if (activity.$value === null) {
+                                this.notificationService.popToast('error', 'Error!', 'This activity does not exists!');
+                                return this.router.navigate(['/activities']);
+                            }
                             this.activity = activity;
                             this.activityId = activity.$key;
                             this.starsCount = activity.likes;
