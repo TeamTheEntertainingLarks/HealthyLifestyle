@@ -1,3 +1,4 @@
+import { NotificationService } from './../../../services/notification.service';
 import { UploadService } from './../../../services/uploads/shared/upload.service';
 import { Upload } from './../../../services/uploads/shared/upload';
 import { WorkoutData } from './../../../services/workouts-data.service';
@@ -29,7 +30,8 @@ export class CreateExerciseFform implements OnInit {
     private factory: ModelFactory,
     private auth: AuthService,
     private uploadService: UploadService,
-    private formBuilder: FormBuilder) {
+    private formBuilder: FormBuilder,
+    private notificationService: NotificationService) {
       this.exercise = new Exercise();
       this.hideExerciseForm = new EventEmitter<boolean>();
       this.imageChosen = false;
@@ -48,6 +50,7 @@ export class CreateExerciseFform implements OnInit {
       this.exercise = this.factory.createExercise(name, image);
       this.workoutDataService.addExercise(this.exercise);
       this.uploadSingle(name);
+      this.notificationService.popToast('info', 'Success!', 'Exercise successfully added!');
       this.hideExerciseForm.emit(true);
   }
 

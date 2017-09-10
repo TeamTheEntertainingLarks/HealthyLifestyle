@@ -1,3 +1,4 @@
+import { NotificationService } from './../../../services/notification.service';
 import { CreateRoutineFormComponent } from './../create.routine.form/create.routine.form.component';
 import { MdDialog, MdDialogRef } from '@angular/material';
 import { Exercise } from './../../../models/exercise';
@@ -40,7 +41,8 @@ export class CreateWorkoutFormComponent implements OnInit {
     private workoutDataService: WorkoutData,
     private factory: ModelFactory,
     private auth: AuthService,
-    private formBuilder: FormBuilder) {
+    private formBuilder: FormBuilder,
+    private notificationService: NotificationService) {
       this.workout = new Workout();
       this.routines = new Array<Routine>();
       this.showRoutineForm = false;
@@ -118,13 +120,13 @@ export class CreateWorkoutFormComponent implements OnInit {
           description = this.workout.description;
           comments = this.workout.comments;
           this.userId = this.auth.currentUser.uid;
-           //  const userId = firebase.auth().currentUser.uid;
 
       this.workout = this.factory
       .createWorkout(title, author, createdOn, category, routines, description, comments);
       return this.workoutDataService.addWorkout(this.workout)
         .then(() => {
           this.workoutForm.reset();
+          this.notificationService.popToast('info', 'Success!', 'Workout successfully added!');
           return this.onCreate.emit(title);
         });
   }

@@ -1,3 +1,4 @@
+import { NotificationService } from './../../../services/notification.service';
 import { MdDialog, MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
 import { UploadService } from './../../../services/uploads/shared/upload.service';
 import { Upload } from './../../../services/uploads/shared/upload';
@@ -32,7 +33,8 @@ export class CreateRoutineFormComponent implements OnInit {
     private factory: ModelFactory,
     private auth: AuthService,
     public dialogRef: MdDialogRef<CreateRoutineFormComponent>,
-    private formBuilder: FormBuilder) {
+    private formBuilder: FormBuilder,
+    private notificationService: NotificationService ) {
       this.routine = new Routine();
       this.routine.exercise = new Exercise();
       this.exercises = new Array<Exercise>();
@@ -93,6 +95,7 @@ export class CreateRoutineFormComponent implements OnInit {
       this.routine = this.factory
       .createRoutine(exercise, repeats, series, resting);
       this.workoutDataService.addRoutine(this.routine);
+      this.notificationService.popToast('info', 'Success!', 'Routine successfully added!');
       this.dialogRef.close();
   }
 }
