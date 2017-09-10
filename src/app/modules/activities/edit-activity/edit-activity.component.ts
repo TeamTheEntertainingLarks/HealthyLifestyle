@@ -106,8 +106,10 @@ export class EditActivityComponent implements OnInit {
     const storagePath = `images/activities/${this.activityKey}`;
 
     this.upload = new Upload(file);
-    const oldImage = this.activity.image.name;
-    this.uploadService.deleteFileStorage(storagePath, oldImage);
+    if (this.activity.image) {
+      const oldImage = this.activity.image.name;
+      this.uploadService.deleteFileStorage(storagePath, oldImage);
+    }
     return this.uploadService.uploadFile(storagePath, dbPath, this.upload);
   }
 
