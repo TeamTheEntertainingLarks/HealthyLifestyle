@@ -1,3 +1,5 @@
+import { AuthorAuthGuard } from './guards/author.auth.guard';
+
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 

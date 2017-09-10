@@ -1,5 +1,6 @@
+import { RecipeAuthorGuard } from './../../guards/recipe.author.guard';
+import { ActivityAuthorGuard } from './../../guards/activity.author.guard';
 import { NgModule, Optional, SkipSelf } from '@angular/core';
-
 import { UserData } from '../../services/user-data.service';
 import { AuthService } from '../../services/auth.service';
 import { AuthGuard } from '../../guards/auth.guard';
@@ -19,6 +20,8 @@ import { NotificationService } from '../../services/notification.service';
     ModelFactory,
     UploadService,
     NotificationService,
+    ActivityAuthorGuard,
+    RecipeAuthorGuard
   ]
 })
 export class CoreModule {
