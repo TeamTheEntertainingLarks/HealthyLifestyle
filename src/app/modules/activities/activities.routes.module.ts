@@ -11,9 +11,9 @@ import { ActivitiesAllComponent } from './all.activities.component/all.activitie
 const routes: Routes = [
     { path: '', redirectTo: 'all', pathMatch: 'full' },
     { path: 'all', component: ActivitiesAllComponent },
-    { path: 'create', component: CreateActivityComponent, canActivate: [AuthGuard]  },
+    { path: 'create', component: CreateActivityComponent, canActivate: [AuthGuard] },
     { path: ':id', component: ActivityComponent, data: { type: 'view' } },
-    { path: ':id/edit', component: EditActivityComponent, canActivate: [ActivityAuthorGuard]  },
+    { path: ':id/edit', component: EditActivityComponent, canActivate: [ActivityAuthorGuard] },
 ];
 
 @NgModule({

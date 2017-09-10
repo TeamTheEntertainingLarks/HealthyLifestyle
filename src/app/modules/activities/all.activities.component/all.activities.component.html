@@ -20,13 +20,8 @@
             </button>
         </md-menu>
 
-        <input type="text" 
-        placeholder="Search for..."
-        [mdAutocomplete]="auto"
-        [formControl]="categoryCtrl"
-        [(ngModel)]="searchWord"
-        class="form-control"
-        (ngModelChange)="search()">
+        <input type="text" placeholder="Search for..." [mdAutocomplete]="auto" [formControl]="categoryCtrl" [(ngModel)]="searchWord"
+            class="form-control" (ngModelChange)="search()">
         <md-autocomplete #auto="mdAutocomplete">
             <md-option *ngFor="let category of filteredCategories | async" [value]="category">
                 {{ category }}

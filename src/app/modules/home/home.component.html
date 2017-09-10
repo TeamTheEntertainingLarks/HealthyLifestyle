@@ -1,20 +1,62 @@
 <link href='http://fonts.googleapis.com/css?family=Merienda+One' rel='stylesheet' type='text/css'>
 <div class="home-container">
-     <h1>Welcome to <p>HEALTHY LIFESTYLE</p></h1>
-      <!-- <img src="/assets/images/healthy-lifestyle-home.jpg" alt=""> -->
-      <h1>Here you can find</h1>
-      <div class="details">
-          <div class="item">
-              <h2>The best food recipes and tips</h2>
-              <img src="../../../assets/images/food.jpeg" alt="">
-          </div>
-          <div class="item">
-              <h2>Fun and relaxing outdoor activities</h2>
-              <img src="../../../assets/images/Outdoor-activitiesimage.gif" alt="">
-          </div>
-          <div class="item">
-              <h2>Many complex fitness programs</h2>
-              <img src="../../../assets/images/fitness.jpg" alt="">
-          </div>
-      </div>
+    <h1>Welcome to </h1>
+    <h1>
+        <p>HEALTHY LIFESTYLE
+            <p>
+    </h1>
+
+    <h2>Here you can discover</h2>
+
+    <md-grid-list cols="3">
+        <md-grid-tile [rowspan]="1">
+            <md-card class="card">
+                <md-card-header>
+                    <md-card-title>
+                        <h3>The best food recipes and tips</h3>
+                    </md-card-title>
+                </md-card-header>
+                <img md-card-image src="../../../assets/images/food.jpeg">
+            </md-card>
+        </md-grid-tile>
+
+        <md-grid-tile [rowspan]="1">
+            <md-card class="card">
+                <md-card-header>
+                    <md-card-title>
+                        <h3>Fun and relaxing outdoor activities</h3>
+                    </md-card-title>
+                </md-card-header>
+                <img md-card-image src="../../../assets/images/Outdoor-activitiesimage.gif">
+            </md-card>
+        </md-grid-tile>
+
+        <md-grid-tile [rowspan]="1">
+            <md-card class="card">
+                <md-card-header>
+                    <md-card-title>
+                        <h3>Many complex fitness programs</h3>
+                    </md-card-title>
+                </md-card-header>
+                <img md-card-image src="../../../assets/images/fitness.jpg">
+            </md-card>
+        </md-grid-tile>
+    </md-grid-list>
+
+
+    <!-- <div class="details"> -->
+
+    <!-- <div class="item">
+            <h2><em>The best food recipes and tips</em></h2>
+            <img src="../../../assets/images/food.jpeg" alt="">
+        </div>
+        <div class="item">
+            <h2><em>Fun and relaxing outdoor activities</em></h2>
+            <img src="../../../assets/images/Outdoor-activitiesimage.gif" alt="">
+        </div>
+        <div class="item">
+            <h2><em>Many complex fitness programs</em></h2>
+            <img src="../../../assets/images/fitness.jpg" alt="">
+        </div> -->
+    <!-- </div> -->
 </div>
