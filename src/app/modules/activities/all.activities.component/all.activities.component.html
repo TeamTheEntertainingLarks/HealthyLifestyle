@@ -1,6 +1,7 @@
 <div class="container">
     <div class="subnav">
-        <app-sort [items]="activities" (onOrderByDateAsc)="dataReceivedByDateAsc($event)" (onOrderByDateDesc)="dataReceivedByDateDesc($event)" (onOrderByTitleAsc)="dataReceivedByTitleAsc($event)"  (onOrderByTitleDesc)="dataReceivedByTitleDesc($event)"></app-sort>
+        <app-sort [items]="activities" (onOrderByDateAsc)="dataReceivedByDateAsc($event)" (onOrderByDateDesc)="dataReceivedByDateDesc($event)"
+            (onOrderByTitleAsc)="dataReceivedByTitleAsc($event)" (onOrderByTitleDesc)="dataReceivedByTitleDesc($event)"></app-sort>
         <button md-button [mdMenuTriggerFor]="create">
                 Create
         </button>
@@ -18,8 +19,14 @@
                 <span>Create Program</span>
             </button>
         </md-menu>
-        <input mdInput type="text" placeholder="Search by category" [mdAutocomplete]="auto" [formControl]="categoryCtrl" [(ngModel)]="searchWord"
-            class="form-control">
+
+        <input type="text" 
+        placeholder="Search for..."
+        [mdAutocomplete]="auto"
+        [formControl]="categoryCtrl"
+        [(ngModel)]="searchWord"
+        class="form-control"
+        (ngModelChange)="search()">
         <md-autocomplete #auto="mdAutocomplete">
             <md-option *ngFor="let category of filteredCategories | async" [value]="category">
                 {{ category }}
