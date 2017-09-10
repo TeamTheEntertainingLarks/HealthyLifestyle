@@ -2,6 +2,12 @@
   <h2>Create New Activity</h2>
   <form [formGroup]="activityForm" class="activity-form" (ngSubmit)="onSubmit()">
 
+    <div class="upload-control">
+      <button md-fab type="button" md-raised-button (click)="imgFileInput.click()"><md-icon>insert_photo</md-icon></button>
+      <span *ngIf="upload">Selected photo: {{upload?.name}}</span>
+      <input hidden type="file" #imgFileInput (change)="detectFile($event)" />
+    </div>
+
     <md-input-container class="form-control">
       <input type="text" mdInput placeholder="Title" name="title" [(ngModel)]="title" [formControl]="titleFormControl" required>
       <md-error *ngIf="titleFormControl.hasError('pattern')">
@@ -66,12 +72,6 @@
     </md-input-container>
 
     <div class="btn-container">
-      <div *ngIf="upload">
-        Selected photo: {{upload?.name}}
-      </div>
-      <button md-fab type="button" md-raised-button (click)="imgFileInput.click()"><md-icon>insert_photo</md-icon></button>
-      <input hidden type="file" #imgFileInput (change)="detectFile($event)" />
-
       <button md-raised-button color="primary" type="submit" class="button" [disabled]="!activityForm.valid">Create Activity</button>
     </div>
   </form>

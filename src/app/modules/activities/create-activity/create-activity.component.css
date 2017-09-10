@@ -11,6 +11,10 @@ h2{
     width: 100%;
   }
 
+  .upload-control{
+    margin-bottom: 4%;
+  }
+
 .form-control, md-select md-option {
     font-size: 1.2em;
   }
