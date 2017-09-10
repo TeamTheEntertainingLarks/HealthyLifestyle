@@ -21,18 +21,17 @@ For the project we used Firebase(Database/storage/authentication), Angular Mater
 The Web Application consists of the following sections:
 
 ### Home section 
- - *Welcome screen with a preview of what you can expect form our cite.* 
+ - *Welcome screen with a preview of what you can expect form our site.* 
   
 ### Recipes section 
  - *You can choose from many various and healthy recipes.*
  - *Create one of your own.*
- - *Check the calory calculator.*
  - *Leave a comment.*
 
- ### Recipes section 
- - *You can choose from many various and healthy recipes.*
+ ### Nutrition section 
+ - *You can choose from many various and healthy foods.*
  - *Create one of your own.*
- - *Leave a comment.*
+ - *Check the calory calculator.*
 
 ### Activities section
  - *Here you'll find the our outdoor activities.*
