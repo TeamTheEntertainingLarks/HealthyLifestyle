@@ -38,13 +38,12 @@
                 <p>
                     <span><em>{{activity.description}}</em></span>
                 </p>
-                <hr *ngIf="!(type == 'view')">
+                <hr *ngIf="type == 'view'">
                 <div *ngIf="type == 'view'">
                     <span><em>{{activity.additionalInfo}}</em></span>
-                    <hr>
                 </div>
             </md-card-content>
-            <md-card-actions class="user-actions" *ngIf="(isAuthenticated() && !isAuthor(activity.userId) && !isParticipating())">
+            <md-card-actions class="user-actions" *ngIf="(isAuthenticated() && !isAuthor(activity.userId) && !isParticipating()) && type == 'view'">
                 <button md-button (click)="rateActivity(activity.$key)">
                         <md-icon class="md-icon-green">star_rate</md-icon>
                         Like
@@ -53,12 +52,12 @@
                         <md-icon class="md-icon-green">group</md-icon>
                         Participate
                     </button>
-                <button md-button>
+                <button md-button (click)="openDialog()">
                         <md-icon class="md-icon-green">share</md-icon>
                         Share
                     </button>
             </md-card-actions>
-            <md-card-actions class="user-actions" *ngIf="(isAuthenticated() && !isAuthor(activity.userId) && isParticipating())">
+            <md-card-actions class="user-actions" *ngIf="(isAuthenticated() && !isAuthor(activity.userId) && isParticipating() && type == 'view')">
                 <button md-button (click)="rateActivity(activity.$key)">
                         <md-icon class="md-icon-green">star_rate</md-icon>
                         Like
@@ -67,12 +66,12 @@
                         <md-icon>clear</md-icon>
                         Leave
                     </button>
-                <button md-button>
+                <button md-button (click)="openDialog()">
                         <md-icon class="md-icon-green">share</md-icon>
                         Share
                     </button>
             </md-card-actions>
-            <md-card-actions *ngIf="(isAuthenticated() && isAuthor(activity.userId))">
+            <md-card-actions *ngIf="(isAuthenticated() && isAuthor(activity.userId)) && type == 'view'">
                 <button md-button (click)="navigateToEdit()">
                         <md-icon class="md-icon-green">edit</md-icon>
                         Edit

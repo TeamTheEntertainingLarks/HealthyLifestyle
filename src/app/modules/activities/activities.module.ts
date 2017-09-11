@@ -35,6 +35,7 @@ import { AgmCoreModule } from '@agm/core';
 import { GoogleMapDialogComponent } from './google-map-dialog/google-map-dialog.component';
 import { RatingModule } from 'ngx-rating';
 import { ActivityAuthorGuard } from '../../guards/activity.author.guard';
+import { ActivityDialogComponent } from './activity.dialog/activity.dialog.component';
 
 @NgModule({
     imports: [
@@ -67,10 +68,12 @@ import { ActivityAuthorGuard } from '../../guards/activity.author.guard';
         ActivitiesAllComponent,
         CreateActivityComponent,
         EditActivityComponent,
-        GoogleMapDialogComponent
+        GoogleMapDialogComponent,
+        ActivityDialogComponent
     ],
     entryComponents: [
         GoogleMapDialogComponent,
+        ActivityDialogComponent
     ],
     providers: [
         { provide: MD_ERROR_GLOBAL_OPTIONS, useValue: { errorStateMatcher: showOnDirtyErrorStateMatcher } },
