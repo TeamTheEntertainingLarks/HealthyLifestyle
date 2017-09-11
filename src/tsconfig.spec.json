@@ -16,6 +16,7 @@
   "include": [
     "./app/modules/user/*.spec.ts",
     "./app/modules/recipes/*.spec.ts",
-    "./app/modules/workouts/*.spec.ts"
+    "./app/modules/workouts/*.spec.ts",
+    "./app/modules/nutrition/*.spec.ts"
   ]
 }
