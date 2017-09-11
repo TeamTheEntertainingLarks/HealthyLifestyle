@@ -25,17 +25,17 @@ export class CreateExerciseFform implements OnInit {
   public nameFormControl: AbstractControl;
   public imageFormControl: AbstractControl;
 
-   constructor(
+  constructor(
     private workoutDataService: WorkoutData,
     private factory: ModelFactory,
     private auth: AuthService,
     private uploadService: UploadService,
     private formBuilder: FormBuilder,
     private notificationService: NotificationService) {
-      this.exercise = new Exercise();
-      this.hideExerciseForm = new EventEmitter<boolean>();
-      this.imageChosen = false;
-}
+    this.exercise = new Exercise();
+    this.hideExerciseForm = new EventEmitter<boolean>();
+    this.imageChosen = false;
+  }
 
   ngOnInit() {
     this.nameFormControl = new FormControl('', [
@@ -45,13 +45,14 @@ export class CreateExerciseFform implements OnInit {
       nameFormControl: this.nameFormControl,
     });
   }
-  onSubmit(name: string, image: string) {
-      name = this.exercise.name;
-      this.exercise = this.factory.createExercise(name, image);
-      this.workoutDataService.addExercise(this.exercise);
-      this.uploadSingle(name);
-      this.notificationService.popToast('info', 'Success!', 'Exercise successfully added!');
-      this.hideExerciseForm.emit(true);
+  onSubmit() {
+    const image = '';
+    const name = this.exercise.name;
+    this.exercise = this.factory.createExercise(name, image);
+    this.workoutDataService.addExercise(this.exercise);
+    this.uploadSingle(name);
+    this.notificationService.popToast('info', 'Success!', 'Exercise successfully added!');
+    this.hideExerciseForm.emit(true);
   }
 
   onClose() {

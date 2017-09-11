@@ -14,7 +14,7 @@ import { Category } from '../../../enums/workoutCategories';
 
 @Component({
   selector: 'app-create-workout',
-   providers: [
+  providers: [
     WorkoutData
   ],
   templateUrl: './create.workout.form.component.html',
@@ -36,23 +36,23 @@ export class CreateWorkoutFormComponent implements OnInit {
   public routinesFormControl: AbstractControl;
   public categoriesFormControl: AbstractControl;
 
-   constructor(
+  constructor(
     private dialog: MdDialog,
     private workoutDataService: WorkoutData,
     private factory: ModelFactory,
     private auth: AuthService,
     private formBuilder: FormBuilder,
     private notificationService: NotificationService) {
-      this.workout = new Workout();
-      this.routines = new Array<Routine>();
-      this.showRoutineForm = false;
-      this.categories = new Array<string>();
-      this.onCreate = new EventEmitter<any>();
-      this.onHide = new EventEmitter<any>();
-}
+    this.workout = new Workout();
+    this.routines = new Array<Routine>();
+    this.showRoutineForm = false;
+    this.categories = new Array<string>();
+    this.onCreate = new EventEmitter<any>();
+    this.onHide = new EventEmitter<any>();
+  }
 
   ngOnInit(): void {
-      this.titleFormControl = new FormControl('', [
+    this.titleFormControl = new FormControl('', [
       Validators.required]);
 
     this.routinesFormControl = new FormControl('', [
@@ -79,10 +79,10 @@ export class CreateWorkoutFormComponent implements OnInit {
 
     // tslint:disable-next-line:forin
     for (const enumMember in Category) {
-       const isValueProperty = parseInt(enumMember, 10) >= 0;
-       if (isValueProperty) {
-          this.categories.push(Category[enumMember]);
-       }
+      const isValueProperty = parseInt(enumMember, 10) >= 0;
+      if (isValueProperty) {
+        this.categories.push(Category[enumMember]);
+      }
     }
   }
 
@@ -90,12 +90,12 @@ export class CreateWorkoutFormComponent implements OnInit {
     this.showRoutineForm = permission;
   }
 
-    openDialog() {
+  openDialog() {
     const dialogRef = this.dialog.open(CreateRoutineFormComponent,
-    {
+      {
         height: '90%',
         width: '40%',
-    });
+      });
     dialogRef.afterClosed().subscribe(result => {
       this.selectedOption = result;
     });
@@ -104,30 +104,23 @@ export class CreateWorkoutFormComponent implements OnInit {
   hideForm() {
     this.onHide.emit('');
   }
-  onSubmit(title: string,
-    author: string,
-    createdOn: number,
-    category: string,
-    routines: Array<Routine>,
-    description: string,
-    image: string,
-    comments?: Array<string>) {
-          title = this.workout.title;
-          author = this.auth.currentUserDisplayName;
-          routines = this.workout.routines;
-          category = this.workout.category.toString();
-          createdOn = Date.now();
-          description = this.workout.description;
-          comments = this.workout.comments;
-          this.userId = this.auth.currentUser.uid;
+  onSubmit() {
+    const title = this.workout.title;
+    const author = this.auth.currentUserDisplayName;
+    const routines = this.workout.routines;
+    const category = this.workout.category.toString();
+    const createdOn = Date.now();
+    const description = this.workout.description;
+    const comments = this.workout.comments;
+    this.userId = this.auth.currentUser.uid;
 
-      this.workout = this.factory
+    this.workout = this.factory
       .createWorkout(title, author, createdOn, category, routines, description, comments);
-      return this.workoutDataService.addWorkout(this.workout)
-        .then(() => {
-          this.workoutForm.reset();
-          this.notificationService.popToast('info', 'Success!', 'Workout successfully added!');
-          return this.onCreate.emit(title);
-        });
+    return this.workoutDataService.addWorkout(this.workout)
+      .then(() => {
+        this.workoutForm.reset();
+        this.notificationService.popToast('info', 'Success!', 'Workout successfully added!');
+        return this.onCreate.emit(title);
+      });
   }
 }
