@@ -134,56 +134,15 @@ export class CreateFormComponent implements OnInit {
     });
   }
 
-  onSubmit(title: string,
-    author: string,
-    userId: string,
-    category: string,
-    createdOn: number,
-    description: string,
-    ingradients: any,
-    step1: string,
-    step2: string,
-    step3: string,
-    image: string,
-    likes: number,
-    userLiked: Array<string>,
-    calories: number,
-    protein: number,
-    fat: number,
-    carbs: number,
-    prepareTime: number,
-    yields: number,
-    comments?: Array<string>) {
-    title = this.recipe.title;
-    author = this.auth.currentUser.displayName;
-    userId = this.auth.currentUser.uid;
-    category = this.recipe.category;
-    createdOn = Date.now();
-    description = this.recipe.description;
-    ingradients = this.recipe.ingradients;
-    step1 = this.recipe.step1;
-    step2 = this.recipe.step2;
-    step3 = this.recipe.step3;
-    image = this.recipe.image;
-    likes = this.recipe.likes;
-    userLiked = this.recipe.userLiked;
-    calories = this.recipe.calories;
-    protein = this.recipe.protein;
-    fat = this.recipe.fat;
-    carbs = this.recipe.carbs;
-    prepareTime = this.recipe.prepareTime;
-    yields = this.recipe.yields;
-    comments = this.recipe.comments;
-
+  onSubmit() {
     const arrayIngredients = this.recipe.ingradients.trim().split(/[,]+/);
 
     this.recipe = this.factory.createRecipe
-      (title, author, userId, category, createdOn, description, arrayIngredients, step1,
-      step2, step3, image, likes, userLiked, calories, protein, fat, carbs, prepareTime, yields, comments);
+      (this.title, this.author, this.userId, this.category, Date.now(), this.description, arrayIngredients, this.step1,
+      this.step2, this.step3, this.recipe.image, this.recipe.likes, this.recipe.userLiked, this.recipe.calories,
+      this.recipe.protein, this.recipe.fat, this.recipe.carbs, this.recipe.prepareTime, this.recipe.yields, this.recipe.comments);
     this.recipeDataService.add(this.recipe);
     this.notificationService.popToast('info', 'Success!', 'Your recipe was created successfully!');
-
-    console.log(this.recipe);
 
     this.router.navigate(['recipes']);
   }

@@ -26,7 +26,7 @@ export class CreateRoutineFormComponent implements OnInit {
   public repeatsFormControl: AbstractControl;
   public restingFormControl: AbstractControl;
 
-   constructor(
+  constructor(
     @Inject(MD_DIALOG_DATA) public data: WorkoutData,
     private dialog: MdDialog,
     private workoutDataService: WorkoutData,
@@ -34,16 +34,16 @@ export class CreateRoutineFormComponent implements OnInit {
     private auth: AuthService,
     public dialogRef: MdDialogRef<CreateRoutineFormComponent>,
     private formBuilder: FormBuilder,
-    private notificationService: NotificationService ) {
-      this.routine = new Routine();
-      this.routine.exercise = new Exercise();
-      this.exercises = new Array<Exercise>();
-      this.showExerciseForm = false;
-}
+    private notificationService: NotificationService) {
+    this.routine = new Routine();
+    this.routine.exercise = new Exercise();
+    this.exercises = new Array<Exercise>();
+    this.showExerciseForm = false;
+  }
 
 
   ngOnInit(): void {
-      this.exerciseFormControl = new FormControl('', [
+    this.exerciseFormControl = new FormControl('', [
       Validators.required]);
 
     this.seriesFormControl = new FormControl('', [
@@ -64,10 +64,10 @@ export class CreateRoutineFormComponent implements OnInit {
 
     this.workoutDataService.getAvailableExercises().subscribe(items => {
       this.exercises = new Array<Exercise>();
-        items.forEach(item => {
-          const newExercise = new Exercise(item.name);
-          this.exercises.push(newExercise);
-        });
+      items.forEach(item => {
+        const newExercise = new Exercise(item.name);
+        this.exercises.push(newExercise);
+      });
     });
   }
 
@@ -83,19 +83,16 @@ export class CreateRoutineFormComponent implements OnInit {
     this.showExerciseForm = false;
     this.routineForm.reset();
   }
-  onSubmit(exercise: any,
-    series: number,
-    repeats: number,
-    resting: number) {
-          exercise = this.workoutDataService.getExerciseByName(this.exerciseName);
-          series = this.routine.seriesCount;
-          repeats = this.routine.repeatTimes;
-          resting = this.routine.restingTime;
+  onSubmit() {
+    const exercise = this.workoutDataService.getExerciseByName(this.exerciseName);
+    const series = this.routine.seriesCount;
+    const repeats = this.routine.repeatTimes;
+    const resting = this.routine.restingTime;
 
-      this.routine = this.factory
+    this.routine = this.factory
       .createRoutine(exercise, repeats, series, resting);
-      this.workoutDataService.addRoutine(this.routine);
-      this.notificationService.popToast('info', 'Success!', 'Routine successfully added!');
-      this.dialogRef.close();
+    this.workoutDataService.addRoutine(this.routine);
+    this.notificationService.popToast('info', 'Success!', 'Routine successfully added!');
+    this.dialogRef.close();
   }
 }

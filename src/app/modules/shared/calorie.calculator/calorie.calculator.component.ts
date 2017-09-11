@@ -96,7 +96,7 @@ export class CalorieCalculatorComponent implements OnInit {
 
   }
 
-  clearForm(genderValue, activenessValue) {
+  clearForm() {
     this.genderValue = ' ';
     this.activenessValue = ' ';
     this.result = '';

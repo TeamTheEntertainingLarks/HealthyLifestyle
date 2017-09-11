@@ -9,7 +9,7 @@
       Age is <strong>required</strong>
     </md-error>
   </md-input-container>
-  <md-select placeholder="Gender" required [(ngModel)]="genderValue" class="form-control" [formControl]="genderFormControl" >
+  <md-select placeholder="Gender" required [(ngModel)]="genderValue" class="form-control" [formControl]="genderFormControl">
     <md-option *ngFor="let gen of gender" [value]="gen.value">
       {{ gen.viewValue }}
     </md-option>
@@ -50,7 +50,7 @@
     </md-error>
   </md-select>
   <div>
-    <button md-button [disabled]="!calculatorForm.valid" (click)="calculate(age, genderValue, weight,height, activenessValue)">Calculate</button>
+    <button md-button [disabled]="!calculatorForm.valid" (click)="calculate(age, genderValue, weight, height, activenessValue)">Calculate</button>
     <button type="reset" md-button (click)="clearForm()">Clear</button>
   </div>
 </form>
